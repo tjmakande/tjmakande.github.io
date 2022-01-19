@@ -1,24 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Suspense, useState} from 'react';
 import './App.css';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei'
+import Model from './Components/Model';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Canvas >
+        <Suspense fallback={<>loading</>}>
+        <directionalLight position={[0, 10, 5]} intensity={0.7} />
+        <directionalLight position={[-10, -10, -5]} intensity={0.2} />
+          <Model />
+          {/* <OrbitControls /> */}
+        </Suspense>
+      </Canvas>
     </div>
   );
 }
