@@ -27,11 +27,7 @@ export default LandingPage;
 
 const Container = styled.div`
     position: relative;
-    width: 100vw;
     height: 100vh;
-    background-color: #00000021;
-    z-index: 2;
-    padding: 2vw;
 `;
 
 const Wrapper = styled.div`
