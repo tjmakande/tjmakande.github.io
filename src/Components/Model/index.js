@@ -21,25 +21,19 @@ export default function Model(props) {
     group.current.rotation.x = Math.cos(t / 4) / 8
     group.current.rotation.y = Math.sin(t / 4) / 8
     group.current.position.y = (1 + Math.sin(t / 1.5)) / 10;
+    camera.position.x = -7;
+    camera.zoom = 1
 
     if(pos){
-      if(camera.position.x > -7){
-        camera.position.x -= 0.08
+      if(camera.position.x < 0){
+        camera.position.x += 0.08
       }
     } else {
-      if(camera.position.x < 0){
-        camera.position.x +=0.08;
+      if(camera.position.x > -7){
+        camera.position.x -=0.08;
       }
     }
   })
-
-
-
-
-
-
-
-
 
 
   return (
