@@ -32,7 +32,7 @@ const WhatIDo = (props:Props) => {
     }, [Active, page])
 
     return (
-        <Container ref={ContainerRef}>
+        <Container className='WID-Container' ref={ContainerRef}>
             <Wrapper>
                 <Header ref={HeaderRef}>
                     What I do

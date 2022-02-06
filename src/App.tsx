@@ -40,10 +40,9 @@ export default App;
 
 
 const Page = styled.div`
-  width: 100vw;
   background-color: #00000021;
   z-index: 2;
-  padding: 2vw;
+  padding: 0 2vw;
   display: flex;
   flex-direction: column;
 `;

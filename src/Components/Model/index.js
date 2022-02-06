@@ -22,15 +22,21 @@ export default function Model(props) {
     group.current.rotation.x = Math.cos(t / 4) / 8
     group.current.rotation.y = Math.sin(t / 4) / 8
     group.current.position.y = (1 + Math.sin(t / 1.5)) / 10;
-    camera.zoom = 1
+    camera.zoom = 1;
+    const WIDContainerTop = document.querySelector('.WID-Container').getBoundingClientRect().top;
 
     if(page === Pages[2]){
-      if(camera.position.x < 0){
-        camera.position.x += 0.09
+      if(camera.position.x < 0){ // if object is appearing on the right of the screen
+        if((((WIDContainerTop / 6) * -7) / 100) > -7.1){
+          camera.position.x = ((WIDContainerTop / 6) * -7) / 100;
+        }
+        // camera.position.x += 0.08;
       }
     } else {
-      if(camera.position.x > -7){
+      if(camera.position.x > -7.1){ // if object is appearing on the left of the screen
         camera.position.x -=0.09;
+        // camera.position.x = ((WIDContainerTop / 6) * -7) / 100;
+
       }
     }
   })
