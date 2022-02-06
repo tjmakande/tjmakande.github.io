@@ -1,1 +1,0 @@
-  export const Pages = ['Home', 'AboutMe', 'WhatIDo'];
