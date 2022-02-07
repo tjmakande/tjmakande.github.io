@@ -35,16 +35,16 @@ const Wrapper = styled.div`
     justify-content: center;
     align-Items: center;
     color: black;
-    padding: 0 5vw;
+    padding: 0 7vw;
 `;
 
 const Header = styled.h1`
     margin: 0;
-    font-size: 11vw;
-    font-family: 'futura';
+    font-size: 13vw;
     margin: 0;
+    padding: 0;
     color: #E5E5E5;
     font-weight: 600;
     letter-spacing: -3px;
-    line-height: 10vw;
+    line-height: 12vw;
 `;
