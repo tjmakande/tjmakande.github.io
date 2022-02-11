@@ -3,44 +3,25 @@ import React from 'react';
 import styled from 'styled-components';
 
 import EmailLink from '../../Components/EmailLink';
+import SectionWrapper from '../../Components/Styled/SectionWrapper';
 
 
 const LandingPage = () => {
     return(
-       <Container>
-           <Wrapper>
+           <SectionWrapper>
                 <Header>
                     TAPIWANASHE J. MAKANDE
                 </Header> 
-
             <EmailLink />
-           </Wrapper>
-       </Container> 
+           </SectionWrapper>
     )
 };
 
 export default LandingPage;
 
-
-
-const Container = styled.div`
-    position: relative;
-    height: 100vh;
-`;
-
-const Wrapper = styled.div`
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-Items: center;
-    color: black;
-    padding: 0 7vw;
-`;
-
 const Header = styled.h1`
     margin: 0;
-    font-size: 13vw;
+    font-size: 12vw;
     margin: 0;
     padding: 0;
     color: #E5E5E5;

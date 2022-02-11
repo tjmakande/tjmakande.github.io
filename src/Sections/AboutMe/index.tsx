@@ -10,7 +10,7 @@ const AboutMe = () => {
     useEffect(() => {
         document.addEventListener('scroll', e => {
             if(ContainerRef.current)
-                ContainerRef.current.getBoundingClientRect().top < window.innerHeight * 3 / 4 ? setActive(true) : setActive(false)
+                ContainerRef.current.getBoundingClientRect().top < window.innerHeight ? setActive(true) : setActive(false)
         })
     }, [])
 
@@ -18,18 +18,19 @@ const AboutMe = () => {
         if(Active){
             // gsap.to(ContainerRef.current, {opacity: 1, duration: 1});
             gsap.fromTo(HeaderRef.current,{y:100, opacity: 0},{y: 0, opacity: 1, duration: 1});
+            gsap.fromTo(document.querySelector('.App'), {backgroundColor: '#3A3A3A'}, {backgroundColor: '#E5E5E5'})
         } else{
             // gsap.to(ContainerRef.current, {opacity: 0, duration: 1})
             gsap.fromTo(HeaderRef.current,{y:0, opacity: 1},{y: 100, opacity: 0, duration: 0.5});
+            gsap.fromTo(document.querySelector('.App'),{backgroundColor: '#E5E5E5'},{backgroundColor: '#3A3A3A'})
+
         }
     }, [Active])
 
     return (
         <Container ref={ContainerRef}>
             <Wrapper>
-                <Header ref={HeaderRef}>
-                    About Me
-                </Header>
+                <h1 ref={HeaderRef}>something</h1>
             </Wrapper>
         </Container>
     )
@@ -43,17 +44,15 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-    width: 50vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-Items: center;
     color: black;
     padding: 0 5vw 0 0;
+
 `;
 
-const Header = styled.h1`
-    font-size: 50px;
-    opacity: 0;
-    margin: 0;
-`;
+const AboutText = styled.h1`
+
+`
