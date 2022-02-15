@@ -30,7 +30,7 @@ const AboutMe = () => {
     return (
         <Container ref={ContainerRef}>
             <Wrapper>
-                <h1 ref={HeaderRef}>something</h1>
+                <AboutText ref={HeaderRef}>something</AboutText>
             </Wrapper>
         </Container>
     )
@@ -47,12 +47,19 @@ const Wrapper = styled.div`
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-Items: center;
     color: black;
     padding: 0 5vw 0 0;
+    position: relative;
+
 
 `;
 
 const AboutText = styled.h1`
-
+    font-size: 72px;
+    margin: 0;
+    position: absolute;
+    transform: rotate(-90deg);
+    background-color: red;
+    padding: 0;
+    bottom: 0; 
 `
