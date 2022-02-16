@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default styled.div`
     width: 4vw;
     height: 3vw;
-    position: absolute;
+    position: fixed;
     top: 1rem;
     right: 2rem;
     z-index: 99;
