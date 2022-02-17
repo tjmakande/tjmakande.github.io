@@ -51,6 +51,7 @@ const Container = styled.div`
     position: relative;
     height: 100vh;
     margin-top: -95vh;
+    z-index: 4;
 `;
 
 const Wrapper = styled.div`
@@ -73,12 +74,13 @@ const AboutMeText = styled.h1`
     transform-origin: 0 0;
 `;
 
-const AboutMeTextalt = styled(AboutMeText)`
+const AboutMeTextalt = styled.h1`
     font-size: 120px;
     position: absolute;
     margin: 0;
-    top:100px;
+    top:300px;
     left: 15px;
     transform: rotate(-90deg);
     transform-origin: 0 0;
+    z-index: 6;
 `;
