@@ -92,6 +92,7 @@ const Container = styled.div`
     position: relative;
     height: 100vh;
     margin-top: -95vh;
+    z-index: 4;
 `;
 
 const Wrapper = styled.div`
