@@ -28,5 +28,5 @@ const Header = styled.h1`
     font-weight: 600;
     letter-spacing: -3px;
     line-height: 12vw;
-    z-index: 9;
+    z-index: 3;
 `;

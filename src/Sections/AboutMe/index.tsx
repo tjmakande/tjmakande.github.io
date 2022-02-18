@@ -21,8 +21,6 @@ const AboutMe = () => {
             if(ContainerRef.current)
                 // ContainerRef.current.getBoundingClientRect().top < window.innerHeight ? setActive(true) : setActive(false);
                 ContainerRef.current.getBoundingClientRect().top <= 20 ? setActive(true) : setActive(false);
-
-                console.log(window.innerHeight, ContainerRef.current?.getBoundingClientRect().top)
         })
     }, [])
 
@@ -62,8 +60,15 @@ const AboutMe = () => {
 
         } else{
             // gsap.to(ContainerRef.current, {opacity: 0, duration: 1})
-            gsap.fromTo(HeaderRef.current,{y:0, opacity: 1},{y: 100, opacity: 0, duration: 0.5});
-            gsap.fromTo(HeaderAltRef.current,{y:100, opacity: 0},{y: 0, opacity: 0, duration: 1});
+            gsap.to(HeaderRef.current,{opacity: 0});
+            gsap.to(HeaderAltRef.current,{opacity: 0});
+
+            gsap.to(Iref.current,{opacity: 0 })
+            gsap.to(Createref.current,{opacity: 0 })
+            gsap.to(Designref.current,{opacity: 0 })
+            gsap.to(Andref.current,{opacity: 0 })
+            gsap.to(Maximizeref.current,{opacity: 0 })
+            gsap.to(Experiencesref.current,{opacity: 0 })
             gsap.fromTo(document.querySelector('.App'),{backgroundColor: '#E5E5E5'},{backgroundColor: '#3A3A3A'})
         }
     }, [Active])
@@ -105,12 +110,13 @@ const Wrapper = styled.div`
 `;
 
 const AboutMeText = styled.h1`
-    font-size: 150px;
+    font-size: clamp(150px, 25vh, 300px);
+    letter-spacing: -10px;
     position: absolute;
     margin: 0;
     width: 0;
     color: #989898;
-    bottom: -180px;
+    bottom: clamp(-300px, -25vh, -150px);
     left: -20px;
     font-weight: 700;
     text-transform: uppercase;
@@ -120,8 +126,8 @@ const AboutMeText = styled.h1`
 `;
 
 const AboutMeTextalt = styled(AboutMeText)`
-    font-size: 170px;
-    top: 250px;
+    font-size: clamp(170px, 30vh, 350px);
+    top: clamp(200px, 42vh, 550px);
     color: #BABABA82;
     left: 30px;
     z-index: 1;
@@ -131,10 +137,11 @@ const WordContainer = styled.div`
     margin-left: 30vw;
     display: flex;
     flex-direction: column;
+    height: 100vh;
 `;
 
 const Word = styled.h1`
-    Font-size: 60px;
+    Font-size: clamp(60px, 4vw, 100px);
     margin: 0;
     width: 0;
     color: #585858;
@@ -162,6 +169,6 @@ const WordMaximize = styled(Word)`
 `;
 
 const WordExperiences = styled(Word)`
-    font-size: 130px;
-    margin-left: -5rem;
+    font-size: clamp(100px, 12vw, 270px);
+    margin-left: -7rem;
 `;
