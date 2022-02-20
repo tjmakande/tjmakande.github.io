@@ -5,6 +5,7 @@
   background-color:#3A3A3A;
   text-align: center;
   overflow:hidden;
+  scroll-behavior: smooth;
 }
 
 

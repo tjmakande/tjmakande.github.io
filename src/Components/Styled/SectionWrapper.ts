@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export default styled.div`
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,4 +9,5 @@ export default styled.div`
     color: black;
     padding: 0 7vw;
     position: relative;
+    transition: .5s;
 `;

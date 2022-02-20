@@ -10,7 +10,7 @@ const EmailLink = () => (
 export default EmailLink;
 
 const Text = styled.div`
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     left: 10px;
 `;

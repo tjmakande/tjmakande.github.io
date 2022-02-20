@@ -5,21 +5,22 @@ import styled from 'styled-components';
 import EmailLink from '../../Components/EmailLink';
 import SectionWrapper from '../../Components/Styled/SectionWrapper';
 
+const LandingPage = React.forwardRef<HTMLDivElement>((props, ref)=> {
 
-const LandingPage = () => {
     return(
-           <SectionWrapper>
+           <SectionWrapper ref={ref}>
                 <Header>
                     TAPIWANASHE J. MAKANDE
                 </Header> 
             <EmailLink />
            </SectionWrapper>
     )
-};
+});
 
 export default LandingPage;
 
 const Header = styled.h1`
+    position: fixed;
     margin: 0;
     font-size: 12vw;
     margin: 0;
