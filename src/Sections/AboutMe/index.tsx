@@ -12,16 +12,38 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
     const Maximizeref = useRef<HTMLHeadingElement>(null);
     const Experiencesref = useRef<HTMLHeadingElement>(null);
 
+    const AnimationProgress = (prevThreshhold: number, nextThreshhold: number) => 
+        ((window.scrollY - window.innerHeight * prevThreshhold) / ((window.innerHeight * nextThreshhold) - (window.innerHeight * prevThreshhold))) * 100
+
+    const AnimationWindow = (prevThreshhold: number, nextThreshhold: number) => 
+        window.scrollY > window.innerHeight * prevThreshhold && window.scrollY < window.innerHeight * nextThreshhold
+
     useEffect(() => {
         document.addEventListener('scroll', () => {
-            if(HeaderRef.current && window.scrollY > window.innerHeight * 0.2 && window.scrollY < window.innerHeight * 0.3) // About word 20% scroll to 30% scroll
-                HeaderRef.current.style.marginBottom = (-100 + ((window.scrollY - window.innerHeight * 0.2) / ((window.innerHeight * 0.3) - (window.innerHeight * 0.2))) * 100).toString(10) + 'vh';
+            if(HeaderRef.current && AnimationWindow(0.2, 0.3)) // About word 20% scroll to 30% scroll
+                HeaderRef.current.style.marginBottom = -100 + AnimationProgress(0.2, 0.3) + 'vh';
 
-        
-            if(HeaderAltRef.current && window.scrollY > window.innerHeight * 0.3 && window.scrollY < window.innerHeight * 0.4) // Me word 30% scroll to 40% scroll
-                HeaderAltRef.current.style.marginTop = (100 - ((window.scrollY - window.innerHeight * 0.3) / ((window.innerHeight * 0.4) - (window.innerHeight * 0.3))) * 100).toString(10) + 'vh';
+            if(HeaderAltRef.current && AnimationWindow(0.3, 0.4)) // Me word 30% scroll to 40% scroll
+                HeaderAltRef.current.style.marginTop = 100 - AnimationProgress(0.3, 0.4) + 'vh';
 
-            
+            if(Iref.current && AnimationWindow(0.5, 0.6)) // I word 50% scroll to 60% scroll
+                Iref.current.style.marginLeft = 100 - AnimationProgress(0.5, 0.6) + 'vw';
+
+            if(Createref.current && AnimationWindow(0.7, 0.8))
+                Createref.current.style.marginLeft = 102 - AnimationProgress(0.7, 0.8) + 'vw';
+
+            if(Designref.current && AnimationWindow(0.8, 0.9))
+                Designref.current.style.marginLeft = 112 - AnimationProgress(0.8, 0.9) + 'vw';
+
+            if(Andref.current && AnimationWindow(0.9, 1))
+                Andref.current.style.marginLeft = 128 - AnimationProgress(0.9, 1) + 'vw';
+
+            if(Maximizeref.current && AnimationWindow(1, 1.2))
+                Maximizeref.current.style.marginLeft = 130 - AnimationProgress(1, 1.2) + 'vw';
+
+            if(Experiencesref.current && AnimationWindow(1.2, 1.4))
+                Experiencesref.current.style.marginLeft = 90 - AnimationProgress(1.2, 1.4) + 'vw';
+
         })
     })
 
@@ -103,6 +125,7 @@ const Word = styled.h1`
     margin: 0;
     width: 0;
     color: #585858;
+    margin-left: 100vw;
 `;
 
 const WordI = styled(Word)`
@@ -110,25 +133,25 @@ const WordI = styled(Word)`
 `;
 
 const WordCreate = styled(Word)`
-    margin-left: 2rem;
+    // margin-left: 2rem;
 `; 
 
 const WordDesign = styled(Word)`
-    margin-left: 12rem;
+    // margin-left: 12rem;
 `;
 
 const WordAnd = styled(Word)`
-    margin-left: 23rem;
+    // margin-left: 23rem;
     color: #BABABA;
 `;
 
 const WordMaximize = styled(Word)`
-    margin-left: 26rem;
+    // margin-left: 26rem;
 `;
 
 const WordExperiences = styled(Word)`
     font-size: clamp(100px, 12vw, 270px);
-    margin-left: -7rem;
+    // margin-left: -7rem;
 `;
 
 
