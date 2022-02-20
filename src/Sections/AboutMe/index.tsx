@@ -12,6 +12,19 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
     const Maximizeref = useRef<HTMLHeadingElement>(null);
     const Experiencesref = useRef<HTMLHeadingElement>(null);
 
+    useEffect(() => {
+        document.addEventListener('scroll', () => {
+            if(HeaderRef.current && window.scrollY > window.innerHeight * 0.2 && window.scrollY < window.innerHeight * 0.3) // About word 20% scroll to 30% scroll
+                HeaderRef.current.style.marginBottom = (-100 + ((window.scrollY - window.innerHeight * 0.2) / ((window.innerHeight * 0.3) - (window.innerHeight * 0.2))) * 100).toString(10) + 'vh';
+
+        
+            if(HeaderAltRef.current && window.scrollY > window.innerHeight * 0.3 && window.scrollY < window.innerHeight * 0.4) // Me word 30% scroll to 40% scroll
+                HeaderAltRef.current.style.marginTop = (100 - ((window.scrollY - window.innerHeight * 0.3) / ((window.innerHeight * 0.4) - (window.innerHeight * 0.3))) * 100).toString(10) + 'vh';
+
+            
+        })
+    })
+
     return (
         <Container ref={ref}>
             <Wrapper>
@@ -66,6 +79,7 @@ const AboutMeText = styled.h1`
     transform: rotate(-90deg);
     transform-origin: 0 0;
     z-index: 2;
+    margin-bottom: -100vh;
 `;
 
 const AboutMeTextalt = styled(AboutMeText)`
@@ -74,6 +88,7 @@ const AboutMeTextalt = styled(AboutMeText)`
     color: #BABABA82;
     left: 30px;
     z-index: 1;
+    margin-top: 100vh;
 `;
 
 const WordContainer = styled.div`
