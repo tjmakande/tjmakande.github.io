@@ -1,13 +1,9 @@
 import styled from 'styled-components'
 
-export default styled.div`
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-Items: center;
+export default styled.section`
+    height: 100vh;
     color: black;
-    padding: 0 7vw;
     position: relative;
     transition: .5s;
+    z-index: 1;
 `;

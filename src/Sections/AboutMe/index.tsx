@@ -3,62 +3,62 @@ import styled from 'styled-components';
 import {gsap} from 'gsap';
 
 const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
-    const HeaderRef = useRef<HTMLHeadingElement>(null);
-    const HeaderAltRef = useRef<HTMLHeadingElement>(null);
-    const Iref = useRef<HTMLHeadingElement>(null);
-    const Createref = useRef<HTMLHeadingElement>(null);
-    const Designref = useRef<HTMLHeadingElement>(null);
-    const Andref = useRef<HTMLHeadingElement>(null);
-    const Maximizeref = useRef<HTMLHeadingElement>(null);
-    const Experiencesref = useRef<HTMLHeadingElement>(null);
+    // const HeaderRef = useRef<HTMLHeadingElement>(null);
+    // const HeaderAltRef = useRef<HTMLHeadingElement>(null);
+    // const Iref = useRef<HTMLHeadingElement>(null);
+    // const Createref = useRef<HTMLHeadingElement>(null);
+    // const Designref = useRef<HTMLHeadingElement>(null);
+    // const Andref = useRef<HTMLHeadingElement>(null);
+    // const Maximizeref = useRef<HTMLHeadingElement>(null);
+    // const Experiencesref = useRef<HTMLHeadingElement>(null);
 
-    const AnimationProgress = (prevThreshhold: number, nextThreshhold: number) => 
-        ((window.scrollY - window.innerHeight * prevThreshhold) / ((window.innerHeight * nextThreshhold) - (window.innerHeight * prevThreshhold))) * 100
+    // const AnimationProgress = (prevThreshhold: number, nextThreshhold: number) => 
+    //     ((window.scrollY - window.innerHeight * prevThreshhold) / ((window.innerHeight * nextThreshhold) - (window.innerHeight * prevThreshhold))) * 100
 
-    const AnimationWindow = (prevThreshhold: number, nextThreshhold: number) => 
-        window.scrollY > window.innerHeight * prevThreshhold && window.scrollY < window.innerHeight * nextThreshhold
+    // const AnimationWindow = (prevThreshhold: number, nextThreshhold: number) => 
+    //     window.scrollY > window.innerHeight * prevThreshhold && window.scrollY < window.innerHeight * nextThreshhold
 
-    useEffect(() => {
-        document.addEventListener('scroll', () => {
-            if(HeaderRef.current && AnimationWindow(0.2, 0.3)) // About word 20% scroll to 30% scroll
-                HeaderRef.current.style.marginBottom = -100 + AnimationProgress(0.2, 0.3) + 'vh';
+    // useEffect(() => {
+    //     document.addEventListener('scroll', () => {
+    //         if(HeaderRef.current && AnimationWindow(0.2, 0.3)) // About word 20% scroll to 30% scroll
+    //             HeaderRef.current.style.marginBottom = -100 + AnimationProgress(0.2, 0.3) + 'vh';
 
-            if(HeaderAltRef.current && AnimationWindow(0.3, 0.4)) // Me word 30% scroll to 40% scroll
-                HeaderAltRef.current.style.marginTop = 100 - AnimationProgress(0.3, 0.4) + 'vh';
+    //         if(HeaderAltRef.current && AnimationWindow(0.3, 0.4)) // Me word 30% scroll to 40% scroll
+    //             HeaderAltRef.current.style.marginTop = 100 - AnimationProgress(0.3, 0.4) + 'vh';
 
-            if(Iref.current && AnimationWindow(0.5, 0.6)) // I word 50% scroll to 60% scroll
-                Iref.current.style.marginLeft = 100 - AnimationProgress(0.5, 0.6) + 'vw';
+    //         if(Iref.current && AnimationWindow(0.5, 0.6)) // I word 50% scroll to 60% scroll
+    //             Iref.current.style.marginLeft = 100 - AnimationProgress(0.5, 0.6) + 'vw';
 
-            if(Createref.current && AnimationWindow(0.7, 0.8))
-                Createref.current.style.marginLeft = 102 - AnimationProgress(0.7, 0.8) + 'vw';
+    //         if(Createref.current && AnimationWindow(0.7, 0.8))
+    //             Createref.current.style.marginLeft = 102 - AnimationProgress(0.7, 0.8) + 'vw';
 
-            if(Designref.current && AnimationWindow(0.8, 0.9))
-                Designref.current.style.marginLeft = 112 - AnimationProgress(0.8, 0.9) + 'vw';
+    //         if(Designref.current && AnimationWindow(0.8, 0.9))
+    //             Designref.current.style.marginLeft = 112 - AnimationProgress(0.8, 0.9) + 'vw';
 
-            if(Andref.current && AnimationWindow(0.9, 1))
-                Andref.current.style.marginLeft = 128 - AnimationProgress(0.9, 1) + 'vw';
+    //         if(Andref.current && AnimationWindow(0.9, 1))
+    //             Andref.current.style.marginLeft = 128 - AnimationProgress(0.9, 1) + 'vw';
 
-            if(Maximizeref.current && AnimationWindow(1, 1.2))
-                Maximizeref.current.style.marginLeft = 130 - AnimationProgress(1, 1.2) + 'vw';
+    //         if(Maximizeref.current && AnimationWindow(1, 1.2))
+    //             Maximizeref.current.style.marginLeft = 130 - AnimationProgress(1, 1.2) + 'vw';
 
-            if(Experiencesref.current && AnimationWindow(1.2, 1.4))
-                Experiencesref.current.style.marginLeft = 90 - AnimationProgress(1.2, 1.4) + 'vw';
+    //         if(Experiencesref.current && AnimationWindow(1.2, 1.4))
+    //             Experiencesref.current.style.marginLeft = 90 - AnimationProgress(1.2, 1.4) + 'vw';
 
-        })
-    })
+    //     })
+    // })
 
     return (
         <Container ref={ref}>
             <Wrapper>
-                <AboutMeText ref={HeaderRef}>About</AboutMeText>
-                <AboutMeTextalt ref={HeaderAltRef} >ME</AboutMeTextalt>
+                <AboutMeText>About</AboutMeText>
+                <AboutMeTextalt >ME</AboutMeTextalt>
                 <WordContainer>
-                    <WordI ref={Iref}>I</WordI>
-                    <WordCreate ref={Createref}>Create,</WordCreate>
-                    <WordDesign ref={Designref}>Design</WordDesign>
-                    <WordAnd ref={Andref}> & </WordAnd>
-                    <WordMaximize ref={Maximizeref}>Maximize</WordMaximize>
-                    <WordExperiences ref={Experiencesref}>Experiences</WordExperiences>
+                    <WordI >I</WordI>
+                    <WordCreate >Create,</WordCreate>
+                    <WordDesign >Design</WordDesign>
+                    <WordAnd> & </WordAnd>
+                    <WordMaximize >Maximize</WordMaximize>
+                    <WordExperiences >Experiences</WordExperiences>
                 </WordContainer>
             </Wrapper>
         </Container>
@@ -68,14 +68,13 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
 export default AboutMe;
 
 const Container = styled.div`
-    position: fixed;
-    background-color: #E5E5E5;
+    // background-color: #E5E5E5;
     top: 0;
-    height: 100vh;
+    height: 300vh;
     width: 100vw;
     // margin-top: -95vh;
     z-index: 4;
-    opacity: 0;
+    overflow: hidden;
 `;
 
 const Wrapper = styled.div`
@@ -101,7 +100,6 @@ const AboutMeText = styled.h1`
     transform: rotate(-90deg);
     transform-origin: 0 0;
     z-index: 2;
-    margin-bottom: -100vh;
 `;
 
 const AboutMeTextalt = styled(AboutMeText)`
@@ -110,22 +108,24 @@ const AboutMeTextalt = styled(AboutMeText)`
     color: #BABABA82;
     left: 30px;
     z-index: 1;
-    margin-top: 100vh;
 `;
 
 const WordContainer = styled.div`
-    margin-left: 30vw;
     display: flex;
     flex-direction: column;
     height: 100vh;
+    justify-content: center;
 `;
 
 const Word = styled.h1`
-    Font-size: clamp(60px, 4vw, 100px);
+    Font-size: clamp(60px, 5vw, 150px);
     margin: 0;
     width: 0;
     color: #585858;
-    margin-left: 100vw;
+    margin-left: 30vw;
+    transform: translate3d(${window.innerWidth}px, 0px, 0px);
+    z-index: 2;
+
 `;
 
 const WordI = styled(Word)`

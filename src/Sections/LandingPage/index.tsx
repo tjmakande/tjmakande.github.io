@@ -1,5 +1,4 @@
 import React from 'react';
-// import Container from './styled/Container';
 import styled from 'styled-components';
 
 import EmailLink from '../../Components/EmailLink';
@@ -8,16 +7,28 @@ import SectionWrapper from '../../Components/Styled/SectionWrapper';
 const LandingPage = React.forwardRef<HTMLDivElement>((props, ref)=> {
 
     return(
-           <SectionWrapper ref={ref}>
-                <Header>
-                    TAPIWANASHE J. MAKANDE
-                </Header> 
-            <EmailLink />
-           </SectionWrapper>
+        <SectionWrapper ref={ref}>
+            <>
+                <Wrapper>
+                    <Header id="Name">
+                        TAPIWANASHE J. MAKANDE
+                    </Header> 
+                    <EmailLink />
+                </Wrapper>
+            </>
+        </SectionWrapper>
     )
 });
 
 export default LandingPage;
+
+const Wrapper = styled.div`
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
 const Header = styled.h1`
     position: fixed;
@@ -29,5 +40,5 @@ const Header = styled.h1`
     font-weight: 600;
     letter-spacing: -3px;
     line-height: 12vw;
-    z-index: 3;
+    z-index: 1;
 `;
