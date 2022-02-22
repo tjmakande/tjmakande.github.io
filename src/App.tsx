@@ -1,4 +1,4 @@
-import React, { useRef, useEffect} from 'react';
+import React, {useRef} from 'react';
 import styled from 'styled-components';
 import './App.css';
 
@@ -13,19 +13,6 @@ function App() {
   const Backgroundref = React.createRef<HTMLDivElement>();
   const Navigationref = React.createRef<HTMLDivElement>();
 
-  //About Me section
-    const HeaderRef = useRef<HTMLHeadingElement>(null);
-    const HeaderAltRef = useRef<HTMLHeadingElement>(null);
-    const Iref = useRef<HTMLHeadingElement>(null);
-    const Createref = useRef<HTMLHeadingElement>(null);
-    const Designref = useRef<HTMLHeadingElement>(null);
-    const Andref = useRef<HTMLHeadingElement>(null);
-    const Maximizeref = useRef<HTMLHeadingElement>(null);
-    const Experiencesref = useRef<HTMLHeadingElement>(null);
-
-
-  useEffect(() => {
-  })
 
   const B2W = (x: number) => {
     if((58 + x) < 229){
@@ -41,7 +28,9 @@ function App() {
   //     return(229 - x)
   //   }
   // }
-  const getStopPosition = (percent: number) => (window.innerWidth - (window.innerWidth * 0.3)) * (percent/100)
+
+  const getStopPosition = (percent: number) => (window.innerWidth - (window.innerWidth * 0.3)) * (percent/100);
+  const moveFromLeft = (pos: number) => (window.innerWidth - (pos - window.innerHeight) * 6)
 
   return (
     <div className="App">
@@ -49,9 +38,11 @@ function App() {
         onScroll={(status) => {
           const Head = document.getElementById('Name');
 
+          //Navigation
           if(Navigationref.current)
             Navigationref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-
+          
+          //page background color
           if(Backgroundref.current && Head) {
             Backgroundref.current.style.backgroundColor = `rgb(${B2W(status.offset.y)}, ${B2W(status.offset.y)}, ${B2W(status.offset.y)})`;
             Head.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
@@ -75,22 +66,16 @@ function App() {
               
               Aboutref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight)}px, 0px, 0px)`;
               Meref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight)}px, 0px, 0px)`;
-              // console.log('start: ' + status.offset.y);
-              // console.log(getStopPosition());
-              WordIref.style.transform = `translate3d(${(window.innerWidth - (status.offset.y - window.innerHeight) * 6) > 0 ? (window.innerWidth - (status.offset.y - window.innerHeight) * 6) : 0}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordCreateref.style.transform = `translate3d(${( window.innerWidth - (status.offset.y - window.innerHeight) * 6) > getStopPosition(7) ? (window.innerWidth - (status.offset.y - window.innerHeight) * 6) : getStopPosition(7)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordDesignref.style.transform = `translate3d(${(window.innerWidth - (status.offset.y - window.innerHeight) * 6) > getStopPosition(30) ? (window.innerWidth - (status.offset.y - window.innerHeight) * 6) : getStopPosition(30)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordAndref.style.transform = `translate3d(${(window.innerWidth - (status.offset.y - window.innerHeight) * 6) > getStopPosition(55) ? (window.innerWidth - (status.offset.y - window.innerHeight) * 6) : getStopPosition(55)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordMaximizeref.style.transform = `translate3d(${(window.innerWidth - (status.offset.y - window.innerHeight) * 6) > getStopPosition(62) ? (window.innerWidth - (status.offset.y - window.innerHeight) * 6) : getStopPosition(62)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordExperiencesref.style.transform = `translate3d(${(window.innerWidth - (status.offset.y - window.innerHeight) * 6) > -20 ? (window.innerWidth - (status.offset.y - window.innerHeight) * 6) : -20}px, ${status.offset.y - window.innerHeight}px, 0px)`;
 
+              WordIref.style.transform = `translate3d(${moveFromLeft(status.offset.y) > 0 ? moveFromLeft(status.offset.y) : 0}px, ${status.offset.y - window.innerHeight}px, 0px)`;
 
-
-
+              WordCreateref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 600 > getStopPosition(7) ? moveFromLeft(status.offset.y) + 600 : getStopPosition(7)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
+              WordDesignref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1200 > getStopPosition(30) ? moveFromLeft(status.offset.y) + 1200: getStopPosition(30)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
+              WordAndref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1800 > getStopPosition(55) ? moveFromLeft(status.offset.y) + 1800 : getStopPosition(55)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
+              WordMaximizeref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 2000> getStopPosition(62) ? moveFromLeft(status.offset.y)+ 2000 : getStopPosition(62)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
+              WordExperiencesref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 2300 > -20 ? moveFromLeft(status.offset.y) + 2300 : -20}px, ${status.offset.y - window.innerHeight}px, 0px)`;
             }
           }
-
-          // console.log(status.offset.y, window.innerHeight)
         }} 
         damping={0.033} 
         style={{
@@ -99,14 +84,10 @@ function App() {
           height: '100vh'
         }}
       >
-
         <Navigation ref={Navigationref} />
         <Background ref={Backgroundref}/>
         <LandingPage ref={SectionWrapperref} />
-        {/* <AboutMe ref={AboutMeref} /> */}
         <AboutMe ref={AboutMeContainerref} />
-
-
       </Scrollbar>
     </div>
   );
