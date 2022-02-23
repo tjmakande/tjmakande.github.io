@@ -70,7 +70,7 @@ export default AboutMe;
 const Container = styled.div`
     // background-color: #E5E5E5;
     top: 0;
-    height: 300vh;
+    height: 180vh;
     width: 100vw;
     // margin-top: -95vh;
     z-index: 4;
@@ -151,45 +151,4 @@ const WordMaximize = styled(Word)`
 
 const WordExperiences = styled(Word)`
     font-size: clamp(100px, 12vw, 270px);
-    // margin-left: -7rem;
 `;
-
-
-
-  // useEffect(() => {
-    //     document.addEventListener('scroll', e => {
-    //         if(ContainerRef.current)
-    //             // ContainerRef.current.getBoundingClientRect().top < window.innerHeight ? setActive(true) : setActive(false);
-    //             ContainerRef.current.getBoundingClientRect().top <= 20 ? setActive(true) : setActive(false);
-    //     })
-    // }, [])
-
-    // useEffect(() => {
-    //     if(Active){
-    //         // gsap.to(ContainerRef.current, {opacity: 1, duration: 1});
-    //         gsap.fromTo(HeaderRef.current,{y:100, opacity: 0},{y: 0, opacity: 1, duration: 1});
-    //         gsap.fromTo(HeaderAltRef.current,{y:100, opacity: 0},{y: 0, opacity: 1, duration: 1});
-    //         gsap.fromTo(document.querySelector('.App'), {backgroundColor: '#3A3A3A'}, {backgroundColor: '#E5E5E5'});
-
-    //         //One by One word by word coming on to the screen as the section loads.
-    //         gsap.fromTo(Iref.current,{opacity: 0,x: 100 }, {opacity: 1, x: 0,duration: 1, delay: 0.5})
-    //         gsap.fromTo(Createref.current,{opacity: 0,x: 100 }, {opacity: 1, x: 0,duration: 1, delay: 1})
-    //         gsap.fromTo(Designref.current,{opacity: 0,x: 100 }, {opacity: 1, x: 0,duration: 1, delay: 1.5})
-    //         gsap.fromTo(Andref.current,{opacity: 0,x: 100 }, {opacity: 1, x: 0,duration: 1, delay: 2})
-    //         gsap.fromTo(Maximizeref.current,{opacity: 0,x: 100 }, {opacity: 1, x: 0,duration: 1, delay: 2.5})
-    //         gsap.fromTo(Experiencesref.current,{opacity: 0,x: 100 }, {opacity: 1, x: 0,duration: 0.5, delay: 3.5})
-
-    //     } else{
-    //         // gsap.to(ContainerRef.current, {opacity: 0, duration: 1})
-    //         gsap.to(HeaderRef.current,{opacity: 0});
-    //         gsap.to(HeaderAltRef.current,{opacity: 0});
-
-    //         gsap.to(Iref.current,{opacity: 0 })
-    //         gsap.to(Createref.current,{opacity: 0 })
-    //         gsap.to(Designref.current,{opacity: 0 })
-    //         gsap.to(Andref.current,{opacity: 0 })
-    //         gsap.to(Maximizeref.current,{opacity: 0 })
-    //         gsap.to(Experiencesref.current,{opacity: 0 })
-    //         gsap.fromTo(document.querySelector('.App'),{backgroundColor: '#E5E5E5'},{backgroundColor: '#3A3A3A'})
-    //     }
-    // }, [Active])

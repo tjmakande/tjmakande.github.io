@@ -68,7 +68,6 @@ function App() {
               Meref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight)}px, 0px, 0px)`;
 
               WordIref.style.transform = `translate3d(${moveFromLeft(status.offset.y) > 0 ? moveFromLeft(status.offset.y) : 0}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-
               WordCreateref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 600 > getStopPosition(7) ? moveFromLeft(status.offset.y) + 600 : getStopPosition(7)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
               WordDesignref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1200 > getStopPosition(30) ? moveFromLeft(status.offset.y) + 1200: getStopPosition(30)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
               WordAndref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1800 > getStopPosition(55) ? moveFromLeft(status.offset.y) + 1800 : getStopPosition(55)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
