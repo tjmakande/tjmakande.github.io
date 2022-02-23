@@ -67,12 +67,10 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
 
 export default AboutMe;
 
-const Container = styled.div`
-    // background-color: #E5E5E5;
+const Container = styled.section`
     top: 0;
     height: 180vh;
     width: 100vw;
-    // margin-top: -95vh;
     z-index: 4;
     overflow: hidden;
 `;

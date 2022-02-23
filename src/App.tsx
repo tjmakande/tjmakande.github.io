@@ -5,6 +5,7 @@ import './App.css';
 import LandingPage from './Sections/LandingPage';
 import AboutMe from './Sections/AboutMe';
 import Navigation from './Components/Navigation';
+import Works from './Sections/Works';
 import {Scrollbar} from 'smooth-scrollbar-react';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
 
   const B2W = (x: number) => {
     if((58 + x) < 229){
-      if((58 + x) >220){
+      if((58 + x) > 220){
         return 229;
       }
       return (58+x)
@@ -48,6 +49,8 @@ function App() {
             Head.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
             Head.style.visibility = `${ ((58 + status.offset.y) / 229) < 1 ? ((58 + status.offset.y) / 229) : 1 }`
           }
+
+           SectionWrapperref.current && (SectionWrapperref.current.style.visibility = status.offset.y > window.innerHeight * 0.5 ? 'hidden' : 'visible');
 
           //About Me Section
           if(AboutMeContainerref.current){
@@ -87,6 +90,7 @@ function App() {
         <Background ref={Backgroundref}/>
         <LandingPage ref={SectionWrapperref} />
         <AboutMe ref={AboutMeContainerref} />
+        <Works />
       </Scrollbar>
     </div>
   );
