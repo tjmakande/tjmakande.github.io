@@ -17,7 +17,7 @@ export default WorkSection;
 
 const Container = styled.section`
     top: 0;
-    height: 100vh;
+    height: 150vh;
     width: 100vw;
     z-index: 5;
     overflow: hidden;
@@ -39,5 +39,4 @@ const SectionTitle = styled.h1`
     text-transform: uppercase;
     line-height: 16vh;
     margin: 0;
-    opacity: 0.05;
 `;

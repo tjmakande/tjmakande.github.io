@@ -48,14 +48,13 @@ function App() {
           if(Backgroundref.current && Head) {
             Backgroundref.current.style.backgroundColor = `rgb(${B2W(status.offset.y)}, ${B2W(status.offset.y)}, ${B2W(status.offset.y)})`;
             Head.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-            Head.style.visibility = `${ ((58 + status.offset.y) / 229) < 1 ? ((58 + status.offset.y) / 229) : 1 }`
           }
 
            SectionWrapperref.current && (SectionWrapperref.current.style.visibility = status.offset.y > window.innerHeight * 0.5 ? 'hidden' : 'visible');
 
           //About Me Section
           if(AboutMeContainerref.current){
-            if(status.offset.y > window.innerHeight){
+            if(status.offset.y > window.innerHeight && status.offset.y <= window.innerHeight * 2.8){
                const Parent = AboutMeContainerref.current.children[0]
                const Aboutref = Parent.children[0] as HTMLHeadingElement;
                const Meref = Parent.children[1] as HTMLHeadingElement;
@@ -77,6 +76,19 @@ function App() {
               WordAndref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1800 > getStopPosition(55) ? moveFromLeft(status.offset.y) + 1800 : getStopPosition(55)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
               WordMaximizeref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 2000> getStopPosition(62) ? moveFromLeft(status.offset.y)+ 2000 : getStopPosition(62)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
               WordExperiencesref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 2300 > -20 ? moveFromLeft(status.offset.y) + 2300 : -20}px, ${status.offset.y - window.innerHeight}px, 0px)`;
+            }
+          }
+
+          if(Worksref.current){
+            if(status.offset.y > window.innerHeight * 2.8){
+              const Parent = Worksref.current.children[0];
+              const wordSelected = Parent.children[0] as HTMLHeadingElement;
+              const wordWorks = Parent.children[1] as HTMLHeadingElement;
+
+              wordSelected.style.opacity = (1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) > 0.05 ? 1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) : 0.05 ).toString();
+              wordSelected.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 2.8)}px, 0px)`;
+              wordWorks.style.opacity = (1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) > 0.05 ? 1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) : 0.05 ).toString();
+              wordWorks.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 2.8)}px, 0px)`;
             }
           }
         }} 
