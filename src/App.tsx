@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import './App.css';
 
@@ -10,9 +10,10 @@ import {Scrollbar} from 'smooth-scrollbar-react';
 
 function App() {
   const SectionWrapperref = React.createRef<HTMLDivElement>();
-  const AboutMeContainerref = useRef<HTMLDivElement | null >(null);
+  const AboutMeContainerref = React.createRef<HTMLDivElement>();
   const Backgroundref = React.createRef<HTMLDivElement>();
   const Navigationref = React.createRef<HTMLDivElement>();
+  const Worksref = React.createRef<HTMLDivElement>();
 
 
   const B2W = (x: number) => {
@@ -90,7 +91,7 @@ function App() {
         <Background ref={Backgroundref}/>
         <LandingPage ref={SectionWrapperref} />
         <AboutMe ref={AboutMeContainerref} />
-        <Works />
+        <Works ref={Worksref} />
       </Scrollbar>
     </div>
   );

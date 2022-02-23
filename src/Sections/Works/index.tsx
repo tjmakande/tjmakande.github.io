@@ -2,19 +2,18 @@ import React from 'react'
 
 import styled from 'styled-components';
 
-const WorkSection = () => {
+const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
     return(
-        <Container>
+        <Container ref={ref}>
             <Wrapper>
                 <SectionTitle>Selected</SectionTitle>
                 <SectionTitle> Works</SectionTitle>
             </Wrapper>
         </Container>
     )
-};
+});
 
 export default WorkSection;
-
 
 const Container = styled.section`
     top: 0;
