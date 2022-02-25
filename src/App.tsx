@@ -6,6 +6,7 @@ import LandingPage from './Sections/LandingPage';
 import AboutMe from './Sections/AboutMe';
 import Navigation from './Components/Navigation';
 import Works from './Sections/Works';
+import Footer from './Sections/Footer';
 import {Scrollbar} from 'smooth-scrollbar-react';
 
 function App() {
@@ -14,6 +15,8 @@ function App() {
   const Backgroundref = React.createRef<HTMLDivElement>();
   const Navigationref = React.createRef<HTMLDivElement>();
   const Worksref = React.createRef<HTMLDivElement>();
+  const TransitionTworef = React.createRef<HTMLDivElement>();
+  const Footerref = React.createRef<HTMLDivElement>();
 
 
   const B2W = (x: number) => {
@@ -30,6 +33,13 @@ function App() {
   //     return(229 - x)
   //   }
   // }
+
+  const W2B = (x: number) => {
+    // return(((229/2) - x) + (window.innerHeight * 6.7))
+    if(229 - ((x - (window.innerHeight * 6.5)) / 4) > 58){
+      return(229 - ((x - (window.innerHeight * 6.5)) / 4))
+    } else { return(58)}
+  }
 
   const getStopPosition = (percent: number) => (window.innerWidth - (window.innerWidth * 0.3)) * (percent/100);
   const moveFromLeft = (pos: number) => (window.innerWidth - (pos - window.innerHeight) * 6)
@@ -101,6 +111,11 @@ function App() {
 
             }
           }
+
+          if(TransitionTworef.current && Backgroundref.current){
+            if(status.offset.y > window.innerHeight * 6.5) Backgroundref.current.style.backgroundColor = `rgb(${W2B(status.offset.y)}, ${W2B(status.offset.y)}, ${W2B(status.offset.y)})`;
+          }
+
         }} 
         damping={0.033} 
         style={{
@@ -114,12 +129,20 @@ function App() {
         <LandingPage ref={SectionWrapperref} />
         <AboutMe ref={AboutMeContainerref} />
         <Works ref={Worksref} />
+        <TransitionTwo ref={TransitionTworef} />
+        <Footer ref={Footerref} />
       </Scrollbar>
     </div>
   );
 }
 
 export default App;
+
+//Transition One is thought in progress
+const TransitionTwo = styled.div` 
+  height: 25vh;
+  width: 100vw;
+`;
 
 const Background = styled.div`
   height: 100%;
