@@ -95,16 +95,13 @@ function App() {
             if(status.offset.y > window.innerHeight * 2.8){
               const Parent = Worksref.current.children[0];
               const wordSelected = Parent.children[0] as HTMLHeadingElement;
-              const wordWorks = Parent.children[1] as HTMLHeadingElement;
-              const WorksContainer = Parent.children[2] as HTMLDivElement;
+              const WorksContainer = Parent.children[1] as HTMLDivElement;
               const StripWrapperOne = WorksContainer.children[0] as HTMLDivElement;
               const StripWrapperTwo = WorksContainer.children[1] as HTMLDivElement;
 
 
               wordSelected.style.opacity = (1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) > 0.05 ? 1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) : 0.05 ).toString();
               wordSelected.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 2.8)}px, 0px)`;
-              wordWorks.style.opacity = (1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) > 0.05 ? 1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) : 0.05 ).toString();
-              wordWorks.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 2.8)}px, 0px)`;
               WorksContainer.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 2.8)}px, 0px)`;
               StripWrapperOne.style.transform = `translate3d(0px, ${(-window.innerHeight * 4) + (1.5 * (status.offset.y - window.innerHeight * 2.8))}px , 0px)`;
               StripWrapperTwo.style.transform = `translate3d(0px, ${(window.innerHeight) + (-1.5 * (status.offset.y - window.innerHeight * 2.8))}px, 0px)`;

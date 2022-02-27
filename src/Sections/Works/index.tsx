@@ -11,8 +11,7 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
     return(
         <Container ref={ref}>
             <Wrapper>
-                <SectionTitle>Selected</SectionTitle>
-                <SectionTitle> Works</SectionTitle>
+                <SectionTitle>Selected Works</SectionTitle>
 
                 <WorksContainer>
                     <StripWrapper style={{transform: 'translate3d(-400vh, 0px, 0px)'}}>
@@ -121,6 +120,6 @@ const Wrapper = styled.div`
 const SectionTitle = styled.h1`
     font-size: clamp(150px, 18vh, 300px);
     text-transform: uppercase;
-    line-height: 16vh;
+    line-height: clamp(150px, 18vh, 300px);
     margin: 0;
 `;

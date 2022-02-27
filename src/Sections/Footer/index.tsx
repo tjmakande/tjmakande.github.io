@@ -5,7 +5,7 @@ const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
     return(
         <Container>
             <Wrapper>
-                <SectionTitle>THIS IS THE FOOTER</SectionTitle>
+                <SectionTitle>Let's Collaborate</SectionTitle>
             </Wrapper>
         </Container>
     )
@@ -33,8 +33,14 @@ const Wrapper = styled.div`
 `;
 
 const SectionTitle = styled.h1`
-    font-size: clamp(150px, 18vh, 300px);
-    text-transform: uppercase;
-    line-height: 16vh;
     margin: 0;
+    font-size: 9vw;
+    width: 50vw;
+    margin: 0;
+    padding: 0;
+    color: #E5E5E5;
+    font-weight: 600;
+    letter-spacing: -3px;
+    line-height: 9vw;
+    z-index: 1;
 `;
