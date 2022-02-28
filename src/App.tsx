@@ -54,26 +54,38 @@ function App() {
           const Head = document.getElementById('Name');
 
           //Navigation
-          Navigationref.current && (Navigationref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`);
 
           // Profession && EmailLink
-          if(Professionref.current && Emailref.current){
+          if(Professionref.current && Emailref.current && Navigationref.current) {
+            const Bar1 = Navigationref.current.children[0] as HTMLDivElement;
+            const Bar2 = Navigationref.current.children[1] as HTMLDivElement;
+            const Bar3 = Navigationref.current.children[2] as HTMLDivElement;
+
+            Navigationref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
             Professionref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
             Emailref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+
             Emailref.current.style.color = `rgb(229, 229, 229)`;
             Professionref.current.style.color = `rgb(229, 229, 229)`;
+            Bar1.style.backgroundColor = `rgb(229, 229, 229)`;
+            Bar2.style.backgroundColor = `rgb(229, 229, 229)`;
+            Bar3.style.backgroundColor = `rgb(229, 229, 229)`;
 
             if(status.offset.y > (window.innerHeight * 0.2)){
               Professionref.current.style.color = `rgb(58, 58, 58)`;
               Emailref.current.style.color = `rgb(58, 58, 58)`;
-
+              Bar1.style.backgroundColor = `rgb(58, 58, 58)`;
+              Bar2.style.backgroundColor = `rgb(58, 58, 58)`;
+              Bar3.style.backgroundColor = `rgb(58, 58, 58)`;
             }
 
             if ( status.offset.y > (window.innerHeight * 7.6)){
               Emailref.current.style.color = `rgb(229, 229, 229)`;
               Professionref.current.style.color = `rgb(229, 229, 229)`;
+              Bar1.style.backgroundColor = `rgb(229, 229, 229)`;
+              Bar2.style.backgroundColor = `rgb(229, 229, 229)`;
+              Bar3.style.backgroundColor = `rgb(229, 229, 229)`;
             }
-
           }
 
           
@@ -86,8 +98,8 @@ function App() {
 
           //About Me Section
           if(AboutMeContainerref.current){
-            //starting point in scroll 130vh && ending point in scroll 310vh
-            if(status.offset.y > (window.innerHeight * 1.3) && status.offset.y <= window.innerHeight * 3.1){
+            //starting point in scroll 130vh && ending point in scroll 350vh
+            if(status.offset.y > (window.innerHeight * 1.3) && status.offset.y <= window.innerHeight * 3.5){
                const Parent = AboutMeContainerref.current;
                const Aboutref = Parent.children[0] as HTMLHeadingElement;
                const Meref = Parent.children[1] as HTMLHeadingElement;
@@ -114,23 +126,27 @@ function App() {
 
           //Work section
           if(Worksref.current){
-            // 310vh checkmark
-            if(status.offset.y > window.innerHeight * 3.1){
+            // 350vh checkmark
+            if(status.offset.y > window.innerHeight * 3.5){
               const Parent = Worksref.current.children[0];
               const wordSelected = Parent.children[0] as HTMLHeadingElement;
               const WorksContainer = Parent.children[1] as HTMLDivElement;
               const StripWrapperOne = WorksContainer.children[0] as HTMLDivElement;
               const StripWrapperTwo = WorksContainer.children[1] as HTMLDivElement;
-              wordSelected.style.opacity = (1 - ((status.offset.y - ((window.innerHeight * 3.1))) / 100) > 0.05 ? 1 - ((status.offset.y - ((window.innerHeight *3.1))) / 100) : 0.05 ).toString();
-              wordSelected.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 3.1)}px, 0px)`;
-              WorksContainer.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 3.1)}px, 0px)`;
-              StripWrapperOne.style.transform = `translate3d(0px, ${(-window.innerHeight * 4) + (1.5 * (status.offset.y - window.innerHeight * 3.1))}px , 0px)`;
-              StripWrapperTwo.style.transform = `translate3d(0px, ${(window.innerHeight) + (-1.5 * (status.offset.y - window.innerHeight * 3.1))}px, 0px)`;
+              wordSelected.style.opacity = (1 - ((status.offset.y - ((window.innerHeight * 3.5))) / 100) > 0.05 ? 1 - ((status.offset.y - ((window.innerHeight *3.5))) / 100) : 0.05 ).toString();
+              wordSelected.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 3.5)}px, 0px)`;
+              WorksContainer.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 3.5)}px, 0px)`;
+              StripWrapperOne.style.transform = `translate3d(0px, ${(-window.innerHeight * 4) + (1.5 * (status.offset.y - window.innerHeight * 3.5))}px , 0px)`;
+              StripWrapperTwo.style.transform = `translate3d(0px, ${(window.innerHeight) + (-1.5 * (status.offset.y - window.innerHeight * 3.5))}px, 0px)`;
+
+              if(status.offset.y > window.innerHeight * 6.5)
+                wordSelected.style.opacity = (1 - ((status.offset.y - ((window.innerHeight * 3.5))) / 100) > 0.00 ? 1 - ((status.offset.y - ((window.innerHeight *3.5))) / 100) : 0 ).toString();
+
             }
           }
 
           if(TransitionTworef.current && Backgroundref.current){
-            if(status.offset.y > window.innerHeight * 6.5) Backgroundref.current.style.backgroundColor = `rgb(${W2B(status.offset.y)}, ${W2B(status.offset.y)}, ${W2B(status.offset.y)})`;
+            if(status.offset.y > window.innerHeight * 5.3) Backgroundref.current.style.backgroundColor = `rgb(${W2B(status.offset.y)}, ${W2B(status.offset.y)}, ${W2B(status.offset.y)})`;
           }
 
         }} 

@@ -122,4 +122,5 @@ const SectionTitle = styled.h1`
     text-transform: uppercase;
     line-height: clamp(150px, 18vh, 300px);
     margin: 0;
+    color: rgb(58, 58, 58);
 `;

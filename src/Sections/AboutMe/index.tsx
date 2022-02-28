@@ -74,7 +74,7 @@ const Container = styled.section`
 `;
 
 const Wrapper = styled.div`
-    height: 180vh;
+    height: 220vh;
     width: 100vw;
     z-index: 4;
     display: flex;
@@ -92,7 +92,7 @@ const AboutMeText = styled.h1`
     margin: 0;
     width: 0;
     color: #989898;
-    bottom: clamp(300px, 50vh, 600px);
+    top: clamp(400px, 97vh, 750px);
     left: -20px;
     font-weight: 700;
     text-transform: uppercase;
