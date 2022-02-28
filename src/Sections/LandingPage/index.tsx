@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import EmailLink from '../../Components/EmailLink';
 import SectionWrapper from '../../Components/Styled/SectionWrapper';
 
 const LandingPage = React.forwardRef<HTMLDivElement>((props, ref)=> {
@@ -13,7 +12,6 @@ const LandingPage = React.forwardRef<HTMLDivElement>((props, ref)=> {
                     <Header id="Name">
                         TAPIWANASHE J. MAKANDE
                     </Header> 
-                    <EmailLink />
                 </Wrapper>
             </>
         </SectionWrapper>
