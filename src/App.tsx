@@ -42,7 +42,7 @@ function App() {
   }
 
   const getStopPosition = (percent: number) => (window.innerWidth - (window.innerWidth * 0.3)) * (percent/100);
-  const moveFromLeft = (pos: number) => (window.innerWidth - (pos - window.innerHeight) * 6)
+  const moveFromLeft = (pos: number) => (window.innerWidth - (pos - window.innerHeight * 1.3) * 6)
 
   return (
     <div className="App">
@@ -60,13 +60,13 @@ function App() {
             Backgroundref.current.style.backgroundColor = `rgb(${B2W(status.offset.y)}, ${B2W(status.offset.y)}, ${B2W(status.offset.y)})`;
             Head.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
           }
-
            SectionWrapperref.current && (SectionWrapperref.current.style.visibility = status.offset.y > window.innerHeight * 0.5 ? 'hidden' : 'visible');
 
           //About Me Section
           if(AboutMeContainerref.current){
-            if(status.offset.y > window.innerHeight && status.offset.y <= window.innerHeight * 2.8){
-               const Parent = AboutMeContainerref.current.children[0]
+            //starting point in scroll 130vh && ending point in scroll 310vh
+            if(status.offset.y > (window.innerHeight * 1.3) && status.offset.y <= window.innerHeight * 3.1){
+               const Parent = AboutMeContainerref.current;
                const Aboutref = Parent.children[0] as HTMLHeadingElement;
                const Meref = Parent.children[1] as HTMLHeadingElement;
 
@@ -78,34 +78,32 @@ function App() {
                const WordMaximizeref = TextParent.children[4] as HTMLHeadingElement
                const WordExperiencesref = TextParent.children[5] as HTMLHeadingElement
               
-              Aboutref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight)}px, 0px, 0px)`;
-              Meref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight)}px, 0px, 0px)`;
+              Aboutref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight * 1.3)}px, 0px, 0px)`;
+              Meref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight * 1.3)}px, 0px, 0px)`;
 
-              WordIref.style.transform = `translate3d(${moveFromLeft(status.offset.y) > 0 ? moveFromLeft(status.offset.y) : 0}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordCreateref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 600 > getStopPosition(7) ? moveFromLeft(status.offset.y) + 600 : getStopPosition(7)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordDesignref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1200 > getStopPosition(30) ? moveFromLeft(status.offset.y) + 1200: getStopPosition(30)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordAndref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1800 > getStopPosition(55) ? moveFromLeft(status.offset.y) + 1800 : getStopPosition(55)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordMaximizeref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 2000> getStopPosition(62) ? moveFromLeft(status.offset.y)+ 2000 : getStopPosition(62)}px, ${status.offset.y - window.innerHeight}px, 0px)`;
-              WordExperiencesref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 2300 > -20 ? moveFromLeft(status.offset.y) + 2300 : -20}px, ${status.offset.y - window.innerHeight}px, 0px)`;
+              WordIref.style.transform = `translate3d(${moveFromLeft(status.offset.y) > 0 ? moveFromLeft((status.offset.y)) : 0}px, ${(status.offset.y) - window.innerHeight * 1.3}px, 0px)`;
+              WordCreateref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 600 > getStopPosition(7) ? moveFromLeft(status.offset.y) + 600 : getStopPosition(7)}px, ${status.offset.y - window.innerHeight * 1.3}px, 0px)`;
+              WordDesignref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1200 > getStopPosition(30) ? moveFromLeft(status.offset.y) + 1200: getStopPosition(30)}px, ${status.offset.y - window.innerHeight * 1.3}px, 0px)`;
+              WordAndref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 1800 > getStopPosition(55) ? moveFromLeft(status.offset.y) + 1800 : getStopPosition(55)}px, ${status.offset.y - window.innerHeight * 1.3}px, 0px)`;
+              WordMaximizeref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 2000> getStopPosition(62) ? moveFromLeft(status.offset.y)+ 2000 : getStopPosition(62)}px, ${status.offset.y - window.innerHeight * 1.3}px, 0px)`;
+              WordExperiencesref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 2300 > -20 ? moveFromLeft(status.offset.y) + 2300 : -20}px, ${status.offset.y - window.innerHeight * 1.3}px, 0px)`;
             }
           }
 
           //Work section
           if(Worksref.current){
-            if(status.offset.y > window.innerHeight * 2.8){
+            // 310vh checkmark
+            if(status.offset.y > window.innerHeight * 3.1){
               const Parent = Worksref.current.children[0];
               const wordSelected = Parent.children[0] as HTMLHeadingElement;
               const WorksContainer = Parent.children[1] as HTMLDivElement;
               const StripWrapperOne = WorksContainer.children[0] as HTMLDivElement;
               const StripWrapperTwo = WorksContainer.children[1] as HTMLDivElement;
-
-
-              wordSelected.style.opacity = (1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) > 0.05 ? 1 - ((status.offset.y - ((window.innerHeight *2.8))) / 100) : 0.05 ).toString();
-              wordSelected.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 2.8)}px, 0px)`;
-              WorksContainer.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 2.8)}px, 0px)`;
-              StripWrapperOne.style.transform = `translate3d(0px, ${(-window.innerHeight * 4) + (1.5 * (status.offset.y - window.innerHeight * 2.8))}px , 0px)`;
-              StripWrapperTwo.style.transform = `translate3d(0px, ${(window.innerHeight) + (-1.5 * (status.offset.y - window.innerHeight * 2.8))}px, 0px)`;
-
+              wordSelected.style.opacity = (1 - ((status.offset.y - ((window.innerHeight * 3.1))) / 100) > 0.05 ? 1 - ((status.offset.y - ((window.innerHeight *3.1))) / 100) : 0.05 ).toString();
+              wordSelected.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 3.1)}px, 0px)`;
+              WorksContainer.style.transform = `translate3d(0px, ${(status.offset.y - window.innerHeight * 3.1)}px, 0px)`;
+              StripWrapperOne.style.transform = `translate3d(0px, ${(-window.innerHeight * 4) + (1.5 * (status.offset.y - window.innerHeight * 3.1))}px , 0px)`;
+              StripWrapperTwo.style.transform = `translate3d(0px, ${(window.innerHeight) + (-1.5 * (status.offset.y - window.innerHeight * 3.1))}px, 0px)`;
             }
           }
 

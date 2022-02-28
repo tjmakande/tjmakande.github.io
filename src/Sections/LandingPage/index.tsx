@@ -23,7 +23,7 @@ const LandingPage = React.forwardRef<HTMLDivElement>((props, ref)=> {
 export default LandingPage;
 
 const Wrapper = styled.div`
-    height: 100vh;
+    height: 130vh;
     width: 100vw;
     display: flex;
     justify-content: center;
@@ -41,4 +41,5 @@ const Header = styled.h1`
     letter-spacing: -3px;
     line-height: 12vw;
     z-index: 1;
+    margin-top: -30vh;
 `;

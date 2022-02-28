@@ -48,8 +48,7 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
     // })
 
     return (
-        <Container ref={ref}>
-            <Wrapper>
+            <Wrapper ref={ref}>
                 <AboutMeText>About</AboutMeText>
                 <AboutMeTextalt >ME</AboutMeTextalt>
                 <WordContainer>
@@ -61,7 +60,6 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
                     <WordExperiences >Experiences</WordExperiences>
                 </WordContainer>
             </Wrapper>
-        </Container>
     )
 });
 
@@ -76,12 +74,15 @@ const Container = styled.section`
 `;
 
 const Wrapper = styled.div`
-    height: 100vh;
+    height: 180vh;
+    width: 100vw;
+    z-index: 4;
     display: flex;
     flex-direction: column;
     color: black;
-    padding: 0 5vw 0 0;
+    // padding: 0 5vw 0 0;
     position: relative;
+    overflow: hidden;
 `;
 
 const AboutMeText = styled.h1`
@@ -91,7 +92,7 @@ const AboutMeText = styled.h1`
     margin: 0;
     width: 0;
     color: #989898;
-    bottom: clamp(-300px, -25vh, -150px);
+    bottom: clamp(300px, 50vh, 600px);
     left: -20px;
     font-weight: 700;
     text-transform: uppercase;
