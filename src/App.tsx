@@ -8,6 +8,7 @@ import {
 import './App.css';
 import HomePage from 'Pages/Home';
 import AboutMePage from 'Pages/AboutMe';
+import WorksPage from 'Pages/Works';
 // const HomePage = React.lazy(() => import('Pages/Home'));
 // const AboutMePage = React.lazy(() => import('Pages/AboutMe'));
 
@@ -20,7 +21,7 @@ function App() {
         <Switch>
           <Route path='/' element={<HomePage />}/>
           <Route path='/About' element={<AboutMePage />} />
-          <Route path='/Works' element={<div>Works</div>} />
+          <Route path='/Works' element={<WorksPage />} />
 
           <Route
             path="*"
