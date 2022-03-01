@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {
+    Link,
+  } from "react-router-dom";
 
 import LandingPage from 'Sections/LandingPage';
 import AboutMe from 'Sections/AboutMe';
@@ -13,8 +16,8 @@ const HomePage = () => {
     const Backgroundref = React.createRef<HTMLDivElement>();
     // const Professionref = React.createRef<HTMLParagraphElement>();
     const Emailref = React.createRef<HTMLAnchorElement>();
-    const WorksLinkref = React.createRef<HTMLParagraphElement>();
-    const AboutLinkref = React.createRef<HTMLParagraphElement>();
+    const WorksLinkref = React.createRef<HTMLAnchorElement>();
+    const AboutLinkref = React.createRef<HTMLAnchorElement>();
     const Worksref = React.createRef<HTMLDivElement>();
     const TransitionTworef = React.createRef<HTMLDivElement>();
     const Footerref = React.createRef<HTMLDivElement>();
@@ -150,8 +153,8 @@ const HomePage = () => {
       >
         <EmailLink href="https://www.google.com" ref={Emailref}>Contact</EmailLink>
         {/* <Profession ref={Professionref}>Web Developer</Profession> */}
-        <WorksLink ref={WorksLinkref}>Works</WorksLink>
-        <AboutLink ref={AboutLinkref}>About Me</AboutLink>
+        <WorksLink to={'/Works'} ref={WorksLinkref}>Works</WorksLink>
+        <AboutLink to={'/About'} ref={AboutLinkref}>About Me</AboutLink>
         <Background ref={Backgroundref}/>
         <LandingPage ref={SectionWrapperref} />
         <AboutMe ref={AboutMeContainerref} />
@@ -204,7 +207,7 @@ const EmailLink = styled.a`
 //   font-weight: 600;
 // `;
 
-const AboutLink = styled.p`
+const AboutLink = styled(Link)`
   position: absolute;
   font-size: clamp(16px, 2.5vw, 20px);
   top: 3vh;
@@ -215,7 +218,7 @@ const AboutLink = styled.p`
   font-weight: 600;
 `;
 
-const WorksLink = styled.p`
+const WorksLink = styled(Link)`
   position: absolute;
   font-size: clamp(16px, 2.5vw, 20px);
   top: 3vh;
