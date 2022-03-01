@@ -1,21 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import './App.css';
 
 import LandingPage from './Sections/LandingPage';
 import AboutMe from './Sections/AboutMe';
-import Navigation from './Components/Navigation';
 import Works from './Sections/Works';
 import Footer from './Sections/Footer';
 import {Scrollbar} from 'smooth-scrollbar-react';
 
 function App() {
+  const [isNavActive, setisNavActive] = useState<Boolean>(false);
   const SectionWrapperref = React.createRef<HTMLDivElement>();
   const AboutMeContainerref = React.createRef<HTMLDivElement>();
   const Backgroundref = React.createRef<HTMLDivElement>();
-  const Navigationref = React.createRef<HTMLDivElement>();
   const Professionref = React.createRef<HTMLParagraphElement>();
   const Emailref = React.createRef<HTMLAnchorElement>();
+  const WorksLinkref = React.createRef<HTMLParagraphElement>();
+  const AboutLinkref = React.createRef<HTMLParagraphElement>();
   const Worksref = React.createRef<HTMLDivElement>();
   const TransitionTworef = React.createRef<HTMLDivElement>();
   const Footerref = React.createRef<HTMLDivElement>();
@@ -44,7 +45,7 @@ function App() {
   }
 
   const getStopPosition = (percent: number) => (window.innerWidth - (window.innerWidth * 0.3)) * (percent/100);
-  const moveFromLeft = (pos: number) => (window.innerWidth - (pos - window.innerHeight * 1.3) * 6)
+  const moveFromLeft = (pos: number) => (window.innerWidth - (pos - window.innerHeight * 1.3) * 6);
 
   return (
     <div className="App">
@@ -56,35 +57,33 @@ function App() {
           //Navigation
 
           // Profession && EmailLink
-          if(Professionref.current && Emailref.current && Navigationref.current) {
-            const Bar1 = Navigationref.current.children[0] as HTMLDivElement;
-            const Bar2 = Navigationref.current.children[1] as HTMLDivElement;
-            const Bar3 = Navigationref.current.children[2] as HTMLDivElement;
+          if(Emailref.current && WorksLinkref.current && AboutLinkref.current) {
 
-            Navigationref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-            Professionref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+            // Professionref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
             Emailref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+            AboutLinkref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+            WorksLinkref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+
 
             Emailref.current.style.color = `rgb(229, 229, 229)`;
-            Professionref.current.style.color = `rgb(229, 229, 229)`;
-            Bar1.style.backgroundColor = `rgb(229, 229, 229)`;
-            Bar2.style.backgroundColor = `rgb(229, 229, 229)`;
-            Bar3.style.backgroundColor = `rgb(229, 229, 229)`;
+            // Professionref.current.style.color = `rgb(229, 229, 229)`;
+            AboutLinkref.current.style.color = `rgb(229, 229, 229)`;
+            WorksLinkref.current.style.color = `rgb(229, 229, 229)`;
+
 
             if(status.offset.y > (window.innerHeight * 0.2)){
-              Professionref.current.style.color = `rgb(58, 58, 58)`;
+              // Professionref.current.style.color = `rgb(58, 58, 58)`;
               Emailref.current.style.color = `rgb(58, 58, 58)`;
-              Bar1.style.backgroundColor = `rgb(58, 58, 58)`;
-              Bar2.style.backgroundColor = `rgb(58, 58, 58)`;
-              Bar3.style.backgroundColor = `rgb(58, 58, 58)`;
+              AboutLinkref.current.style.color = `rgb(58, 58, 58)`;
+              WorksLinkref.current.style.color = `rgb(58, 58, 58)`;
+
             }
 
             if ( status.offset.y > (window.innerHeight * 7.6)){
               Emailref.current.style.color = `rgb(229, 229, 229)`;
-              Professionref.current.style.color = `rgb(229, 229, 229)`;
-              Bar1.style.backgroundColor = `rgb(229, 229, 229)`;
-              Bar2.style.backgroundColor = `rgb(229, 229, 229)`;
-              Bar3.style.backgroundColor = `rgb(229, 229, 229)`;
+              // Professionref.current.style.color = `rgb(229, 229, 229)`;
+              AboutLinkref.current.style.color = `rgb(229, 229, 229)`;
+              WorksLinkref.current.style.color = `rgb(229, 229, 229)`;
             }
           }
 
@@ -154,12 +153,14 @@ function App() {
         style={{
           overflow: 'hidden', 
           outline: 'none', 
-          height: '100vh'
+          height: '100vh',
+          backgroundColor: 'rgb(58,58,58)'
         }}
       >
-        <Navigation ref={Navigationref} />
-        <EmailLink href="https://www.google.com" ref={Emailref}>Mak@example.com</EmailLink>
-        <Profession ref={Professionref}>Web Developer</Profession>
+        <EmailLink href="https://www.google.com" ref={Emailref}>Contact</EmailLink>
+        {/* <Profession ref={Professionref}>Web Developer</Profession> */}
+        <WorksLink ref={WorksLinkref}>Works</WorksLink>
+        <AboutLink ref={AboutLinkref}>About Me</AboutLink>
         <Background ref={Backgroundref}/>
         <LandingPage ref={SectionWrapperref} />
         <AboutMe ref={AboutMeContainerref} />
@@ -191,8 +192,8 @@ const EmailLink = styled.a`
     position: absolute;
     font-size: clamp(16px, 2.5vw, 20px);
     top: 93vh;
-    left: 2vw;
-    z-index: 9999999;
+    right: 2vw;
+    z-index: 7;
     text-decoration: underline;
     color: rgb(229, 229, 229);
     font-weight: 600;
@@ -207,7 +208,29 @@ const Profession = styled.p`
   font-size: clamp(16px, 2.5vw, 20px);
   top: 93vh;
   right: 2vw;
-  z-index: 999999;
+  z-index: 7;
+  margin: 0;
+  color: rgb(229, 229, 229);
+  font-weight: 600;
+`;
+
+const AboutLink = styled.p`
+  position: absolute;
+  font-size: clamp(16px, 2.5vw, 20px);
+  top: 3vh;
+  left: 2vw;
+  z-index: 7;
+  margin: 0;
+  color: rgb(229, 229, 229);
+  font-weight: 600;
+`;
+
+const WorksLink = styled.p`
+  position: absolute;
+  font-size: clamp(16px, 2.5vw, 20px);
+  top: 3vh;
+  right: 2vw;
+  z-index: 7;
   margin: 0;
   color: rgb(229, 229, 229);
   font-weight: 600;
