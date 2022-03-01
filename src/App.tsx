@@ -6,22 +6,35 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-import HomePage from 'Pages/Home';
-import AboutMePage from 'Pages/AboutMe';
-import WorksPage from 'Pages/Works';
-// const HomePage = React.lazy(() => import('Pages/Home'));
-// const AboutMePage = React.lazy(() => import('Pages/AboutMe'));
+
+const HomePage = React.lazy(() => import('Pages/Home'));
+const AboutMePage = React.lazy(() => import('Pages/AboutMe'));
+const WorksPage = React.lazy(() => import('./Pages/Works/index'));
 
 
 function App() {
-
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path='/' element={<HomePage />}/>
-          <Route path='/About' element={<AboutMePage />} />
-          <Route path='/Works' element={<WorksPage />} />
+          <Route path='/' element={
+            <React.Suspense fallback={<>...Loading</>}>
+              <HomePage />
+            </React.Suspense>
+          }
+          />
+          <Route path='/About' element={
+            <React.Suspense fallback={<>...Loading</>}>
+              <AboutMePage />
+            </React.Suspense>
+          } 
+          />
+          <Route path='/Works' element={
+            <React.Suspense fallback={<>...Loading</>} >
+              <WorksPage />
+            </React.Suspense>
+          } 
+          />
 
           <Route
             path="*"
