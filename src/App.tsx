@@ -6,8 +6,10 @@ import {
 } from "react-router-dom";
 
 import './App.css';
-
 import HomePage from 'Pages/Home';
+import AboutMePage from 'Pages/AboutMe';
+// const HomePage = React.lazy(() => import('Pages/Home'));
+// const AboutMePage = React.lazy(() => import('Pages/AboutMe'));
 
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' element={<HomePage />}/>
-          <Route path='/About' element={<div>About Page</div>} />
+          <Route path='/About' element={<AboutMePage />} />
           <Route path='/Works' element={<div>Works</div>} />
 
           <Route
