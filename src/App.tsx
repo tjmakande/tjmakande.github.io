@@ -3,9 +3,10 @@ import {
   BrowserRouter as Router,
   Routes as Switch,
   Route,
-  Link
 } from "react-router-dom";
-import styled from 'styled-components';
+
+import AppLink from 'Components/AppLink';
+
 
 import './App.css';
 
@@ -47,8 +48,8 @@ function App() {
             }
           />
         </Switch>
-        <WorksLink to={'/Works'}>Works</WorksLink>
-        <AboutLink to={'/About'}>About Me</AboutLink>
+        <AppLink url={'/Works'} redirectTo={'Works'}/>
+        <AppLink url={'/About'} redirectTo={'About Me'}/>
       </Router>
 
       
@@ -58,26 +59,3 @@ function App() {
 }
 
 export default App;
-
-
-const AboutLink = styled(Link)`
-  position: fixed;
-  font-size: clamp(16px, 2.5vw, 20px);
-  top: 3vh;
-  left: 2vw;
-  z-index: 7;
-  margin: 0;
-  color: rgb(229, 229, 229);
-  font-weight: 600;
-`;
-
-const WorksLink = styled(Link)`
-  position: fixed;
-  font-size: clamp(16px, 2.5vw, 20px);
-  top: 3vh;
-  right: 2vw;
-  z-index: 7;
-  margin: 0;
-  color: rgb(229, 229, 229);
-  font-weight: 600;
-`;
