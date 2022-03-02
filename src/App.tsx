@@ -48,8 +48,11 @@ function App() {
             }
           />
         </Switch>
-        <AppLink url={'/Works'} redirectTo={'Works'}/>
-        <AppLink url={'/About'} redirectTo={'About Me'}/>
+        <div style={{color: '#fff', zIndex: 99, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(16px, 2.5vw, 20px'}}>
+          <AppLink url={'/Works'} redirectTo={'Works'}/>
+          <AppLink url={'/About'} redirectTo={'About Me'}/>
+        </div>
+        
       </Router>
 
       
