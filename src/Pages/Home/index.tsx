@@ -16,8 +16,8 @@ const HomePage = () => {
     const Backgroundref = React.createRef<HTMLDivElement>();
     // const Professionref = React.createRef<HTMLParagraphElement>();
     const Emailref = React.createRef<HTMLAnchorElement>();
-    const WorksLinkref = React.createRef<HTMLAnchorElement>();
-    const AboutLinkref = React.createRef<HTMLAnchorElement>();
+    // const WorksLinkref = React.createRef<HTMLAnchorElement>();
+    // const AboutLinkref = React.createRef<HTMLAnchorElement>();
     const Worksref = React.createRef<HTMLDivElement>();
     const TransitionTworef = React.createRef<HTMLDivElement>();
     const Footerref = React.createRef<HTMLDivElement>();
@@ -51,33 +51,33 @@ const HomePage = () => {
           //Navigation
 
           // Profession && EmailLink
-          if(Emailref.current && WorksLinkref.current && AboutLinkref.current) {
+          if(Emailref.current) {
 
             // Professionref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
             Emailref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-            AboutLinkref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-            WorksLinkref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+            // AboutLinkref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+            // WorksLinkref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
 
 
             Emailref.current.style.color = `rgb(229, 229, 229)`;
             // Professionref.current.style.color = `rgb(229, 229, 229)`;
-            AboutLinkref.current.style.color = `rgb(229, 229, 229)`;
-            WorksLinkref.current.style.color = `rgb(229, 229, 229)`;
+            // AboutLinkref.current.style.color = `rgb(229, 229, 229)`;
+            // WorksLinkref.current.style.color = `rgb(229, 229, 229)`;
 
 
             if(status.offset.y > (window.innerHeight * 0.2)){
               // Professionref.current.style.color = `rgb(58, 58, 58)`;
               Emailref.current.style.color = `rgb(58, 58, 58)`;
-              AboutLinkref.current.style.color = `rgb(58, 58, 58)`;
-              WorksLinkref.current.style.color = `rgb(58, 58, 58)`;
+              // AboutLinkref.current.style.color = `rgb(58, 58, 58)`;
+              // WorksLinkref.current.style.color = `rgb(58, 58, 58)`;
 
             }
 
             if ( status.offset.y > (window.innerHeight * 7.6)){
               Emailref.current.style.color = `rgb(229, 229, 229)`;
               // Professionref.current.style.color = `rgb(229, 229, 229)`;
-              AboutLinkref.current.style.color = `rgb(229, 229, 229)`;
-              WorksLinkref.current.style.color = `rgb(229, 229, 229)`;
+              // AboutLinkref.current.style.color = `rgb(229, 229, 229)`;
+              // WorksLinkref.current.style.color = `rgb(229, 229, 229)`;
             }
           }
 
@@ -153,8 +153,7 @@ const HomePage = () => {
       >
         <EmailLink href="https://www.google.com" ref={Emailref}>Contact</EmailLink>
         {/* <Profession ref={Professionref}>Web Developer</Profession> */}
-        <WorksLink to={'/Works'} ref={WorksLinkref}>Works</WorksLink>
-        <AboutLink to={'/About'} ref={AboutLinkref}>About Me</AboutLink>
+  
         <Background ref={Backgroundref}/>
         <LandingPage ref={SectionWrapperref} />
         <AboutMe ref={AboutMeContainerref} />
@@ -207,24 +206,3 @@ const EmailLink = styled.a`
 //   font-weight: 600;
 // `;
 
-const AboutLink = styled(Link)`
-  position: absolute;
-  font-size: clamp(16px, 2.5vw, 20px);
-  top: 3vh;
-  left: 2vw;
-  z-index: 7;
-  margin: 0;
-  color: rgb(229, 229, 229);
-  font-weight: 600;
-`;
-
-const WorksLink = styled(Link)`
-  position: absolute;
-  font-size: clamp(16px, 2.5vw, 20px);
-  top: 3vh;
-  right: 2vw;
-  z-index: 7;
-  margin: 0;
-  color: rgb(229, 229, 229);
-  font-weight: 600;
-`;
