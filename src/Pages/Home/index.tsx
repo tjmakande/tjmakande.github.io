@@ -1,8 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import {
-    Link,
-  } from "react-router-dom";
 
 import LandingPage from 'Sections/LandingPage';
 import AboutMe from 'Sections/AboutMe';
@@ -14,10 +11,6 @@ const HomePage = () => {
     const SectionWrapperref = React.createRef<HTMLDivElement>();
     const AboutMeContainerref = React.createRef<HTMLDivElement>();
     const Backgroundref = React.createRef<HTMLDivElement>();
-    // const Professionref = React.createRef<HTMLParagraphElement>();
-    const Emailref = React.createRef<HTMLAnchorElement>();
-    // const WorksLinkref = React.createRef<HTMLAnchorElement>();
-    // const AboutLinkref = React.createRef<HTMLAnchorElement>();
     const Worksref = React.createRef<HTMLDivElement>();
     const TransitionTworef = React.createRef<HTMLDivElement>();
     const Footerref = React.createRef<HTMLDivElement>();
@@ -32,7 +25,6 @@ const HomePage = () => {
       }
 
       const W2B = (x: number) => {
-        // return(((229/2) - x) + (window.innerHeight * 6.7))
         if(229 - ((x - (window.innerHeight * 6.5)) / 4) > 58){
           return(229 - ((x - (window.innerHeight * 6.5)) / 4))
         } else { return(58)}
@@ -47,40 +39,7 @@ const HomePage = () => {
         continuousScrolling={false}
         onScroll={(status) => {
           const Head = document.getElementById('Name');
-
-          //Navigation
-
-          // Profession && EmailLink
-          if(Emailref.current) {
-
-            // Professionref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-            Emailref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-            // AboutLinkref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-            // WorksLinkref.current.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-
-
-            Emailref.current.style.color = `rgb(229, 229, 229)`;
-            // Professionref.current.style.color = `rgb(229, 229, 229)`;
-            // AboutLinkref.current.style.color = `rgb(229, 229, 229)`;
-            // WorksLinkref.current.style.color = `rgb(229, 229, 229)`;
-
-
-            if(status.offset.y > (window.innerHeight * 0.2)){
-              // Professionref.current.style.color = `rgb(58, 58, 58)`;
-              Emailref.current.style.color = `rgb(58, 58, 58)`;
-              // AboutLinkref.current.style.color = `rgb(58, 58, 58)`;
-              // WorksLinkref.current.style.color = `rgb(58, 58, 58)`;
-
-            }
-
-            if ( status.offset.y > (window.innerHeight * 7.6)){
-              Emailref.current.style.color = `rgb(229, 229, 229)`;
-              // Professionref.current.style.color = `rgb(229, 229, 229)`;
-              // AboutLinkref.current.style.color = `rgb(229, 229, 229)`;
-              // WorksLinkref.current.style.color = `rgb(229, 229, 229)`;
-            }
-          }
-
+          console.log(document.body.scrollTop)
           
           //page background color
           if(Backgroundref.current && Head) {
@@ -151,9 +110,6 @@ const HomePage = () => {
           backgroundColor: 'rgb(58,58,58)'
         }}
       >
-        <EmailLink href="https://www.google.com" ref={Emailref}>Contact</EmailLink>
-        {/* <Profession ref={Professionref}>Web Developer</Profession> */}
-  
         <Background ref={Backgroundref}/>
         <LandingPage ref={SectionWrapperref} />
         <AboutMe ref={AboutMeContainerref} />
@@ -179,30 +135,3 @@ const Background = styled.div`
   position: absolute;
   background-color: rgb(58, 58, 58);
 `;
-
-const EmailLink = styled.a`
-    position: absolute;
-    font-size: clamp(16px, 2.5vw, 20px);
-    top: 93vh;
-    right: 2vw;
-    z-index: 7;
-    text-decoration: underline;
-    color: rgb(229, 229, 229);
-    font-weight: 600;
-
-    &:hover{
-      cursor: pointer;
-    }
-`;
-
-// const Profession = styled.p`
-//   position: absolute;
-//   font-size: clamp(16px, 2.5vw, 20px);
-//   top: 93vh;
-//   right: 2vw;
-//   z-index: 7;
-//   margin: 0;
-//   color: rgb(229, 229, 229);
-//   font-weight: 600;
-// `;
-

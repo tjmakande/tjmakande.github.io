@@ -11,10 +11,9 @@ interface Props {
 
 const AppLink = (props: Props) => {
     const {url, redirectTo} = props;
-    console.log(redirectTo);
     return(
         <Wrapper 
-            left={redirectTo !== 'Works'} 
+            left={redirectTo === 'About Me'} 
             top={redirectTo === "Works" || redirectTo === "About Me"}
         >
             <Link to={url}>

@@ -12,8 +12,8 @@ import './App.css';
 
 const HomePage = React.lazy(() => import('Pages/Home'));
 const AboutMePage = React.lazy(() => import('Pages/AboutMe'));
-const WorksPage = React.lazy(() => import('./Pages/Works/index'));
-
+const WorksPage = React.lazy(() => import('Pages/Works/index'));
+const ContactPage = React.lazy(() => import('Pages/Contact'));
 
 function App() {
   return (
@@ -39,6 +39,12 @@ function App() {
           } 
           />
 
+          <Route path='/Contact' element={
+            <React.Suspense fallback={<>...Loading</>}>
+              <ContactPage />
+            </React.Suspense>
+          } />
+
           <Route
             path="*"
             element={
@@ -51,6 +57,7 @@ function App() {
         <div style={{color: '#fff', zIndex: 99, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(16px, 2.5vw, 20px'}}>
           <AppLink url={'/Works'} redirectTo={'Works'}/>
           <AppLink url={'/About'} redirectTo={'About Me'}/>
+          <AppLink url={"/Contact"} redirectTo={'Contact'} />
         </div>
         
       </Router>
