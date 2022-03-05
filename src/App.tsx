@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Routes as Switch,
   Route,
+  Navigate
 } from "react-router-dom";
 
 import AppLink from 'Components/AppLink';
@@ -16,11 +17,12 @@ const WorksPage = React.lazy(() => import('Pages/Works/index'));
 const ContactPage = React.lazy(() => import('Pages/Contact'));
 
 function App() {
+  console.log(window.location.pathname);
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route path='/' element={
+          <Route path='/Home' element={
             <React.Suspense fallback={<>...Loading</>}>
               <HomePage />
             </React.Suspense>
@@ -45,6 +47,8 @@ function App() {
             </React.Suspense>
           } />
 
+          <Route path={'/'} element={<Navigate to={'/Home'}/>}/>
+
           <Route
             path="*"
             element={
@@ -54,7 +58,8 @@ function App() {
             }
           />
         </Switch>
-        <div style={{color: '#fff', zIndex: 99, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(16px, 2.5vw, 20px'}}>
+        <div style={{color: window.location.pathname.includes('Home') ? '#fff' : '#000', zIndex: 99, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(16px, 2.5vw, 20px'}}>
+          <AppLink url={'/Home'} redirectTo={'Home'}/>
           <AppLink url={'/Works'} redirectTo={'Works'}/>
           <AppLink url={'/About'} redirectTo={'About Me'}/>
           <AppLink url={"/Contact"} redirectTo={'Contact'} />

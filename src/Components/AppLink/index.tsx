@@ -13,8 +13,8 @@ const AppLink = (props: Props) => {
     const {url, redirectTo} = props;
     return(
         <Wrapper 
-            left={redirectTo === 'About Me'} 
-            top={redirectTo === "Works" || redirectTo === "About Me"}
+            left={redirectTo === 'About Me' || redirectTo === 'Home'} 
+            top={redirectTo === "Works" || redirectTo === "Home"}
         >
             <Link to={url}>
                 {redirectTo}

@@ -15,7 +15,7 @@ export default styled.div`
     };
 
     & a {
-        color: #fff;
+        color: ${window.location.pathname.includes('Home') ? '#fff' : '#000'};
         text-decoration: none;
     }
     &:hover{
