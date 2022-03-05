@@ -7,15 +7,43 @@ import Musician from '../../Assets/Musician.png'
 import AutomatedBot from '../../Assets/Automated-bot.png';
 import Cube from '../../Assets/3D-cube.png';
 
+interface ProjectDetailsSchema {
+    title: string,
+    description: string,
+    languages: string,
+}
+
 const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
+    const ProjectDetails = [
+        {
+            title: 'Cinema: movie booking platform', 
+            description: 'Find the latest movie showing in the cinema and book a seat for yourself and/or others!', 
+            languages: 'React, Redux, Nodejs, MongoDB'
+        },
+        {
+            title: 'Musician Portfolio', 
+            description: 'Follow your favorite artist and stay up to date with his latest creations. Do not miss out on what their doing next', 
+            languages: 'Pug, Sass'
+        }, 
+        {
+            title: 'Automatic Customer service Bot', 
+            description: 'The world is changing. I have created an automated customer service bot to interact with users.', 
+            languages: 'React, Konva, NodeNLT, MongoDB'
+        },
+        {
+            title: '3D Cube', 
+            description: 'Simply put, some of my life in a cube. ', 
+            languages: 'Vanilla javascript'
+        }
+    ]
     return(
         <Container ref={ref}>
             <Wrapper>
                 <SectionTitle>Selected Works</SectionTitle>
 
                 <WorksContainer>
-                    <StripWrapper style={{transform: 'translate3d(-400vh, 0px, 0px)'}}>
-                        <PictureWrapper>
+                    <StripWrapper style={{transform: 'translate3d(-400vh, 0px, 0px)', width: '70vw'}}>
+                        <PictureWrapper >
                             <ImageItem src={Cube} alt={'item'}/>
                         </PictureWrapper>
                         <PictureWrapper>
@@ -24,31 +52,25 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
                         <PictureWrapper>
                             <ImageItem src={Musician} alt={'item'}/>
                         </PictureWrapper>
-                        <PictureWrapper>
-                            <ImageItem src={CinemaPhoto} alt={'item'}/>
+                        <PictureWrapper >
+                                <ImageItem src={CinemaPhoto} alt={'item'}/>
                         </PictureWrapper>
                     </StripWrapper>
-                    <StripWrapper style={{transform: 'translate3d(100vh, 0px, 0px)'}}>
-                        <PictureWrapper>
-                            <ProjectTitle>Cinema: movie booking platform </ProjectTitle>
-                            <ProjectDescription> Find the latest movie showing in the cinema and book a seat for yourself and/or others! </ProjectDescription>
-                            <ProjectLanguages>React, Redux, Nodejs, MongoDB</ProjectLanguages>
-                        </PictureWrapper>
-                        <PictureWrapper>
-                            <ProjectTitle>Musician Portfolio </ProjectTitle>
-                            <ProjectDescription> Follow your favorite artist and stay up to date with his latest creations. Do not miss out on what their doing next</ProjectDescription>
-                            <ProjectLanguages>Pug, Sass</ProjectLanguages>
-                        </PictureWrapper>
-                        <PictureWrapper>
-                            <ProjectTitle>Automatic Customer service Bot </ProjectTitle>
-                            <ProjectDescription> The world is changing. I have created an automated customer service bot to interact with users.</ProjectDescription>
-                            <ProjectLanguages>React, Konva, NodeNLT, MongoDB</ProjectLanguages>
-                        </PictureWrapper>
-                        <PictureWrapper>
-                            <ProjectTitle>3D Cube </ProjectTitle>
-                            <ProjectDescription> Simply put, some of my life in a cube. </ProjectDescription>
-                            <ProjectLanguages>Vanilla javascript</ProjectLanguages>
-                        </PictureWrapper>
+                    <StripWrapper style={{
+                        color: '#000',
+                        zIndex: 90,
+                        mixBlendMode: 'overlay',
+                        transform: 'translate3d(100vh, 0px, 0px)', 
+                        fontSize: 'clamp(2rem, 3.5vw, 3.5rem)',
+                        right: '0'
+                        }}>
+                        {
+                            ProjectDetails.map((i:ProjectDetailsSchema, idx: number) => (
+                                <PictureWrapper key={idx + '-item'}>
+                                    <ProjectTitle>{i.title}</ProjectTitle>
+                                </PictureWrapper>
+                            ))
+                        }
                     </StripWrapper>
                 </WorksContainer>
             </Wrapper>
@@ -64,6 +86,11 @@ const PictureWrapper = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    & h2 {
+        color: #000;
+        text-decoration: none;
+    }
 `;
 
 const ImageItem = styled.img`
@@ -71,20 +98,12 @@ const ImageItem = styled.img`
 `;
 
 const ProjectTitle = styled.h2`
-
-`;
-
-const ProjectDescription = styled.p`
-    font-size: 18px;
-`;
-
-const ProjectLanguages = styled.p`
-    font-size: 10px;
 `;
 
 const StripWrapper = styled.div`
     width: 50vw;
     padding: 0 4vw;
+    position: absolute;
 `;
 
 const WorksContainer = styled.div`
@@ -95,7 +114,6 @@ const WorksContainer = styled.div`
     margin-left: 5vw;
     display: flex;
     flex-direction: row;
-    overflow: scroll;
 `;
 
 const Container = styled.section`
