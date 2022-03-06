@@ -2,7 +2,15 @@ import React, {createRef} from 'react';
 import styled from 'styled-components';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 import {Scrollbar} from 'smooth-scrollbar-react';
+
 import TJImage from 'Assets/TJ_image.jpg';
+import TechImg from 'Assets/TechImg.jpeg';
+import Tech2Img from 'Assets/Tech2Img.jpeg';
+import BeijingImg from 'Assets/BeijingImg.jpeg';
+import ZimImg from 'Assets/ZimImg.jpeg';
+import PuzzlesImg from 'Assets/PuzzlesImg.jpeg';
+import DeveloperImg from 'Assets/DeveloperImg.jpeg';
+
 import gsap from 'gsap';
 
 
@@ -80,7 +88,7 @@ const AboutMePage = () => {
         <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.033} onScroll={(status) => scrollAnimation(status.offset.y)}>
             <SectionWrapper>
                 <Wrapper>
-                    <Image ref={Imageref} src={TJImage} />
+                    <LandingImg ref={Imageref} src={TJImage} />
                     <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
                         <Header>
                             About Me
@@ -88,27 +96,44 @@ const AboutMePage = () => {
                     </div>
                 </Wrapper>
                     <TimeContainer>
-                        {/* <Timeline /> */}
                         <LeftSide>
                             <InfoWrap>
-                                <Info ref={Itemref1}><p>WEB DEVELOPER</p></Info>
+                                <Info ref={Itemref1}><p style={{marginTop: 0}}>WEB DEVELOPER</p></Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <InfoImg src={ZimImg} />
                             </InfoWrap>
                             <InfoWrap>
                                 <Info ref={Itemref3}><p>Based in Beijing</p></Info>
                             </InfoWrap>
                             <InfoWrap>
-                                <Info ref={Itemref5}><p>Item 5 </p></Info>
+                                <InfoImg src={PuzzlesImg} />
+                            </InfoWrap>
+                            <InfoWrap>
+                                <Info ref={Itemref5}><p>The sky is only the limit</p></Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <InfoImg src={Tech2Img} />
                             </InfoWrap>
                         </LeftSide>
                         <RightSide>
                             <InfoWrap>
+                                <InfoImg src={DeveloperImg} />
+                            </InfoWrap>
+                            <InfoWrap>
                                 <Info ref={Itemref2}><p>Born in Zimbabwe</p></Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <InfoImg src={BeijingImg} />
                             </InfoWrap>
                             <InfoWrap>
                                 <Info ref={Itemref4}><p>I love challenges</p></Info>
                             </InfoWrap>
                             <InfoWrap>
-                                <Info ref={Itemref6}><p>Item 6 </p></Info>
+                                <InfoImg src={TechImg} />
+                            </InfoWrap>
+                            <InfoWrap>
+                                <Info ref={Itemref6}><p>Simple is beautiful </p></Info>
                             </InfoWrap>
                         </RightSide>
                     </TimeContainer>
@@ -120,7 +145,14 @@ const AboutMePage = () => {
 
 export default AboutMePage;
 
-const Image = styled.img`
+const InfoImg = styled.img`
+    height: 50%;
+    margin: 0 auto;
+    box-shadow: #0000008c 8px 8px 50px;
+    margin-top: 25vh;
+`;
+
+const LandingImg = styled.img`
     position: absolute;
     height: 100vh;
     left: 0;
@@ -128,16 +160,15 @@ const Image = styled.img`
 const LeftSide = styled.div`
     width: 50vw;
     height: 100%;
+    margin-bottom: 100vh;
 `;
 
 const RightSide = styled(LeftSide)`
-    padding-top: 100vh;
 `;
 
 const InfoWrap = styled.div`
     width: 50vw;
     height: 100vh;
-    margin-bottom: 100vh;
     display: flex;
     justify-content: center;
 `;
@@ -151,6 +182,7 @@ const Info = styled.div`
     align-items: center;
 
     & p {
+        margin-top: -10vh;
         font-size: 2.5rem;
     }
 `;
@@ -161,18 +193,6 @@ const TimeContainer = styled.div`
     background-color: white;
     display: flex;
     flex-direction: row;
-`;
-
-const Timeline = styled.div`
-    position: absolute;
-    top: -10vh;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    border-radius: 10px 10px;
-    height: 600vh;
-    width: 5px;
-    background-color: rgb(58, 58, 58, 0.5);
 `;
 
 const Wrapper = styled.div`
@@ -198,5 +218,4 @@ const Header = styled.h1`
     position: absolute;
     right: 10vw;
     bottom: 0;
-
 `;
