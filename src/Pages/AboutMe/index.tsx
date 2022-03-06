@@ -15,19 +15,63 @@ const AboutMePage = () => {
 
     useEffect(() => {
         document.addEventListener('scroll', () => {
-            if(window.scrollY >= window.innerHeight * 0.5 && window.scrollY <= window.innerHeight * 2){
+            if(window.scrollY < window.innerHeight * 0.5)
+                Itemref1 && gsap.to(Itemref1.current, {opacity: 0, duration: 0});
+            
+            if(window.scrollY >= window.innerHeight * 0.5 && window.scrollY <= window.innerHeight * 1.3){
                 if(Itemref1.current){
-
+                    gsap.to(Itemref1.current, {opacity: 1, duration: 1});
+                    Itemref1.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 0.5}px)`;
                 }
+            } else {
+                Itemref1.current && gsap.to(Itemref1.current, {opacity: 0, duration: 1})
             }
 
 
-            if(window.scrollY > window.innerHeight * 2 && window.scrollY <= window.innerHeight * 3)
-                console.log('section 2!!!!')
+            if(window.scrollY > window.innerHeight * 1.5 && window.scrollY <= window.innerHeight * 2.3){
+                if(Itemref2.current){
+                    gsap.to(Itemref2.current, {opacity: 1, duration: 1})
+                    Itemref2.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 1.5}px)`;
+                }
+            } else {
+                Itemref2 && gsap.to(Itemref2.current, {opacity: 0, duration: 1})
+            }
 
-            if(window.scrollY > window.innerHeight * 3 && window.scrollY <= window.innerHeight * 4)
-                console.log('section 3!!!!')
+            if(window.scrollY > window.innerHeight * 2.5 && window.scrollY <= window.innerHeight * 3.3){
+                if(Itemref3.current){
+                    gsap.to(Itemref3.current, {opacity: 1, duration: 1});
+                    Itemref3.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 2.5}px)`;
+                }
+            } else {
+                Itemref3.current && gsap.to(Itemref3.current, {opacity: 0, duration: 1})
+            }
 
+            if(window.scrollY > window.innerHeight * 3.5 && window.scrollY <= window.innerHeight * 4.3){
+                if(Itemref4.current){
+                    gsap.to(Itemref4.current, {opacity: 1, duration: 1})
+                    Itemref4.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 3.5}px)`;
+                }
+            } else {
+                Itemref4.current && gsap.to(Itemref4.current, {opacity: 0, duration: 1})
+            }
+
+            if(window.scrollY > window.innerHeight * 4.5 && window.scrollY <= window.innerHeight * 5.3){
+                if(Itemref5.current) {
+                    gsap.to(Itemref5.current, {opacity: 1, duration: 1})
+                    Itemref5.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 4.5}px)`;
+                }
+            } else {
+                Itemref5.current && gsap.to(Itemref5.current, {opacity: 0, duration: 1})
+            }
+
+            if(window.scrollY > window.innerHeight * 5.5 && window.scrollY <= window.innerHeight * 6.3){
+                if(Itemref6.current){
+                    gsap.to(Itemref6.current, {opacity: 1, duration: 1})
+                    Itemref6.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 5.5}px)`;
+                }
+            } else {
+                Itemref6.current && gsap.to(Itemref6.current, {opacity: 0, duration: 1})
+            }
         })
     }, [])
 
@@ -41,14 +85,26 @@ const AboutMePage = () => {
             <TimeContainer>
                 <Timeline />
                 <LeftSide>
-                    <Info ref={Itemref1}><p>Item 1 </p></Info>
-                    <Info ref={Itemref3}><p>Item 3 </p></Info>
-                    <Info ref={Itemref5}><p>Item 5 </p></Info>
+                    <InfoWrap>
+                        <Info ref={Itemref1}><p>Front end developer</p></Info>
+                    </InfoWrap>
+                    <InfoWrap>
+                        <Info ref={Itemref3}><p>Based in Beijing</p></Info>
+                    </InfoWrap>
+                    <InfoWrap>
+                        <Info ref={Itemref5}><p>Item 5 </p></Info>
+                    </InfoWrap>
                 </LeftSide>
                 <RightSide>
-                    <Info ref={Itemref2}><p>Item 2 </p></Info>
-                    <Info ref={Itemref4}><p>Item 4 </p></Info>
-                    <Info ref={Itemref6}><p>Item 6 </p></Info>
+                    <InfoWrap>
+                        <Info ref={Itemref2}><p>Born in Zimbabwe</p></Info>
+                    </InfoWrap>
+                    <InfoWrap>
+                        <Info ref={Itemref4}><p>I love challenges</p></Info>
+                    </InfoWrap>
+                    <InfoWrap>
+                        <Info ref={Itemref6}><p>Item 6 </p></Info>
+                    </InfoWrap>
                 </RightSide>
             </TimeContainer>
         </SectionWrapper>
@@ -66,21 +122,26 @@ const RightSide = styled(LeftSide)`
     padding-top: 100vh;
 `;
 
-const Info = styled.div`
+const InfoWrap = styled.div`
     width: 50vw;
     height: 100vh;
-    background-color: red;
     margin-bottom: 100vh;
     display: flex;
     justify-content: center;
-    font-size: 3rem;
-
-    & p {
-        margin: 0;
-    }
 `;
 
+const Info = styled.div`
+    height: 15vh;
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    & p {
+        font-size: 2.5rem;
+    }
+`;
 
 const TimeContainer = styled.div`
     width: 100%;
@@ -97,7 +158,7 @@ const Timeline = styled.div`
     right: 0;
     margin: 0 auto;
     border-radius: 10px 10px;
-    height: 300vh;
+    height: 600vh;
     width: 5px;
     background-color: rgb(58, 58, 58, 0.5);
 `;
