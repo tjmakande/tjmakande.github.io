@@ -1,6 +1,7 @@
-import React, {createRef, useEffect} from 'react';
+import React, {createRef} from 'react';
 import styled from 'styled-components';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
+import {Scrollbar} from 'smooth-scrollbar-react';
 import gsap from 'gsap';
 
 
@@ -12,102 +13,101 @@ const AboutMePage = () => {
     const Itemref5 = createRef<HTMLDivElement>();
     const Itemref6 = createRef<HTMLDivElement>();
 
-
-    useEffect(() => {
-        document.addEventListener('scroll', () => {
-            if(window.scrollY < window.innerHeight * 0.5)
+    const scrollAnimation = (scrollY: any) => {
+            if(scrollY < window.innerHeight * 0.5)
                 Itemref1 && gsap.to(Itemref1.current, {opacity: 0, duration: 0});
             
-            if(window.scrollY >= window.innerHeight * 0.5 && window.scrollY <= window.innerHeight * 1.3){
+            if(scrollY >= window.innerHeight * 0.5 && scrollY <= window.innerHeight * 1.3){
                 if(Itemref1.current){
                     gsap.to(Itemref1.current, {opacity: 1, duration: 1});
-                    Itemref1.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 0.5}px)`;
+                    Itemref1.current.style.transform = `translateY(${scrollY - window.innerHeight * 0.5}px)`;
                 }
             } else {
                 Itemref1.current && gsap.to(Itemref1.current, {opacity: 0, duration: 1})
             }
 
-
-            if(window.scrollY > window.innerHeight * 1.5 && window.scrollY <= window.innerHeight * 2.3){
+            if(scrollY > window.innerHeight * 1.5 && scrollY <= window.innerHeight * 2.3){
                 if(Itemref2.current){
                     gsap.to(Itemref2.current, {opacity: 1, duration: 1})
-                    Itemref2.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 1.5}px)`;
+                    Itemref2.current.style.transform = `translateY(${scrollY - window.innerHeight * 1.5}px)`;
                 }
             } else {
                 Itemref2 && gsap.to(Itemref2.current, {opacity: 0, duration: 1})
             }
 
-            if(window.scrollY > window.innerHeight * 2.5 && window.scrollY <= window.innerHeight * 3.3){
+            if(scrollY > window.innerHeight * 2.5 && scrollY <= window.innerHeight * 3.3){
                 if(Itemref3.current){
                     gsap.to(Itemref3.current, {opacity: 1, duration: 1});
-                    Itemref3.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 2.5}px)`;
+                    Itemref3.current.style.transform = `translateY(${scrollY - window.innerHeight * 2.5}px)`;
                 }
             } else {
                 Itemref3.current && gsap.to(Itemref3.current, {opacity: 0, duration: 1})
             }
 
-            if(window.scrollY > window.innerHeight * 3.5 && window.scrollY <= window.innerHeight * 4.3){
+            if(scrollY > window.innerHeight * 3.5 && scrollY <= window.innerHeight * 4.3){
                 if(Itemref4.current){
                     gsap.to(Itemref4.current, {opacity: 1, duration: 1})
-                    Itemref4.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 3.5}px)`;
+                    Itemref4.current.style.transform = `translateY(${scrollY - window.innerHeight * 3.5}px)`;
                 }
             } else {
                 Itemref4.current && gsap.to(Itemref4.current, {opacity: 0, duration: 1})
             }
 
-            if(window.scrollY > window.innerHeight * 4.5 && window.scrollY <= window.innerHeight * 5.3){
+            if(scrollY > window.innerHeight * 4.5 && scrollY <= window.innerHeight * 5.3){
                 if(Itemref5.current) {
                     gsap.to(Itemref5.current, {opacity: 1, duration: 1})
-                    Itemref5.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 4.5}px)`;
+                    Itemref5.current.style.transform = `translateY(${scrollY - window.innerHeight * 4.5}px)`;
                 }
             } else {
                 Itemref5.current && gsap.to(Itemref5.current, {opacity: 0, duration: 1})
             }
 
-            if(window.scrollY > window.innerHeight * 5.5 && window.scrollY <= window.innerHeight * 6.3){
+            if(scrollY > window.innerHeight * 5.5 && scrollY <= window.innerHeight * 6.3){
                 if(Itemref6.current){
                     gsap.to(Itemref6.current, {opacity: 1, duration: 1})
-                    Itemref6.current.style.transform = `translateY(${window.scrollY - window.innerHeight * 5.5}px)`;
+                    Itemref6.current.style.transform = `translateY(${scrollY - window.innerHeight * 5.5}px)`;
                 }
             } else {
                 Itemref6.current && gsap.to(Itemref6.current, {opacity: 0, duration: 1})
             }
-        })
-    }, [])
+    };
 
     return(
-        <SectionWrapper>
-            <Wrapper>
-                <Header>
-                    About Me
-                </Header>
-            </Wrapper>
-            <TimeContainer>
-                <Timeline />
-                <LeftSide>
-                    <InfoWrap>
-                        <Info ref={Itemref1}><p>Front end developer</p></Info>
-                    </InfoWrap>
-                    <InfoWrap>
-                        <Info ref={Itemref3}><p>Based in Beijing</p></Info>
-                    </InfoWrap>
-                    <InfoWrap>
-                        <Info ref={Itemref5}><p>Item 5 </p></Info>
-                    </InfoWrap>
-                </LeftSide>
-                <RightSide>
-                    <InfoWrap>
-                        <Info ref={Itemref2}><p>Born in Zimbabwe</p></Info>
-                    </InfoWrap>
-                    <InfoWrap>
-                        <Info ref={Itemref4}><p>I love challenges</p></Info>
-                    </InfoWrap>
-                    <InfoWrap>
-                        <Info ref={Itemref6}><p>Item 6 </p></Info>
-                    </InfoWrap>
-                </RightSide>
-            </TimeContainer>
-        </SectionWrapper>
+        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.033} onScroll={(status) => scrollAnimation(status.offset.y)}>
+            <SectionWrapper>
+                <Wrapper>
+                    <Header>
+                        About Me
+                    </Header>
+                </Wrapper>
+                    <TimeContainer>
+                        <Timeline />
+                        <LeftSide>
+                            <InfoWrap>
+                                <Info ref={Itemref1}><p>Front end developer</p></Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <Info ref={Itemref3}><p>Based in Beijing</p></Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <Info ref={Itemref5}><p>Item 5 </p></Info>
+                            </InfoWrap>
+                        </LeftSide>
+                        <RightSide>
+                            <InfoWrap>
+                                <Info ref={Itemref2}><p>Born in Zimbabwe</p></Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <Info ref={Itemref4}><p>I love challenges</p></Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <Info ref={Itemref6}><p>Item 6 </p></Info>
+                            </InfoWrap>
+                        </RightSide>
+                    </TimeContainer>
+            </SectionWrapper>
+        </Scrollbar>
+
     )
 }
 
