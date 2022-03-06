@@ -17,17 +17,21 @@ const HomePage = () => {
 
     const B2W = (x: number) => {
         if((58 + x) < 229){
-          if((58 + x) > 220){
-            return 229;
-          }
-          return (58+x)
+          return 58 + x
         }
+        return 229;
       }
 
+      // const W2B = (x: number) => {
+      //   if(229 - ((x - (window.innerHeight * 6.5)) / 4) > 58){
+      //     return(229 - ((x - (window.innerHeight * 6.5)) / 4))
+      //   } else { return(58)}
+      // }
       const W2B = (x: number) => {
-        if(229 - ((x - (window.innerHeight * 6.5)) / 4) > 58){
-          return(229 - ((x - (window.innerHeight * 6.5)) / 4))
-        } else { return(58)}
+        if(229 - x > 58){
+          return(229 - x);
+        } 
+        return(58);
       }
 
       const getStopPosition = (percent: number) => (window.innerWidth - (window.innerWidth * 0.3)) * (percent/100);
@@ -38,13 +42,11 @@ const HomePage = () => {
         <Scrollbar 
         continuousScrolling={false}
         onScroll={(status) => {
-          const Head = document.getElementById('Name');
-          console.log(document.body.scrollTop)
-          
+          // const Head = document.getElementById('Name');
           //page background color
-          if(Backgroundref.current && Head) {
-            Backgroundref.current.style.backgroundColor = `rgb(${B2W(status.offset.y)}, ${B2W(status.offset.y)}, ${B2W(status.offset.y)})`;
-            Head.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+          if(Backgroundref.current) {
+            Backgroundref.current.style.backgroundColor = `rgb(${W2B(status.offset.y*0.3)}, ${W2B(status.offset.y*0.3)}, ${W2B(status.offset.y*0.3)} )`;
+            // Head.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
           }
            SectionWrapperref.current && (SectionWrapperref.current.style.visibility = status.offset.y > window.innerHeight * 0.5 ? 'hidden' : 'visible');
 
@@ -53,10 +55,10 @@ const HomePage = () => {
             //starting point in scroll 130vh && ending point in scroll 350vh
             if(status.offset.y > (window.innerHeight * 1.3) && status.offset.y <= window.innerHeight * 3.5){
                const Parent = AboutMeContainerref.current;
-               const Aboutref = Parent.children[0] as HTMLHeadingElement;
-               const Meref = Parent.children[1] as HTMLHeadingElement;
+              //  const Aboutref = Parent.children[0] as HTMLHeadingElement;
+              //  const Meref = Parent.children[1] as HTMLHeadingElement;
 
-               const TextParent = Parent.children[2];
+               const TextParent = Parent.children[0];
                const WordIref = TextParent.children[0] as HTMLHeadingElement
                const WordCreateref = TextParent.children[1] as HTMLHeadingElement
                const WordDesignref = TextParent.children[2] as HTMLHeadingElement
@@ -64,8 +66,8 @@ const HomePage = () => {
                const WordMaximizeref = TextParent.children[4] as HTMLHeadingElement
                const WordExperiencesref = TextParent.children[5] as HTMLHeadingElement
               
-              Aboutref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight * 1.3)}px, 0px, 0px)`;
-              Meref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight * 1.3)}px, 0px, 0px)`;
+              // Aboutref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight * 1.3)}px, 0px, 0px)`;
+              // Meref.style.transform = `rotate(-90deg) translate3d(${-(status.offset.y - window.innerHeight * 1.3)}px, 0px, 0px)`;
 
               WordIref.style.transform = `translate3d(${moveFromLeft(status.offset.y) > 0 ? moveFromLeft((status.offset.y)) : 0}px, ${(status.offset.y) - window.innerHeight * 1.3}px, 0px)`;
               WordCreateref.style.transform = `translate3d(${moveFromLeft(status.offset.y) + 600 > getStopPosition(7) ? moveFromLeft(status.offset.y) + 600 : getStopPosition(7)}px, ${status.offset.y - window.innerHeight * 1.3}px, 0px)`;
@@ -98,7 +100,7 @@ const HomePage = () => {
           }
 
           if(TransitionTworef.current && Backgroundref.current){
-            if(status.offset.y > window.innerHeight * 5.3) Backgroundref.current.style.backgroundColor = `rgb(${W2B(status.offset.y)}, ${W2B(status.offset.y)}, ${W2B(status.offset.y)})`;
+            if(status.offset.y > window.innerHeight * 6.5) Backgroundref.current.style.backgroundColor = `rgb(${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)}, ${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)}, ${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)})`;
           }
 
         }} 
@@ -107,7 +109,7 @@ const HomePage = () => {
           overflow: 'hidden', 
           outline: 'none', 
           height: '100vh',
-          backgroundColor: 'rgb(58,58,58)'
+          // backgroundColor: 'rgb(58,58,58)'
         }}
       >
         <Background ref={Backgroundref}/>
@@ -133,5 +135,5 @@ const Background = styled.div`
   width:100vw;
   z-index: -1;
   position: absolute;
-  background-color: rgb(58, 58, 58);
+  background-color: rgb(229, 229, 229);
 `;

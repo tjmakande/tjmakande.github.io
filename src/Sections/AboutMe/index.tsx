@@ -49,8 +49,8 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
 
     return (
             <Wrapper ref={ref}>
-                <AboutMeText>About</AboutMeText>
-                <AboutMeTextalt >ME</AboutMeTextalt>
+                {/* <AboutMeText>About</AboutMeText> */}
+                {/* <AboutMeTextalt >ME</AboutMeTextalt> */}
                 <WordContainer>
                     <WordI >I</WordI>
                     <WordCreate >Create,</WordCreate>
@@ -91,7 +91,7 @@ const AboutMeText = styled.h1`
     position: absolute;
     margin: 0;
     width: 0;
-    color: #989898;
+    color: #98989829;
     top: clamp(400px, 97vh, 750px);
     left: -20px;
     font-weight: 700;
@@ -104,7 +104,7 @@ const AboutMeText = styled.h1`
 const AboutMeTextalt = styled(AboutMeText)`
     font-size: clamp(170px, 30vh, 350px);
     top: clamp(200px, 42vh, 550px);
-    color: #BABABA82;
+    color: #bababa08;
     left: 30px;
     z-index: 1;
 `;
@@ -120,32 +120,28 @@ const Word = styled.h1`
     Font-size: clamp(60px, 5vw, 150px);
     margin: 0;
     width: 0;
-    color: #585858;
-    margin-left: 30vw;
+    color: rgb(229,229,229);
+    margin-left: 20vw;
     transform: translate3d(${window.innerWidth}px, 0px, 0px);
     z-index: 2;
 
 `;
 
 const WordI = styled(Word)`
-    color: #BABABA;
+    color: #bababa94;
 `;
 
 const WordCreate = styled(Word)`
-    // margin-left: 2rem;
 `; 
 
 const WordDesign = styled(Word)`
-    // margin-left: 12rem;
 `;
 
 const WordAnd = styled(Word)`
-    // margin-left: 23rem;
-    color: #BABABA;
+    color: #bababa94;
 `;
 
 const WordMaximize = styled(Word)`
-    // margin-left: 26rem;
 `;
 
 const WordExperiences = styled(Word)`

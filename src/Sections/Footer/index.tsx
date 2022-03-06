@@ -38,7 +38,7 @@ const SectionTitle = styled.h1`
     width: 50vw;
     margin: 0;
     padding: 0;
-    color: #E5E5E5;
+    color: rgb(58, 58, 58);
     font-weight: 600;
     letter-spacing: -3px;
     line-height: 9vw;
