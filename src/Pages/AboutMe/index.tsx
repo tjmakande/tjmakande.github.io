@@ -2,10 +2,12 @@ import React, {createRef} from 'react';
 import styled from 'styled-components';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 import {Scrollbar} from 'smooth-scrollbar-react';
+import TJImage from 'Assets/TJ_image.jpg';
 import gsap from 'gsap';
 
 
 const AboutMePage = () => {
+    const Imageref = createRef<HTMLImageElement>();
     const Itemref1 = createRef<HTMLDivElement>();
     const Itemref2 = createRef<HTMLDivElement>();
     const Itemref3 = createRef<HTMLDivElement>();
@@ -14,6 +16,8 @@ const AboutMePage = () => {
     const Itemref6 = createRef<HTMLDivElement>();
 
     const scrollAnimation = (scrollY: any) => {
+            Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
+
             if(scrollY < window.innerHeight * 0.5)
                 Itemref1 && gsap.to(Itemref1.current, {opacity: 0, duration: 0});
             
@@ -76,15 +80,18 @@ const AboutMePage = () => {
         <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.033} onScroll={(status) => scrollAnimation(status.offset.y)}>
             <SectionWrapper>
                 <Wrapper>
-                    <Header>
-                        About Me
-                    </Header>
+                    <Image ref={Imageref} src={TJImage} />
+                    <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
+                        <Header>
+                            About Me
+                        </Header>
+                    </div>
                 </Wrapper>
                     <TimeContainer>
-                        <Timeline />
+                        {/* <Timeline /> */}
                         <LeftSide>
                             <InfoWrap>
-                                <Info ref={Itemref1}><p>Front end developer</p></Info>
+                                <Info ref={Itemref1}><p>WEB DEVELOPER</p></Info>
                             </InfoWrap>
                             <InfoWrap>
                                 <Info ref={Itemref3}><p>Based in Beijing</p></Info>
@@ -112,10 +119,15 @@ const AboutMePage = () => {
 }
 
 export default AboutMePage;
+
+const Image = styled.img`
+    position: absolute;
+    height: 100vh;
+    left: 0;
+`;
 const LeftSide = styled.div`
     width: 50vw;
     height: 100%;
-    // background-color: white;
 `;
 
 const RightSide = styled(LeftSide)`
@@ -164,22 +176,27 @@ const Timeline = styled.div`
 `;
 
 const Wrapper = styled.div`
-    background-color: white;
+    background-color: rgb(229, 229, 229);
+    color: rgb(229, 229, 229);
+    mix-blend-mode: difference;
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 `;
 
 const Header = styled.h1`
-    margin: 0;
     font-size: 12vw;
-    margin: 0;
     padding: 0;
-    color: #E5E5E5;
     font-weight: 600;
     letter-spacing: -3px;
     line-height: 12vw;
     z-index: 1;
+
+    position: absolute;
+    right: 10vw;
+    bottom: 0;
+
 `;
