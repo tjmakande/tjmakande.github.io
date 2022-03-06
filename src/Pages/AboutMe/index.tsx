@@ -18,6 +18,7 @@ const AboutMePage = () => {
 export default AboutMePage;
 
 const Wrapper = styled.div`
+    background-color: white;
     height: 130vh;
     width: 100vw;
     display: flex;

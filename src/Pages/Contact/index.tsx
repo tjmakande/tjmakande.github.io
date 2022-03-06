@@ -18,6 +18,7 @@ const ContactPage = () => {
 export default ContactPage;
 
 const Wrapper = styled.div`
+    background-color: white;
     height: 130vh;
     width: 100vw;
     display: flex;

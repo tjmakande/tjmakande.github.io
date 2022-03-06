@@ -82,6 +82,7 @@ const Description = styled.p`
 `;
 
 const ProjectSection = styled.div`
+    background-color: white;
     height: 100vh;
     margin: auto;
     display: flex;
