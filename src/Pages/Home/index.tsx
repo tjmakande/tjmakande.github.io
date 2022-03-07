@@ -44,10 +44,10 @@ const HomePage = () => {
         onScroll={(status) => {
           // const Head = document.getElementById('Name');
           //page background color
-          if(Backgroundref.current) {
-            Backgroundref.current.style.backgroundColor = `rgb(${W2B(status.offset.y*0.3)}, ${W2B(status.offset.y*0.3)}, ${W2B(status.offset.y*0.3)} )`;
-            // Head.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
-          }
+          // if(Backgroundref.current) {
+          //   Backgroundref.current.style.backgroundColor = `rgb(${W2B(status.offset.y*0.3)}, ${W2B(status.offset.y*0.3)}, ${W2B(status.offset.y*0.3)} )`;
+          //   // Head.style.transform = `translate3d(0px, ${status.offset.y}px, 0px)`;
+          // }
            SectionWrapperref.current && (SectionWrapperref.current.style.visibility = status.offset.y > window.innerHeight * 0.5 ? 'hidden' : 'visible');
 
           //About Me Section
@@ -99,9 +99,9 @@ const HomePage = () => {
             }
           }
 
-          if(TransitionTworef.current && Backgroundref.current){
-            if(status.offset.y > window.innerHeight * 6.5) Backgroundref.current.style.backgroundColor = `rgb(${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)}, ${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)}, ${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)})`;
-          }
+          // if(TransitionTworef.current && Backgroundref.current){
+          //   if(status.offset.y > window.innerHeight * 6.5) Backgroundref.current.style.backgroundColor = `rgb(${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)}, ${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)}, ${B2W((status.offset.y - window.innerHeight * 6.5)*0.3)})`;
+          // }
 
         }} 
         damping={0.033} 
@@ -112,7 +112,7 @@ const HomePage = () => {
           // backgroundColor: 'rgb(58,58,58)'
         }}
       >
-        <Background ref={Backgroundref}/>
+        {/* <Background ref={Backgroundref}/> */}
         <LandingPage ref={SectionWrapperref} />
         <AboutMe ref={AboutMeContainerref} />
         <Works ref={Worksref} />

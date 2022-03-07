@@ -94,7 +94,7 @@ const PictureWrapper = styled.div`
 `;
 
 const ImageItem = styled.img`
-    width: 100%;
+    width: 60%;
 `;
 
 const ProjectTitle = styled.h2`
