@@ -1,131 +1,203 @@
-import React, {useState} from 'react';
+import React, {createRef} from 'react';
 import styled from 'styled-components';
-import Footer from 'Sections/Footer';
-import Navigation from './Navigation';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
-import Cube from 'Assets/3D-cube.png';
-import Bot from 'Assets/Automated-bot.png';
-import Cinema from 'Assets/Cinema-Photo.png';
-import Musician from 'Assets/Musician.png';
+import {Scrollbar} from 'smooth-scrollbar-react';
 
-interface Projectschema {
-    Name: string,
-    Imgsrc: string,
-    Description: string
-}
+import TJImage from 'Assets/TJ_image.jpg';
+import TechImg from 'Assets/TechImg.jpeg';
+import Tech2Img from 'Assets/Tech2Img.jpeg';
+import BeijingImg from 'Assets/BeijingImg.jpeg';
+import ZimImg from 'Assets/ZimImg.jpeg';
+import PuzzlesImg from 'Assets/PuzzlesImg.jpeg';
+import DeveloperImg from 'Assets/DeveloperImg.jpeg';
 
-const WorksPage = () => {
-    const [page, setPage] = useState<number>(0);
+import CinemaPhoto from '../../Assets/Cinema-Photo.png';
+import Musician from '../../Assets/Musician.png'
+import AutomatedBot from '../../Assets/Automated-bot.png';
+import Cube from '../../Assets/3D-cube.png';
 
-    const CubeProject = {
-        Name: 'Cube Project',
-        Imgsrc: Cube,
-        Description: 'I just thought this was actually pretty cool'
-    }
-    const BotProject = {
-        Name: 'Bot Project',
-        Imgsrc: Bot,
-        Description: 'An automatic bot system for a production company that carries out tasks such as checking an orders, making orders etc all through messages'
-    }
-    const CinemaProject = {
-        Name: 'Cinema Project',
-        Imgsrc: Cinema,
-        Description: 'A site designed to show the latest movies and book a seat for yourself and your friends'
-    }
-    const MusicianProject = {
-        Name: 'Musician Project',
-        Imgsrc: Musician,
-        Description: 'A personal website for a musician'
-    }
-    const Project = [CubeProject, BotProject, CinemaProject, MusicianProject];
+import gsap from 'gsap';
+
+
+const AboutMePage = () => {
+    const Imageref = createRef<HTMLImageElement>();
+    const Itemref1 = createRef<HTMLDivElement>();
+    const Itemref2 = createRef<HTMLDivElement>();
+    const Itemref3 = createRef<HTMLDivElement>();
+    const Itemref4 = createRef<HTMLDivElement>();
+    const Itemref5 = createRef<HTMLDivElement>();
+    const Itemref6 = createRef<HTMLDivElement>();
+
+    const scrollAnimation = (scrollY: any) => {
+            Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
+
+            if(scrollY < window.innerHeight * 0.5)
+                Itemref1 && gsap.to(Itemref1.current, {opacity: 0, duration: 0});
+            
+            if(scrollY >= window.innerHeight * 0.5 && scrollY <= window.innerHeight * 1.3){
+                if(Itemref1.current){
+                    gsap.to(Itemref1.current, {opacity: 1, duration: 1});
+                    Itemref1.current.style.transform = `translateY(${scrollY - window.innerHeight * 0.5}px)`;
+                }
+            } else {
+                Itemref1.current && gsap.to(Itemref1.current, {opacity: 0, duration: 1})
+            }
+
+            if(scrollY > window.innerHeight * 1.5 && scrollY <= window.innerHeight * 2.3){
+                if(Itemref2.current){
+                    gsap.to(Itemref2.current, {opacity: 1, duration: 1})
+                    Itemref2.current.style.transform = `translateY(${scrollY - window.innerHeight * 1.5}px)`;
+                }
+            } else {
+                Itemref2 && gsap.to(Itemref2.current, {opacity: 0, duration: 1})
+            }
+
+            if(scrollY > window.innerHeight * 2.5 && scrollY <= window.innerHeight * 3.3){
+                if(Itemref3.current){
+                    gsap.to(Itemref3.current, {opacity: 1, duration: 1});
+                    Itemref3.current.style.transform = `translateY(${scrollY - window.innerHeight * 2.5}px)`;
+                }
+            } else {
+                Itemref3.current && gsap.to(Itemref3.current, {opacity: 0, duration: 1})
+            }
+    };
 
     return(
-        <SectionWrapper style={{backgroundColor: 'rgb(58,58,58)', transform: `translateY(-${window.innerHeight * page}px)`}}>
-            <Wrapper>
-                <p style={{font: '1.5rem', marginTop: '5rem', color: 'rgb(229,229,229)'}}>
-                    These are some of the projects that I have been working on. Please check them out!
-                </p>
-                <Header>
-                    Works
-                </Header>
-            </Wrapper>
-            {
-                Project.map((i: Projectschema, idx: number) => (
-                    <ProjectSection style={{transform: `translatey(${window.innerHeight * (idx)}px)`}}>
-                        <ProjectWrap>
-                            <ProjectImg src={i.Imgsrc} />
-                            <TextContainer>
-                                <Title>{i.Name}</Title>
-                                <Description>{i.Description}</Description>
-                            </TextContainer>
-                        </ProjectWrap>
-                    </ProjectSection>
-                ))
-            }
-            <Navigation active={page} setPage={(page: number) => setPage(page)}/>
-        </SectionWrapper>
+        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.7} onScroll={(status) => scrollAnimation(status.offset.y)}>
+            <SectionWrapper>
+                <Wrapper>
+                    <LandingImg ref={Imageref} src={TJImage} />
+                    <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
+                        <Header>
+                            Works
+                        </Header>
+                    </div>
+                </Wrapper>
+                    <TimeContainer>
+                        <LeftSide>
+                            <InfoWrap>
+                                <Info ref={Itemref1}>
+                                    <ProjectTitle style={{marginTop: 0}}>Cinema </ProjectTitle>
+                                    <ProjectDescription>This is an account based movie booking platform. It displays the latest movies and their ratings based on the IMDB API. </ProjectDescription>
+                                    <ProjectRole>Design, Fullstack</ProjectRole>
+                                </Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <InfoImg src={AutomatedBot} />
+                            </InfoWrap>
+                            <InfoWrap>
+                                <Info ref={Itemref3}>
+                                    <ProjectTitle>Musician Site</ProjectTitle>
+                                    <ProjectDescription>Site for a local musician displaying their latest songs.</ProjectDescription>
+                                    <ProjectRole>Design, Fullstack</ProjectRole>
+                                </Info>
+                            </InfoWrap>
+                        </LeftSide>
+                        <RightSide>
+                            <InfoWrap>
+                                <InfoImg src={CinemaPhoto} />
+                            </InfoWrap>
+                            <InfoWrap>
+                                <Info ref={Itemref2}>
+                                    <ProjectTitle>Automated chatbot </ProjectTitle>
+                                    <ProjectDescription>Most companies now have clients from all over the world. I created this automated bot to </ProjectDescription>
+                                    <ProjectRole>Design, Fullstack</ProjectRole>
+                                </Info>
+                            </InfoWrap>
+                            <InfoWrap>
+                                <InfoImg src={Musician} />
+                            </InfoWrap>
+                        </RightSide>
+                    </TimeContainer>
+            </SectionWrapper>
+        </Scrollbar>
+
     )
 }
 
-export default WorksPage;
-const TextContainer = styled.div`
-    width: 30%;
+export default AboutMePage;
+
+const ProjectRole = styled.p`
+    font-size: 0.8rem;
 `;
 
-const Title = styled.h1`
-    color: white;
-    font-size: clamp(1.5rem, 3.5vw, 5rem);
+const ProjectDescription = styled.p`
+    font-size: 1.5rem;
 `;
 
-const Description = styled.p`
-    color: rgb(229, 229, 229);
+const ProjectTitle = styled.h3`
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 0;
 `;
 
-const ProjectSection = styled.div`
-    background-color: white;
+const InfoImg = styled.img`
+    height: 50%;
+    margin: 0 auto;
+    box-shadow: #0000008c 8px 8px 50px;
+    margin-top: 25vh;
+`;
+
+const LandingImg = styled.img`
+    position: absolute;
     height: 100vh;
-    margin: auto;
+    left: 0;
+`;
+const LeftSide = styled.div`
+    width: 50vw;
+    height: 100%;
+    margin-bottom: 100vh;
+`;
+
+const RightSide = styled(LeftSide)`
+`;
+
+const InfoWrap = styled.div`
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+`;
+
+const Info = styled.div`
+    height: 15vh;
+    width: 70%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    position: absolute;
     justify-content: center;
-    padding-left: 5vw;
+    align-items: center;
 `;
 
-const ProjectWrap = styled.div`
-    position: relative;  
-    height:85%;   
-    width: 85%;
-    background-color: rgb(58,58,58);
+const TimeContainer = styled.div`
+    width: 100%;
+    position: relative;
+    background-color: white;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    border-radius: 20px 20px;
 `;
 
 const Wrapper = styled.div`
+    background-color: rgb(229, 229, 229);
+    color: rgb(229, 229, 229);
+    mix-blend-mode: difference;
     height: 100vh;
     width: 100vw;
     display: flex;
-    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    position: relative;
 `;
 
 const Header = styled.h1`
-    position: relative;
-    margin: 0;
     font-size: 12vw;
-    color: #E5E5E5;
+    padding: 0;
     font-weight: 600;
     letter-spacing: -3px;
     line-height: 12vw;
     z-index: 1;
-`;
 
-const ProjectImg = styled.img`
-    width: 70%;
-    margin-left: 2rem;
-    
+    position: absolute;
+    right: 10vw;
+    bottom: 0;
 `;
