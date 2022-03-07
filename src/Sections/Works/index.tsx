@@ -16,22 +16,22 @@ interface ProjectDetailsSchema {
 const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
     const ProjectDetails = [
         {
-            title: 'Cinema: movie booking platform', 
+            title: '1. Cinema: movie booking platform', 
             description: 'Find the latest movie showing in the cinema and book a seat for yourself and/or others!', 
             languages: 'React, Redux, Nodejs, MongoDB'
         },
         {
-            title: 'Musician Portfolio', 
+            title: '2. Musician Portfolio', 
             description: 'Follow your favorite artist and stay up to date with his latest creations. Do not miss out on what their doing next', 
             languages: 'Pug, Sass'
         }, 
         {
-            title: 'Automatic Customer service Bot', 
+            title: '3. Automatic Customer service Bot', 
             description: 'The world is changing. I have created an automated customer service bot to interact with users.', 
             languages: 'React, Konva, NodeNLT, MongoDB'
         },
         {
-            title: '3D Cube', 
+            title: '4. 3D Cube', 
             description: 'Simply put, some of my life in a cube. ', 
             languages: 'Vanilla javascript'
         }
@@ -57,9 +57,9 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
                         </PictureWrapper>
                     </StripWrapper>
                     <StripWrapper style={{
-                        color: '#000',
+                        color: 'rgb(229,229,229)',
                         zIndex: 90,
-                        mixBlendMode: 'overlay',
+                        mixBlendMode: 'difference',
                         transform: 'translate3d(100vh, 0px, 0px)', 
                         fontSize: 'clamp(2rem, 3.5vw, 3.5rem)',
                         right: '0'
@@ -88,7 +88,7 @@ const PictureWrapper = styled.div`
     flex-direction: column;
 
     & h2 {
-        color: #000;
+        color: rgb(229,229,229);
         text-decoration: none;
     }
 `;
@@ -98,6 +98,7 @@ const ImageItem = styled.img`
 `;
 
 const ProjectTitle = styled.h2`
+    margin-top: 50vh;
 `;
 
 const StripWrapper = styled.div`
@@ -140,5 +141,5 @@ const SectionTitle = styled.h1`
     text-transform: uppercase;
     line-height: clamp(150px, 18vh, 300px);
     margin: 0;
-    color: rgb(58, 58, 58);
+    color: rgb(229, 229, 229);
 `;
