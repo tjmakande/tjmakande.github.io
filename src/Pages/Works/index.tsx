@@ -3,18 +3,11 @@ import styled from 'styled-components';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 import {Scrollbar} from 'smooth-scrollbar-react';
 
-import TJImage from 'Assets/TJ_image.jpg';
-import TechImg from 'Assets/TechImg.jpeg';
-import Tech2Img from 'Assets/Tech2Img.jpeg';
-import BeijingImg from 'Assets/BeijingImg.jpeg';
-import ZimImg from 'Assets/ZimImg.jpeg';
-import PuzzlesImg from 'Assets/PuzzlesImg.jpeg';
-import DeveloperImg from 'Assets/DeveloperImg.jpeg';
+import WorksPageImg from 'Assets/WorksPageImg.jpeg';
 
 import CinemaPhoto from '../../Assets/Cinema-Photo.png';
 import Musician from '../../Assets/Musician.png'
 import AutomatedBot from '../../Assets/Automated-bot.png';
-import Cube from '../../Assets/3D-cube.png';
 
 import gsap from 'gsap';
 
@@ -24,9 +17,6 @@ const AboutMePage = () => {
     const Itemref1 = createRef<HTMLDivElement>();
     const Itemref2 = createRef<HTMLDivElement>();
     const Itemref3 = createRef<HTMLDivElement>();
-    const Itemref4 = createRef<HTMLDivElement>();
-    const Itemref5 = createRef<HTMLDivElement>();
-    const Itemref6 = createRef<HTMLDivElement>();
 
     const scrollAnimation = (scrollY: any) => {
             Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
@@ -63,10 +53,10 @@ const AboutMePage = () => {
     };
 
     return(
-        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.7} onScroll={(status) => scrollAnimation(status.offset.y)}>
+        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.2} onScroll={(status) => scrollAnimation(status.offset.y)}>
             <SectionWrapper>
                 <Wrapper>
-                    <LandingImg ref={Imageref} src={TJImage} />
+                    <LandingImg ref={Imageref} src={WorksPageImg} />
                     <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
                         <Header>
                             Works
@@ -140,7 +130,7 @@ const InfoImg = styled.img`
 
 const LandingImg = styled.img`
     position: absolute;
-    height: 100vh;
+    width: 100vw;
     left: 0;
 `;
 const LeftSide = styled.div`
@@ -175,6 +165,7 @@ const TimeContainer = styled.div`
     background-color: white;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 `;
 
 const Wrapper = styled.div`
