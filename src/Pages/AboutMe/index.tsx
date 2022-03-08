@@ -19,6 +19,13 @@ const AboutMePage = () => {
     const Imageref = createRef<HTMLImageElement>();
     const IntroWrap = createRef<HTMLDivElement>();
     const Descriptionref = createRef<HTMLParagraphElement>();
+    const DescriptionTworef = createRef<HTMLParagraphElement>();
+
+
+    const Line1ref = createRef<HTMLSpanElement>();
+    const Line2ref = createRef<HTMLSpanElement>();
+    const Line3ref = createRef<HTMLSpanElement>();
+    const Line4ref = createRef<HTMLSpanElement>();
 
     const Zimref = createRef<HTMLSpanElement>();
     const Beijingref = createRef<HTMLSpanElement>();
@@ -30,12 +37,12 @@ const AboutMePage = () => {
 
 
     const scrollAnimation = (scrollY: number) => {
+        //Heading
         if(scrollY < window.innerHeight){
             Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
         }else{
             Imageref.current && (Imageref.current.style.transform = `translateY(0px)`);
         }
-
 
         // animation part 1
         if(scrollY < window.innerHeight * 0.8){
@@ -46,26 +53,47 @@ const AboutMePage = () => {
 
         // Animation part 2
         if(scrollY > window.innerHeight * 0.8){
+
             if(IntroWrap.current){
                 const instanceOffset = scrollY - window.innerHeight * 0.8;
                 Descriptionref.current && (Descriptionref.current.style.opacity =  `${instanceOffset / 200}`);
+
                 IntroWrap.current.style.transform = `translateY(${scrollY - window.innerHeight}px)`;
 
                 // Text Move to the left side
-                if( scrollY > window.innerHeight * 1.1){
-                    IntroWrap.current.style.transform = `translate3d(-${MoveTextLeft(scrollY - window.innerHeight * 1.1)}px, ${scrollY - window.innerHeight}px, 0)`;
+                if( scrollY > window.innerHeight * 1.3){
+                    IntroWrap.current.style.transform = `translate3d(-${MoveTextLeft(scrollY - window.innerHeight * 1.3)}px, ${scrollY - window.innerHeight}px, 0)`;
                     // console.log(MoveTextLeft(scrollY-window.innerHeight * 1.1))
                 }
 
+                if(scrollY > window.innerHeight * 2) {
+                    IntroWrap.current.style.transform = `translate3d(${-window.innerWidth * 0.3}px, ${scrollY - window.innerHeight}px, 0;)`;
+                    Line1ref.current && (Line1ref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 2)}`);
+                    Line2ref.current && (Line2ref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 2)}`);
+                }
+
+                if(scrollY > window.innerHeight * 2.5){
+                    Descriptionref.current && (Descriptionref.current.style.display = 'none');
+                    DescriptionTworef.current && (DescriptionTworef.current.style.display = 'block');
+                } else {
+                    Descriptionref.current && (Descriptionref.current.style.display = 'block');
+                    DescriptionTworef.current && (DescriptionTworef.current.style.display = 'none');
+                }
+
+                if(scrollY > window.innerHeight * 3){
+                    Line3ref.current && (Line3ref.current.style.opacity = `${1 - HeadMakeOpaque(scrollY - window.innerHeight*3)}`) 
+                }
+
+
                 //Text move to the right side
-                if(scrollY > window.innerHeight * 2){
-                    IntroWrap.current.style.transform = `translate3d(${-window.innerWidth * 0.3 + moveTextRight(scrollY - window.innerHeight * 2)}px, ${scrollY - window.innerHeight}px, 0)`;
+                if(scrollY > window.innerHeight * 4){
+                    IntroWrap.current.style.transform = `translate3d(${-window.innerWidth * 0.3 + moveTextRight(scrollY - window.innerHeight * 4)}px, ${scrollY - window.innerHeight}px, 0)`;
                 }
             }
         }
 
-        if(scrollY > window.innerHeight * 3) {
-            Descriptionref.current && (Descriptionref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 3)}`);
+        if(scrollY > window.innerHeight * 5) {
+            Descriptionref.current && (Descriptionref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 5)}`);
         }
     }
 
@@ -84,11 +112,16 @@ const AboutMePage = () => {
                 <IntroContainer>
                     <IntroWrapper ref={IntroWrap}>
                         <Description ref={Descriptionref}>
-                            I am a web developer, from <Wordspan ref={Zimref}>Zimbabwe</Wordspan>, currently based in <Wordspan ref={Beijingref}>Beijing</Wordspan>.
+                            <Wordspan ref={Line1ref}>Hi There! <br/></Wordspan>
+                            <Wordspan ref={Line2ref}>I'm TJ Makande.<br /></Wordspan>
                         </Description>
+
+                        <DescriptionTwo ref={DescriptionTworef}>
+                            <Wordspan ref={Line3ref} style={{opacity: 0}}>A web developer from <Wordspan ref={Zimref}>Zimbabwe </Wordspan></Wordspan>
+                            <Wordspan ref={Line4ref}style={{opacity: 0}}>currently based in  <Wordspan ref={Beijingref}>Beijing</Wordspan></Wordspan>
+                        </DescriptionTwo>
                     </IntroWrapper>
                 </IntroContainer>
-
 
                 <IntroTwoContainer>
                     <IntroTwoWrapper>
@@ -119,8 +152,8 @@ const Wordspan = styled.span`
 `;
 
 const IntroContainer = styled.div`
-    width: 100%;
-    height: 400vh;
+    width: 100vw;
+    height: 800vh;
     position: relative;
     background-color: white;
     display: flex;
@@ -129,7 +162,7 @@ const IntroContainer = styled.div`
 
 const IntroWrapper = styled.div`
     position: relative;
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -158,6 +191,10 @@ const IntroThreeWrapper = styled(IntroWrapper)`
 const Description = styled.p`
     font-size: clamp(2rem,2vw, 5rem);
     width: 30vw;
+`;
+
+const DescriptionTwo = styled(Description)`
+    display: none;
 `;
 
 const LandingImg = styled.img`
