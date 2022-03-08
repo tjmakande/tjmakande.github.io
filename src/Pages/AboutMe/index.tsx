@@ -30,6 +30,13 @@ const AboutMePage = () => {
 
 
     const scrollAnimation = (scrollY: number) => {
+        if(scrollY < window.innerHeight){
+            Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
+        }else{
+            Imageref.current && (Imageref.current.style.transform = `translateY(0px)`);
+        }
+
+
         // animation part 1
         if(scrollY < window.innerHeight * 0.8){
              IntroWrap.current && (IntroWrap.current.style.visibility = 'hidden');
