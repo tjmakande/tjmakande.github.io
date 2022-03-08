@@ -16,35 +16,34 @@ import gsap from 'gsap';
 
 const AboutMePage = () => {
     const Imageref = createRef<HTMLImageElement>();
-    const Headerref = createRef<HTMLHeadingElement>();
     const IntroWrap = createRef<HTMLDivElement>();
     const Descriptionref = createRef<HTMLParagraphElement>();
 
-    const HeadOpacity = (x: number) => (1 - x/500) > 0.05 ? 1-(x/500) : 0.05;
+    const HeadMakeOpaque = (x: number) => x/400 < 1 ? 1 - (x/400) : 0;
 
     const scrollAnimation = (scrollY: number) => {
-        Headerref.current && (Headerref.current.style.transform = `translateY(${scrollY}px)`);
-        Headerref.current && (Headerref.current.style.opacity = `${HeadOpacity(scrollY)}`);
 
-
-        if(scrollY < window.innerHeight){
+        if(scrollY < window.innerHeight * 0.8){
              IntroWrap.current && (IntroWrap.current.style.visibility = 'hidden');
         } else { 
             IntroWrap.current && (IntroWrap.current.style.visibility = `visible`);
         }
 
-        if(scrollY > window.innerHeight){
+        if(scrollY > window.innerHeight * 0.8){
             if(IntroWrap.current){
-                const instanceOffset = scrollY - window.innerHeight;
-                // gsap.fromTo(IntroWrap.current, {opacity: 0, y: 100}, {opacity: 1, y: 0, duration: 1});
+                const instanceOffset = scrollY - window.innerHeight * 0.8;
                 Descriptionref.current && (Descriptionref.current.style.opacity =  `${instanceOffset / 200}`);
-                IntroWrap.current.style.transform = `translateY(${instanceOffset}px)`;
+                IntroWrap.current.style.transform = `translateY(${scrollY - window.innerHeight}px)`;
             }
+        }
+
+        if(scrollY > window.innerHeight * 1.5) {
+            Descriptionref.current && (Descriptionref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 1.5)}`);
         }
     }
 
     return(
-        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.033} onScroll={(status) => scrollAnimation(status.offset.y)}>
+        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.2} onScroll={(status) => scrollAnimation(status.offset.y)}>
             <SectionWrapper>
                 <HeaderWrapper>
                     <LandingImg ref={Imageref} src={TJImage} />
@@ -72,7 +71,7 @@ export default AboutMePage;
 
 const Description = styled.p`
     opacity: 0;
-    font-size: 1.8rem;
+    font-size: clamp(2rem,2vw, 5rem);
     width: 30vw;
 `;
 
