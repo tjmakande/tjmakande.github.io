@@ -25,6 +25,7 @@ const AboutMePage = () => {
 
     const HeadMakeOpaque = (x: number) => x/400 < 1 ? 1 - (x/400) : 0;
     const MoveTextLeft = (x: number) => x < window.innerWidth * 0.30 ? x : window.innerWidth * 0.30; 
+    const moveTextRight = (x: number) => x < window.innerWidth * 0.6 ? x : window.innerWidth * 0.6;
 
 
 
@@ -43,15 +44,21 @@ const AboutMePage = () => {
                 Descriptionref.current && (Descriptionref.current.style.opacity =  `${instanceOffset / 200}`);
                 IntroWrap.current.style.transform = `translateY(${scrollY - window.innerHeight}px)`;
 
+                // Text Move to the left side
                 if( scrollY > window.innerHeight * 1.1){
                     IntroWrap.current.style.transform = `translate3d(-${MoveTextLeft(scrollY - window.innerHeight * 1.1)}px, ${scrollY - window.innerHeight}px, 0)`;
                     // console.log(MoveTextLeft(scrollY-window.innerHeight * 1.1))
                 }
+
+                //Text move to the right side
+                if(scrollY > window.innerHeight * 2){
+                    IntroWrap.current.style.transform = `translate3d(${-window.innerWidth * 0.3 + moveTextRight(scrollY - window.innerHeight * 2)}px, ${scrollY - window.innerHeight}px, 0)`;
+                }
             }
         }
 
-        if(scrollY > window.innerHeight * 2) {
-            Descriptionref.current && (Descriptionref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 2)}`);
+        if(scrollY > window.innerHeight * 3) {
+            Descriptionref.current && (Descriptionref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 3)}`);
         }
     }
 
