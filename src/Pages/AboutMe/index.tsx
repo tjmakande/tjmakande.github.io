@@ -20,7 +20,7 @@ const AboutMePage = () => {
     const IntroWrap = createRef<HTMLDivElement>();
     const Descriptionref = createRef<HTMLParagraphElement>();
     const DescriptionTworef = createRef<HTMLParagraphElement>();
-
+    const DescriptionThreeref = createRef<HTMLParagraphElement>();
 
     const Line1ref = createRef<HTMLSpanElement>();
     const Line2ref = createRef<HTMLSpanElement>();
@@ -30,7 +30,7 @@ const AboutMePage = () => {
     const Zimref = createRef<HTMLSpanElement>();
     const Beijingref = createRef<HTMLSpanElement>();
 
-    const HeadMakeOpaque = (x: number) => x/400 < 1 ? 1 - (x/400) : 0;
+    const MakeTextTransparent = (x: number) => x/400 < 1 ? 1 - (x/400) : 0;
     const MoveTextLeft = (x: number) => x < window.innerWidth * 0.30 ? x : window.innerWidth * 0.30; 
     const moveTextRight = (x: number) => x < window.innerWidth * 0.6 ? x : window.innerWidth * 0.6;
 
@@ -66,35 +66,57 @@ const AboutMePage = () => {
                     // console.log(MoveTextLeft(scrollY-window.innerHeight * 1.1))
                 }
 
+                //stay on the left side
                 if(scrollY > window.innerHeight * 2) {
                     IntroWrap.current.style.transform = `translate3d(${-window.innerWidth * 0.3}px, ${scrollY - window.innerHeight}px, 0;)`;
-                    Line1ref.current && (Line1ref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 2)}`);
-                    Line2ref.current && (Line2ref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 2)}`);
+                    Line1ref.current && (Line1ref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 2)}`);
+                    Line2ref.current && (Line2ref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 2)}`);
                 }
-
+                //sentence swap 1
                 if(scrollY > window.innerHeight * 2.5){
                     Descriptionref.current && (Descriptionref.current.style.display = 'none');
+                    DescriptionThreeref.current && (DescriptionThreeref.current.style.display = 'none');
                     DescriptionTworef.current && (DescriptionTworef.current.style.display = 'block');
+
+                    if(scrollY > window.innerHeight * 6){
+                        Descriptionref.current && (Descriptionref.current.style.display = 'none');
+                        DescriptionThreeref.current && (DescriptionThreeref.current.style.display = 'block');
+                        DescriptionTworef.current && (DescriptionTworef.current.style.display = 'none');
+                    }
                 } else {
                     Descriptionref.current && (Descriptionref.current.style.display = 'block');
                     DescriptionTworef.current && (DescriptionTworef.current.style.display = 'none');
+                    DescriptionThreeref.current && (DescriptionThreeref.current.style.display = 'none');
+
                 }
 
+                // make text visible
                 if(scrollY > window.innerHeight * 3){
-                    Line3ref.current && (Line3ref.current.style.opacity = `${1 - HeadMakeOpaque(scrollY - window.innerHeight*3)}`) 
+                    Line3ref.current && (Line3ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*3)}`) 
                 }
-
 
                 //Text move to the right side
                 if(scrollY > window.innerHeight * 4){
                     IntroWrap.current.style.transform = `translate3d(${-window.innerWidth * 0.3 + moveTextRight(scrollY - window.innerHeight * 4)}px, ${scrollY - window.innerHeight}px, 0)`;
                 }
+
+                // stay on the right side
+                if(scrollY > window.innerHeight * 5.5) {
+                    // IntroWrap.current.style.transform = `translate3d(${window.innerWidth * 0.6}px, ${scrollY - window.innerHeight}px, 0;)`;
+                    Line3ref.current && (Line3ref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 5.5)}`);
+                }
+
+                if(scrollY > window.innerHeight * 6){
+                    Line4ref.current && (Line4ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*6)}`) 
+                }
+
+
             }
         }
 
-        if(scrollY > window.innerHeight * 5) {
-            Descriptionref.current && (Descriptionref.current.style.opacity = `${HeadMakeOpaque(scrollY - window.innerHeight * 5)}`);
-        }
+        // if(scrollY > window.innerHeight * 5) {
+        //     Descriptionref.current && (Descriptionref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 5)}`);
+        // }
     }
 
     return(
@@ -118,8 +140,11 @@ const AboutMePage = () => {
 
                         <DescriptionTwo ref={DescriptionTworef}>
                             <Wordspan ref={Line3ref} style={{opacity: 0}}>A web developer from <Wordspan ref={Zimref}>Zimbabwe </Wordspan></Wordspan>
-                            <Wordspan ref={Line4ref}style={{opacity: 0}}>currently based in  <Wordspan ref={Beijingref}>Beijing</Wordspan></Wordspan>
                         </DescriptionTwo>
+
+                        <DescriptionThree ref={DescriptionThreeref}>
+                            <Wordspan ref={Line4ref}style={{opacity: 0}}>Currently based in  <Wordspan ref={Beijingref}>Beijing</Wordspan></Wordspan>
+                        </DescriptionThree>
                     </IntroWrapper>
                 </IntroContainer>
 
@@ -194,6 +219,9 @@ const Description = styled.p`
 `;
 
 const DescriptionTwo = styled(Description)`
+    display: none;
+`;
+const DescriptionThree = styled(Description)`
     display: none;
 `;
 
