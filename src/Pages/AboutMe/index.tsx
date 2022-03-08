@@ -16,127 +16,52 @@ import gsap from 'gsap';
 
 const AboutMePage = () => {
     const Imageref = createRef<HTMLImageElement>();
-    const Itemref1 = createRef<HTMLDivElement>();
-    const Itemref2 = createRef<HTMLDivElement>();
-    const Itemref3 = createRef<HTMLDivElement>();
-    const Itemref4 = createRef<HTMLDivElement>();
-    const Itemref5 = createRef<HTMLDivElement>();
-    const Itemref6 = createRef<HTMLDivElement>();
+    const Headerref = createRef<HTMLHeadingElement>();
+    const IntroWrap = createRef<HTMLDivElement>();
+    const Descriptionref = createRef<HTMLParagraphElement>();
 
-    const scrollAnimation = (scrollY: any) => {
-            Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
+    const HeadOpacity = (x: number) => (1 - x/500) > 0.05 ? 1-(x/500) : 0.05;
 
-            if(scrollY < window.innerHeight * 0.5)
-                Itemref1 && gsap.to(Itemref1.current, {opacity: 0, duration: 0});
-            
-            if(scrollY >= window.innerHeight * 0.5 && scrollY <= window.innerHeight * 1.3){
-                if(Itemref1.current){
-                    gsap.to(Itemref1.current, {opacity: 1, duration: 1});
-                    Itemref1.current.style.transform = `translateY(${scrollY - window.innerHeight * 0.5}px)`;
-                }
-            } else {
-                Itemref1.current && gsap.to(Itemref1.current, {opacity: 0, duration: 1})
+    const scrollAnimation = (scrollY: number) => {
+        Headerref.current && (Headerref.current.style.transform = `translateY(${scrollY}px)`);
+        Headerref.current && (Headerref.current.style.opacity = `${HeadOpacity(scrollY)}`);
+
+
+        if(scrollY < window.innerHeight){
+             IntroWrap.current && (IntroWrap.current.style.visibility = 'hidden');
+        } else { 
+            IntroWrap.current && (IntroWrap.current.style.visibility = `visible`);
+        }
+
+        if(scrollY > window.innerHeight){
+            if(IntroWrap.current){
+                const instanceOffset = scrollY - window.innerHeight;
+                // gsap.fromTo(IntroWrap.current, {opacity: 0, y: 100}, {opacity: 1, y: 0, duration: 1});
+                Descriptionref.current && (Descriptionref.current.style.opacity =  `${instanceOffset / 200}`);
+                IntroWrap.current.style.transform = `translateY(${instanceOffset}px)`;
             }
-
-            if(scrollY > window.innerHeight * 1.5 && scrollY <= window.innerHeight * 2.3){
-                if(Itemref2.current){
-                    gsap.to(Itemref2.current, {opacity: 1, duration: 1})
-                    Itemref2.current.style.transform = `translateY(${scrollY - window.innerHeight * 1.5}px)`;
-                }
-            } else {
-                Itemref2 && gsap.to(Itemref2.current, {opacity: 0, duration: 1})
-            }
-
-            if(scrollY > window.innerHeight * 2.5 && scrollY <= window.innerHeight * 3.3){
-                if(Itemref3.current){
-                    gsap.to(Itemref3.current, {opacity: 1, duration: 1});
-                    Itemref3.current.style.transform = `translateY(${scrollY - window.innerHeight * 2.5}px)`;
-                }
-            } else {
-                Itemref3.current && gsap.to(Itemref3.current, {opacity: 0, duration: 1})
-            }
-
-            if(scrollY > window.innerHeight * 3.5 && scrollY <= window.innerHeight * 4.3){
-                if(Itemref4.current){
-                    gsap.to(Itemref4.current, {opacity: 1, duration: 1})
-                    Itemref4.current.style.transform = `translateY(${scrollY - window.innerHeight * 3.5}px)`;
-                }
-            } else {
-                Itemref4.current && gsap.to(Itemref4.current, {opacity: 0, duration: 1})
-            }
-
-            if(scrollY > window.innerHeight * 4.5 && scrollY <= window.innerHeight * 5.3){
-                if(Itemref5.current) {
-                    gsap.to(Itemref5.current, {opacity: 1, duration: 1})
-                    Itemref5.current.style.transform = `translateY(${scrollY - window.innerHeight * 4.5}px)`;
-                }
-            } else {
-                Itemref5.current && gsap.to(Itemref5.current, {opacity: 0, duration: 1})
-            }
-
-            if(scrollY > window.innerHeight * 5.5 && scrollY <= window.innerHeight * 6.3){
-                if(Itemref6.current){
-                    gsap.to(Itemref6.current, {opacity: 1, duration: 1})
-                    Itemref6.current.style.transform = `translateY(${scrollY - window.innerHeight * 5.5}px)`;
-                }
-            } else {
-                Itemref6.current && gsap.to(Itemref6.current, {opacity: 0, duration: 1})
-            }
-    };
+        }
+    }
 
     return(
         <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.033} onScroll={(status) => scrollAnimation(status.offset.y)}>
             <SectionWrapper>
-                <Wrapper>
+                <HeaderWrapper>
                     <LandingImg ref={Imageref} src={TJImage} />
                     <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
                         <Header>
                             About Me
                         </Header>
                     </div>
-                </Wrapper>
-                    <TimeContainer>
-                        <LeftSide>
-                            <InfoWrap>
-                                <Info ref={Itemref1}><p style={{marginTop: 0}}>WEB DEVELOPER</p></Info>
-                            </InfoWrap>
-                            <InfoWrap>
-                                <InfoImg src={ZimImg} />
-                            </InfoWrap>
-                            <InfoWrap>
-                                <Info ref={Itemref3}><p>Based in Beijing</p></Info>
-                            </InfoWrap>
-                            <InfoWrap>
-                                <InfoImg src={PuzzlesImg} />
-                            </InfoWrap>
-                            <InfoWrap>
-                                <Info ref={Itemref5}><p>The sky is only the limit</p></Info>
-                            </InfoWrap>
-                            <InfoWrap>
-                                <InfoImg src={Tech2Img} />
-                            </InfoWrap>
-                        </LeftSide>
-                        <RightSide>
-                            <InfoWrap>
-                                <InfoImg src={DeveloperImg} />
-                            </InfoWrap>
-                            <InfoWrap>
-                                <Info ref={Itemref2}><p>Born in Zimbabwe</p></Info>
-                            </InfoWrap>
-                            <InfoWrap>
-                                <InfoImg src={BeijingImg} />
-                            </InfoWrap>
-                            <InfoWrap>
-                                <Info ref={Itemref4}><p>I love challenges</p></Info>
-                            </InfoWrap>
-                            <InfoWrap>
-                                <InfoImg src={TechImg} />
-                            </InfoWrap>
-                            <InfoWrap>
-                                <Info ref={Itemref6}><p>Simple is beautiful </p></Info>
-                            </InfoWrap>
-                        </RightSide>
-                    </TimeContainer>
+                </HeaderWrapper>
+                <TimeContainer>
+                    <IntroWrapper ref={IntroWrap}>
+                        <Description ref={Descriptionref}>
+                            I am a web developer, from Zimbabwe, currently based in Beijing
+                        </Description>
+                    </IntroWrapper>
+                </TimeContainer>
+
             </SectionWrapper>
         </Scrollbar>
 
@@ -145,11 +70,10 @@ const AboutMePage = () => {
 
 export default AboutMePage;
 
-const InfoImg = styled.img`
-    height: 50%;
-    margin: 0 auto;
-    box-shadow: #0000008c 8px 8px 50px;
-    margin-top: 25vh;
+const Description = styled.p`
+    opacity: 0;
+    font-size: 1.8rem;
+    width: 30vw;
 `;
 
 const LandingImg = styled.img`
@@ -157,45 +81,25 @@ const LandingImg = styled.img`
     height: 100vh;
     left: 0;
 `;
-const LeftSide = styled.div`
-    width: 50vw;
-    height: 100%;
-    margin-bottom: 100vh;
-`;
 
-const RightSide = styled(LeftSide)`
-`;
-
-const InfoWrap = styled.div`
-    width: 50vw;
+const IntroWrapper = styled.div`
+    width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
-`;
-
-const Info = styled.div`
-    height: 15vh;
-    width: 70%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
     align-items: center;
-
-    & p {
-        margin-top: -10vh;
-        font-size: 2.5rem;
-    }
 `;
 
 const TimeContainer = styled.div`
     width: 100%;
+    height: 200vh;
     position: relative;
     background-color: white;
     display: flex;
     flex-direction: row;
 `;
 
-const Wrapper = styled.div`
+const HeaderWrapper = styled.div`
     background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
     mix-blend-mode: difference;
@@ -217,5 +121,4 @@ const Header = styled.h1`
 
     position: absolute;
     right: 10vw;
-    bottom: 0;
 `;
