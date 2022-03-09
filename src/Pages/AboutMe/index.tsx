@@ -30,6 +30,9 @@ const AboutMePage = () => {
     const Paragraph1ref = createRef<HTMLParagraphElement>();
     const Paragraph2ref = createRef<HTMLParagraphElement>();
 
+    const InfoImg1ref = createRef<HTMLImageElement>();
+    const InfoImg2ref = createRef<HTMLImageElement>();
+
     const IntroTwoWrapperref = createRef<HTMLDivElement>();
 
 
@@ -98,12 +101,17 @@ const AboutMePage = () => {
 
                 // make text visible
                 if(scrollY > window.innerHeight * 2.7){
-                    Line3ref.current && (Line3ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*2.7)}`) 
+                    Line3ref.current && (Line3ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*2.7)}`);
+
+                    // Image is moving up While the zimbabwe is showing. negative value is moving UP. 1.7 is to speed up the process
+                    InfoImg1ref.current && (InfoImg1ref.current.style.transform = `translate3d(${window.innerWidth * 0.3}px, ${(window.innerHeight * 0.8 - (scrollY - window.innerHeight * 2.7)) * 1.7}px, 0)`)
                 }
 
                 //Text move to the right side
                 if(scrollY > window.innerHeight * 4){
                     IntroWrap.current.style.transform = `translate3d(${-window.innerWidth * 0.3 + moveTextRight(scrollY - window.innerHeight * 4)}px, ${scrollY - window.innerHeight}px, 0)`;
+                    InfoImg1ref.current && (InfoImg1ref.current.style.transform = `translate3d(${window.innerWidth * 0.3}px, -${window.innerHeight * 0.8}px, 0)`)
+
                 }
 
                 // stay on the right side
@@ -129,10 +137,6 @@ const AboutMePage = () => {
 
             }
         }
-
-        // if(scrollY > window.innerHeight * 5) {
-        //     Descriptionref.current && (Descriptionref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 5)}`);
-        // }
     }
 
     return(
@@ -161,6 +165,8 @@ const AboutMePage = () => {
                         <DescriptionThree ref={DescriptionThreeref}>
                             <Wordspan ref={Line4ref}style={{opacity: 0}}>Currently based in  <Wordspan ref={Beijingref}>Beijing</Wordspan></Wordspan>
                         </DescriptionThree>
+
+                        <InfoImg src={ZimImg} ref={InfoImg1ref}/>
                     </IntroWrapper>
                 </IntroContainer>
 
@@ -182,6 +188,17 @@ const AboutMePage = () => {
 }
 
 export default AboutMePage;
+
+const InfoImg = styled.img`
+    position: absolute;
+    right: 5vw;
+    height: 50%;
+    margin: 0 auto;
+    box-shadow: #0000008c 8px 8px 50px;
+
+    transform: translateY(${window.innerHeight * 0.80}px)
+`;
+
 const Wordspan = styled.span`
     // opacity: 0;
 `;
