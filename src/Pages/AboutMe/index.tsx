@@ -27,6 +27,12 @@ const AboutMePage = () => {
     const Line3ref = createRef<HTMLSpanElement>();
     const Line4ref = createRef<HTMLSpanElement>();
 
+    const Paragraph1ref = createRef<HTMLParagraphElement>();
+    const Paragraph2ref = createRef<HTMLParagraphElement>();
+
+    const IntroTwoWrapperref = createRef<HTMLDivElement>();
+
+
     const Zimref = createRef<HTMLSpanElement>();
     const Beijingref = createRef<HTMLSpanElement>();
 
@@ -72,7 +78,7 @@ const AboutMePage = () => {
                     Line1ref.current && (Line1ref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 2)}`);
                     Line2ref.current && (Line2ref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 2)}`);
                 }
-                //sentence swap 1
+                //sentence swap
                 if(scrollY > window.innerHeight * 2.5){
                     Descriptionref.current && (Descriptionref.current.style.display = 'none');
                     DescriptionThreeref.current && (DescriptionThreeref.current.style.display = 'none');
@@ -91,8 +97,8 @@ const AboutMePage = () => {
                 }
 
                 // make text visible
-                if(scrollY > window.innerHeight * 3){
-                    Line3ref.current && (Line3ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*3)}`) 
+                if(scrollY > window.innerHeight * 2.7){
+                    Line3ref.current && (Line3ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*2.7)}`) 
                 }
 
                 //Text move to the right side
@@ -110,6 +116,16 @@ const AboutMePage = () => {
                     Line4ref.current && (Line4ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*6)}`) 
                 }
 
+                if(scrollY > window.innerHeight * 7.5)
+                    Line4ref.current && (Line4ref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 7.5)}`);
+
+                if(scrollY > window.innerHeight * 8.5) {
+                    IntroTwoWrapperref.current && (IntroTwoWrapperref.current.style.transform = `translateY(${scrollY - window.innerHeight * 8.5}px)`);
+
+                    if(scrollY > window.innerHeight * 9.5){
+                        IntroTwoWrapperref.current && (IntroTwoWrapperref.current.style.transform = `translateY(${window.innerHeight}px)`);
+                    }
+                }
 
             }
         }
@@ -149,21 +165,15 @@ const AboutMePage = () => {
                 </IntroContainer>
 
                 <IntroTwoContainer>
-                    <IntroTwoWrapper>
-                        <Description>
-                            I'm naturally curious, that's probably how I ended up learning MERN stack.
-                        </Description>
+                    <IntroTwoWrapper  ref={IntroTwoWrapperref}>
+                        <DescriptionFour ref={Paragraph1ref}>
+                            I'm naturally keen developer with an eye for clean code and designs. I have the MERN stack in my arsenal which enables me to work on all sides of the development cycle.
+                        </DescriptionFour>
+                        <DescriptionFive ref={Paragraph2ref}>
+                            I am very much attracted to challenges and I love to find solutions. I do believe that those two belong together.
+                        </DescriptionFive>
                     </IntroTwoWrapper>
                 </IntroTwoContainer>
-
-                <IntroThreeContainer>
-                    <IntroThreeWrapper>
-                        <Description>
-                            I don't shy away from challenges, and I'm always looking forward to help you tackle yours!
-                        </Description>
-                    </IntroThreeWrapper>
-                </IntroThreeContainer>
-
                 <Footer />
             </SectionWrapper>
         </Scrollbar>
@@ -178,11 +188,10 @@ const Wordspan = styled.span`
 
 const IntroContainer = styled.div`
     width: 100vw;
-    height: 800vh;
+    height: 750vh;
     position: relative;
     background-color: white;
-    display: flex;
-    flex-direction: row;
+    overflow-x: hidden;
 `;
 
 const IntroWrapper = styled.div`
@@ -190,28 +199,19 @@ const IntroWrapper = styled.div`
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
 
 const IntroTwoContainer = styled(IntroContainer)`
-    height: 150vh;
+    height: 200vh;
 `;
 
 const IntroTwoWrapper = styled(IntroWrapper)`
-    justify-content: start;
     padding: 0 10vw;
+    align-items: start;
 `;
-
-const IntroThreeContainer = styled(IntroContainer)`
-    height: 150vh;
-`;
-
-const IntroThreeWrapper = styled(IntroWrapper)`
-    justify-content: start;
-    padding: 0 10vw;
-`;
-
 
 const Description = styled.p`
     font-size: clamp(2rem,2vw, 5rem);
@@ -224,6 +224,13 @@ const DescriptionTwo = styled(Description)`
 const DescriptionThree = styled(Description)`
     display: none;
 `;
+const DescriptionFour = styled(Description)`
+    width: 28vw;
+    text-align: justify;
+    font-weight: 300;
+    font-size: clamp(1.7rem, 1.5vw, 2.5rem);
+`;
+const DescriptionFive = styled(DescriptionFour)``;
 
 const LandingImg = styled.img`
     position: absolute;
@@ -231,16 +238,13 @@ const LandingImg = styled.img`
     left: 0;
 `;
 
-
-
-
-
 const HeaderWrapper = styled.div`
     background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
     mix-blend-mode: difference;
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
