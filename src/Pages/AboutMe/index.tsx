@@ -103,13 +103,15 @@ const AboutMePage = () => {
                 if(scrollY > window.innerHeight * 2.7){
                     Line3ref.current && (Line3ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*2.7)}`);
 
-                    // Image is moving up While the zimbabwe is showing. negative value is moving UP. 1.7 is to speed up the process
+                    // Image is moving up While the zimbabwe is showing. negative value is moving UP. 1.7 is to speed up the process, 2.7 is the scroll height at the beginning of this movement
                     InfoImg1ref.current && (InfoImg1ref.current.style.transform = `translate3d(${window.innerWidth * 0.3}px, ${(window.innerHeight * 0.8 - (scrollY - window.innerHeight * 2.7)) * 1.7}px, 0)`)
                 }
 
                 //Text move to the right side
                 if(scrollY > window.innerHeight * 4){
                     IntroWrap.current.style.transform = `translate3d(${-window.innerWidth * 0.3 + moveTextRight(scrollY - window.innerHeight * 4)}px, ${scrollY - window.innerHeight}px, 0)`;
+
+                    //freeze the image on top of viewport out of sight;
                     InfoImg1ref.current && (InfoImg1ref.current.style.transform = `translate3d(${window.innerWidth * 0.3}px, -${window.innerHeight * 0.8}px, 0)`)
 
                 }
@@ -121,12 +123,19 @@ const AboutMePage = () => {
                 }
 
                 if(scrollY > window.innerHeight * 6){
-                    Line4ref.current && (Line4ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*6)}`) 
+                    Line4ref.current && (Line4ref.current.style.opacity = `${1 - MakeTextTransparent(scrollY - window.innerHeight*6)}`);
+
+
+                    InfoImg2ref.current && (InfoImg2ref.current.style.transform = `translate3d(-${window.innerWidth * 0.75}px, ${(window.innerHeight * 0.8 - (scrollY - window.innerHeight * 6)) * 1.7}px, 0)`)
                 }
 
-                if(scrollY > window.innerHeight * 7.5)
+                if(scrollY > window.innerHeight * 7.5){
                     Line4ref.current && (Line4ref.current.style.opacity = `${MakeTextTransparent(scrollY - window.innerHeight * 7.5)}`);
 
+                    //Freeze image on top of the viewport out of sight
+                    InfoImg2ref.current && (InfoImg2ref.current.style.transform = `translate3d(-${window.innerWidth * 0.75}px, -${window.innerHeight * 0.8}px, 0)`)
+                }
+                   
                 if(scrollY > window.innerHeight * 8.5) {
                     IntroTwoWrapperref.current && (IntroTwoWrapperref.current.style.transform = `translateY(${scrollY - window.innerHeight * 8.5}px)`);
 
@@ -167,6 +176,8 @@ const AboutMePage = () => {
                         </DescriptionThree>
 
                         <InfoImg src={ZimImg} ref={InfoImg1ref}/>
+                        <InfoImg src={BeijingImg} ref={InfoImg2ref}/>
+
                     </IntroWrapper>
                 </IntroContainer>
 
