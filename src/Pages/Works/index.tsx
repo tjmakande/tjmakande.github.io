@@ -20,16 +20,7 @@ const AboutMePage = () => {
     const Itemref3 = createRef<HTMLDivElement>();
 
     const Backgroundref = React.createRef<HTMLDivElement>();
-
-    const W2B = (x: number) => {
-        if(229 - x > 80){
-          return(229 - x);
-        } 
-        return(58);
-      }
-
     const [red, green, blue] = [255, 255, 255];
-
 
     const scrollAnimation = (scrollY: number) => {
 

@@ -22,6 +22,8 @@ const AboutMePage = () => {
     const DescriptionTworef = createRef<HTMLParagraphElement>();
     const DescriptionThreeref = createRef<HTMLParagraphElement>();
 
+    const Backgroundref = React.createRef<HTMLDivElement>();
+
     const Line1ref = createRef<HTMLSpanElement>();
     const Line2ref = createRef<HTMLSpanElement>();
     const Line3ref = createRef<HTMLSpanElement>();
@@ -43,9 +45,14 @@ const AboutMePage = () => {
     const MoveTextLeft = (x: number) => x < window.innerWidth * 0.30 ? x : window.innerWidth * 0.30; 
     const moveTextRight = (x: number) => x < window.innerWidth * 0.6 ? x : window.innerWidth * 0.6;
 
-
+    const [red, green, blue] = [255, 255, 255];
 
     const scrollAnimation = (scrollY: number) => {
+        // Background
+        if(scrollY > window.innerHeight){
+            Backgroundref.current && (Backgroundref.current.style.transform = `translateY(${scrollY - window.innerHeight}px)`);
+        }
+
         //Heading
         if(scrollY < window.innerHeight){
             Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
@@ -144,22 +151,31 @@ const AboutMePage = () => {
                     }
                 }
 
+                if(scrollY > window.innerHeight * 10){
+                    const y = 1 + (scrollY-window.innerHeight * 10) / 150;
+                    const [r, g, b] = [red/y, green/y, blue/y].map(Math.round)
+                    
+                    Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(${r < 58 ? 58 : r}, ${g < 58 ? 58 : g}, ${b < 58 ? 58 : b} )`);
+                } else {
+                    Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(255, 255, 255)`);
+                }
+
             }
         }
     }
 
     return(
         <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.2} onScroll={(status) => scrollAnimation(status.offset.y)}>
+            <HeaderWrapper>
+                <LandingImg ref={Imageref} src={TJImage} />
+                <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
+                    <Header>
+                        About Me
+                    </Header>
+                </div>
+            </HeaderWrapper>
             <SectionWrapper>
-                <HeaderWrapper>
-                    <LandingImg ref={Imageref} src={TJImage} />
-                    <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
-                        <Header>
-                            About Me
-                        </Header>
-                    </div>
-                </HeaderWrapper>
-                
+                <Background ref={Backgroundref}/>
                 <IntroContainer>
                     <IntroWrapper ref={IntroWrap}>
                         <Description ref={Descriptionref}>
@@ -200,6 +216,16 @@ const AboutMePage = () => {
 
 export default AboutMePage;
 
+const Background = styled.div`
+  height: 100vh;
+  width:100vw;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #fff;
+`;
+
 const InfoImg = styled.img`
     position: absolute;
     right: 5vw;
@@ -218,7 +244,6 @@ const IntroContainer = styled.div`
     width: 100vw;
     height: 750vh;
     position: relative;
-    background-color: white;
     overflow-x: hidden;
 `;
 
@@ -234,6 +259,7 @@ const IntroWrapper = styled.div`
 
 const IntroTwoContainer = styled(IntroContainer)`
     height: 200vh;
+    margin-bottom: 50vh;
 `;
 
 const IntroTwoWrapper = styled(IntroWrapper)`
