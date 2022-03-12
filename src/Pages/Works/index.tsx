@@ -185,7 +185,7 @@ const InfoWrap = styled.div`
 `;
 
 const Info = styled.div`
-    height: 15vh;
+    height: 5vh;
     width: 70%;
     margin: 0 auto;
     display: flex;

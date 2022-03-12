@@ -5,15 +5,8 @@ import {Scrollbar} from 'smooth-scrollbar-react';
 import Footer from 'Sections/Footer';
 
 import TJImage from 'Assets/TJ_image.jpg';
-import TechImg from 'Assets/TechImg.jpeg';
-import Tech2Img from 'Assets/Tech2Img.jpeg';
 import BeijingImg from 'Assets/BeijingImg.jpeg';
 import ZimImg from 'Assets/ZimImg.jpeg';
-import PuzzlesImg from 'Assets/PuzzlesImg.jpeg';
-import DeveloperImg from 'Assets/DeveloperImg.jpeg';
-
-import gsap from 'gsap';
-
 
 const AboutMePage = () => {
     const Imageref = createRef<HTMLImageElement>();
@@ -36,7 +29,6 @@ const AboutMePage = () => {
     const InfoImg2ref = createRef<HTMLImageElement>();
 
     const IntroTwoWrapperref = createRef<HTMLDivElement>();
-
 
     const Zimref = createRef<HTMLSpanElement>();
     const Beijingref = createRef<HTMLSpanElement>();
@@ -103,7 +95,6 @@ const AboutMePage = () => {
                     Descriptionref.current && (Descriptionref.current.style.display = 'block');
                     DescriptionTworef.current && (DescriptionTworef.current.style.display = 'none');
                     DescriptionThreeref.current && (DescriptionThreeref.current.style.display = 'none');
-
                 }
 
                 // make text visible
@@ -159,7 +150,6 @@ const AboutMePage = () => {
                 } else {
                     Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(255, 255, 255)`);
                 }
-
             }
         }
     }
@@ -179,7 +169,7 @@ const AboutMePage = () => {
                 <IntroContainer>
                     <IntroWrapper ref={IntroWrap}>
                         <Description ref={Descriptionref}>
-                            <Wordspan ref={Line1ref}>Hi There! <br/></Wordspan>
+                            <Wordspan ref={Line1ref}>Hi there! <br/></Wordspan>
                             <Wordspan ref={Line2ref}>I'm TJ Makande.<br /></Wordspan>
                         </Description>
 
@@ -210,7 +200,6 @@ const AboutMePage = () => {
                 <Footer />
             </SectionWrapper>
         </Scrollbar>
-
     )
 }
 
