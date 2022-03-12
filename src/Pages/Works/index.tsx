@@ -1,6 +1,7 @@
 import React, {createRef} from 'react';
 import styled from 'styled-components';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
+import Footer from 'Sections/Footer';
 import {Scrollbar} from 'smooth-scrollbar-react';
 
 import WorksPageImg from 'Assets/WorksPageImg.jpeg';
@@ -63,42 +64,43 @@ const AboutMePage = () => {
                         </Header>
                     </div>
                 </Wrapper>
-                    <TimeContainer>
-                        <LeftSide>
-                            <InfoWrap>
-                                <Info ref={Itemref1}>
-                                    <ProjectTitle style={{marginTop: 0}}>Cinema </ProjectTitle>
-                                    <ProjectDescription>This is an account based movie booking platform. It displays the latest movies and their ratings based on the IMDB API. </ProjectDescription>
-                                    <ProjectRole>Design, Fullstack</ProjectRole>
-                                </Info>
-                            </InfoWrap>
-                            <InfoWrap>
-                                <InfoImg src={AutomatedBot} />
-                            </InfoWrap>
-                            <InfoWrap>
-                                <Info ref={Itemref3}>
-                                    <ProjectTitle>Musician Site</ProjectTitle>
-                                    <ProjectDescription>Site for a local musician displaying their latest songs.</ProjectDescription>
-                                    <ProjectRole>Design, Fullstack</ProjectRole>
-                                </Info>
-                            </InfoWrap>
-                        </LeftSide>
-                        <RightSide>
-                            <InfoWrap>
-                                <InfoImg src={CinemaPhoto} />
-                            </InfoWrap>
-                            <InfoWrap>
-                                <Info ref={Itemref2}>
-                                    <ProjectTitle>Automated chatbot </ProjectTitle>
-                                    <ProjectDescription>Most companies now have clients from all over the world. I created this automated bot to </ProjectDescription>
-                                    <ProjectRole>Design, Fullstack</ProjectRole>
-                                </Info>
-                            </InfoWrap>
-                            <InfoWrap>
-                                <InfoImg src={Musician} />
-                            </InfoWrap>
-                        </RightSide>
-                    </TimeContainer>
+                <TimeContainer>
+                    <LeftSide>
+                        <InfoWrap>
+                            <Info ref={Itemref1}>
+                                <ProjectTitle style={{marginTop: 0}}>Cinema </ProjectTitle>
+                                <ProjectDescription>This is an account based movie booking platform. It displays the latest movies and their ratings based on the IMDB API. </ProjectDescription>
+                                <ProjectRole>Design, Fullstack</ProjectRole>
+                            </Info>
+                        </InfoWrap>
+                        <InfoWrap>
+                            <InfoImg src={AutomatedBot} />
+                        </InfoWrap>
+                        <InfoWrap>
+                            <Info ref={Itemref3}>
+                                <ProjectTitle>Musician Site</ProjectTitle>
+                                <ProjectDescription>Site for a local musician displaying their latest songs.</ProjectDescription>
+                                <ProjectRole>Design, Fullstack</ProjectRole>
+                            </Info>
+                        </InfoWrap>
+                    </LeftSide>
+                    <RightSide>
+                        <InfoWrap>
+                            <InfoImg src={CinemaPhoto} />
+                        </InfoWrap>
+                        <InfoWrap>
+                            <Info ref={Itemref2}>
+                                <ProjectTitle>Automated chatbot </ProjectTitle>
+                                <ProjectDescription>Most companies now have clients from all over the world. I created this automated bot to </ProjectDescription>
+                                <ProjectRole>Design, Fullstack</ProjectRole>
+                            </Info>
+                        </InfoWrap>
+                        <InfoWrap>
+                            <InfoImg src={Musician} />
+                        </InfoWrap>
+                    </RightSide>
+                </TimeContainer>
+                <Footer />
             </SectionWrapper>
         </Scrollbar>
 
@@ -116,9 +118,11 @@ const ProjectDescription = styled.p`
 `;
 
 const ProjectTitle = styled.h3`
-    font-size: 3rem;
+    font-size: clamp(4rem, 6vw, 8rem);
     font-weight: 300;
-    margin-bottom: 0;
+    margin-bottom: 5vh;
+    text-transform: uppercase;
+    line-height: clamp(4rem, 6vw, 8rem);
 `;
 
 const InfoImg = styled.img`
