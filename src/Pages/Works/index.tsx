@@ -19,8 +19,29 @@ const AboutMePage = () => {
     const Itemref2 = createRef<HTMLDivElement>();
     const Itemref3 = createRef<HTMLDivElement>();
 
-    const scrollAnimation = (scrollY: any) => {
-            Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
+    const Backgroundref = React.createRef<HTMLDivElement>();
+
+    const W2B = (x: number) => {
+        if(229 - x > 80){
+          return(229 - x);
+        } 
+        return(58);
+      }
+
+    const [red, green, blue] = [255, 255, 255];
+
+
+    const scrollAnimation = (scrollY: number) => {
+
+            if(scrollY < window.innerHeight){
+                Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
+            } else {
+                Imageref.current && (Imageref.current.style.transform = `translateY(${window.innerHeight}px)`);
+            }
+
+            if(scrollY > window.innerHeight){
+                Backgroundref.current && (Backgroundref.current.style.transform = `translateY(${scrollY - window.innerHeight}px)`);
+            }
 
             if(scrollY < window.innerHeight * 0.5)
                 Itemref1 && gsap.to(Itemref1.current, {opacity: 0, duration: 0});
@@ -51,19 +72,29 @@ const AboutMePage = () => {
             } else {
                 Itemref3.current && gsap.to(Itemref3.current, {opacity: 0, duration: 1})
             }
+
+            if(scrollY > window.innerHeight * 3.8){
+                const y = 1 + (scrollY-window.innerHeight * 3.8) / 150;
+                const [r, g, b] = [red/y, green/y, blue/y].map(Math.round)
+                
+                Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(${r < 58 ? 58 : r}, ${g < 58 ? 58 : g}, ${b < 58 ? 58 : b} )`);
+            } else {
+                Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(255, 255, 255)`);
+            }
     };
 
     return(
-        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh'}}damping={0.2} onScroll={(status) => scrollAnimation(status.offset.y)}>
+        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh', position: 'relative'}}damping={0.2} onScroll={(status) => scrollAnimation(status.offset.y)}>
+            <Wrapper>
+                <LandingImg ref={Imageref} src={WorksPageImg} />
+                <div style={{color: '#fff', mixBlendMode: 'difference'}}>
+                    <Header>
+                        Works
+                    </Header>
+                </div>
+            </Wrapper>
             <SectionWrapper>
-                <Wrapper>
-                    <LandingImg ref={Imageref} src={WorksPageImg} />
-                    <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
-                        <Header>
-                            Works
-                        </Header>
-                    </div>
-                </Wrapper>
+                <Background ref={Backgroundref} />
                 <TimeContainer>
                     <LeftSide>
                         <InfoWrap>
@@ -108,6 +139,15 @@ const AboutMePage = () => {
 }
 
 export default AboutMePage;
+const Background = styled.div`
+  height: 100vh;
+  width:100vw;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #fff;
+`;
 
 const ProjectRole = styled.p`
     font-size: 0.8rem;
@@ -166,21 +206,20 @@ const Info = styled.div`
 const TimeContainer = styled.div`
     width: 100%;
     position: relative;
-    background-color: white;
     display: flex;
     flex-direction: row;
     overflow: hidden;
 `;
 
 const Wrapper = styled.div`
-    background-color: rgb(229, 229, 229);
-    color: rgb(229, 229, 229);
+    color: #fff;
     mix-blend-mode: difference;
     height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow:hidden;
     position: relative;
 `;
 
