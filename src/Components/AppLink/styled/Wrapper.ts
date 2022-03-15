@@ -19,6 +19,6 @@ export default styled.div`
         text-decoration: none;
     }
     &:hover{
-        cursor: pointer;
+        cursor: none;
     }
 `;

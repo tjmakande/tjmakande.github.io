@@ -51,7 +51,7 @@ const Btns = styled.div`
     &:hover{
         background-color: rgb(78, 78, 78);
         transition: .5s;
-        cursor: pointer;
+        cursor: none;
         color: white;
     }
 `;

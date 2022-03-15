@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {createRef, useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Routes as Switch,
@@ -17,8 +17,21 @@ const WorksPage = React.lazy(() => import('Pages/Works/index'));
 const ContactPage = React.lazy(() => import('Pages/Contact'));
 
 function App() {
+  const Mouseref = createRef<HTMLDivElement>();
+
+  const moveCursor = (e: { clientY: number; clientX: number; }) => {
+    const mouseY = e.clientY;
+    const mouseX = e.clientX;
+
+    Mouseref.current && (Mouseref.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`);
+  }
+
+  useEffect(() => {
+    window.addEventListener('mousemove', moveCursor)
+  })
   return (
     <div className="App">
+      <div className='rounded' ref={Mouseref}></div>
       <Router>
         <Switch>
           <Route path='/Home' element={

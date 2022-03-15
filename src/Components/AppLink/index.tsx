@@ -16,7 +16,7 @@ const AppLink = (props: Props) => {
             left={redirectTo === 'About Me' || redirectTo === 'Home'} 
             top={redirectTo === "Works" || redirectTo === "Home"}
         >
-            <Link to={url} reloadDocument>
+            <Link style={{cursor: 'none'}} to={url} reloadDocument>
                 {redirectTo}
             </Link>
         </Wrapper>

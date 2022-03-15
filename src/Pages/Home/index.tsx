@@ -14,6 +14,7 @@ const HomePage = () => {
     const Worksref = React.createRef<HTMLDivElement>();
     const Footerref = React.createRef<HTMLDivElement>();
 
+
     const [red, green, blue] = [255, 255, 255];
 
     return(
