@@ -26,18 +26,21 @@ const HomePage = () => {
 
           //About Me Section
           if(AboutMeContainerref.current){
-            //starting point in scroll 130vh && ending point in scroll 350vh
-            if(status.offset.y > (window.innerHeight * 1.3) && status.offset.y <= window.innerHeight * 3.5){
-            }
+          
           }
 
           //Work section
           if(Worksref.current){
-          
+            if(status.offset.y > window.innerHeight * 2.3 && status.offset.y < window.innerHeight * 2.7){
+              Worksref.current && (Worksref.current.style.transform = `translateY(${status.offset.y - window.innerHeight * 2.3}px)`)
+            }else if(status.offset.y > window.innerHeight * 2.7) {
+              console.log('hello');
+              Worksref.current && (Worksref.current.style.transform = `translateY(${(window.innerHeight * 2.7) - window.innerHeight * 2.3}px)`)
+            }
           }
 
-          if(status.offset.y > window.innerHeight * 2.3){
-            const y = 1 + (status.offset.y - window.innerHeight * 2.3) / 150;
+          if(status.offset.y > window.innerHeight * 3.3){
+            const y = 1 + (status.offset.y - window.innerHeight * 3.3) / 150;
             const [r, g, b] = [red/y, green/y, blue/y].map(Math.round)
             
             Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(${r < 58 ? 58 : r}, ${g < 58 ? 58 : g}, ${b < 58 ? 58 : b} )`);
