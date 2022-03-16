@@ -1,10 +1,11 @@
-import React, {createRef, useEffect} from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Routes as Switch,
   Route,
   Navigate
 } from "react-router-dom";
+import Cursor from 'Components/Cursor';
 
 import AppLink from 'Components/AppLink';
 
@@ -17,21 +18,9 @@ const WorksPage = React.lazy(() => import('Pages/Works/index'));
 const ContactPage = React.lazy(() => import('Pages/Contact'));
 
 function App() {
-  const Mouseref = createRef<HTMLDivElement>();
-
-  const moveCursor = (e: { clientY: number; clientX: number; }) => {
-    const mouseY = e.clientY;
-    const mouseX = e.clientX;
-
-    Mouseref.current && (Mouseref.current.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`);
-  }
-
-  useEffect(() => {
-    window.addEventListener('mousemove', moveCursor)
-  })
   return (
     <div className="App">
-      <div className='rounded' ref={Mouseref}></div>
+      <Cursor />
       <Router>
         <Switch>
           <Route path='/Home' element={
@@ -70,7 +59,7 @@ function App() {
             }
           />
         </Switch>
-        <div style={{color: '#fff', zIndex: 99, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(16px, 2.5vw, 20px'}}>
+        <div style={{color: '#fff', zIndex: 9, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(16px, 2.5vw, 20px'}}>
           <AppLink url={'/Home'} redirectTo={'Home'}/>
           <AppLink url={'/Works'} redirectTo={'Works'}/>
           <AppLink url={'/About'} redirectTo={'About Me'}/>
