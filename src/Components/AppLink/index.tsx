@@ -5,14 +5,13 @@ import {Link} from 'react-router-dom';
 
 interface Props {
     url: string,
-    redirectTo: string
-    
+    redirectTo: string,
 }
 
-const AppLink = (props: Props) => {
-    const {url, redirectTo} = props;
+const AppLink = ({url, redirectTo}: Props) => {
     return(
         <Wrapper 
+            className={'Applink'}
             left={redirectTo === 'About Me' || redirectTo === 'Home'} 
             top={redirectTo === "Works" || redirectTo === "Home"}
         >

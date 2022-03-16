@@ -6,19 +6,29 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
-  cursor: none;
+  /* cursor: none; */
 }
 
-.rounded {
+.mouse {
   width: 30px;
   height: 30px;
   border: 1px solid black;
-  border-radius: 50%;
   z-index: 9;
-  position: absolute;
-  margin: -15px 0 0 -15px;
+  border-radius: 50%;
+  position: fixed;
+  top: -15px;
+  left: -15px;
   pointer-events: none;
   will-change: transform;
+} 
+
+.mouseOverLink{
+  width: 8vw;
+  height: 4.5vw;
+  border-radius: 50% 50%;
+  background-color: rgb(58, 58, 58);
+  top: -2.25vw;
+  left: -4vw;
 }
 
 code {
