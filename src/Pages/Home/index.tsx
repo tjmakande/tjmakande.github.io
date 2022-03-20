@@ -35,7 +35,6 @@ const HomePage = () => {
             if(status.offset.y > window.innerHeight * 2.3 && status.offset.y < window.innerHeight * 2.7){
               Worksref.current && (Worksref.current.style.transform = `translateY(${status.offset.y - window.innerHeight * 2.3}px)`)
             }else if(status.offset.y > window.innerHeight * 2.7) {
-              console.log('hello');
               Worksref.current && (Worksref.current.style.transform = `translateY(${(window.innerHeight * 2.7) - window.innerHeight * 2.3}px)`)
             }
           }

@@ -1,5 +1,9 @@
 import React, {createRef, useEffect} from 'react';
 
+import CinemaPhoto from '../../Assets/Cinema-Photo.png';
+import Musician from '../../Assets/Musician.png'
+import AutomatedBot from '../../Assets/Automated-bot.png';
+import Cube from '../../Assets/3D-cube.png';
 
 const Cursor = () => {
     const Mouseref = createRef<HTMLDivElement>();
@@ -39,7 +43,35 @@ const Cursor = () => {
             element.addEventListener('mouseleave', () => {
                 cursor && cursor.classList.remove('mouseOverLink');
             })
-        })
+        });
+
+        setTimeout(() => {
+            const ProjectImgs = document.querySelectorAll('.Works');
+            ProjectImgs.forEach((element) => {
+                element.addEventListener('mouseenter', () => {
+                    cursor && cursor.classList.add('mouseOverProject');
+                    const target = document.querySelector('.mouseOverProject') as HTMLDivElement;
+                    const img = element.attributes[1].value;
+
+                    if(img === "cinema"){
+                        target.style.backgroundImage = `url(${CinemaPhoto})`
+                    } else if(img === "chatbot"){
+                        target.style.backgroundImage = `url(${AutomatedBot})`
+                    } else if(img === "masimba"){
+                        target.style.backgroundImage = `url(${Musician})`
+                    } else if(img === "sdsn"){
+                        target.style.backgroundImage = `url(${Cube})`
+                    }
+                });
+    
+                element.addEventListener('mouseleave', () =>{
+                    const target = document.querySelector('.mouseOverProject') as HTMLDivElement;
+                    target.style.backgroundImage = ``;
+                    cursor && cursor.classList.remove('mouseOverProject');
+                })
+            })
+        }, 1000)
+
     }, [Mouseref])
 
     return(
