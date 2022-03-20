@@ -10,7 +10,7 @@ const LandingPage = React.forwardRef<HTMLDivElement>((props, ref)=> {
         <SectionWrapper ref={ref}>
             <>
                 <Wrapper>
-                    <NameItem src={Name} />
+                    <NameItem src={Name}/>
                 </Wrapper>
             </>
         </SectionWrapper>
@@ -24,9 +24,12 @@ const NameItem = styled.img`
     position: absolute;
     margin: 0 auto;
     transform: scale(1);
+    top: 0;
+    left: 0;
+    transition: 0s;
 `;
 const Wrapper = styled.div`
-    height: 130vh;
+    height: 100vh;
     width: 100vw;
     display: flex;
     justify-content: center;
