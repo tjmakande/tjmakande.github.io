@@ -31,6 +31,8 @@ const HomePage = () => {
         gsap.registerPlugin(ScrollTrigger);
 
         if(Containerref.current){
+
+          //initial setup
             const bodyScrollBar = Scrollbar.init(Containerref.current, {damping: 0.05, renderByPixels: true, delegateTo: document});
 
             ScrollTrigger.scrollerProxy(".scroller", {
@@ -47,9 +49,25 @@ const HomePage = () => {
 
             bodyScrollBar.addListener(ScrollTrigger.update);
 
-            ScrollTrigger.defaults({scroller: Containerref.current})
+            ScrollTrigger.defaults({scroller: Containerref.current});
 
-            const t1 = gsap.timeline({
+
+            //Background Item;
+              gsap.to(Backgroundref.current, {
+                scrollTrigger: {
+                  trigger: Backgroundref.current,
+                  pin: true, 
+                  start: 'top top',
+                  end: 'max',
+                  scrub: .1
+                }
+            })
+            
+
+
+
+            //About me section
+            const t2 = gsap.timeline({
               scrollTrigger: {
                   trigger: '.wrappers',
                   pin: true,
@@ -64,7 +82,7 @@ const HomePage = () => {
             const line2 = document.querySelector('.to') as HTMLSpanElement;
             const line3 = document.querySelector('.solution') as HTMLSpanElement;
 
-            t1.add('start')
+            t2.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
             .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.25 - line1.offsetTop , x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
             .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.45 - line2.offsetTop,  x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
@@ -73,7 +91,7 @@ const HomePage = () => {
 
        
         }
-    }, [AboutMeContainerref, Containerref, screenWidth, screenHeight])
+    }, [AboutMeContainerref, Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref])
     return(
         <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw'}}>
             <Background ref={Backgroundref}/>
