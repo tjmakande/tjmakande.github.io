@@ -12,7 +12,7 @@ import AppLink from 'Components/AppLink';
 
 import './App.css';
 
-const HomePage = React.lazy(() => import('Pages/Home'));
+const HomePage = React.lazy(() => import('Pages/Home/Demo'));
 const AboutMePage = React.lazy(() => import('Pages/AboutMe'));
 const WorksPage = React.lazy(() => import('Pages/Works/index'));
 const ContactPage = React.lazy(() => import('Pages/Contact'));

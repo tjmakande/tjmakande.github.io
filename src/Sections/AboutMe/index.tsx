@@ -22,12 +22,12 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
     return (
             <Wrapper className='wrappers' ref={ref}>
                 <Text className='TextDiv'> 
-                    <span>A web developer who diligently works to find the best </span>
-                    <span className={'solution'} style={{display: 'inline-block'}}>solution </span>
-                    <span style={{display: 'inline-block'}}>to </span>
-                    <span>any given </span>  
-                    <span style={{display: 'inline-block'}}>challenge</span>
-                    <span>, drawing the ideas created in your head, on to the canvas of reality.</span> 
+                    <Lines className={'Othertext'}>A web developer who diligently works to find the best </Lines>
+                    <Lines className={'solution'} style={{display: 'inline-block'}}> solution </Lines>&nbsp;
+                    <Lines className={'to'} style={{display: 'inline-block'}}>to</Lines>&nbsp;
+                    <Lines className={'Othertext'}>any given</Lines>&nbsp;
+                    <Lines className={'challenge'} style={{display: 'inline-block'}}>challenge</Lines>
+                    <Lines className={'Othertext'}>, drawing the ideas created in your head, on to the canvas of reality.</Lines> 
                 </Text>
             </Wrapper>
     )
@@ -35,11 +35,18 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
 
 export default AboutMe;
 
-const Text = styled.div`
+const Lines = styled.span`
+    position: relative;
+    margin: 0;
+    padding: 0
+`;
+
+const Text = styled.p`
     width: 60%;
     margin: 0 auto;
     color: black;
     font-size: clamp(2rem, 2.5vw, 5rem);
+    
 `;
 
 const Wrapper = styled.div`
@@ -47,7 +54,5 @@ const Wrapper = styled.div`
     width: 100vw;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     justify-content: center;
-    margin-bottom: 100vh;
 `;

@@ -54,7 +54,7 @@ const HomePage = () => {
             ScrollTrigger.scrollerProxy('.scroller', {
               scrollTop() {
                 if (arguments.length) {
-                  Scrollbar.scrollTop = 0; // setter
+                  Scrollbar.scrollTop = scrollY; // setter
                 }
                 return Scrollbar.scrollTop;    // getter
               },
@@ -71,6 +71,7 @@ const HomePage = () => {
                 start: "top top",
                 end: 'center top',
                 scrub: .5,
+                markers: true
             }
         });
 
