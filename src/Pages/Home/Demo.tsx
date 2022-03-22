@@ -56,32 +56,19 @@ const HomePage = () => {
                   start: "top top",
                   end: `+=${screenHeight * 2}`,
                   scrub: .2,
-                  markers: true
               }
           });
 
           if(AboutMeContainerref.current){
-            const TextContainer = AboutMeContainerref.current.children[0].children[0];
             const line1 = document.querySelector('.challenge') as HTMLSpanElement;
             const line2 = document.querySelector('.to') as HTMLSpanElement;
             const line3 = document.querySelector('.solution') as HTMLSpanElement;
 
-            console.log(screenHeight+ ' = screenHeight', '\n', line1.offsetTop+' = distance from top (solution)');
-            console.log(screenWidth/2 - line1.offsetLeft);
-            console.log(screenWidth * .22)
-
-            
-            // t1.add('start')
-            // .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-            // .to(".solution", {scale: 5, duration: 0.5, y: .9 * screenHeight * .2, x: screenWidth * .22}, 'start')
-            // .to(".to", {scale: 5, duration: 0.5, x: .9 * screenWidth * .2 }, 'start')
-            // .to(".challenge", {scale: 5, duration: 0.5, y: -.2 * screenHeight}, 'start');
-
             t1.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-            .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.35 - line1.offsetTop , x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
-            .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.5 - line1.offsetTop,  x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
-            .to(".solution", {scale: 5, duration: 0.5, y: screenHeight * 0.65 - line1.offsetTop, x: screenWidth/2 - line3.offsetLeft - line3.clientWidth/2}, 'start')
+            .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.25 - line1.offsetTop , x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
+            .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.45 - line2.offsetTop,  x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
+            .to(".solution", {scale: 5, duration: 0.5, y: screenHeight * 0.65 - line3.offsetTop, x: screenWidth/2 - line3.offsetLeft - line3.clientWidth/2}, 'start')
           }
 
        

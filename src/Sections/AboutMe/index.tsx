@@ -21,7 +21,7 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
    
     return (
             <Wrapper className='wrappers' ref={ref}>
-                <Text className='TextDiv'> 
+                <Text> 
                     <Lines className={'Othertext'}>A web developer who diligently works to find the best </Lines>
                     <Lines className={'solution'} style={{display: 'inline-block'}}> solutions </Lines>&nbsp;
                     <Lines className={'to'} style={{display: 'inline-block'}}>to</Lines>&nbsp;
