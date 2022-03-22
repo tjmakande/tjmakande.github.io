@@ -66,7 +66,7 @@ const HomePage = () => {
             const line2 = document.querySelector('.to') as HTMLSpanElement;
             const line3 = document.querySelector('.solution') as HTMLSpanElement;
 
-            console.log(screenWidth+ ' = screenwidth', '\n', line1.offsetLeft+' = distance from left (solution)');
+            console.log(screenHeight+ ' = screenHeight', '\n', line1.offsetTop+' = distance from top (solution)');
             console.log(screenWidth/2 - line1.offsetLeft);
             console.log(screenWidth * .22)
 
@@ -79,9 +79,9 @@ const HomePage = () => {
 
             t1.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-            .to(".challenge", {scale: 5, duration: 0.5, y: -.2 * screenHeight, x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
-            .to(".to", {scale: 5, duration: 0.5, x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
-            .to(".solution", {scale: 5, duration: 0.5, y: .9 * screenHeight * .2, x: screenWidth/2 - line3.offsetLeft - line3.clientWidth/2}, 'start')
+            .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.35 - line1.offsetTop , x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
+            .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.5 - line1.offsetTop,  x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
+            .to(".solution", {scale: 5, duration: 0.5, y: screenHeight * 0.65 - line1.offsetTop, x: screenWidth/2 - line3.offsetLeft - line3.clientWidth/2}, 'start')
           }
 
        
