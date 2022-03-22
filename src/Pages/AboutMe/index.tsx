@@ -6,7 +6,7 @@ import Footer from 'Sections/Footer';
 
 import TJImage from 'Assets/TJ_image.jpg';
 import BeijingImg from 'Assets/BeijingImg.jpeg';
-import ZimImg from 'Assets/ZimImg.jpeg';
+import ZimImg from 'Assets/Zim_drawn.jpg';
 
 const AboutMePage = () => {
     const Imageref = createRef<HTMLImageElement>();
@@ -217,10 +217,10 @@ const Background = styled.div`
 
 const InfoImg = styled.img`
     position: absolute;
-    right: 5vw;
-    height: 50%;
+    right: 2vw;
+    height: 75%;
     margin: 0 auto;
-    box-shadow: #0000008c 8px 8px 50px;
+    // box-shadow: #0000008c 8px 8px 50px;
 
     transform: translateY(${window.innerHeight * 0.80}px)
 `;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
     return(
-        <Container>
+        <Container className="footerwrapper">
             <Wrapper>
                 <SectionTitle>Let's Collaborate</SectionTitle>
             </Wrapper>

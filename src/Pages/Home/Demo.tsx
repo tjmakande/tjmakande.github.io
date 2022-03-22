@@ -34,7 +34,6 @@ const HomePage = () => {
 
           //initial setup
             const bodyScrollBar = Scrollbar.init(Containerref.current, {damping: 0.05, renderByPixels: true, delegateTo: document});
-
             ScrollTrigger.scrollerProxy(".scroller", {
               scrollTop(value:number = 0) {
                 if (arguments.length) {
@@ -46,38 +45,44 @@ const HomePage = () => {
                 return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
               }
             });
-
             bodyScrollBar.addListener(ScrollTrigger.update);
-
             ScrollTrigger.defaults({scroller: Containerref.current});
 
 
             //Background Item;
-              gsap.to(Backgroundref.current, {
+              gsap.to('.background', {
                 scrollTrigger: {
-                  trigger: Backgroundref.current,
+                  trigger: '.background',
                   pin: true, 
                   start: 'top top',
                   end: 'max',
                   scrub: .1
                 }
-            })
+              });
             
-
+              gsap.to('.background', {
+                scrollTrigger: {
+                  trigger: ".footerwrapper",
+                  start: `top bottom`,
+                  end: 'max',
+                  scrub: .1
+                },
+                backgroundColor: 'rgb(58, 58, 59)'
+              });
 
 
             //About me section
             const t2 = gsap.timeline({
               scrollTrigger: {
-                  trigger: '.wrappers',
+                  trigger: '.AM_wrapper',
                   pin: true,
+                  pinSpacing:false,
                   start: "top top",
                   end: `+=${screenHeight * 2}`,
                   scrub: .2,
               }
-          });
+            });
 
-          if(AboutMeContainerref.current){
             const line1 = document.querySelector('.challenge') as HTMLSpanElement;
             const line2 = document.querySelector('.to') as HTMLSpanElement;
             const line3 = document.querySelector('.solution') as HTMLSpanElement;
@@ -87,14 +92,13 @@ const HomePage = () => {
             .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.25 - line1.offsetTop , x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
             .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.45 - line2.offsetTop,  x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
             .to(".solution", {scale: 5, duration: 0.5, y: screenHeight * 0.65 - line3.offsetTop, x: screenWidth/2 - line3.offsetLeft - line3.clientWidth/2}, 'start')
-          }
-
-       
         }
-    }, [AboutMeContainerref, Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref])
+    }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref])
+
+    
     return(
         <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw'}}>
-            <Background ref={Backgroundref}/>
+            <Background className="background" ref={Backgroundref}/>
             <LandingPage ref={LandingSectionref} />
             <AboutMe ref={AboutMeContainerref} />
             <Works ref={Worksref} />

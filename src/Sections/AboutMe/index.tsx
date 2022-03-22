@@ -20,7 +20,7 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
     
    
     return (
-            <Wrapper className='wrappers' ref={ref}>
+            <Wrapper className='AM_wrapper' ref={ref}>
                 <Text> 
                     <Lines className={'Othertext'}>A web developer who diligently works to find the best </Lines>
                     <Lines className={'solution'} style={{display: 'inline-block'}}> solutions </Lines>&nbsp;
@@ -46,7 +46,6 @@ const Text = styled.p`
     margin: 0 auto;
     color: black;
     font-size: clamp(2rem, 2.5vw, 5rem);
-    
 `;
 
 const Wrapper = styled.div`
@@ -55,4 +54,5 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 200vh;
 `;
