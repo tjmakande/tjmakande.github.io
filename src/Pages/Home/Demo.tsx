@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import LandingPage from 'Sections/LandingPage';
@@ -16,6 +16,16 @@ const HomePage = () => {
     const Backgroundref = React.createRef<HTMLDivElement>();
     const Worksref = React.createRef<HTMLDivElement>();
     const Footerref = React.createRef<HTMLDivElement>();
+    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+    const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
+
+    window.addEventListener('resize', (e) => {
+      if(window.innerHeight !== screenHeight)
+        setscreenHeight(window.innerHeight);
+
+      if(window.innerWidth !== screenWidth)
+        setScreenWidth(window.innerWidth);
+    });
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -44,7 +54,7 @@ const HomePage = () => {
                   trigger: '.wrappers',
                   pin: true,
                   start: "top top",
-                  end: `+=${window.innerHeight * 2}`,
+                  end: `+=${screenHeight * 2}`,
                   scrub: .2,
                   markers: true
               }
@@ -52,22 +62,31 @@ const HomePage = () => {
 
           if(AboutMeContainerref.current){
             const TextContainer = AboutMeContainerref.current.children[0].children[0];
-            const line1 = TextContainer.children[0] as HTMLSpanElement;
-            const line2 = TextContainer.children[1] as HTMLSpanElement;
-            const line3 = TextContainer.children[2] as HTMLSpanElement;
+            const line1 = document.querySelector('.challenge') as HTMLSpanElement;
+            const line2 = document.querySelector('.to') as HTMLSpanElement;
+            const line3 = document.querySelector('.solution') as HTMLSpanElement;
 
-            console.log(window.screenLeft);
+            console.log(screenWidth+ ' = screenwidth', '\n', line1.offsetLeft+' = distance from left (solution)');
+            console.log(screenWidth/2 - line1.offsetLeft);
+            console.log(screenWidth * .22)
+
             
+            // t1.add('start')
+            // .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
+            // .to(".solution", {scale: 5, duration: 0.5, y: .9 * screenHeight * .2, x: screenWidth * .22}, 'start')
+            // .to(".to", {scale: 5, duration: 0.5, x: .9 * screenWidth * .2 }, 'start')
+            // .to(".challenge", {scale: 5, duration: 0.5, y: -.2 * screenHeight}, 'start');
+
             t1.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-            .to(".solution", {scale: 5, duration: 0.5, y: .9 * window.innerHeight * .2, x: window.innerWidth * .22}, 'start')
-            .to(".to", {scale: 5, duration: 0.5, x: .9 * window.innerWidth * .2 }, 'start')
-            .to(".challenge", {scale: 5, duration: 0.5, y: -.2 * window.innerHeight}, 'start');
+            .to(".challenge", {scale: 5, duration: 0.5, y: -.2 * screenHeight, x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
+            .to(".to", {scale: 5, duration: 0.5, x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
+            .to(".solution", {scale: 5, duration: 0.5, y: .9 * screenHeight * .2, x: screenWidth/2 - line3.offsetLeft - line3.clientWidth/2}, 'start')
           }
 
        
         }
-    }, [AboutMeContainerref, Containerref])
+    }, [AboutMeContainerref, Containerref, screenWidth, screenHeight])
     return(
         <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw'}}>
             <Background ref={Backgroundref}/>

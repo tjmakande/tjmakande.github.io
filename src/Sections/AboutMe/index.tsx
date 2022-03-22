@@ -23,10 +23,10 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
             <Wrapper className='wrappers' ref={ref}>
                 <Text className='TextDiv'> 
                     <Lines className={'Othertext'}>A web developer who diligently works to find the best </Lines>
-                    <Lines className={'solution'} style={{display: 'inline-block'}}> solution </Lines>&nbsp;
+                    <Lines className={'solution'} style={{display: 'inline-block'}}> solutions </Lines>&nbsp;
                     <Lines className={'to'} style={{display: 'inline-block'}}>to</Lines>&nbsp;
                     <Lines className={'Othertext'}>any given</Lines>&nbsp;
-                    <Lines className={'challenge'} style={{display: 'inline-block'}}>challenge</Lines>
+                    <Lines className={'challenge'} style={{display: 'inline-block'}}>challenges</Lines>
                     <Lines className={'Othertext'}>, drawing the ideas created in your head, on to the canvas of reality.</Lines> 
                 </Text>
             </Wrapper>
