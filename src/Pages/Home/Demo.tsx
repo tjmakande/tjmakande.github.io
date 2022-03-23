@@ -60,7 +60,7 @@ const HomePage = () => {
                 }
               });
             
-              gsap.to('.background', {
+              gsap.to(['.background', '.works_wrapper'], {
                 scrollTrigger: {
                   trigger: ".footerwrapper",
                   start: `top bottom`,
@@ -72,7 +72,7 @@ const HomePage = () => {
 
 
             //About me section
-            const t2 = gsap.timeline({
+            const t1 = gsap.timeline({
               scrollTrigger: {
                   trigger: '.AM_wrapper',
                   pin: true,
@@ -87,11 +87,24 @@ const HomePage = () => {
             const line2 = document.querySelector('.to') as HTMLSpanElement;
             const line3 = document.querySelector('.solution') as HTMLSpanElement;
 
-            t2.add('start')
+            t1.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
             .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.25 - line1.offsetTop , x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
             .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.45 - line2.offsetTop,  x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
             .to(".solution", {scale: 5, duration: 0.5, y: screenHeight * 0.65 - line3.offsetTop, x: screenWidth/2 - line3.offsetLeft - line3.clientWidth/2}, 'start')
+
+
+
+            //works wrapper
+            gsap.to('.works_wrapper', {
+              scrollTrigger: {
+                trigger: '.works_wrapper',
+                start: 'top top',
+                end: `+=${screenHeight/2}`,
+                pin: true,
+                scrub: .1,
+              }
+            });
         }
     }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref])
 

@@ -75,7 +75,8 @@ const Cursor = () => {
     }, [Mouseref])
 
     return(
-      <div className='mouse' ref={Mouseref}></div>
+      <div className='mouse' ref={Mouseref}>
+      </div>
     )
 }
 

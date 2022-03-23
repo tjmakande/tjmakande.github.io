@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
     return(
-        <Container ref={ref}>
+        <Container className="works_wrapper" ref={ref}>
             <ProjectItem className={'Works'} data-id={'cinema'}>
                <Title > 01. Cinema</Title>
             </ProjectItem>
@@ -39,11 +39,8 @@ const ProjectItem = styled.div`
     text-align: start;
     padding: 2vh 0 2vh 15vw;
     border-bottom: 1px rgb(58, 58, 58) solid;
-
-    & h1 {
-        color: #fff;
-        text-decoration: none;
-    }
+    mix-blend-mode: difference;
+    color: white;
 `;
 
 const Container = styled.section`
@@ -55,8 +52,5 @@ const Container = styled.section`
     justify-content: center;
     overflow: hidden;
     margin-bottom: 100vh;
-    color: rgb(255, 255, 255);
-    z-index: 9;
-    mix-blend-mode: difference;
-
+    background-color: white;
 `;
