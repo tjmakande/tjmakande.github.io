@@ -54,7 +54,7 @@ const HomePage = () => {
                 scrollTrigger: {
                   trigger: '.background',
                   pin: true, 
-                  pinSpacing: false,
+                  pinSpacing:false,
                   start: 'top top',
                   end: 'max',
                   scrub: .1
@@ -103,6 +103,7 @@ const HomePage = () => {
                 start: 'top top',
                 end: `+=${screenHeight/2}`,
                 pin: true,
+                pinSpacing: false,
                 scrub: .1,
               }
             });
