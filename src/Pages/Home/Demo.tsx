@@ -54,6 +54,7 @@ const HomePage = () => {
                 scrollTrigger: {
                   trigger: '.background',
                   pin: true, 
+                  pinSpacing: false,
                   start: 'top top',
                   end: 'max',
                   scrub: .1
@@ -124,7 +125,7 @@ export default HomePage;
 
 const Background = styled.div`
   height: 100vh;
-  width:100vw;
+  width: 100vw;
   z-index: -1;
   top: 0;
   left: 0;

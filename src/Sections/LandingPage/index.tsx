@@ -21,12 +21,6 @@ export default LandingPage;
 
 const NameItem = styled.img`
     width: 100%;
-    position: absolute;
-    margin: 0 auto;
-    transform: scale(1);
-    top: 0;
-    left: 0;
-    transition: 0s;
 `;
 const Wrapper = styled.div`
     height: 100vh;

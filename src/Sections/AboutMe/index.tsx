@@ -1,24 +1,12 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { isMobile } from 'utils/device';
+
 gsap.registerPlugin(ScrollTrigger)
 
-const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
-    // const TextWrapperref = useRef<HTMLDivElement>();
-
-    // const t1 = gsap.timeline({
-    //     scrollTrigger:{
-    //         trigger: TextWrapperref.current,
-    //         start: "center center",
-    //         end: "bottom top",
-    //         scrub: true, 
-    //         markers: true
-    //     }
-    // });
-
-    
-   
+const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {   
     return (
             <Wrapper className='AM_wrapper' ref={ref}>
                 <Text> 
@@ -45,7 +33,7 @@ const Text = styled.p`
     width: 60%;
     margin: 0 auto;
     color: black;
-    font-size: clamp(2rem, 2.5vw, 5rem);
+    font-size: ${isMobile() ? 'clamp(1rem, 2vw, 3rem)' : 'clamp(2rem, 2.5vw, 5rem)'};
 `;
 
 const Wrapper = styled.div`
