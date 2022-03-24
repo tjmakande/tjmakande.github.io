@@ -29,6 +29,7 @@ const HomePage = () => {
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
+        const Contactbtn = document.querySelector('.Contactbtn');
 
         if(Containerref.current){
 
@@ -47,6 +48,8 @@ const HomePage = () => {
             });
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Containerref.current});
+
+            Contactbtn && Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 500)})
 
 
             //Background Item;
