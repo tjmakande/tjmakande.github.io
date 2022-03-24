@@ -97,16 +97,26 @@ const HomePage = () => {
 
 
             //works wrapper
-            gsap.to('.works_wrapper', {
+            const t2 = gsap.timeline({
               scrollTrigger: {
                 trigger: '.works_wrapper',
                 start: 'top top',
-                end: `+=${screenHeight/2}`,
+                end: `+=${screenHeight * 2}`,
                 pin: true,
                 pinSpacing: false,
                 scrub: .1,
               }
             });
+
+            t2.add('next')
+            .fromTo(['.word_selected', '.word_works'], {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1})
+            // .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1})
+            .fromTo(['.word_selected', '.word_works'], {opacity: 1}, {opacity: 0.2, delay: 0.1, duration: 0.8})
+            .fromTo('.cinema', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.3})
+            .fromTo('.chatbot', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.5})
+            .fromTo('.masimba', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.7})
+            .fromTo('.sdsn', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.9})
+
         }
     }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref])
 

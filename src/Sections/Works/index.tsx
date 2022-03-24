@@ -6,19 +6,27 @@ import styled from 'styled-components';
 const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
     return(
         <Container className="works_wrapper" ref={ref}>
-            <ProjectItem className={'Works'} data-id={'cinema'}>
+            <SectionTitle>
+                <span className="word_selected">
+                    Selected
+                </span>
+                <span className="word_works">
+                    Works
+                </span>
+            </SectionTitle>
+            <ProjectItem className={'Works cinema'} data-id={'cinema'}>
                <Title > 01. Cinema</Title>
             </ProjectItem>
 
-            <ProjectItem className={'Works'} data-id={'chatbot'}>
+            <ProjectItem className={'Works chatbot'} data-id={'chatbot'}>
                 <Title >02. Automated Chatbot</Title>
             </ProjectItem>
 
-            <ProjectItem className={'Works'} data-id={'masimba'}>
+            <ProjectItem className={'Works masimba'} data-id={'masimba'}>
                 <Title >03. Masimba</Title>
             </ProjectItem>
 
-            <ProjectItem className={'Works'} data-id={'sdsn'}>
+            <ProjectItem className={'Works sdsn'} data-id={'sdsn'}>
                 <Title >04. SDSN Youth</Title>
             </ProjectItem>
         </Container>
@@ -26,8 +34,17 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
 });
 
 export default WorkSection;
+const SectionTitle = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 13vw;
+    margin: 0;
+    font-weight: 700;
+`;
 
-const Title = styled.h1`
+const Title = styled.h2`
     font-size: 5vw;
     margin: 0;
 `;
@@ -51,6 +68,6 @@ const Container = styled.section`
     flex-direction: column;
     justify-content: center;
     overflow: hidden;
-    margin-bottom: 100vh;
+    margin-bottom: 250vh; //for animations sake
     background-color: white;
 `;
