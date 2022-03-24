@@ -18,6 +18,7 @@ body {
   position: fixed;
   top: -15px;
   left: -15px;
+  margin: 5px;
   pointer-events: none;
   will-change: transform;
   display: flex;
@@ -41,9 +42,15 @@ body {
   width: 8vw;
   height: 4.5vw;
   border-radius: 50% 50%;
-  background-color: rgb(58, 58, 58);
+  /* background-color: rgb(58, 58, 58); */
   top: -2.25vw;
   left: -4vw;
+  transition: .2s;
+  opacity: 1;
+}
+
+.mouseOverLink::after{
+  display: none;
 }
 
 .mouseOverProject{
