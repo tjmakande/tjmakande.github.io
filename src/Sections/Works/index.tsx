@@ -7,10 +7,10 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
     return(
         <Container className="works_wrapper" ref={ref}>
             <SectionTitle>
-                <span className="word_selected">
+                <span className="word_selected" style={{display: 'inline-block'}}>
                     Selected
                 </span>
-                <span className="word_works">
+                <span className="word_works" style={{display: 'inline-block'}}>
                     Works
                 </span>
             </SectionTitle>
@@ -50,6 +50,7 @@ const Title = styled.h2`
 `;
 
 const ProjectItem = styled.div`
+    position: relative;
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;

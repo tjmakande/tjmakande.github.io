@@ -112,9 +112,10 @@ const HomePage = () => {
             });
 
             t2.add('next')
-            .fromTo(['.word_selected', '.word_works'], {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1})
-            // .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1})
-            .fromTo(['.word_selected', '.word_works'], {opacity: 1}, {opacity: 0.2, delay: 0.1, duration: 0.8})
+            .fromTo('.word_selected', {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, x: -200, duration: 1})
+            .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1})
+            .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, delay: 0.1, rotationZ: -90, x: -800, duration: 0.8})
+            .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, delay: 0.1, rotationZ: -90, x: -600, duration: 0.8})
             .fromTo('.cinema', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.3})
             .fromTo('.chatbot', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.5})
             .fromTo('.masimba', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.7})
