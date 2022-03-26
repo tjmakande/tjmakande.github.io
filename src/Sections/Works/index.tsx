@@ -1,6 +1,10 @@
 import React from 'react'
 
 import styled from 'styled-components';
+import CinemaPhoto from 'Assets/Cinema-Photo.png';
+import Musician from 'Assets/Musician.png'
+import AutomatedBot from 'Assets/Automated-bot.png';
+import Cube from 'Assets/3D-cube.png';
 
 
 const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
@@ -20,19 +24,23 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
             </div>
             
             <WrapperWorks className="Project_wrapper">
-                <ProjectItem className={'Works cinema'} data-id={'cinema'}>
+                    <ProjectItem className={'Works cinema'}  data-id={'cinema'}>
+                    <ProjectBg  src={CinemaPhoto} />
                 <Title > 01. Cinema</Title>
                 </ProjectItem>
 
-                <ProjectItem className={'Works chatbot'} data-id={'chatbot'}>
-                    <Title >02. Automated Chatbot</Title>
+                <ProjectItem className={'Works chatbot'}  data-id={'chatbot'}>
+                    <ProjectBg src={AutomatedBot} />
+                    <Title >02. Chatbot</Title>
                 </ProjectItem>
 
                 <ProjectItem className={'Works masimba'} data-id={'masimba'}>
+                    <ProjectBg  src={Musician}/>
                     <Title >03. Masimba</Title>
                 </ProjectItem>
 
                 <ProjectItem className={'Works sdsn'} data-id={'sdsn'}>
+                    <ProjectBg src={Cube} />
                     <Title >04. SDSN Youth</Title>
                 </ProjectItem>
             </WrapperWorks>
@@ -41,6 +49,10 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
 });
 
 export default WorkSection;
+const ProjectBg = styled.img`   
+    width: 60vw;
+    height: 70vh;
+`;
 
 const WrapperWorks = styled.div`
     width: ${95 * 4}vw;
@@ -66,7 +78,11 @@ const SectionTitle = styled.div`
 `;
 
 const Title = styled.h2`
-    font-size: 5vw;
+    position: absolute;
+    color: rgb(58,58,58);
+    right: 2vw;
+    bottom: 5vw;
+    font-size: 10vw;
     margin: 0;
 `;
 

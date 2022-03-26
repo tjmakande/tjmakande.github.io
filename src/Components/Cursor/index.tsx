@@ -45,32 +45,32 @@ const Cursor = () => {
             })
         });
 
-        setTimeout(() => {
-            const ProjectImgs = document.querySelectorAll('.Works');
-            ProjectImgs.forEach((element) => {
-                element.addEventListener('mouseenter', () => {
-                    cursor && cursor.classList.add('mouseOverProject');
-                    const target = document.querySelector('.mouseOverProject') as HTMLDivElement;
-                    const img = element.attributes[1].value;
+        // setTimeout(() => {
+        //     const ProjectImgs = document.querySelectorAll('.Works');
+        //     ProjectImgs.forEach((element) => {
+        //         element.addEventListener('mouseenter', () => {
+        //             cursor && cursor.classList.add('mouseOverProject');
+        //             const target = document.querySelector('.mouseOverProject') as HTMLDivElement;
+        //             const img = element.attributes[1].value;
 
-                    if(img === "cinema"){
-                        target.style.backgroundImage = `url(${CinemaPhoto})`
-                    } else if(img === "chatbot"){
-                        target.style.backgroundImage = `url(${AutomatedBot})`
-                    } else if(img === "masimba"){
-                        target.style.backgroundImage = `url(${Musician})`
-                    } else if(img === "sdsn"){
-                        target.style.backgroundImage = `url(${Cube})`
-                    }
-                });
+        //             if(img === "cinema"){
+        //                 target.style.backgroundImage = `url(${CinemaPhoto})`
+        //             } else if(img === "chatbot"){
+        //                 target.style.backgroundImage = `url(${AutomatedBot})`
+        //             } else if(img === "masimba"){
+        //                 target.style.backgroundImage = `url(${Musician})`
+        //             } else if(img === "sdsn"){
+        //                 target.style.backgroundImage = `url(${Cube})`
+        //             }
+        //         });
     
-                element.addEventListener('mouseleave', () =>{
-                    const target = document.querySelector('.mouseOverProject') as HTMLDivElement;
-                    target.style.backgroundImage = ``;
-                    cursor && cursor.classList.remove('mouseOverProject');
-                })
-            })
-        }, 1000)
+        //         element.addEventListener('mouseleave', () =>{
+        //             const target = document.querySelector('.mouseOverProject') as HTMLDivElement;
+        //             target.style.backgroundImage = ``;
+        //             cursor && cursor.classList.remove('mouseOverProject');
+        //         })
+        //     })
+        // }, 1000)
 
     }, [Mouseref])
 
