@@ -6,6 +6,7 @@ const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
         <Container className="footerwrapper">
             <Wrapper>
                 <SectionTitle>Let's Collaborate</SectionTitle>
+                <EmailLink>Don't be afraid to connect, you can reach me @ tj@example.com</EmailLink>
             </Wrapper>
         </Container>
     )
@@ -43,4 +44,11 @@ const SectionTitle = styled.h1`
     letter-spacing: -3px;
     line-height: 9vw;
     z-index: 1;
+`;
+
+const EmailLink = styled.p`
+    position: absolute;
+    bottom: 2vh;
+    color: #fff;
+    font-size: 1vw;
 `;
