@@ -64,6 +64,7 @@ const HomePage = () => {
                 }
               });
             
+              //change background color approaching bottom
               gsap.to(['.background', '.works_wrapper'], {
                 scrollTrigger: {
                   trigger: ".footerwrapper",
@@ -100,26 +101,38 @@ const HomePage = () => {
 
 
             //works wrapper
+            let sections = gsap.utils.toArray('.Works');
+            const word_selected = document.querySelector('.word_selected') as HTMLSpanElement;
+            const word_works = document.querySelector('.word_works') as HTMLSpanElement;
+
+
             const t2 = gsap.timeline({
               scrollTrigger: {
                 trigger: '.works_wrapper',
                 start: 'top top',
-                end: `+=${screenHeight * 2}`,
+                end: `+=${screenHeight * 3}`,
                 pin: true,
                 pinSpacing: false,
                 scrub: .1,
               }
             });
 
+            console.log(-word_selected.getBoundingClientRect().left * 0.75, screenWidth)
+
             t2.add('next')
-            .fromTo('.word_selected', {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, x: -200, duration: 1})
-            .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1})
-            .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, delay: 0.1, rotationZ: -90, x: -800, duration: 0.8})
-            .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, delay: 0.1, rotationZ: -90, x: -600, duration: 0.8})
-            .fromTo('.cinema', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.3})
-            .fromTo('.chatbot', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.5})
-            .fromTo('.masimba', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.7})
-            .fromTo('.sdsn', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.9})
+            .fromTo('.word_selected', {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.05})
+            .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
+            .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -word_selected.getBoundingClientRect().left * 0.8, duration: 0.05})
+            .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin: 'left',yPercent: -10, x: -word_works.getBoundingClientRect().left * 0.55, duration: 0.05})
+            .fromTo('.Project_wrapper',{x: screenWidth}, {
+              x: -screenWidth * 3, // 4 projects - 1
+              snap: `1 / (${sections.length} - 1)`,
+              duration: 1
+            })
+            // .fromTo('.cinema', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.3})
+            // .fromTo('.chatbot', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.5})
+            // .fromTo('.masimba', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.7})
+            // .fromTo('.sdsn', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.9})
 
         }
     }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref])
