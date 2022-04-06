@@ -3,6 +3,6 @@ import styled from 'styled-components'
 export default styled.section`
     color: black;
     position: relative;
-    transition: .5s;
+    will-change: transform;
     z-index: 1;
 `;

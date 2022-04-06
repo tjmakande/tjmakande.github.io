@@ -117,8 +117,6 @@ const HomePage = () => {
               }
             });
 
-            console.log(-word_selected.getBoundingClientRect().left * 0.75, screenWidth)
-
             t2.add('next')
             .fromTo('.word_selected', {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.05})
             .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
