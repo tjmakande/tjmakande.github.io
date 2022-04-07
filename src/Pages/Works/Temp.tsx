@@ -1,8 +1,8 @@
-import React, {createRef, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 import Footer from 'Sections/Footer';
-// import {Scrollbar} from 'smooth-scrollbar-react';
+import Header from 'Components/Styled/Header';
 
 import WorksPageImg from 'Assets/WorksPageImg.jpeg';
 
@@ -13,14 +13,9 @@ import AutomatedBot from '../../Assets/Automated-bot.png';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Scrollbar from 'smooth-scrollbar';
-import { toUSVString } from 'util';
 
 
 const AboutMePage = () => {
-    // const Imageref = createRef<HTMLImageElement>();
-    const Itemref1 = createRef<HTMLDivElement>();
-    const Itemref2 = createRef<HTMLDivElement>();
-    const Itemref3 = createRef<HTMLDivElement>();
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
 
@@ -36,8 +31,6 @@ const AboutMePage = () => {
         gsap.registerPlugin(ScrollTrigger);
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
-        const Projects = document.querySelectorAll('.Project');
-        const ProjectInfo = document.querySelectorAll('.Project_info');
 
         if(Container){
             //initial setup
@@ -56,7 +49,7 @@ const AboutMePage = () => {
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Container});
 
-            Contactbtn && Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 500)})
+            Contactbtn && Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000)})
 
             //Background Item;
             gsap.to('.background', {
@@ -70,6 +63,7 @@ const AboutMePage = () => {
                 }
             });
 
+            //background color change approaching footer
             gsap.to('.background', {
                 scrollTrigger:{
                     trigger: '.Project3',
@@ -80,7 +74,7 @@ const AboutMePage = () => {
                 backgroundColor: 'rgb(58, 58, 58)'
             })
 
-            //Landing image effect
+            //Landing image scroll over effect
             gsap.to('.Landing_image', {
                 scrollTrigger: {
                     trigger: '.Landing_image',
@@ -102,8 +96,6 @@ const AboutMePage = () => {
                     toggleActions: 'play none none reverse',
                     onLeave: () => gsap.to('.Project1_info', {opacity: 0}),
                     onEnterBack: () => gsap.to('.Project1_info', {opacity: 1}),
-
-
                 },
                 opacity: 1,
                 duration: 1
@@ -154,9 +146,9 @@ const AboutMePage = () => {
             <SectionWrapper >
                 <Background className="background" />
                 <TimeContainer>
-                    <LeftSide>
+                    <SideColumn>
                         <InfoWrap className='Project1'>
-                            <Info className="Project1_info" ref={Itemref1}>
+                            <Info className="Project1_info">
                                 <ProjectTitle>Cinema </ProjectTitle>
                                 <ProjectDescription>This is an account based movie booking platform. It displays the latest movies and their ratings based on the IMDB API. </ProjectDescription>
                                 <ProjectRole>Design, Fullstack</ProjectRole>
@@ -166,19 +158,19 @@ const AboutMePage = () => {
                             <InfoImg src={AutomatedBot} />
                         </InfoWrap>
                         <InfoWrap className="Project2">
-                            <Info className="Project2_info" ref={Itemref3}>
+                            <Info className="Project2_info">
                                 <ProjectTitle>Musician Site</ProjectTitle>
                                 <ProjectDescription>Site for a local musician displaying their latest songs.</ProjectDescription>
                                 <ProjectRole>Design, Fullstack</ProjectRole>
                             </Info>
                         </InfoWrap>
-                    </LeftSide>
-                    <RightSide>
+                    </SideColumn>
+                    <SideColumn>
                         <InfoWrap>
                             <InfoImg src={CinemaPhoto} />
                         </InfoWrap>
                         <InfoWrap className="Project3">
-                            <Info className="Project3_info" ref={Itemref2}>
+                            <Info className="Project3_info">
                                 <ProjectTitle>Automated chatbot </ProjectTitle>
                                 <ProjectDescription>Most companies now have clients from all over the world. I created this automated bot to </ProjectDescription>
                                 <ProjectRole>Design, Fullstack</ProjectRole>
@@ -187,7 +179,7 @@ const AboutMePage = () => {
                         <InfoWrap>
                             <InfoImg src={Musician} />
                         </InfoWrap>
-                    </RightSide>
+                    </SideColumn>
                 </TimeContainer>
                 <Footer />
             </SectionWrapper>
@@ -197,13 +189,13 @@ const AboutMePage = () => {
 
 export default AboutMePage;
 const Background = styled.div`
-  height: 100vh;
-  width:100vw;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  position: absolute;
-  background-color: #fff;
+    height: 100vh;
+    width:100vw;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #fff;
 `;
 
 const ProjectRole = styled.p`
@@ -234,13 +226,10 @@ const LandingImg = styled.img`
     width: 100vw;
     left: 0;
 `;
-const LeftSide = styled.div`
+const SideColumn = styled.div`
     width: 50vw;
     height: 100%;
     margin-bottom: 100vh;
-`;
-
-const RightSide = styled(LeftSide)`
 `;
 
 const InfoWrap = styled.div`
@@ -278,17 +267,4 @@ const Wrapper = styled.div`
     align-items: center;
     overflow:hidden;
     position: relative;
-`;
-
-const Header = styled.h1`
-    font-size: 12vw;
-    padding: 0;
-    font-weight: 600;
-    letter-spacing: -3px;
-    line-height: 12vw;
-    z-index: 1;
-
-    position: absolute;
-    right: 10vw;
-    bottom: 0;
 `;
