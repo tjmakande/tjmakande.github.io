@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import LandingPage from 'Sections/LandingPage';
-import AboutMe from 'Sections/AboutMe';
-import Works from 'Sections/Works';
-import Footer from 'Sections/Footer';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import AboutMe from 'Sections/AboutMe';
+import Footer from 'Sections/Footer';
+import LandingPage from 'Sections/LandingPage';
+import Works from 'Sections/Works';
 import Scrollbar from 'smooth-scrollbar';
 
 const HomePage = () => {
@@ -20,10 +20,10 @@ const HomePage = () => {
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
 
     window.addEventListener('resize', (e) => {
-      if(window.innerHeight !== screenHeight)
+      if (window.innerHeight !== screenHeight)
         setscreenHeight(window.innerHeight);
 
-      if(window.innerWidth !== screenWidth)
+      if (window.innerWidth !== screenWidth)
         setScreenWidth(window.innerWidth);
     });
 
@@ -31,41 +31,40 @@ const HomePage = () => {
         gsap.registerPlugin(ScrollTrigger);
         const Contactbtn = document.querySelector('.Contactbtn');
 
-        if(Containerref.current){
+        if (Containerref.current){
 
-          //initial setup
+          // initial setup
             const bodyScrollBar = Scrollbar.init(Containerref.current, {damping: 0.05, renderByPixels: true, delegateTo: document});
             ScrollTrigger.scrollerProxy(".scroller", {
-              scrollTop(value:number = 0) {
+              scrollTop (value: number = 0) {
                 if (arguments.length) {
                   bodyScrollBar.scrollTop = value; // setter
                 }
                 return bodyScrollBar.scrollTop;    // getter
               },
-              getBoundingClientRect() {
+              getBoundingClientRect () {
                 return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
               }
             });
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Containerref.current});
 
-            Contactbtn && Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 500)})
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000); });
 
-
-            //Background Item;
-              gsap.to('.background', {
+            // Background Item;
+            gsap.to('.background', {
                 scrollTrigger: {
                   trigger: '.background',
-                  pin: true, 
+                  pin: true,
                   pinSpacing:false,
                   start: 'top top',
                   end: 'max',
                   scrub: .1
                 }
               });
-            
-              //change background color approaching bottom
-              gsap.to(['.background', '.works_wrapper'], {
+
+              // change background color approaching bottom
+            gsap.to(['.background', '.works_wrapper'], {
                 scrollTrigger: {
                   trigger: ".footerwrapper",
                   start: `top bottom`,
@@ -76,7 +75,7 @@ const HomePage = () => {
               });
 
 
-            //About me section
+            // About me section
             const t1 = gsap.timeline({
               scrollTrigger: {
                   trigger: '.AM_wrapper',
@@ -94,14 +93,14 @@ const HomePage = () => {
 
             t1.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-            .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.25 - line1.offsetTop , x: screenWidth/2 - line1.offsetLeft - line1.clientWidth/2}, 'start')
-            .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.45 - line2.offsetTop,  x: screenWidth/2 - line2.offsetLeft - line2.clientWidth/2 }, 'start')
-            .to(".solution", {scale: 5, duration: 0.5, y: screenHeight * 0.65 - line3.offsetTop, x: screenWidth/2 - line3.offsetLeft - line3.clientWidth/2}, 'start')
+            .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.25 - line1.offsetTop , x: screenWidth / 2 - line1.offsetLeft - line1.clientWidth / 2}, 'start')
+            .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.45 - line2.offsetTop,  x: screenWidth / 2 - line2.offsetLeft - line2.clientWidth / 2 }, 'start')
+            .to(".solution", {scale: 5, duration: 0.5, y: screenHeight * 0.65 - line3.offsetTop, x: screenWidth / 2 - line3.offsetLeft - line3.clientWidth / 2}, 'start');
 
 
 
-            //works wrapper
-            let sections = gsap.utils.toArray('.Works');
+            // works wrapper
+            const sections = gsap.utils.toArray('.Works');
             const word_selected = document.querySelector('.word_selected') as HTMLSpanElement;
             const word_works = document.querySelector('.word_works') as HTMLSpanElement;
 
@@ -126,16 +125,10 @@ const HomePage = () => {
               x: -screenWidth * 3, // 4 projects - 1
               snap: `1 / (${sections.length} - 1)`,
               duration: 1
-            })
-            // .fromTo('.cinema', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.3})
-            // .fromTo('.chatbot', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.5})
-            // .fromTo('.masimba', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.7})
-            // .fromTo('.sdsn', {x: screenWidth, opacity: 0}, {x: 0, opacity: 1, duration: 1, delay: 0.9})
-
+            });
         }
-    }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref])
+    }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref]);
 
-    
     return(
         <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw'}}>
             <Background className="background" ref={Backgroundref}/>
@@ -144,8 +137,8 @@ const HomePage = () => {
             <Works ref={Worksref} />
             <Footer ref={Footerref} />
         </div>
-    )
-}
+    );
+};
 
 export default HomePage;
 

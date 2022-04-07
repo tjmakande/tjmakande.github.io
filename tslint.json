@@ -1,0 +1,45 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:latest",
+        "tslint-config-prettier"
+    ],
+    "parserOptions":{
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "no-implicit-dependencies": [true, ["src", "Components", "Assets", "gsap", "Sections"]],
+        "no-submodule-imports": false,
+        "typedef-whitespace": [
+            true,
+        {
+            "call-signature": "nospace",
+            "index-signature": "nospace",
+            "parameter": "nospace",
+            "property-declaration": "nospace",
+            "variable-declaration": "nospace"
+        },
+        {
+            "call-signature": "onespace",
+            "index-signature": "onespace",
+            "parameter": "onespace",
+            "property-declaration": "onespace",
+            "variable-declaration": "onespace"
+        }
+        ],
+        "indent": [true, "spaces", 2],
+        "space-before-function-paren": true,
+        "linebreak-style": [true, "LF"],
+        "ordered-imports": true,
+        "prefer-const": true,
+        "no-any": true,
+        "whitespace": [true, "check-branch", "check-operator", "check-typecast"],
+        "no-unused-variable": true,
+        "align": [true, "parameters", "statements"],
+        "semicolon": [true, "always"],
+        "no-trailing-whitespace": true,
+        "no-duplicate-variable": true,
+        "no-duplicate-imports": true
+    },
+    "rulesDirectory": []
+}

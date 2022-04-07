@@ -1,30 +1,31 @@
-import React, {useState, useEffect} from 'react';
-import styled from 'styled-components';
-import SectionWrapper from 'Components/Styled/SectionWrapper';
-import Footer from 'Sections/Footer';
 import Header from 'Components/Styled/Header';
+import SectionWrapper from 'Components/Styled/SectionWrapper';
+import React, {useEffect, useState} from 'react';
+import Footer from 'Sections/Footer';
+import styled from 'styled-components';
 
 import WorksPageImg from 'Assets/WorksPageImg.jpeg';
 
-import CinemaPhoto from '../../Assets/Cinema-Photo.png';
-import Musician from '../../Assets/Musician.png'
-import AutomatedBot from '../../Assets/Automated-bot.png';
+import AutomatedBot from 'Assets/Automated-bot.png';
+import CinemaPhoto from 'Assets/Cinema-Photo.png';
+import Musician from 'Assets/Musician.png';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Scrollbar from 'smooth-scrollbar';
-
 
 const AboutMePage = () => {
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
 
     window.addEventListener('resize', (e) => {
-        if(window.innerHeight !== screenHeight)
+        if (window.innerHeight !== screenHeight) {
             setscreenHeight(window.innerHeight);
+        }
 
-        if(window.innerWidth !== screenWidth)
+        if (window.innerWidth !== screenWidth) {
             setScreenWidth(window.innerWidth);
+        }
     });
 
     useEffect(() => {
@@ -32,61 +33,61 @@ const AboutMePage = () => {
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
 
-        if(Container){
-            //initial setup
+        if (Container) {
+            // initial setup
             const bodyScrollBar = Scrollbar.init(Container, {damping: 0.05, renderByPixels: true, delegateTo: document});
-            ScrollTrigger.scrollerProxy(".scroller", {
-              scrollTop(value:number = 0) {
+            ScrollTrigger.scrollerProxy('.scroller', {
+              scrollTop (value: number = 0) {
                 if (arguments.length) {
                   bodyScrollBar.scrollTop = value; // setter
                 }
                 return bodyScrollBar.scrollTop;    // getter
               },
-              getBoundingClientRect() {
+              getBoundingClientRect () {
                 return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-              }
+              },
             });
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Container});
 
-            Contactbtn && Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000)})
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000); });
 
-            //Background Item;
+            // Background Item;
             gsap.to('.background', {
                 scrollTrigger: {
                   trigger: '.background',
-                  pin: true, 
+                  pin: true,
                   pinSpacing:false,
                   start: 'top top',
                   end: 'max',
-                  scrub: .1
-                }
+                  scrub: .1,
+                },
             });
 
-            //background color change approaching footer
+            // background color change approaching footer
             gsap.to('.background', {
                 scrollTrigger:{
                     trigger: '.Project3',
                     start: 'bottom top',
                     end: 'max',
-                    scrub: .1
+                    scrub: .1,
                 },
-                backgroundColor: 'rgb(58, 58, 58)'
-            })
+                backgroundColor: 'rgb(58, 58, 58)',
+            });
 
-            //Landing image scroll over effect
+            // Landing image scroll over effect
             gsap.to('.Landing_image', {
                 scrollTrigger: {
                     trigger: '.Landing_image',
-                    pin: true, 
+                    pin: true,
                     pinSpacing: false,
                     start: 'top top',
                     end: screenHeight,
-                    scrub: .1
-                }
+                    scrub: .1,
+                },
             });
 
-            gsap.fromTo('.Project1_info',{opacity: 0}, {
+            gsap.fromTo('.Project1_info', {opacity: 0}, {
                 scrollTrigger:{
                     trigger: '.Project1',
                     start: 'top center',
@@ -98,10 +99,10 @@ const AboutMePage = () => {
                     onEnterBack: () => gsap.to('.Project1_info', {opacity: 1}),
                 },
                 opacity: 1,
-                duration: 1
-            })
+                duration: 1,
+            });
 
-            gsap.fromTo('.Project2_info',{opacity: 0}, {
+            gsap.fromTo('.Project2_info', {opacity: 0}, {
                 scrollTrigger:{
                     trigger: '.Project2',
                     start: 'top center',
@@ -113,10 +114,10 @@ const AboutMePage = () => {
                     onEnterBack: () => gsap.to('.Project2_info', {opacity: 1}),
                 },
                 opacity: 1,
-                duration: 1
-            })
+                duration: 1,
+            });
 
-            gsap.fromTo('.Project3_info',{opacity: 0}, {
+            gsap.fromTo('.Project3_info', {opacity: 0}, {
                 scrollTrigger:{
                     trigger: '.Project3',
                     start: 'top center',
@@ -128,10 +129,10 @@ const AboutMePage = () => {
                     onEnterBack: () => gsap.to('.Project3_info', {opacity: 1}),
                 },
                 opacity: 1,
-                duration: 1
-            })
+                duration: 1,
+            });
         }
-    }, [screenHeight, screenWidth])
+    },[screenHeight, screenWidth]);
 
     return(
         <div className="Container scroller" style={{position: 'relative', height: '100vh', width: '100vw'}}>
@@ -147,10 +148,12 @@ const AboutMePage = () => {
                 <Background className="background" />
                 <TimeContainer>
                     <SideColumn>
-                        <InfoWrap className='Project1'>
+                        <InfoWrap className="Project1">
                             <Info className="Project1_info">
                                 <ProjectTitle>Cinema </ProjectTitle>
-                                <ProjectDescription>This is an account based movie booking platform. It displays the latest movies and their ratings based on the IMDB API. </ProjectDescription>
+                                <ProjectDescription>
+                                    This is an account based movie booking platform. It displays the latest movies and their ratings based on the IMDB API.
+                                </ProjectDescription>
                                 <ProjectRole>Design, Fullstack</ProjectRole>
                             </Info>
                         </InfoWrap>
@@ -160,7 +163,9 @@ const AboutMePage = () => {
                         <InfoWrap className="Project2">
                             <Info className="Project2_info">
                                 <ProjectTitle>Musician Site</ProjectTitle>
-                                <ProjectDescription>Site for a local musician displaying their latest songs.</ProjectDescription>
+                                <ProjectDescription>
+                                    Site for a local musician displaying their latest songs.
+                                </ProjectDescription>
                                 <ProjectRole>Design, Fullstack</ProjectRole>
                             </Info>
                         </InfoWrap>
@@ -184,8 +189,8 @@ const AboutMePage = () => {
                 <Footer />
             </SectionWrapper>
         </div>
-    )
-}
+    );
+};
 
 export default AboutMePage;
 const Background = styled.div`

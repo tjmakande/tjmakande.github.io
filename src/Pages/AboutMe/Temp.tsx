@@ -1,27 +1,27 @@
-import React, {createRef, useEffect, useState} from 'react';
-import styled from 'styled-components';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
+import React, {createRef, useEffect, useState} from 'react';
 import Footer from 'Sections/Footer';
+import styled from 'styled-components';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Scrollbar from 'smooth-scrollbar';
 
-import TJImage from 'Assets/TJ_image.jpg';
 import BeijingImg from 'Assets/BeijingImg.jpeg';
+import TJImage from 'Assets/TJ_image.jpg';
 import ZimImg from 'Assets/Zim_drawn.jpg';
 
 const AboutMePage = () => {
     const Imageref = createRef<HTMLImageElement>();
-    //Starting HERE
+    // Starting HERE
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
 
     window.addEventListener('resize', (e) => {
-      if(window.innerHeight !== screenHeight)
+      if (window.innerHeight !== screenHeight)
         setscreenHeight(window.innerHeight);
 
-      if(window.innerWidth !== screenWidth)
+      if (window.innerWidth !== screenWidth)
         setScreenWidth(window.innerWidth);
     });
 
@@ -30,31 +30,31 @@ const AboutMePage = () => {
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
 
-        if(Container){
+        if (Container){
 
-          //initial setup
+          // initial setup
             const bodyScrollBar = Scrollbar.init(Container, {damping: 0.05, renderByPixels: true, delegateTo: document});
             ScrollTrigger.scrollerProxy(".scroller", {
-              scrollTop(value:number = 0) {
+              scrollTop (value: number = 0) {
                 if (arguments.length) {
                   bodyScrollBar.scrollTop = value; // setter
                 }
                 return bodyScrollBar.scrollTop;    // getter
               },
-              getBoundingClientRect() {
+              getBoundingClientRect () {
                 return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
               }
             });
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Container});
 
-            Contactbtn && Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 500)})
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000); });
 
-            //Background Item;
+            // Background Item;
             gsap.to('.background', {
                 scrollTrigger: {
                   trigger: '.background',
-                  pin: true, 
+                  pin: true,
                   pinSpacing:false,
                   start: 'top top',
                   end: 'max',
@@ -70,13 +70,13 @@ const AboutMePage = () => {
                     scrub: .1
                 },
                 backgroundColor: 'rgb(58, 58, 58)'
-            })
+            });
 
-            //Landing image effect
+            // Landing image effect
             gsap.to('.Landing_image', {
                 scrollTrigger: {
                     trigger: '.Landing_image',
-                    pin: true, 
+                    pin: true,
                     pinSpacing: false,
                     start: 'top top',
                     end: screenHeight,
@@ -84,24 +84,24 @@ const AboutMePage = () => {
                 }
             });
 
-            //section wrapper
+            // section wrapper
             const t1 = gsap.timeline({
                 scrollTrigger:{
                     trigger: '.SectionWrapper',
-                    pin: true, 
+                    pin: true,
                     pinSpacing: false,
                     start: 'top top',
                     end: `+=${screenHeight * 6}`,
                     immediateRender: false,
                     scrub: .1
                 }
-            })
+            });
 
             // Appear Text
             t1
             .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {
-                y: 0, 
-                opacity: 1, 
+                y: 0,
+                opacity: 1,
             })
             .fromTo('.DescriptionOne',{opacity: 1}, {
                 opacity: 0
@@ -110,27 +110,27 @@ const AboutMePage = () => {
                 opacity: 1,
                 duration: 0.05
             })
-            .to('.DescriptionTwo',{ //Move to the left
-                x: -screenWidth/3,
+            .to('.DescriptionTwo',{ // Move to the left
+                x: -screenWidth / 3,
             })
             .fromTo('.ZimImg', {y: screenHeight, scale: 0.3}, {y: -screenHeight * 1.5, scale: 2})
             .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
-            .fromTo('.DescriptionThree', {x: -screenWidth/3, opacity: 0}, {opacity: 1})
-            .to('.DescriptionThree', {x: screenWidth/3})
-            .fromTo('.BeijingImg', {y: screenHeight, x: -screenWidth * 0.4}, {y: -screenHeight})
+            .fromTo('.DescriptionThree', {x: -screenWidth / 3, opacity: 0}, {opacity: 1})
+            .to('.DescriptionThree', {x: screenWidth / 3})
+            .fromTo('.BeijingImg', {y: screenHeight, x: -screenWidth * 0.4}, {y: -screenHeight});
 
             gsap.to('.IntroTwoWrapper', {
                 scrollTrigger:{
                     trigger: '.IntroTwoWrapper',
                     pin: true,
                     start: 'top top',
-                    end: `+=${screenHeight/2}`,
+                    end: `+=${screenHeight / 2}`,
                     scrub: .1
                 }
-            })
+            });
 
         }
-    }, [screenHeight, screenWidth])
+    }, [screenHeight, screenWidth]);
 
     return(
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: '100vh'}}>
@@ -165,7 +165,7 @@ const AboutMePage = () => {
                 <Footer />
             </SectionWrapper>
         </div>
-    )
+    );
 };
 
 
