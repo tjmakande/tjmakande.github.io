@@ -14,7 +14,8 @@ import './App.css';
 
 const HomePage = React.lazy(() => import('Pages/Home/Demo'));
 const AboutMePage = React.lazy(() => import('Pages/AboutMe/Temp'));
-const WorksPage = React.lazy(() => import('Pages/Works/index'));
+const WorksPage = React.lazy(() => import('Pages/Works/Temp'));
+const WorksPageOld = React.lazy(() => import('Pages/Works'));
 const ContactPage = React.lazy(() => import('Pages/Contact'));
 
 function App() {
@@ -38,6 +39,13 @@ function App() {
           <Route path='/Works' element={
             <React.Suspense fallback={<>...Loading</>} >
               <WorksPage />
+            </React.Suspense>
+          } 
+          />
+
+          <Route path='/Works_old' element={
+            <React.Suspense fallback={<>...Loading</>} >
+              <WorksPageOld />
             </React.Suspense>
           } 
           />
