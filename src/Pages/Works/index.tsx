@@ -1,117 +1,182 @@
-import React, {createRef} from 'react';
-import styled from 'styled-components';
-import SectionWrapper from 'Components/Styled/SectionWrapper';
-import Footer from 'Sections/Footer';
-import {Scrollbar} from 'smooth-scrollbar-react';
+import React, {useEffect, useState} from 'react';
 
+import AutomatedBot from 'Assets/Automated-bot.png';
+import CinemaPhoto from 'Assets/Cinema-Photo.png';
+import Musician from 'Assets/Musician.png';
 import WorksPageImg from 'Assets/WorksPageImg.jpeg';
 
-import CinemaPhoto from '../../Assets/Cinema-Photo.png';
-import Musician from '../../Assets/Musician.png'
-import AutomatedBot from '../../Assets/Automated-bot.png';
+import Header from 'Components/Styled/Header';
+import SectionWrapper from 'Components/Styled/SectionWrapper';
 
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import Footer from 'Sections/Footer';
+import Scrollbar from 'smooth-scrollbar';
+import styled from 'styled-components';
 
 const AboutMePage = () => {
-    const Imageref = createRef<HTMLImageElement>();
-    const Itemref1 = createRef<HTMLDivElement>();
-    const Itemref2 = createRef<HTMLDivElement>();
-    const Itemref3 = createRef<HTMLDivElement>();
+    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+    const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
 
-    const Backgroundref = React.createRef<HTMLDivElement>();
-    const [red, green, blue] = [255, 255, 255];
+    window.addEventListener('resize', () => {
+        if (window.innerHeight !== screenHeight) {
+            setscreenHeight(window.innerHeight);
+        }
 
-    const scrollAnimation = (scrollY: number) => {
+        if (window.innerWidth !== screenWidth) {
+            setScreenWidth(window.innerWidth);
+        }
+    });
 
-            if(scrollY < window.innerHeight){
-                Imageref.current && (Imageref.current.style.transform = `translateY(${scrollY}px)`);
-            } else {
-                Imageref.current && (Imageref.current.style.transform = `translateY(${window.innerHeight}px)`);
-            }
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        const Container = document.querySelector('.Container') as HTMLDivElement;
+        const Contactbtn = document.querySelector('.Contactbtn');
 
-            if(scrollY > window.innerHeight){
-                Backgroundref.current && (Backgroundref.current.style.transform = `translateY(${scrollY - window.innerHeight}px)`);
-            }
-
-            if(scrollY < window.innerHeight * 0.5)
-                Itemref1 && gsap.to(Itemref1.current, {opacity: 0, duration: 0});
-            
-            if(scrollY >= window.innerHeight * 0.5 && scrollY <= window.innerHeight * 1.3){
-                if(Itemref1.current){
-                    gsap.to(Itemref1.current, {opacity: 1, duration: 1});
-                    Itemref1.current.style.transform = `translateY(${scrollY - window.innerHeight * 0.5}px)`;
+        if (Container) {
+            // initial setup
+            const bodyScrollBar = Scrollbar.init(Container, {damping: 0.05, renderByPixels: true, delegateTo: document});
+            ScrollTrigger.scrollerProxy('.scroller', {
+              scrollTop (value: number = 0) {
+                if (arguments.length) {
+                  bodyScrollBar.scrollTop = value; // setter
                 }
-            } else {
-                Itemref1.current && gsap.to(Itemref1.current, {opacity: 0, duration: 1})
-            }
+                return bodyScrollBar.scrollTop;    // getter
+              },
+              getBoundingClientRect () {
+                return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
+              },
+            });
+            bodyScrollBar.addListener(ScrollTrigger.update);
+            ScrollTrigger.defaults({scroller: Container});
 
-            if(scrollY > window.innerHeight * 1.5 && scrollY <= window.innerHeight * 2.3){
-                if(Itemref2.current){
-                    gsap.to(Itemref2.current, {opacity: 1, duration: 1})
-                    Itemref2.current.style.transform = `translateY(${scrollY - window.innerHeight * 1.5}px)`;
-                }
-            } else {
-                Itemref2 && gsap.to(Itemref2.current, {opacity: 0, duration: 1})
-            }
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000); });
 
-            if(scrollY > window.innerHeight * 2.5 && scrollY <= window.innerHeight * 3.3){
-                if(Itemref3.current){
-                    gsap.to(Itemref3.current, {opacity: 1, duration: 1});
-                    Itemref3.current.style.transform = `translateY(${scrollY - window.innerHeight * 2.5}px)`;
-                }
-            } else {
-                Itemref3.current && gsap.to(Itemref3.current, {opacity: 0, duration: 1})
-            }
+            // Background Item;
+            gsap.to('.background', {
+                scrollTrigger: {
+                  trigger: '.background',
+                  pin: true,
+                  pinSpacing:false,
+                  start: 'top top',
+                  end: 'max',
+                  scrub: .1,
+                },
+            });
 
-            if(scrollY > window.innerHeight * 3.8){
-                const y = 1 + (scrollY-window.innerHeight * 3.8) / 150;
-                const [r, g, b] = [red/y, green/y, blue/y].map(Math.round)
-                
-                Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(${r < 58 ? 58 : r}, ${g < 58 ? 58 : g}, ${b < 58 ? 58 : b} )`);
-            } else {
-                Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(255, 255, 255)`);
-            }
-    };
+            // background color change approaching footer
+            gsap.to('.background', {
+                scrollTrigger:{
+                    trigger: '.Project3',
+                    start: 'bottom top',
+                    end: 'max',
+                    scrub: .1,
+                },
+                backgroundColor: 'rgb(58, 58, 58)',
+            });
+
+            // Landing image scroll over effect
+            gsap.to('.Landing_image', {
+                scrollTrigger: {
+                    trigger: '.Landing_image',
+                    pin: true,
+                    pinSpacing: false,
+                    start: 'top top',
+                    end: screenHeight,
+                    scrub: .1,
+                },
+            });
+
+            gsap.fromTo('.Project1_info', {opacity: 0}, {
+                scrollTrigger:{
+                    trigger: '.Project1',
+                    start: 'top center',
+                    end: `+=${screenHeight * 0.8}`,
+                    pin: true,
+                    pinSpacing: false,
+                    toggleActions: 'play none none reverse',
+                    onLeave: () => gsap.to('.Project1_info', {opacity: 0}),
+                    onEnterBack: () => gsap.to('.Project1_info', {opacity: 1}),
+                },
+                opacity: 1,
+                duration: 1,
+            });
+
+            gsap.fromTo('.Project2_info', {opacity: 0}, {
+                scrollTrigger:{
+                    trigger: '.Project2',
+                    start: 'top center',
+                    end: `+=${screenHeight * 0.8}`,
+                    pin: true,
+                    pinSpacing: false,
+                    toggleActions: 'play none none reverse',
+                    onLeave: () => gsap.to('.Project2_info', {opacity: 0}),
+                    onEnterBack: () => gsap.to('.Project2_info', {opacity: 1}),
+                },
+                opacity: 1,
+                duration: 1,
+            });
+
+            gsap.fromTo('.Project3_info', {opacity: 0}, {
+                scrollTrigger:{
+                    trigger: '.Project3',
+                    start: 'top center',
+                    end: `+=${screenHeight * 0.8}`,
+                    pin: true,
+                    pinSpacing: false,
+                    toggleActions: 'play none none reverse',
+                    onLeave: () => gsap.to('.Project3_info', {opacity: 0}),
+                    onEnterBack: () => gsap.to('.Project3_info', {opacity: 1}),
+                },
+                opacity: 1,
+                duration: 1,
+            });
+        }
+    },[screenHeight, screenWidth]);
 
     return(
-        <Scrollbar style={{overflow:'hidden', outline: 'none', height: '100vh', position: 'relative'}}damping={0.2} onScroll={(status) => scrollAnimation(status.offset.y)}>
+        <div className="Container scroller" style={{position: 'relative', height: '100vh', width: '100vw'}}>
             <Wrapper>
-                <LandingImg ref={Imageref} src={WorksPageImg} />
+                <LandingImg className="Landing_image" src={WorksPageImg} />
                 <div style={{color: '#fff', mixBlendMode: 'difference'}}>
                     <Header>
                         Works
                     </Header>
                 </div>
             </Wrapper>
-            <SectionWrapper>
-                <Background ref={Backgroundref} />
+            <SectionWrapper >
+                <Background className="background" />
                 <TimeContainer>
-                    <LeftSide>
-                        <InfoWrap>
-                            <Info ref={Itemref1}>
-                                <ProjectTitle style={{marginTop: 0}}>Cinema </ProjectTitle>
-                                <ProjectDescription>This is an account based movie booking platform. It displays the latest movies and their ratings based on the IMDB API. </ProjectDescription>
+                    <SideColumn>
+                        <InfoWrap className="Project1">
+                            <Info className="Project1_info">
+                                <ProjectTitle>Cinema </ProjectTitle>
+                                <ProjectDescription>
+                                    This is an account based movie booking platform. It displays the latest movies and their ratings based on the IMDB API.
+                                </ProjectDescription>
                                 <ProjectRole>Design, Fullstack</ProjectRole>
                             </Info>
                         </InfoWrap>
                         <InfoWrap>
                             <InfoImg src={AutomatedBot} />
                         </InfoWrap>
-                        <InfoWrap>
-                            <Info ref={Itemref3}>
+                        <InfoWrap className="Project2">
+                            <Info className="Project2_info">
                                 <ProjectTitle>Musician Site</ProjectTitle>
-                                <ProjectDescription>Site for a local musician displaying their latest songs.</ProjectDescription>
+                                <ProjectDescription>
+                                    Site for a local musician displaying their latest songs.
+                                </ProjectDescription>
                                 <ProjectRole>Design, Fullstack</ProjectRole>
                             </Info>
                         </InfoWrap>
-                    </LeftSide>
-                    <RightSide>
+                    </SideColumn>
+                    <SideColumn>
                         <InfoWrap>
                             <InfoImg src={CinemaPhoto} />
                         </InfoWrap>
-                        <InfoWrap>
-                            <Info ref={Itemref2}>
+                        <InfoWrap className="Project3">
+                            <Info className="Project3_info">
                                 <ProjectTitle>Automated chatbot </ProjectTitle>
                                 <ProjectDescription>Most companies now have clients from all over the world. I created this automated bot to </ProjectDescription>
                                 <ProjectRole>Design, Fullstack</ProjectRole>
@@ -120,24 +185,23 @@ const AboutMePage = () => {
                         <InfoWrap>
                             <InfoImg src={Musician} />
                         </InfoWrap>
-                    </RightSide>
+                    </SideColumn>
                 </TimeContainer>
                 <Footer />
             </SectionWrapper>
-        </Scrollbar>
-
-    )
-}
+        </div>
+    );
+};
 
 export default AboutMePage;
 const Background = styled.div`
-  height: 100vh;
-  width:100vw;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  position: absolute;
-  background-color: #fff;
+    height: 100vh;
+    width:100vw;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background-color: #fff;
 `;
 
 const ProjectRole = styled.p`
@@ -168,13 +232,10 @@ const LandingImg = styled.img`
     width: 100vw;
     left: 0;
 `;
-const LeftSide = styled.div`
+const SideColumn = styled.div`
     width: 50vw;
     height: 100%;
     margin-bottom: 100vh;
-`;
-
-const RightSide = styled(LeftSide)`
 `;
 
 const InfoWrap = styled.div`
@@ -212,17 +273,4 @@ const Wrapper = styled.div`
     align-items: center;
     overflow:hidden;
     position: relative;
-`;
-
-const Header = styled.h1`
-    font-size: 12vw;
-    padding: 0;
-    font-weight: 600;
-    letter-spacing: -3px;
-    line-height: 12vw;
-    z-index: 1;
-
-    position: absolute;
-    right: 10vw;
-    bottom: 0;
 `;

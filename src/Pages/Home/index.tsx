@@ -1,167 +1,150 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import LandingPage from 'Sections/LandingPage';
-import AboutMe from 'Sections/AboutMe';
-import Works from 'Sections/Works';
-import Footer from 'Sections/Footer';
-import {Scrollbar} from 'smooth-scrollbar-react';
-import { isVoidExpression } from 'typescript';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-gsap.registerPlugin(ScrollTrigger);
-
-// ScrollTrigger.scrollerProxy('.scroller', {
-//   scrollTop(value) {
-//     if (arguments.length) {
-//       bodyScrollBar.scrollTop = value; // setter
-//     }
-//     return bodyScrollBar.scrollTop;    // getter
-//   },
-//   getBoundingClientRect() {
-//     return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-//   }
-// });
-
-gsap.to(".solution", {
-  scrollTrigger: {
-      trigger: ".wrapper",
-      start: "top top",
-      end: '+=100',
-      scrub: 1,
-  },
-  scale: 5,
-});
+import AboutMe from 'Sections/AboutMe';
+import Footer from 'Sections/Footer';
+import LandingPage from 'Sections/LandingPage';
+import Works from 'Sections/Works';
+import Scrollbar from 'smooth-scrollbar';
 
 const HomePage = () => {
     const LandingSectionref = React.createRef<HTMLDivElement>();
+    const Containerref = React.createRef<HTMLDivElement>();
     const AboutMeContainerref = React.createRef<HTMLDivElement>();
     const Backgroundref = React.createRef<HTMLDivElement>();
     const Worksref = React.createRef<HTMLDivElement>();
     const Footerref = React.createRef<HTMLDivElement>();
+    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+    const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
 
+    window.addEventListener('resize', (e) => {
+      if (window.innerHeight !== screenHeight)
+        setscreenHeight(window.innerHeight);
 
-    const [red, green, blue] = [255, 255, 255];
+      if (window.innerWidth !== screenWidth)
+        setScreenWidth(window.innerWidth);
+    });
 
-    return(
-        <Scrollbar 
-        continuousScrolling={false}
-        onScroll={(status, Scrollbar) => {
-          const scrollY = status.offset.y;
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+        const Contactbtn = document.querySelector('.Contactbtn');
 
-          if(Scrollbar){
-            Scrollbar.addListener(ScrollTrigger.update);
-            ScrollTrigger.scrollerProxy('.scroller', {
-              scrollTop() {
+        if (Containerref.current){
+
+          // initial setup
+            const bodyScrollBar = Scrollbar.init(Containerref.current, {damping: 0.05, renderByPixels: true, delegateTo: document});
+            ScrollTrigger.scrollerProxy(".scroller", {
+              scrollTop (value: number = 0) {
                 if (arguments.length) {
-                  Scrollbar.scrollTop = scrollY; // setter
+                  bodyScrollBar.scrollTop = value; // setter
                 }
-                return Scrollbar.scrollTop;    // getter
+                return bodyScrollBar.scrollTop;    // getter
               },
-              getBoundingClientRect() {
+              getBoundingClientRect () {
                 return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
               }
             });
-          }
+            bodyScrollBar.addListener(ScrollTrigger.update);
+            ScrollTrigger.defaults({scroller: Containerref.current});
+
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000); });
+
+            // Background Item;
+            gsap.to('.background', {
+                scrollTrigger: {
+                  trigger: '.background',
+                  pin: true,
+                  pinSpacing:false,
+                  start: 'top top',
+                  end: 'max',
+                  scrub: .1
+                }
+              });
+
+              // change background color approaching bottom
+            gsap.to(['.background', '.works_wrapper'], {
+                scrollTrigger: {
+                  trigger: ".footerwrapper",
+                  start: `top bottom`,
+                  end: 'max',
+                  scrub: .1
+                },
+                backgroundColor: 'rgb(58, 58, 59)'
+              });
 
 
-          const t1 = gsap.timeline({
-            scrollTrigger: {
-                trigger: ".wrappers",
-                start: "top top",
-                end: 'center top',
-                scrub: .5,
-                markers: true
-            }
-        });
+            // About me section
+            const t1 = gsap.timeline({
+              scrollTrigger: {
+                  trigger: '.AM_wrapper',
+                  pin: true,
+                  pinSpacing:false,
+                  start: "top top",
+                  end: `+=${screenHeight * 2}`,
+                  scrub: .2,
+              }
+            });
 
-        t1.to(".solution", {scale: 5, duration: 2});
-          //page background color
-           Backgroundref.current && (Backgroundref.current.style.transform = `translateY(${scrollY}px)`);
-          //  SectionWrapperref.current && (SectionWrapperref.current.style.visibility = scrollY > window.innerHeight * 0.5 ? 'hidden' : 'visible');
+            const line1 = document.querySelector('.challenge') as HTMLSpanElement;
+            const line2 = document.querySelector('.to') as HTMLSpanElement;
+            const line3 = document.querySelector('.solution') as HTMLSpanElement;
 
-          if(LandingSectionref.current){
-            const Landing = LandingSectionref.current;
-            const Logo = Landing.children[0].children[0] as HTMLImageElement;
-            Logo.style.transform =`translateY(${scrollY}px)`;
-            Logo.style.width = `${100 - scrollY*0.5 > 15 ? 100 - scrollY*0.5 : 15}%`;
-          }
+            t1.add('start')
+            .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
+            .to(".challenge", {scale: 5, duration: 0.5, y: screenHeight * 0.25 - line1.offsetTop , x: screenWidth / 2 - line1.offsetLeft - line1.clientWidth / 2}, 'start')
+            .to(".to", {scale: 5, duration: 0.5, y: screenHeight * 0.45 - line2.offsetTop,  x: screenWidth / 2 - line2.offsetLeft - line2.clientWidth / 2 }, 'start')
+            .to(".solution", {scale: 5, duration: 0.5, y: screenHeight * 0.65 - line3.offsetTop, x: screenWidth / 2 - line3.offsetLeft - line3.clientWidth / 2}, 'start');
 
-          //About Me Section
-          if(AboutMeContainerref.current){
-            // const Aboutme = AboutMeContainerref.current;
-            // const Text = Aboutme.children[0] as HTMLDivElement;
-            // const HideText1 = Text.children[0] as HTMLSpanElement;
-            // const Solutionwrd = Text.children[1] as HTMLParagraphElement;
-            // const Towrd = Text.children[2] as HTMLParagraphElement;
-            // const HideText2 =  Text.children[3] as HTMLSpanElement;
-            // const Challengewrd = Text.children[4] as HTMLParagraphElement;
-            // const HideText3 = Text.children[5] as HTMLSpanElement;
 
-            // const opacitycalc = 1 - ((scrollY - window.innerHeight * 1.1)/100);
-            // const opacity = opacitycalc < 0 ? 0 : opacitycalc
-            // const scale = ((scrollY - window.innerHeight)/100) * 1.15;
-            // const translationBase = scrollY - window.innerHeight * 1.1;
 
-            // if(scrollY > window.innerHeight && scrollY < window.innerHeight * 2){
-            //   Aboutme.style.transform = `translateY(${scrollY - window.innerHeight}px)`;
+            // works wrapper
+            const sections = gsap.utils.toArray('.Works');
+            const wordSelected = document.querySelector('.word_selected') as HTMLSpanElement;
+            const wordWorks = document.querySelector('.word_works') as HTMLSpanElement;
 
-            //   if(scrollY > window.innerHeight * 1.1){
-            //     HideText1.style.opacity = `${opacity}`;
-            //     HideText2.style.opacity = `${opacity}`;
-            //     HideText3.style.opacity = `${opacity}`;
 
-            //     console.log(scale);
+            const t2 = gsap.timeline({
+              scrollTrigger: {
+                trigger: '.works_wrapper',
+                start: 'top top',
+                end: `+=${screenHeight * 3}`,
+                pin: true,
+                pinSpacing: false,
+                scrub: .1,
+              }
+            });
 
-            //     Solutionwrd.style.transform = `scale(${scale < 1 ? 1 : scale}, ${scale < 1 ? 1 : scale})`
-            //     Towrd.style.transform = `scale(${scale < 1 ? 1 : scale}, ${scale < 1 ? 1 : scale})`
-            //     Challengewrd.style.transform = `scale(${scale < 1 ? 1 : scale}, ${scale < 1 ? 1 : scale}) translate3d(${translationBase}px, ${-translationBase}px, 0)`
-            //   }
-
-            // }
-          }
-
-          //Work section
-          if(Worksref.current){
-            if(scrollY > window.innerHeight * 3 && scrollY < window.innerHeight * 3.7){
-              Worksref.current && (Worksref.current.style.transform = `translateY(${scrollY - window.innerHeight * 3}px)`)
-            }else if(scrollY > window.innerHeight * 3.7) {
-              Worksref.current && (Worksref.current.style.transform = `translateY(${(window.innerHeight * 3.7) - window.innerHeight * 3}px)`)
-            }
-          }
-
-          if(scrollY > window.innerHeight * 4.3){
-            const y = 1 + (scrollY - window.innerHeight * 4.3) / 150;
-            const [r, g, b] = [red/y, green/y, blue/y].map(Math.round)
-            
-            Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(${r < 58 ? 58 : r}, ${g < 58 ? 58 : g}, ${b < 58 ? 58 : b} )`);
-        } else {
-            Backgroundref.current && (Backgroundref.current.style.backgroundColor = `rgb(255, 255, 255)`);
+            t2.add('next')
+            .fromTo('.word_selected', {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.05})
+            .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
+            .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -wordSelected.getBoundingClientRect().left * 0.8, duration: 0.05})
+            .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin: 'left',yPercent: -10, x: -wordWorks.getBoundingClientRect().left * 0.55, duration: 0.05})
+            .fromTo('.Project_wrapper',{x: screenWidth}, {
+              x: -screenWidth * 3, // 4 projects - 1
+              snap: `1 / (${sections.length} - 1)`,
+              duration: 1
+            });
         }
+    }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref]);
 
-        }} 
-        damping={0.033} 
-        style={{
-          overflow: 'hidden', 
-          outline: 'none', 
-          height: '100vh',
-          position: 'relative'
-        }}
-      >
-        <Background ref={Backgroundref}/>
-        <LandingPage ref={LandingSectionref} />
-        <AboutMe ref={AboutMeContainerref} />
-        <Works ref={Worksref} />
-        <Footer ref={Footerref} />
-      </Scrollbar>
-    )
-}
+    return(
+        <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw'}}>
+            <Background className="background" ref={Backgroundref}/>
+            <LandingPage ref={LandingSectionref} />
+            <AboutMe ref={AboutMeContainerref} />
+            <Works ref={Worksref} />
+            <Footer ref={Footerref} />
+        </div>
+    );
+};
 
 export default HomePage;
 
 const Background = styled.div`
   height: 100vh;
-  width:100vw;
+  width: 100vw;
   z-index: -1;
   top: 0;
   left: 0;

@@ -1,24 +1,19 @@
+import AppLink from 'Components/AppLink';
+import Cursor from 'Components/Cursor';
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Routes as Switch,
+  Navigate,
   Route,
-  Navigate
+  Routes as Switch
 } from "react-router-dom";
-import Cursor from 'Components/Cursor';
-
-import AppLink from 'Components/AppLink';
-
-
 import './App.css';
 
-const HomePage = React.lazy(() => import('Pages/Home/Demo'));
-const AboutMePage = React.lazy(() => import('Pages/AboutMe/Temp'));
-const WorksPage = React.lazy(() => import('Pages/Works/Temp'));
-const WorksPageOld = React.lazy(() => import('Pages/Works'));
-const ContactPage = React.lazy(() => import('Pages/Contact'));
+const HomePage = React.lazy(() => import('Pages/Home'));
+const AboutMePage = React.lazy(() => import('Pages/AboutMe'));
+const WorksPage = React.lazy(() => import('Pages/Works'));
 
-function App() {
+function App () {
   return (
     <div className="App">
       <Cursor />
@@ -34,28 +29,14 @@ function App() {
             <React.Suspense fallback={<>...Loading</>}>
               <AboutMePage />
             </React.Suspense>
-          } 
+          }
           />
           <Route path='/Works' element={
             <React.Suspense fallback={<>...Loading</>} >
               <WorksPage />
             </React.Suspense>
-          } 
+          }
           />
-
-          <Route path='/Works_old' element={
-            <React.Suspense fallback={<>...Loading</>} >
-              <WorksPageOld />
-            </React.Suspense>
-          } 
-          />
-
-          <Route path='/Contact' element={
-            <React.Suspense fallback={<>...Loading</>}>
-              <ContactPage />
-            </React.Suspense>
-          } />
-
           <Route path={'/'} element={<Navigate to={'/Home'}/>}/>
 
           <Route
@@ -73,10 +54,10 @@ function App() {
           <AppLink url={'/About'} redirectTo={'About Me'}/>
           <AppLink url={"/Contact"} redirectTo={'Contact'} />
         </div>
-        
+
       </Router>
 
-      
+
 
     </div>
   );
