@@ -120,7 +120,7 @@ const HomePage = () => {
             .fromTo('.word_selected', {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.05})
             .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
             .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -wordSelected.getBoundingClientRect().left * 0.8, duration: 0.05})
-            .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin: 'left',yPercent: -10, x: -wordWorks.getBoundingClientRect().left * 0.55, duration: 0.05})
+            .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin: 'left',yPercent: 10, x: -wordWorks.getBoundingClientRect().left * 0.55, duration: 0.05})
             .fromTo('.Project_wrapper',{x: screenWidth}, {
               x: -screenWidth * 3, // 4 projects - 1
               snap: `1 / (${sections.length} - 1)`,
@@ -130,7 +130,7 @@ const HomePage = () => {
     }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref]);
 
     return(
-        <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw'}}>
+        <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden'}}>
             <Background className="background" ref={Backgroundref}/>
             <LandingPage ref={LandingSectionref} />
             <AboutMe ref={AboutMeContainerref} />

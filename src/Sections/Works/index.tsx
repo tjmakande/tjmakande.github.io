@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-import styled from 'styled-components';
-import CinemaPhoto from 'Assets/Cinema-Photo.png';
-import Musician from 'Assets/Musician.png'
-import AutomatedBot from 'Assets/Automated-bot.png';
 import Cube from 'Assets/3D-cube.png';
+import AutomatedBot from 'Assets/Automated-bot.png';
+import CinemaPhoto from 'Assets/Cinema-Photo.png';
+import Musician from 'Assets/Musician.png';
+import styled from 'styled-components';
 
 
 const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
@@ -22,7 +22,7 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
                 </SectionTitle>
                 </WrapperText>
             </div>
-            
+
             <WrapperWorks className="Project_wrapper">
                     <ProjectItem className={'Works cinema'}  data-id={'cinema'}>
                     <ProjectBg  src={CinemaPhoto} />
@@ -45,13 +45,13 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
                 </ProjectItem>
             </WrapperWorks>
         </Container>
-    )
+    );
 });
 
 export default WorkSection;
-const ProjectBg = styled.img`   
+const ProjectBg = styled.img`
     width: 60vw;
-    height: 70vh;
+    height: 40vw;
 `;
 
 const WrapperWorks = styled.div`
@@ -72,7 +72,7 @@ const SectionTitle = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 13vw;
+    font-size: 12vw;
     margin: 0;
     font-weight: 700;
 `;

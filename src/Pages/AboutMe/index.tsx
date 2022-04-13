@@ -144,7 +144,7 @@ const AboutMePage = () => {
                     </Header>
                 </div>
             </HeaderWrapper>
-            <SectionWrapper style={{backgroundColor: 'red'}} >
+            <SectionWrapper >
                 <Background className="background"/>
                 <IntroContainer style={{marginBottom: '600vh'}} className="SectionWrapper">
                     <IntroWrapper>
