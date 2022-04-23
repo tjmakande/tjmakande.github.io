@@ -2,7 +2,7 @@ import UAParser from 'ua-parser-js';
 // import Bowser from 'bowser';
 
 // const bowser = Bowser.getParser(window.navigator.userAgent);
-const {device} = new UAParser().getResult();
+const {device, os} = new UAParser().getResult();
 
 export const isMobile = () => {
     if(device.type === 'mobile') return true;
@@ -19,3 +19,5 @@ export const isDesktop = () => {
 
     return false;
 }
+
+export const isIos = os.name === 'iOS';
