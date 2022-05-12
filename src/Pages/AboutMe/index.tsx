@@ -13,6 +13,8 @@ import Footer from 'Sections/Footer';
 import Scrollbar from 'smooth-scrollbar';
 import styled from 'styled-components';
 
+import Video from './Portfolio_Video.mp4';
+
 const AboutMePage = () => {
     const Imageref = createRef<HTMLImageElement>();
     // Starting HERE
@@ -157,12 +159,18 @@ const AboutMePage = () => {
                 </IntroContainer>
 
                 <IntroTwoWrapper className='IntroTwoWrapper'>
-                    <DescriptionFour >
-                        I'm naturally keen developer with an eye for clean code and designs. I have the MERN stack in my arsenal which enables me to work on all sides of the development cycle.
-                    </DescriptionFour>
-                    <DescriptionFour>
-                        I am very much attracted to challenges and I love to find solutions. I do believe that those two belong together.
-                    </DescriptionFour>
+                    <div style={{marginRight: '5rem', height:'400px'}}>
+                        <DescriptionFour >
+                            I'm naturally keen developer with an eye for clean code and designs. I have the MERN stack in my arsenal which enables me to work on all sides of the development cycle.
+                        </DescriptionFour>
+                        <DescriptionFour>
+                            I am very much attracted to challenges and I love to find solutions. I do believe that those two belong together.
+                        </DescriptionFour>
+                    </div>
+
+                    <video width="682" height="440" autoPlay muted>
+                        <source src={Video} type="video/mp4"/>
+                    </video>
                 </IntroTwoWrapper>
                 <Footer />
             </SectionWrapper>
@@ -211,7 +219,11 @@ const IntroWrapper = styled.div`
 `;
 
 const IntroTwoWrapper = styled(IntroWrapper)`
-    align-items: start;
+    padding: 0 5vw;
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 50vh;
 `;
 
@@ -227,7 +239,7 @@ const DescriptionFour = styled(Description)`
     font-weight: 300;
     font-size: clamp(1.7rem, 1.5vw, 2.5rem);
     position: relative;
-    margin-left: 5vw;
+    // margin-left: 5vw;
 `;
 
 const LandingImg = styled.img`

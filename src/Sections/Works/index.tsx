@@ -24,9 +24,9 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
             </div>
 
             <WrapperWorks className="Project_wrapper">
-                    <ProjectItem className={'Works cinema'}  data-id={'cinema'}>
+                <ProjectItem className={'Works cinema'}  data-id={'cinema'}>
                     <ProjectBg  src={CinemaPhoto} />
-                <Title > 01. Cinema</Title>
+                    <Title > 01. Cinema</Title>
                 </ProjectItem>
 
                 <ProjectItem className={'Works chatbot'}  data-id={'chatbot'}>
@@ -50,8 +50,8 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
 
 export default WorkSection;
 const ProjectBg = styled.img`
-    width: 60vw;
-    height: 40vw;
+    width: 50vw;
+    height: 28vw;
 `;
 
 const WrapperWorks = styled.div`
