@@ -52,6 +52,14 @@ export default WorkSection;
 const ProjectBg = styled.img`
     width: 50vw;
     height: 28vw;
+
+    &:hover{
+        & + h2 {
+            transform: rotateZ(-10deg);
+            transition: .5s;
+
+        }
+    }
 `;
 
 const WrapperWorks = styled.div`
@@ -84,6 +92,10 @@ const Title = styled.h2`
     bottom: 5vw;
     font-size: 10vw;
     margin: 0;
+
+    &:hover{
+        transform: rotateZ(-10deg);
+    }
 `;
 
 const ProjectItem = styled.div`
