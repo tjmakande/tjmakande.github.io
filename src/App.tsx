@@ -1,5 +1,6 @@
 import AppLink from 'Components/AppLink';
 import Cursor from 'Components/Cursor';
+import ScrolllDown from 'Components/ScrollDown';
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -53,6 +54,7 @@ function App () {
           <AppLink url={'/Works'} redirectTo={'Works'}/>
           <AppLink url={'/About'} redirectTo={'About Me'}/>
           <AppLink url={"/Contact"} redirectTo={'Contact'} />
+          <ScrolllDown />
         </div>
 
       </Router>

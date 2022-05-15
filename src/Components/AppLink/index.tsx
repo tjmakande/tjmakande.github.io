@@ -1,18 +1,18 @@
 import React from 'react';
-import Wrapper from './styled/Wrapper';
 import {Link} from 'react-router-dom';
+import Wrapper from './styled/Wrapper';
 
 
 interface Props {
-    url: string,
-    redirectTo: string,
+    url: string;
+    redirectTo: string;
 }
 
 const AppLink = ({url, redirectTo}: Props) => {
     return(
-        <Wrapper 
+        <Wrapper
             className={redirectTo === 'Contact' ? 'Applink Contactbtn' : 'Applink'}
-            left={redirectTo === 'About Me' || redirectTo === 'Home'} 
+            left={redirectTo === 'About Me' || redirectTo === 'Home'}
             top={redirectTo === "Works" || redirectTo === "Home"}
         >
             {
@@ -23,9 +23,9 @@ const AppLink = ({url, redirectTo}: Props) => {
                 {redirectTo}
             </Link>)
             }
-            
+
         </Wrapper>
-    )
+    );
 };
 
 export default AppLink;

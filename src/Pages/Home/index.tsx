@@ -5,12 +5,13 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AboutMe from 'Sections/AboutMe';
 import Footer from 'Sections/Footer';
-import LandingPage from 'Sections/LandingPage';
+// import LandingPage from 'Sections/LandingPage';
 import Works from 'Sections/Works';
 import Scrollbar from 'smooth-scrollbar';
 
+import LandingSection from 'Sections/LandingSection';
+
 const HomePage = () => {
-    const LandingSectionref = React.createRef<HTMLDivElement>();
     const Containerref = React.createRef<HTMLDivElement>();
     const AboutMeContainerref = React.createRef<HTMLDivElement>();
     const Backgroundref = React.createRef<HTMLDivElement>();
@@ -127,12 +128,12 @@ const HomePage = () => {
               duration: 1
             });
         }
-    }, [Containerref, screenWidth, screenHeight, Backgroundref, LandingSectionref, Footerref]);
+    }, [Containerref, screenWidth, screenHeight, Backgroundref, Footerref]);
 
     return(
         <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden'}}>
             <Background className="background" ref={Backgroundref}/>
-            <LandingPage ref={LandingSectionref} />
+            <LandingSection />
             <AboutMe ref={AboutMeContainerref} />
             <Works ref={Worksref} />
             <Footer ref={Footerref} />

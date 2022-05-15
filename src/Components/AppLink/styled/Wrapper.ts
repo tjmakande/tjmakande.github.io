@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
 interface Props {
-    left: Boolean,
-    top: Boolean
+    left: boolean;
+    top: boolean;
 }
 
 export default styled.div`
     position: fixed;
     ${
-        (props:Props) => props.left ? 'left: 2vw' : 'right: 2vw'
+        (props: Props) => props.left ? 'left: 2vw' : 'right: 2vw'
     };
     ${
         (props: Props) => props.top ? 'top: 3vh' : 'bottom: 3vh'
