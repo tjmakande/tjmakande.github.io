@@ -70,7 +70,15 @@ const HomePage = () => {
                   trigger: ".footerwrapper",
                   start: `top bottom`,
                   end: 'max',
-                  scrub: .1
+                  scrub: .1,
+                  onEnter: () => {
+                    const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                    return Div.style.display = "none";
+                  },
+                  onLeaveBack: () => {
+                    const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                    return Div.style.display = "flex";
+                  }
                 },
                 backgroundColor: 'rgb(58, 58, 59)'
               });

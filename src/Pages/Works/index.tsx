@@ -72,6 +72,14 @@ const AboutMePage = () => {
                     start: 'bottom top',
                     end: 'max',
                     scrub: .1,
+                    onEnter: () => {
+                        const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                        return Div.style.display = "none";
+                    },
+                    onLeaveBack: () => {
+                        const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                        return Div.style.display = "flex";
+                    }
                 },
                 backgroundColor: 'rgb(58, 58, 58)',
             });

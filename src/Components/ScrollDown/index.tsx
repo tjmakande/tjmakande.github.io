@@ -14,7 +14,7 @@ const ScrollDownIcon = () => {
     }, [nudgeUser]);
 
     return(
-        <Wrapper onClick={() => setNudgeUser(true)}>
+        <Wrapper className={'ScrollNudge'} onClick={() => setNudgeUser(true)}>
             <Arrow />
             <Text> scroll down </Text>
         </Wrapper>
@@ -32,7 +32,7 @@ const Wrapper = styled.div`
     width: 30px;
     left: 50%;
     right: 0;
-    transform: translate(50%, 0);
+    transform: translate(-50%, 0);
     margin: 0;
     padding: 0;
 `;
