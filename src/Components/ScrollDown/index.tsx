@@ -23,7 +23,11 @@ const ScrollDownIcon = () => {
         window.addEventListener('load', resetTimer, true);
         const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
         events.forEach((name: string) => {
-            document.addEventListener(name, resetTimer, true);
+            if(name === 'scroll') {
+                document.querySelector('.scroller')?.addEventListener('scroll', resetTimer, true);
+            } else {
+                document.addEventListener(name, resetTimer, true);
+            }
         });
 
     };
