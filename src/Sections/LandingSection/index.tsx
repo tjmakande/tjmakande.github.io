@@ -1,19 +1,6 @@
 import LandingImage from 'Assets/LandingImage2.jpg';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
-import gsap from 'gsap';
-import React, {useEffect, useRef} from 'react';
 import styled from 'styled-components';
-
-import LandingPart1 from 'Assets/LandingPart1.png';
-import LandingPart2 from 'Assets/LandingPart2.png';
-import LandingPart3 from 'Assets/LandingPart3.png';
-import LandingPart4 from 'Assets/LandingPart4.png';
-import LandingPart5 from 'Assets/LandingPart5.png';
-import LandingPart6 from 'Assets/LandingPart6.png';
-
-
-
-
 
 const LandingSection = () => {
     return (
@@ -26,15 +13,6 @@ const LandingSection = () => {
                 </TextContainer>
 
                 <ImageWrapper>
-                    {/* <div style={{position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'space-evenly'}}>
-                        <Image src={LandingPart1} style={{marginTop: '0'}} alt="image part" />
-                        <Image src={LandingPart2} style={{marginTop: '0'}} alt="image part" />
-                        <Image src={LandingPart3} style={{marginTop: '0px'}} alt="image part" />
-                        <Image src={LandingPart4} style={{marginTop: '0'}} alt="image part" />
-                        <Image src={LandingPart5} style={{marginTop: '0'}} alt="image part" />
-                        <Image src={LandingPart6} style={{marginTop: '0'}} alt="image part" />
-                    </div> */}
-
                     <svg style={{width: '100%'}} viewBox='0 0 420 280'>
                         <defs>
                             <clipPath id={'myPath'}>
@@ -49,9 +27,7 @@ const LandingSection = () => {
                         </defs>
                         <image width={421} height={280} clipPath={`url(#myPath)`} xlinkHref={LandingImage}></image>
                     </svg>
-                    {/* <Image src={LandingImage} alt={'Picture of me'}/> */}
                 </ImageWrapper>
-
             </Wrapper>
         </SectionWrapper>
     );
@@ -96,14 +72,6 @@ const DescriptionTitle = styled.p`
     mix-blend-mode: difference;
 `;
 
-const Image = styled.img`
-    // width: 14%;
-    width: 100%;
-    clip-path: url(#myPath);
-    height: 100%;
-    // border-radius: 60px 60px;
-`;
-
 const TextContainer = styled.div`
     width: 40vw;
     height: 100%;
@@ -115,14 +83,8 @@ const TextContainer = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-    // position: absolute;
-    // top: 5rem;
-    // left: 6vw;
-    // height: 0;
-    // padding-top: calc(421/280 * 100%);
     width: 50vw;
     height: 100%;
     display: flex;
     align-items: center;
-    // right: 0;
 `;
