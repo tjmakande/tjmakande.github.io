@@ -133,10 +133,10 @@ const HomePage = () => {
 
             t1.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-            .to(line1, {scale: 5, duration: 0.5, y: screenHeight * 0.15 - line1.offsetTop, x: screenWidth / 2 - line1.offsetLeft - line1.clientWidth / 2}, 'start')
-            .to(line2, {scale: 5, duration: 0.5, y: screenHeight * 0.35 - line2.offsetTop, x: screenWidth / 2 - line2.offsetLeft - line2.clientWidth / 2}, 'start')
-            .to(line3, {scale: 5, duration: 0.5, y: screenHeight * 0.55 - line3.offsetTop, x: screenWidth / 2 - line3.offsetLeft - line3.clientWidth / 2}, 'start')
-            .to(line4, {scale: 5, duration: 0.5, y: screenHeight * 0.75 - line4.offsetTop, x: screenWidth / 2 - line4.offsetLeft - line4.clientWidth / 2}, 'start');
+            .to(line1, {scale: 5, duration: 0.5, y: screenHeight * 0.15 - line1.offsetTop, x: screenWidth / 2 - line1.offsetLeft - line1.clientWidth / 2, color: '#ee9e6d'}, 'start')
+            .to(line2, {scale: 5, duration: 0.5, y: screenHeight * 0.35 - line2.offsetTop, x: screenWidth / 2 - line2.offsetLeft - line2.clientWidth / 2, color: '#ee9e6d'}, 'start')
+            .to(line3, {scale: 5, duration: 0.5, y: screenHeight * 0.55 - line3.offsetTop, x: screenWidth / 2 - line3.offsetLeft - line3.clientWidth / 2, color: '#ee9e6d'}, 'start')
+            .to(line4, {scale: 5, duration: 0.5, y: screenHeight * 0.75 - line4.offsetTop, x: screenWidth / 2 - line4.offsetLeft - line4.clientWidth / 2, color: '#ee9e6d'}, 'start');
 
             // works wrapper
             const sections = gsap.utils.toArray('.Works');
