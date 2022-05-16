@@ -53,6 +53,28 @@ body {
   display: none;
 }
 
+.mouseOverSocial {
+  width: 4.5vw;
+  height: 4.5vw;
+  border: 50%;
+  transition: .2s;
+  opacity: 1;
+
+  top: -2.25vw;
+  left: -2.25vw;
+}
+
+.mouseOverEmail{
+  width: 15vw;
+  height: 4vw;
+  border: 50%;
+
+  transition: .2s;
+
+  top: -2vw;
+  left: -7.5vw;
+}
+
 .mouseOverProject{
   width: 25vw;
   height: 25vh;

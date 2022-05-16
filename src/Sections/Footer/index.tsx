@@ -6,14 +6,26 @@ import InstagramIcon from './InstagramIcon';
 import LinkedInIcon from './LinkedInIcon';
 
 const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
+    const underlineOnHover = (div: HTMLElement) => div.style.textDecoration = "underline";
+    const rmunderlineOnHover = (div: HTMLElement) => div.style.textDecoration = "none";
+
+    const isHover = (action: boolean) => action ? (
+        document.querySelector('.mouse')?.classList.add('mouseOverEmail')
+    ) : (
+        document.querySelector('.mouse')?.classList.remove('mouseOverEmail')
+    );
+
     return(
         <Container className="footerwrapper">
             <Wrapper>
                 <SectionTitle>Let's Collaborate</SectionTitle>
 
-                <EmailLink style={{fontSize: '1.3vw'}}>Don't be afraid to connect, you can reach me @ tj@example.com</EmailLink>
-                <EmailLink>...or...</EmailLink>
-
+                <CTAtext style={{fontSize: '1.2vw'}}>Don't be afraid to connect, you can reach me</CTAtext>
+                <EmailLink
+                    className="EmailLink"
+                    onMouseEnter={(e) => {isHover(true); underlineOnHover((e.target as HTMLElement));}}
+                    onMouseLeave={(e) => {isHover(false); rmunderlineOnHover((e.target as HTMLElement));}}>tj@example.com</EmailLink>
+                <Dot>&#183;</Dot>
 
                 <SocialWrapper>
                     <InstagramIcon />
@@ -62,18 +74,23 @@ const SectionTitle = styled.h1`
 `;
 
 const EmailLink = styled.p`
-    // position: absolute;
-    bottom: 2vh;
     color: #fff;
-    font-size: 1vw;
+    font-size: 1.5vw;
+    margin: 2rem 0 0 0;
+`;
+
+const Dot = styled(EmailLink)`
+    font-size: 5vw;
+    margin:0;
+`;
+
+const CTAtext = styled(EmailLink)`
+    font-size: 1.2vw;
 `;
 
 const SocialWrapper = styled.div`
-    position: absolute;
-    left: 50%;
-    bottom: 5rem;
-    transform: translate(-50%, 0);
-    width: 15%;
+    width: 200px;
+    margin: 1rem 0;
 
     display: flex;
     flex-direction: row;
