@@ -2,19 +2,45 @@ import gsap from 'gsap';
 import React , {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
+interface WrapperProps {
+    isInactive: boolean;
+}
+
 const ScrollDownIcon = () => {
-    const [nudgeUser, setNudgeUser] = useState<boolean>(true);
+    const [isUserInactive, setIsUserInactive] = useState<boolean>(false);
+
+    const InactiveUser = () => {
+        let time: NodeJS.Timeout;
+
+        const ShowIcon = () => setIsUserInactive(true);
+
+        const resetTimer = () => {
+            clearTimeout(time);
+            setIsUserInactive(false);
+            time = setTimeout(ShowIcon, 5000);
+        };
+
+        window.addEventListener('load', resetTimer, true);
+        const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+        events.forEach((name: string) => {
+            document.addEventListener(name, resetTimer, true);
+        });
+
+    };
+
+    useEffect(() => {
+       InactiveUser();
+    }, []);
 
     // EDIT TO READ FOR INACTIVITY FOR ALL PAGES
     useEffect(() => {
-        if (nudgeUser){
+        if (isUserInactive){
             gsap.fromTo('.Arrow', {y: -40}, {y:0, repeat: 3, duration: 2.5, ease: "elastic.out(1, 0.3)"});
-            setNudgeUser(false);
         }
-    }, [nudgeUser]);
+    }, [isUserInactive]);
 
     return(
-        <Wrapper className={'ScrollNudge'} onClick={() => setNudgeUser(true)}>
+        <Wrapper className={'ScrollNudge'} isInactive={isUserInactive}>
             <Arrow />
             <Text> scroll down </Text>
         </Wrapper>
@@ -23,10 +49,10 @@ const ScrollDownIcon = () => {
 
 export default ScrollDownIcon;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<WrapperProps>`
     position: fixed;
     bottom: 3vh;
-    display: flex;
+    display: ${p => p.isInactive ? 'flex' : 'none'};
     flex-direction: column;
     align-items: center;
     width: 30px;

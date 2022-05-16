@@ -66,9 +66,9 @@ const HomePage = () => {
 
             const LandingTimeline = gsap.timeline({
                 scrollTrigger: {
-                    trigger: '.TextContainer',
+                    trigger: '.LandingSection',
                     start: `top top`,
-                    end: `bottom top+=${screenHeight * 0.2}`,
+                    end: `bottom center+=${screenHeight * 0.2}`,
                     pin: false,
                     scrub: 1,
                 }

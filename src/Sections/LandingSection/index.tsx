@@ -1,4 +1,4 @@
-import LandingImage from 'Assets/LandingImage.jpg';
+import LandingImage from 'Assets/LandingImage2.jpg';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 import gsap from 'gsap';
 import React, {useEffect, useRef} from 'react';
@@ -39,12 +39,12 @@ const LandingSection = () => {
                         <defs>
                             <clipPath id={'myPath'}>
                                 <rect className={'ImageBlock1'} fill="#ffffff" x="0%" y="15%" width="11%" height="85%" rx="30" />
-                                <rect className={'ImageBlock2'} fill="#ffffff" x="14.28%" y="0" width="11%" height="85%" rx="30" />
-                                <rect className={'ImageBlock3'} fill="#ffffff" x="28.56%" y="10%" width="11%" height="85%" rx="30" />
-                                <rect className={'ImageBlock4'} fill="#ffffff" x="42.84%" y="0" width="11%" height="85%" rx="30" />
-                                <rect className={'ImageBlock5'} fill="#ffffff" x="57.12%" y="5%" width="11%" height="85%" rx="30" />
-                                <rect className={'ImageBlock6'} fill="#ffffff" x="71.40%" y="15%" width="11%" height="85%" rx="30" />
-                                <rect className={'ImageBlock7'} fill="#ffffff" x="85.68%" y="2%" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock2'} fill="#ffffff" x="13.28%" y="0" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock3'} fill="#ffffff" x="26.56%" y="10%" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock4'} fill="#ffffff" x="40.84%" y="0" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock5'} fill="#ffffff" x="55.12%" y="5%" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock6'} fill="#ffffff" x="69.40%" y="15%" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock7'} fill="#ffffff" x="83.68%" y="2%" width="11%" height="85%" rx="30" />
                             </clipPath>
                         </defs>
                         <image width={421} height={280} clipPath={`url(#myPath)`} xlinkHref={LandingImage}></image>
