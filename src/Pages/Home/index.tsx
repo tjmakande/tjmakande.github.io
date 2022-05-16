@@ -139,30 +139,35 @@ const HomePage = () => {
             .to(line4, {scale: 5, duration: 0.5, y: screenHeight * 0.75 - line4.offsetTop, x: screenWidth / 2 - line4.offsetLeft - line4.clientWidth / 2, color: '#ee9e6d'}, 'start');
 
             // works wrapper
-            const sections = gsap.utils.toArray('.Works');
             const wordSelected = document.querySelector('.word_selected') as HTMLSpanElement;
             const wordWorks = document.querySelector('.word_works') as HTMLSpanElement;
 
 
             const t2 = gsap.timeline({
               scrollTrigger: {
+                scroller: '.scroller',
                 trigger: '.works_wrapper',
                 start: 'top top',
                 end: `+=${screenHeight * 3}`,
                 pin: true,
                 pinSpacing: false,
-                scrub: .1,
+                snap: {
+                  snapTo: [0.28, 0.405, 0.565, 0.845],
+                  directional: false,
+                  duration: {min: 0.2, max:1},
+                  delay: 0.
+                },
+                scrub: 1,
               }
             });
 
-            t2.add('next')
+            t2
             .fromTo('.word_selected', {yPercent: -100, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.05})
             .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
             .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -wordSelected.getBoundingClientRect().left * 0.8, duration: 0.05})
             .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin: 'left',yPercent: 10, x: -wordWorks.getBoundingClientRect().left * 0.55, duration: 0.05})
-            .fromTo('.Project_wrapper',{x: screenWidth}, {
+            .fromTo('.Project_wrapper', {x: screenWidth},{
               x: -screenWidth * 3, // 4 projects - 1
-              snap: `1 / (${sections.length} - 1)`,
               duration: 1
             });
         }
