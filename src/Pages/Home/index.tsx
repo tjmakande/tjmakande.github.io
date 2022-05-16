@@ -64,6 +64,36 @@ const HomePage = () => {
                 }
               });
 
+            const LandingTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.TextContainer',
+                    start: `top top`,
+                    end: `bottom top+=${screenHeight * 0.2}`,
+                    pin: false,
+                    scrub: 1,
+                }
+            });
+
+            gsap.to(".LandingText", {
+                scrollTrigger: {
+                    trigger: '.TextContainer',
+                    start: 'bottom bottom',
+                    end: 'bottom center',
+                    scrub: .2
+                },
+                yPercent: -40,
+                opacity: 0
+            });
+
+            LandingTimeline
+            .to(".ImageBlock1", {yPercent: -150, duration: 1})
+            .to(".ImageBlock2", {yPercent: -150, duration: 1})
+            .to(".ImageBlock3", {yPercent: -150, duration: 1})
+            .to(".ImageBlock4", {yPercent: -150, duration: 1})
+            .to(".ImageBlock5", {yPercent: -150, duration: 1})
+            .to(".ImageBlock6", {yPercent: -150, duration: 1})
+            .to(".ImageBlock7", {yPercent: -150, duration: 1});
+
               // change background color approaching bottom
             gsap.to(['.background', '.works_wrapper'], {
                 scrollTrigger: {

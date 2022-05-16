@@ -1,4 +1,4 @@
-// import LandingImage from 'Assets/TJ_image.jpg';
+import LandingImage from 'Assets/LandingImage.jpg';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 import gsap from 'gsap';
 import React, {useEffect, useRef} from 'react';
@@ -16,66 +16,40 @@ import LandingPart6 from 'Assets/LandingPart6.png';
 
 
 const LandingSection = () => {
-
-    useEffect(() => {
-        gsap.to(".Block", {
-            scrollTrigger: {
-                trigger: '.LandingSection',
-                start: 'bottom bottom',
-                end: 'bottom center',
-                scrub: .1
-            },
-            xPercent: 100
-        });
-
-        gsap.to(".LandingText", {
-            scrollTrigger: {
-                trigger: '.LandingSection',
-                start: 'bottom bottom',
-                end: 'bottom center',
-                scrub: .1
-            },
-            yPercent: -40,
-            opacity: 0
-        });
-    },[]);
-
-
     return (
         <SectionWrapper>
             <Wrapper className="LandingSection">
-                <div style={{width: '50vw', display: 'flex', justifyContent: 'center', flexDirection: 'column', paddingTop: '0rem'}}>
+                <TextContainer className="TextContainer">
                     <NameHeader className="LandingText">Tapiwanashe</NameHeader>
                     <NameHeader className="LandingText">J. Makande</NameHeader>
                     <DescriptionTitle className="LandingText">Web developer</DescriptionTitle>
-                </div>
+                </TextContainer>
 
-                {/* <Block className='Block' /> */}
                 <ImageWrapper>
-                    <div style={{position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'space-evenly'}}>
+                    {/* <div style={{position: 'relative', width: '100%', height: '100%', display: 'flex', justifyContent: 'space-evenly'}}>
                         <Image src={LandingPart1} style={{marginTop: '0'}} alt="image part" />
                         <Image src={LandingPart2} style={{marginTop: '0'}} alt="image part" />
                         <Image src={LandingPart3} style={{marginTop: '0px'}} alt="image part" />
                         <Image src={LandingPart4} style={{marginTop: '0'}} alt="image part" />
                         <Image src={LandingPart5} style={{marginTop: '0'}} alt="image part" />
                         <Image src={LandingPart6} style={{marginTop: '0'}} alt="image part" />
-                    </div>
+                    </div> */}
 
-                    {/* <svg width={'100%'} height={'100%'}>
+                    <svg style={{width: '100%'}} viewBox='0 0 420 280'>
                         <defs>
                             <clipPath id={'myPath'}>
-                                <rect fill="#ffffff" x="0" y="50" width="12%" height="200%" rx="30" />
-                                <rect fill="#ffffff" x="14%" y="0" width="12%" height="200%" rx="30" />
-                                <rect fill="#ffffff" x="28%" y="20" width="12%" height="200%" rx="30" />
-                                <rect fill="#ffffff" x="42%" y="-30" width="12%" height="200%" rx="30" />
-                                <rect fill="#ffffff" x="56%" y="20" width="12%" height="200%" rx="30" />
-                                <rect fill="#ffffff" x="70%" y="-50" width="12%" height="200%" rx="30" />
-                                <rect fill="#ffffff" x="84%" y="40" width="12%" height="200%" rx="30" />
-
+                                <rect className={'ImageBlock1'} fill="#ffffff" x="0%" y="15%" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock2'} fill="#ffffff" x="14.28%" y="0" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock3'} fill="#ffffff" x="28.56%" y="10%" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock4'} fill="#ffffff" x="42.84%" y="0" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock5'} fill="#ffffff" x="57.12%" y="5%" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock6'} fill="#ffffff" x="71.40%" y="15%" width="11%" height="85%" rx="30" />
+                                <rect className={'ImageBlock7'} fill="#ffffff" x="85.68%" y="2%" width="11%" height="85%" rx="30" />
                             </clipPath>
                         </defs>
+                        <image width={421} height={280} clipPath={`url(#myPath)`} xlinkHref={LandingImage}></image>
                     </svg>
-                    <Image src={LandingImage} alt={'Picture of me'}/> */}
+                    {/* <Image src={LandingImage} alt={'Picture of me'}/> */}
                 </ImageWrapper>
 
             </Wrapper>
@@ -87,24 +61,26 @@ export default LandingSection;
 
 const Wrapper = styled.div`
     position: relative;
-    padding: 5rem 6vw;
+
     box-sizing: border-box;
-    height:100vh;
-    position: relative;
+    padding: 5rem 6vw;
+    height: 100vh;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: start;
+
     background-color: white;
     overflow: hidden;
 `;
 
 const NameHeader = styled.h1`
-    font-family: Roboto;
+    font-family: nunito;
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(5rem, 6vw, 8rem);
-    line-height: clamp(5rem, 5vw, 8rem);
+    font-size: clamp(4rem, 4.5vw, 7rem);
+    line-height: clamp(4rem, 4.5vw, 7rem);
     text-transform: uppercase;
     margin: 0;
     color: #fff;
@@ -112,8 +88,8 @@ const NameHeader = styled.h1`
     z-index: 5;
 `;
 const DescriptionTitle = styled.p`
-    font-family: 'Prata';
-    font-size: clamp(3rem, 4.5vw, 10rem);
+    font-family: 'nunito';
+    font-size: clamp(2rem, 3vw, 5.5rem);
     text-transform: uppercase;
     margin: 4rem 0 0 0;
     color: #fff;
@@ -122,29 +98,31 @@ const DescriptionTitle = styled.p`
 
 const Image = styled.img`
     // width: 14%;
-    // clip-path: url(#myPath);
+    width: 100%;
+    clip-path: url(#myPath);
     height: 100%;
-    border-radius: 60px 60px;
+    // border-radius: 60px 60px;
+`;
+
+const TextContainer = styled.div`
+    width: 40vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    box-sizing: border-bo;
+    padding-top: 10rem;
 `;
 
 const ImageWrapper = styled.div`
     // position: absolute;
-    top: 5rem;
-    left: 6vw;
+    // top: 5rem;
+    // left: 6vw;
     // height: 0;
     // padding-top: calc(421/280 * 100%);
-    width: 40vw;
-    height: 50vh;
-    right: 0;
-
-    display: flex;
-    flex-direction: row;
-`;
-
-const Block = styled.div`
-    width: 30%;
+    width: 50vw;
     height: 100%;
-    position: absolute;
-    right: 0;
-    background-color: rgb(58, 58, 59);
+    display: flex;
+    align-items: center;
+    // right: 0;
 `;
