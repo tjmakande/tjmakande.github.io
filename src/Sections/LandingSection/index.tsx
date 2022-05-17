@@ -72,15 +72,15 @@ const DescriptionTitle = styled.p`
     mix-blend-mode: difference;
 `;
 
-const TextContainer = styled.div`
-    width: 40vw;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    box-sizing: border-bo;
-    padding-top: 10rem;
-`;
+// const TextContainer = styled.div`
+//     width: 40vw;
+//     height: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: start;
+//     box-sizing: border-bo;
+//     padding-top: 10rem;
+// `;
 
 const ImageWrapper = styled.div`
     position: absolute;

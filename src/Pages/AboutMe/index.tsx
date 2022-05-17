@@ -6,20 +6,27 @@ import ZimImg from 'Assets/Zim_drawn.jpg';
 
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 
-import gsap from 'gsap';
+import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 
 import Footer from 'Sections/Footer';
 import Scrollbar from 'smooth-scrollbar';
 import styled from 'styled-components';
 
 import Video from './Portfolio_Video.mp4';
+import WorldMap from './WorldMap';
 
 const AboutMePage = () => {
     const Imageref = createRef<HTMLImageElement>();
     // Starting HERE
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
+
+    useEffect(() => {
+        const vid = document.getElementById('Pseudocode') as HTMLVideoElement;
+        vid.playbackRate = 4;
+    }, []);
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -69,7 +76,7 @@ const AboutMePage = () => {
             gsap.to('.background', {
                 scrollTrigger:{
                     trigger: '.IntroTwoWrapper',
-                    start: 'bottom center',
+                    start: 'bottom top',
                     end: 'max',
                     scrub: .1,
                     onEnter: () => {
@@ -82,6 +89,16 @@ const AboutMePage = () => {
                     }
                 },
                 backgroundColor: 'rgb(58, 58, 58)'
+            });
+
+            gsap.to('#Pseudocode', {
+                scrollTrigger: {
+                    trigger: '.IntroTwoWrapper',
+                    start: 'bottom center', 
+                    end: 'bottom 50px',
+                    scrub: .1
+                },
+                yPercent: -100
             });
 
             // Landing image effect
@@ -109,8 +126,12 @@ const AboutMePage = () => {
                 }
             });
 
+            // const timeTest = gsap.timeline({repeat: 1});
+            console.log(screenWidth);
+            gsap.set('.flightPath', {strokeDasharray: screenWidth * 0.327, strokeDashoffset:0});
             // Appear Text
             t1
+            .fromTo('.flightPath', {strokeDashoffset: screenWidth * 0.327}, {strokeDashoffset: 0})
             .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {
                 y: 0,
                 opacity: 1,
@@ -155,7 +176,7 @@ const AboutMePage = () => {
                 </div>
             </HeaderWrapper>
             <SectionWrapper >
-                <Background className="background"/>
+                <Background className="background"><WorldMap /></Background>
                 <IntroContainer style={{marginBottom: '600vh'}} className="SectionWrapper">
                     <IntroWrapper>
                         <Description className="DescriptionOne"><span>Hi there! <br/>I'm TJ Makande.</span></Description>
@@ -176,7 +197,7 @@ const AboutMePage = () => {
                         </DescriptionFour>
                     </div>
 
-                    <video width="682" height="440" autoPlay muted>
+                    <video id={'Pseudocode'} width="682" height="440" autoPlay muted>
                         <source src={Video} type="video/mp4"/>
                     </video>
                 </IntroTwoWrapper>
