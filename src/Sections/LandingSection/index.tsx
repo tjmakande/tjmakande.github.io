@@ -6,11 +6,9 @@ const LandingSection = () => {
     return (
         <SectionWrapper>
             <Wrapper className="LandingSection">
-                <TextContainer className="TextContainer">
-                    <NameHeader className="LandingText">Tapiwanashe</NameHeader>
-                    <NameHeader className="LandingText">J. Makande</NameHeader>
-                    <DescriptionTitle className="LandingText">Web developer</DescriptionTitle>
-                </TextContainer>
+                <NameHeader className="LandingText">Tapiwanashe</NameHeader>
+                <NameHeader className="LandingText">J. Makande</NameHeader>
+
 
                 <ImageWrapper>
                     <svg style={{width: '100%'}} viewBox='0 0 420 280'>
@@ -28,6 +26,8 @@ const LandingSection = () => {
                         <image width={421} height={280} clipPath={`url(#myPath)`} xlinkHref={LandingImage}></image>
                     </svg>
                 </ImageWrapper>
+
+                <DescriptionTitle className="LandingText">Web developer</DescriptionTitle>
             </Wrapper>
         </SectionWrapper>
     );
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
     height: 100vh;
 
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: start;
 
@@ -83,6 +83,8 @@ const TextContainer = styled.div`
 `;
 
 const ImageWrapper = styled.div`
+    position: absolute;
+    right: 0;
     width: 50vw;
     height: 100%;
     display: flex;

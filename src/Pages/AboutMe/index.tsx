@@ -74,11 +74,11 @@ const AboutMePage = () => {
                     scrub: .1,
                     onEnter: () => {
                         const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-                        return Div.style.display = "none";
+                        return Div.style.visibility = "hidden";
                     },
                     onLeaveBack: () => {
                         const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-                        return Div.style.display = "flex";
+                        return Div.style.visibility = "visible";
                     }
                 },
                 backgroundColor: 'rgb(58, 58, 58)'
