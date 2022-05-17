@@ -19,20 +19,21 @@ const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
         <Container className="footerwrapper">
             <Wrapper>
                 <SectionTitle>Let's Collaborate</SectionTitle>
+                <CTAtext style={{fontSize: '1.2vw'}}>Don't be afraid to connect!</CTAtext>
 
-                <CTAtext style={{fontSize: '1.2vw'}}>Don't be afraid to connect, you can reach me</CTAtext>
-                <EmailLink
-                    className="EmailLink"
-                    onMouseEnter={(e) => {isHover(true); underlineOnHover((e.target as HTMLElement));}}
-                    onMouseLeave={(e) => {isHover(false); rmunderlineOnHover((e.target as HTMLElement));}}>tj@example.com</EmailLink>
-                <Dot>&#183;</Dot>
-
-                <SocialWrapper>
-                    <InstagramIcon />
-                    <LinkedInIcon />
-                    <GithubIcon />
-                </SocialWrapper>
-
+                <div style={{marginTop: '5rem'}}>
+                    <EmailLink
+                        className="EmailLink"
+                        onMouseEnter={(e) => {isHover(true); underlineOnHover((e.target as HTMLElement));}}
+                        onMouseLeave={(e) => {isHover(false); rmunderlineOnHover((e.target as HTMLElement));}}
+                    >tj@example.com</EmailLink>
+                    <Line />
+                    <SocialWrapper>
+                        <InstagramIcon />
+                        <LinkedInIcon />
+                        <GithubIcon />
+                    </SocialWrapper>
+                </div>
             </Wrapper>
         </Container>
     );
@@ -79,9 +80,12 @@ const EmailLink = styled.p`
     margin: 2rem 0 0 0;
 `;
 
-const Dot = styled(EmailLink)`
-    font-size: 5vw;
-    margin:0;
+const Line = styled.hr`
+    background: linear-gradient(to right, transparent, #fff, transparent);
+    height: 1px;
+    width: 100%;
+    border: 0;
+    margin: 1.5rem 0;
 `;
 
 const CTAtext = styled(EmailLink)`
