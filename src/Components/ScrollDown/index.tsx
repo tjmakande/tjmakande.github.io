@@ -1,5 +1,6 @@
 import gsap from 'gsap';
 import React , {useEffect, useState} from 'react';
+import Scrollbar from 'smooth-scrollbar';
 import styled from 'styled-components';
 
 interface WrapperProps {
@@ -12,6 +13,7 @@ const ScrollDownIcon = () => {
     const InactiveUser = () => {
         let time: NodeJS.Timeout;
 
+
         const ShowIcon = () => setIsUserInactive(true);
 
         const resetTimer = () => {
@@ -20,16 +22,18 @@ const ScrollDownIcon = () => {
             time = setTimeout(ShowIcon, 5000);
         };
 
-        window.addEventListener('load', resetTimer, true);
-        const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
-        events.forEach((name: string) => {
-            if(name === 'scroll') {
-                document.querySelector('.scroller')?.addEventListener('scroll', resetTimer, true);
-            } else {
-                document.addEventListener(name, resetTimer, true);
-            }
-        });
 
+        window.addEventListener('load', () => {
+            const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+            events.forEach((name: string) => {
+                    document.addEventListener(name, resetTimer, true);
+            });
+
+            const scrollbar = Scrollbar.get(document.querySelector('.scroller') as HTMLDivElement);
+            scrollbar?.addListener((status) => {
+                resetTimer();
+            });
+        }, true);
     };
 
     useEffect(() => {
