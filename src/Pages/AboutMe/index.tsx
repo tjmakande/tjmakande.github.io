@@ -179,7 +179,7 @@ const AboutMePage = () => {
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: '100vh'}}>
             <HeaderWrapper>
                 <LandingImg className="Landing_image" ref={Imageref} src={TJImage} />
-                <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference'}}>
+                <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference', position: 'absolute', right: '10vw', bottom: 0, isolation: 'isolate'}}>
                     <Header>
                         About Me
                     </Header>
@@ -312,9 +312,6 @@ const Header = styled.h1`
     letter-spacing: -3px;
     line-height: 12vw;
     z-index: 1;
-
-    position: absolute;
-    right: 10vw;
 `;
 
 const MapWrapper = styled.div`

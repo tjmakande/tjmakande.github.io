@@ -147,7 +147,7 @@ const AboutMePage = () => {
         <div className="Container scroller" style={{position: 'relative', height: '100vh', width: '100vw'}}>
             <Wrapper>
                 <LandingImg className="Landing_image" src={WorksPageImg} />
-                <div style={{color: '#fff', mixBlendMode: 'difference'}}>
+                <div style={{color: '#fff', mixBlendMode: 'difference', position: 'absolute', right: '10vw', bottom: 0, isolation: 'isolate'}}>
                     <Header>
                         Works
                     </Header>
