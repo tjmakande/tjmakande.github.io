@@ -65,6 +65,7 @@ const AboutMePage = () => {
             gsap.to('.background', {
                 scrollTrigger: {
                   trigger: '.background',
+                  anticipatePin: 1,
                   pin: true,
                   pinSpacing:false,
                   start: 'top top',
@@ -78,7 +79,7 @@ const AboutMePage = () => {
                     trigger: '.IntroTwoWrapper',
                     start: 'bottom top',
                     end: 'max',
-                    scrub: .1,
+                    scrub: 1,
                     onEnter: () => {
                         const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
                         return Div.style.visibility = "hidden";
@@ -94,9 +95,9 @@ const AboutMePage = () => {
             gsap.to('#Pseudocode', {
                 scrollTrigger: {
                     trigger: '.IntroTwoWrapper',
-                    start: 'bottom center', 
+                    start: 'bottom center',
                     end: 'bottom 50px',
-                    scrub: .1
+                    scrub: 1
                 },
                 yPercent: -100
             });
@@ -105,11 +106,12 @@ const AboutMePage = () => {
             gsap.to('.Landing_image', {
                 scrollTrigger: {
                     trigger: '.Landing_image',
+                    anticipatePin:1,
                     pin: true,
                     pinSpacing: false,
                     start: 'top top',
                     end: screenHeight,
-                    scrub: .1
+                    scrub: 1
                 }
             });
 
@@ -119,19 +121,20 @@ const AboutMePage = () => {
                     trigger: '.SectionWrapper',
                     pin: true,
                     pinSpacing: false,
+                    anticipatePin: 1,
                     start: 'top top',
                     end: `+=${screenHeight * 6}`,
-                    immediateRender: false,
+                    // immediateRender: false,
                     scrub: .1
                 }
             });
 
-            // const timeTest = gsap.timeline({repeat: 1});
-            console.log(screenWidth);
             gsap.set('.flightPath', {strokeDasharray: screenWidth * 0.327, strokeDashoffset:0});
+            gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
+
+
             // Appear Text
             t1
-            .fromTo('.flightPath', {strokeDashoffset: screenWidth * 0.327}, {strokeDashoffset: 0})
             .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {
                 y: 0,
                 opacity: 1,
@@ -146,19 +149,26 @@ const AboutMePage = () => {
             .to('.DescriptionTwo',{ // Move to the left
                 x: -screenWidth / 3,
             })
-            .fromTo('.ZimImg', {y: screenHeight, scale: 0.3}, {y: -screenHeight * 1.5, scale: 2})
+            .to('.MapWrapper', {autoAlpha: 1})
+            .to('.MapWrapper', {scale: 3.5, xPercent: -45, yPercent: -150, rotation: 0.05}, 'toZimbabwe')
+            // .set('.Map', {scale: 4})
+            // .set('.MapWrapper', {scale: 1})
+            .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
             .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
             .fromTo('.DescriptionThree', {x: -screenWidth / 3, opacity: 0}, {opacity: 1})
-            .to('.DescriptionThree', {x: screenWidth / 3})
-            .fromTo('.BeijingImg', {y: screenHeight, x: -screenWidth * 0.4}, {y: -screenHeight});
+            .to('.MapWrapper', {xPercent: -140, yPercent: 10, rotation: 0.01}, 'toChina-=2%')
+            .fromTo('.flightPath', {strokeDashoffset: screenWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+            .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
+            .to('.DescriptionThree', {x: screenWidth / 3}, 'toChina');
 
             gsap.to('.IntroTwoWrapper', {
                 scrollTrigger:{
                     trigger: '.IntroTwoWrapper',
+                    anticipatePin: 1,
                     pin: true,
                     start: 'top top',
                     end: `+=${screenHeight / 2}`,
-                    scrub: .1
+                    scrub: 1
                 }
             });
 
@@ -176,12 +186,15 @@ const AboutMePage = () => {
                 </div>
             </HeaderWrapper>
             <SectionWrapper >
-                <Background className="background"><WorldMap /></Background>
+                <Background className="background"></Background>
                 <IntroContainer style={{marginBottom: '600vh'}} className="SectionWrapper">
                     <IntroWrapper>
                         <Description className="DescriptionOne"><span>Hi there! <br/>I'm TJ Makande.</span></Description>
                         <Description className="DescriptionTwo"><span>A web developer from Zimbabwe</span></Description>
                         <Description className="DescriptionThree"><span>Currently based in Beijing</span></Description>
+                        <MapWrapper className="MapWrapper">
+                            <WorldMap />
+                        </MapWrapper>
                         <InfoImg src={ZimImg} className="ZimImg"/>
                         <InfoImg src={BeijingImg} style={{boxShadow: '#0000008c 8px 8px 50px'}} className="BeijingImg"/>
                     </IntroWrapper>
@@ -231,6 +244,7 @@ const InfoImg = styled.img`
 `;
 
 const IntroContainer = styled.div`
+    pointer-events: none;
     width: 100vw;
     height: 100vh;
     position: relative;
@@ -245,6 +259,7 @@ const IntroWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    will-change: transform;
 `;
 
 const IntroTwoWrapper = styled(IntroWrapper)`
@@ -300,4 +315,13 @@ const Header = styled.h1`
 
     position: absolute;
     right: 10vw;
+`;
+
+const MapWrapper = styled.div`
+    position: absolute;
+    right: 0;
+    width: 65vw;
+    top: 50%;
+    transform: translate(0, -50%);
+    will-change: transform;
 `;
