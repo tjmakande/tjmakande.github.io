@@ -34,7 +34,14 @@ const Text = styled.p`
     width: 60%;
     margin: 0 auto;
     color: black;
-    font-size: ${isMobile() ? 'clamp(1rem, 2vw, 3rem)' : 'clamp(2rem, 2.5vw, 5rem)'};
+    font-size:clamp(2rem, 2.5vw, 5rem);
+
+    ${
+        isMobile() && `
+            font-size: 1.5rem;
+            width: 90%;
+        `
+    }
 `;
 
 const Wrapper = styled.div`
