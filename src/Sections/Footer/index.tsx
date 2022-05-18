@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import GithubIcon from './GithubIcon';
 import InstagramIcon from './InstagramIcon';
 import LinkedInIcon from './LinkedInIcon';
+import { isMobile } from 'utils/device';
+
 
 const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
     const underlineOnHover = (div: HTMLElement) => div.style.textDecoration = "underline";
@@ -19,12 +21,12 @@ const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
         <Container className="footerwrapper">
             <Wrapper>
                 <SectionTitle>Let's Collaborate</SectionTitle>
-                <CTAtext style={{fontSize: '1.2vw'}}>Don't be afraid to connect!</CTAtext>
+                <CTAtext>Don't be afraid to connect!</CTAtext>
 
                 <div style={{marginTop: '5rem'}}>
                     <EmailLink
                         className="EmailLink"
-                        onMouseEnter={(e) => {isHover(true); underlineOnHover((e.target as HTMLElement));}}
+                        onMouseEnter={(e) => {isHover(true); if (isMobile()) underlineOnHover((e.target as HTMLElement));}}
                         onMouseLeave={(e) => {isHover(false); rmunderlineOnHover((e.target as HTMLElement));}}
                     >tj@example.com</EmailLink>
                     <Line />
@@ -72,12 +74,26 @@ const SectionTitle = styled.h1`
     letter-spacing: -3px;
     line-height: 9vw;
     z-index: 1;
+
+    ${
+        isMobile() && `
+            font-size: 4rem;
+            line-height: 4rem;
+            width: unset;
+        `
+    }
 `;
 
 const EmailLink = styled.p`
     color: #fff;
     font-size: 1.5vw;
     margin: 2rem 0 0 0;
+
+    ${
+        isMobile() && `
+            font-size: 1rem;
+        `
+    }
 `;
 
 const Line = styled.hr`
@@ -90,6 +106,12 @@ const Line = styled.hr`
 
 const CTAtext = styled(EmailLink)`
     font-size: 1.2vw;
+
+    ${
+        isMobile() && `
+            font-size: 1.2rem;
+        `
+    }
 `;
 
 const SocialWrapper = styled.div`
