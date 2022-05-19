@@ -1,14 +1,12 @@
-import React, {createRef, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 
-import BeijingImg from 'Assets/BeijingImg.jpeg';
 import TJImage from 'Assets/TJ_image.jpg';
-import ZimImg from 'Assets/Zim_drawn.jpg';
 
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
+import { isMobile } from 'utils/device';
 
 import Footer from 'Sections/Footer';
 import Scrollbar from 'smooth-scrollbar';
@@ -18,14 +16,14 @@ import Video from './Portfolio_Video.mp4';
 import WorldMap from './WorldMap';
 
 const AboutMePage = () => {
-    const Imageref = createRef<HTMLImageElement>();
+
     // Starting HERE
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
 
     useEffect(() => {
         const vid = document.getElementById('Pseudocode') as HTMLVideoElement;
-        vid.playbackRate = 4;
+        vid.playbackRate = isMobile() ? 2 : 4;
     }, []);
 
     useEffect(() => {
@@ -74,6 +72,8 @@ const AboutMePage = () => {
                 }
             });
 
+
+            // disable nudge at this point
             gsap.to('.background', {
                 scrollTrigger:{
                     trigger: '.IntroTwoWrapper',
@@ -99,7 +99,7 @@ const AboutMePage = () => {
                     end: 'bottom 50px',
                     scrub: 1
                 },
-                yPercent: -100
+                autoAlpha: 0
             });
 
             // Landing image effect
@@ -129,38 +129,48 @@ const AboutMePage = () => {
                 }
             });
 
-            gsap.set('.flightPath', {strokeDasharray: screenWidth * 0.327, strokeDashoffset:0});
-            gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
+            gsap.set('.flightPath', {strokeDasharray: screenWidth * 0.326, strokeDashoffset:0});
+
+            if (isMobile()) {
+                gsap.set('.MapWrapper', {scale: 2, autoAlpha: 0});
+
+                t1
+                .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
+                .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
+                .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
+                .to('.DescriptionTwo',{y: screenHeight * 0.3 }, 'showMap')
+                .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
+                .to('.MapWrapper', {scale: 5, xPercent: -35, yPercent: -170, rotation: 0.05}, 'toZimbabwe')
+                .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
+                .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
+                .fromTo('.DescriptionThree', {y: screenHeight * 0.3, opacity: 0}, {opacity: 1})
+                .to('.MapWrapper', {scale: 4, xPercent: -110, yPercent: 40, rotation: 0.01}, 'toChina-=2%')
+                .fromTo('.flightPath', {strokeDashoffset: screenWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
+                .fromTo('.DescriptionThree', {y: screenHeight * 0.3}, {y: -screenHeight * 0.3}, 'toChina')
+                .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.5});
+            } else {
+                gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
+
+                t1
+                .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
+                .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
+                .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
+                .to('.DescriptionTwo',{x: -screenWidth / 3})
+                .to('.MapWrapper', {autoAlpha: 1})
+                .to('.MapWrapper', {scale: 3.5, xPercent: -45, yPercent: -150, rotation: 0.05}, 'toZimbabwe')
+                .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
+                .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
+                .fromTo('.DescriptionThree', {x: -screenWidth / 3, opacity: 0}, {opacity: 1})
+                .to('.MapWrapper', {xPercent: -140, yPercent: 10, rotation: 0.01}, 'toChina-=2%')
+                .fromTo('.flightPath', {strokeDashoffset: screenWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
+                .to('.DescriptionThree', {x: screenWidth / 3}, 'toChina')
+                .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.5});
+            }
 
 
             // Appear Text
-            t1
-            .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {
-                y: 0,
-                opacity: 1,
-            })
-            .fromTo('.DescriptionOne',{opacity: 1}, {
-                opacity: 0
-            })
-            .fromTo('.DescriptionTwo', {opacity: 0}, {
-                opacity: 1,
-                duration: 0.05
-            })
-            .to('.DescriptionTwo',{ // Move to the left
-                x: -screenWidth / 3,
-            })
-            .to('.MapWrapper', {autoAlpha: 1})
-            .to('.MapWrapper', {scale: 3.5, xPercent: -45, yPercent: -150, rotation: 0.05}, 'toZimbabwe')
-            // .set('.Map', {scale: 4})
-            // .set('.MapWrapper', {scale: 1})
-            .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
-            .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
-            .fromTo('.DescriptionThree', {x: -screenWidth / 3, opacity: 0}, {opacity: 1})
-            .to('.MapWrapper', {xPercent: -140, yPercent: 10, rotation: 0.01}, 'toChina-=2%')
-            .fromTo('.flightPath', {strokeDashoffset: screenWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
-            .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-            .to('.DescriptionThree', {x: screenWidth / 3}, 'toChina');
-
             gsap.to('.IntroTwoWrapper', {
                 scrollTrigger:{
                     trigger: '.IntroTwoWrapper',
@@ -178,7 +188,7 @@ const AboutMePage = () => {
     return(
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: '100vh'}}>
             <HeaderWrapper>
-                <LandingImg className="Landing_image" ref={Imageref} src={TJImage} />
+                <LandingImg className="Landing_image" src={TJImage} />
                 <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference', position: 'absolute', right: '10vw', bottom: 0, isolation: 'isolate'}}>
                     <Header>
                         About Me
@@ -195,22 +205,20 @@ const AboutMePage = () => {
                         <MapWrapper className="MapWrapper">
                             <WorldMap />
                         </MapWrapper>
-                        <InfoImg src={ZimImg} className="ZimImg"/>
-                        <InfoImg src={BeijingImg} style={{boxShadow: '#0000008c 8px 8px 50px'}} className="BeijingImg"/>
                     </IntroWrapper>
                 </IntroContainer>
 
                 <IntroTwoWrapper className='IntroTwoWrapper'>
-                    <div style={{marginRight: '5rem', height:'400px'}}>
+                    <IntroTwoTextContainer>
                         <DescriptionFour >
                             I'm naturally keen developer with an eye for clean code and designs. I have the MERN stack in my arsenal which enables me to work on all sides of the development cycle.
                         </DescriptionFour>
                         <DescriptionFour>
                             I am very much attracted to challenges and I love to find solutions. I do believe that those two belong together.
                         </DescriptionFour>
-                    </div>
+                    </IntroTwoTextContainer>
 
-                    <video id={'Pseudocode'} width="682" height="440" autoPlay muted>
+                    <video id={'Pseudocode'} style={{width: isMobile() ? '94vw' : 'unset'}} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
                         <source src={Video} type="video/mp4"/>
                     </video>
                 </IntroTwoWrapper>
@@ -233,20 +241,10 @@ const Background = styled.div`
   background-color: #fff;
 `;
 
-const InfoImg = styled.img`
-    position: absolute;
-    right: 2vw;
-    height: 75%;
-    margin: 0 auto;
-
-    mix-blend-mode: darken;
-    transform: translateY(${window.innerHeight}px)
-`;
-
 const IntroContainer = styled.div`
     pointer-events: none;
     width: 100vw;
-    height: 100vh;
+    height: ${isMobile() ? '-webkit-fill-available' : '100vh'};
     position: relative;
     overflow-x: hidden;
 `;
@@ -269,7 +267,25 @@ const IntroTwoWrapper = styled(IntroWrapper)`
     justify-content: center;
     align-items: center;
     margin-bottom: 50vh;
+
+    ${
+        isMobile() && `
+            flex-direction: column;
+        `
+    }
 `;
+
+const IntroTwoTextContainer = styled.div`
+    margin-right: 5rem;
+    height: 400px;
+
+    ${
+        isMobile() && `
+            height: unset;
+            margin: 0;
+        `
+    }
+`
 
 const Description = styled.p`
     font-size: clamp(2rem,2vw, 5rem);
@@ -284,6 +300,14 @@ const DescriptionFour = styled(Description)`
     font-size: clamp(1.7rem, 1.5vw, 2.5rem);
     position: relative;
     // margin-left: 5vw;
+
+    ${
+        isMobile() && `
+            width: unset;
+            font-size: 1.2rem;
+            margin: 2rem auto;
+        `
+    }
 `;
 
 const LandingImg = styled.img`
@@ -317,7 +341,7 @@ const Header = styled.h1`
 const MapWrapper = styled.div`
     position: absolute;
     right: 0;
-    width: 65vw;
+    width: ${isMobile() ? '100%' : '65vw'};
     top: 50%;
     transform: translate(0, -50%);
     will-change: transform;
