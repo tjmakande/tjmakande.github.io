@@ -23,35 +23,82 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
                 </WrapperText>
             </div>
 
+
+            <TextContainer>
+                <TitleContainer>
+                    <div className={'text1'}>
+                        <TitleText> 01. Cinema</TitleText>
+                    </div>
+                </TitleContainer>
+
+                <TitleContainer>
+                    <div className={'text2'}>
+                        <TitleText> 02. Chatbot</TitleText>
+                    </div>
+                </TitleContainer>
+
+                <TitleContainer>
+                    <div className={'text3'}>
+                        <TitleText> 03. Masimba</TitleText>
+                    </div>
+                </TitleContainer>
+
+                <TitleContainer>
+                    <div className={'text4'}>
+                        <TitleText> 04. SDSN Youth</TitleText>
+                    </div>
+                </TitleContainer>
+            </TextContainer>
+
             <WrapperWorks className="Project_wrapper">
                 <ProjectItem className={'Works cinema'}  data-id={'cinema'}>
                     <ProjectBg  src={CinemaPhoto} />
-                    <Title > 01. Cinema</Title>
                 </ProjectItem>
 
                 <ProjectItem className={'Works chatbot'}  data-id={'chatbot'}>
                     <ProjectBg src={AutomatedBot} />
-                    <Title >02. Chatbot</Title>
                 </ProjectItem>
 
                 <ProjectItem className={'Works masimba'} data-id={'masimba'}>
                     <ProjectBg  src={Musician}/>
-                    <Title >03. Masimba</Title>
                 </ProjectItem>
 
                 <ProjectItem className={'Works sdsn'} data-id={'sdsn'}>
                     <ProjectBg src={Cube} />
-                    <Title >04. SDSN Youth</Title>
                 </ProjectItem>
             </WrapperWorks>
+
         </Container>
     );
 });
 
 export default WorkSection;
+
+// EDIT: PUT TO THE BOTTOM AFTER COMPLETE
+const TitleText = styled.text`
+    white-space: nowrap;
+`;
+const TitleContainer = styled.div`
+    text-align: center;
+    font-size: 7rem;
+    position: absolute;
+    right: 0;
+`;
+
+const TextContainer = styled.div`
+    height: 250px;
+    width: 400px;
+
+    position: absolute;
+    right: clamp(2rem, 10vw, 10rem);
+    top: 50%;
+    translate(0, -50%);
+`;
+
+// THIS IS THE STARTING POINT OF ORIGINAL
 const ProjectBg = styled.img`
-    width: 50vw;
-    height: 28vw;
+    width: 70vw;
+    height: 43vw;
 
     &:hover{
         & + h2 {

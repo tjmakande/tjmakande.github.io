@@ -10,6 +10,7 @@ import SectionWrapper from 'Components/Styled/SectionWrapper';
 
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { isMobile } from 'utils/device';
 
 import Footer from 'Sections/Footer';
 import Scrollbar from 'smooth-scrollbar';
@@ -96,50 +97,54 @@ const AboutMePage = () => {
                 },
             });
 
-            gsap.fromTo('.Project1_info', {opacity: 0}, {
-                scrollTrigger:{
-                    trigger: '.Project1',
-                    start: 'top center',
-                    end: `+=${screenHeight * 0.8}`,
-                    pin: true,
-                    pinSpacing: false,
-                    toggleActions: 'play none none reverse',
-                    onLeave: () => gsap.to('.Project1_info', {opacity: 0}),
-                    onEnterBack: () => gsap.to('.Project1_info', {opacity: 1}),
-                },
-                opacity: 1,
-                duration: 1,
-            });
+            if (isMobile()){
+                console.log('hello');
+            } else {
+                gsap.fromTo('.Project1_info', {opacity: 0}, {
+                    scrollTrigger:{
+                        trigger: '.Project1',
+                        start: 'top center',
+                        end: `+=${screenHeight * 0.8}`,
+                        pin: true,
+                        pinSpacing: false,
+                        toggleActions: 'play none none reverse',
+                        onLeave: () => gsap.to('.Project1_info', {opacity: 0}),
+                        onEnterBack: () => gsap.to('.Project1_info', {opacity: 1}),
+                    },
+                    opacity: 1,
+                    duration: 1,
+                });
 
-            gsap.fromTo('.Project2_info', {opacity: 0}, {
-                scrollTrigger:{
-                    trigger: '.Project2',
-                    start: 'top center',
-                    end: `+=${screenHeight * 0.8}`,
-                    pin: true,
-                    pinSpacing: false,
-                    toggleActions: 'play none none reverse',
-                    onLeave: () => gsap.to('.Project2_info', {opacity: 0}),
-                    onEnterBack: () => gsap.to('.Project2_info', {opacity: 1}),
-                },
-                opacity: 1,
-                duration: 1,
-            });
+                gsap.fromTo('.Project2_info', {opacity: 0}, {
+                    scrollTrigger:{
+                        trigger: '.Project2',
+                        start: 'top center',
+                        end: `+=${screenHeight * 0.8}`,
+                        pin: true,
+                        pinSpacing: false,
+                        toggleActions: 'play none none reverse',
+                        onLeave: () => gsap.to('.Project2_info', {opacity: 0}),
+                        onEnterBack: () => gsap.to('.Project2_info', {opacity: 1}),
+                    },
+                    opacity: 1,
+                    duration: 1,
+                });
 
-            gsap.fromTo('.Project3_info', {opacity: 0}, {
-                scrollTrigger:{
-                    trigger: '.Project3',
-                    start: 'top center',
-                    end: `+=${screenHeight * 0.8}`,
-                    pin: true,
-                    pinSpacing: false,
-                    toggleActions: 'play none none reverse',
-                    onLeave: () => gsap.to('.Project3_info', {opacity: 0}),
-                    onEnterBack: () => gsap.to('.Project3_info', {opacity: 1}),
-                },
-                opacity: 1,
-                duration: 1,
-            });
+                gsap.fromTo('.Project3_info', {opacity: 0}, {
+                    scrollTrigger:{
+                        trigger: '.Project3',
+                        start: 'top center',
+                        end: `+=${screenHeight * 0.8}`,
+                        pin: true,
+                        pinSpacing: false,
+                        toggleActions: 'play none none reverse',
+                        onLeave: () => gsap.to('.Project3_info', {opacity: 0}),
+                        onEnterBack: () => gsap.to('.Project3_info', {opacity: 1}),
+                    },
+                    opacity: 1,
+                    duration: 1,
+                });
+            }
         }
     },[screenHeight, screenWidth]);
 
@@ -229,10 +234,10 @@ const ProjectTitle = styled.h3`
 `;
 
 const InfoImg = styled.img`
-    height: 50%;
+    height: ${isMobile() ? '25%' : '50%'};
     margin: 0 auto;
     box-shadow: #0000008c 8px 8px 50px;
-    margin-top: 25vh;
+    ${isMobile() ? '' : 'margin-top: 25vh;'};
 `;
 
 const LandingImg = styled.img`
@@ -241,16 +246,18 @@ const LandingImg = styled.img`
     left: 0;
 `;
 const SideColumn = styled.div`
-    width: 50vw;
+    width: ${isMobile() ? '100vw' : '50vw'};
     height: 100%;
-    margin-bottom: 100vh;
+    ${isMobile() ? '' : 'margin-bottom: 100vh;'}
+    ${isMobile() ? 'display: flex; flex-direction: row; flex-wrap: nowrap;' : ''}
 `;
 
 const InfoWrap = styled.div`
-    width: 50vw;
-    height: 100vh;
+    width: ${isMobile() ? '100vw' : '50vw'};
+    height: ${isMobile() ? '50vh' : '100vh'};
     display: flex;
     justify-content: center;
+    ${isMobile() && `align-items: center;`}
 `;
 
 const Info = styled.div`
@@ -267,7 +274,8 @@ const TimeContainer = styled.div`
     width: 100%;
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: ${isMobile() ? 'column-reverse' : 'row'};
+    ${isMobile() && 'flex-wrap: nowrap;'}
     overflow: hidden;
 `;
 

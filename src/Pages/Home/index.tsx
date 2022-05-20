@@ -154,10 +154,10 @@ const HomePage = () => {
                 pin: true,
                 pinSpacing: false,
                 snap: {
-                  snapTo: [0.28, 0.405, 0.565, 0.845],
+                  snapTo: [0.28, 0.52, 0.75, 0.98],
                   directional: false,
-                  duration: {min: 0.2, max:1},
-                  delay: 0.
+                  duration: {min: 0.05, max:0.5},
+                  delay: 0,
                 },
                 scrub: 1,
               }
@@ -168,10 +168,20 @@ const HomePage = () => {
             .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
             .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -wordSelected.getBoundingClientRect().left * 0.8, duration: 0.05})
             .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin: 'left',yPercent: 10, x: -wordWorks.getBoundingClientRect().left * 0.55, duration: 0.05})
-            .fromTo('.Project_wrapper', {x: screenWidth},{
-              x: -screenWidth * 3, // 4 projects - 1
-              duration: 1
-            });
+            .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', duration: 0.5, opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1})
+            .set('.text1', {transformOrigin: '50% 0%'})
+            .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'firstMove')
+            .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', duration: 0.5, opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'firstMove')
+            .set('.text2', {transformOrigin: '50% 0%'})
+            .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'secondMove')
+            .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', duration: 0.5, opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'secondMove')
+            .set('.text3', {transformOrigin: '50% 0%'})
+            .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'thirdMove')
+            .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', duration: 0.5, opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'thirdMove')
+            // .fromTo('.Project_wrapper', {x: screenWidth},{
+            //   x: -screenWidth * 3, // 4 projects - 1
+            //   duration: 1
+            // });
         }
     }, [Containerref, screenWidth, screenHeight, Backgroundref, Footerref]);
 
