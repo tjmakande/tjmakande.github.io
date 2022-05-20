@@ -74,31 +74,9 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
 
 export default WorkSection;
 
-// EDIT: PUT TO THE BOTTOM AFTER COMPLETE
-const TitleText = styled.text`
-    white-space: nowrap;
-`;
-const TitleContainer = styled.div`
-    text-align: center;
-    font-size: 7rem;
-    position: absolute;
-    right: 0;
-`;
-
-const TextContainer = styled.div`
-    height: 250px;
-    width: 400px;
-
-    position: absolute;
-    right: clamp(2rem, 10vw, 10rem);
-    top: 50%;
-    translate(0, -50%);
-`;
-
-// THIS IS THE STARTING POINT OF ORIGINAL
 const ProjectBg = styled.img`
-    width: 70vw;
-    height: 43vw;
+    width: 40vw;
+    height: 23vw;
 
     &:hover{
         & + h2 {
@@ -110,11 +88,8 @@ const ProjectBg = styled.img`
 `;
 
 const WrapperWorks = styled.div`
-    width: ${95 * 4}vw;
     height: 100vh;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+    position: relative;
 `;
 const WrapperText = styled.div`
     position: relative;
@@ -146,14 +121,15 @@ const Title = styled.h2`
 `;
 
 const ProjectItem = styled.div`
-    position: relative;
+    position: absolute;
+    top: 0;
     height: 100vh;
     width: 95vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    mix-blend-mode: difference;
-    color: white;
+    // mix-blend-mode: difference;
+    // color: white;
 `;
 
 const Container = styled.section`
@@ -162,4 +138,28 @@ const Container = styled.section`
     overflow-x: hidden;
     margin-bottom: 350vh; //for animations sake
     background-color: white;
+`;
+
+const TextContainer = styled.div`
+    height: 250px;
+    width: 400px;
+
+    position: absolute;
+    right: clamp(2rem, 10vw, 10rem);
+    bottom: 10vh;
+    right: 8vw;
+`;
+
+const TitleContainer = styled.div`
+    text-align: center;
+    font-size: 10rem;
+    position: absolute;
+    right: 0;
+    mix-blend-mode: difference;
+    z-index: 1;
+`;
+
+const TitleText = styled.text`
+    white-space: nowrap;
+    color: #fff;
 `;
