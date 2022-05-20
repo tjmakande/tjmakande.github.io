@@ -16,8 +16,8 @@ body {
   z-index: 9;
   border-radius: 50%;
   position: fixed;
-  top: -15px;
-  left: -15px;
+  top: -10px;
+  left: -10px;
   margin: 5px;
   pointer-events: none;
   will-change: transform;
@@ -76,14 +76,30 @@ body {
 }
 
 .mouseOverProject{
-  width: 25vw;
-  height: 25vh;
-  border-radius:0 0;
-  top: -10vw;
-  left: -10vw;
+  width: 7vw;
+  height: 7vw;
+  border-radius:50%;
+  top: -3.5vw;
+  left: -3.5vw;
   cursor: pointer;
-  background-size: 100% 100%;
-  mix-blend-mode: darken;
+  mix-blend-mode: difference;
+  border: none;
+}
+
+.mouseOverProject::after{
+  content: 'View Project';
+  text-align: center;
+  font-size: 1rem;
+  white-space: nowrap;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  mix-blend-mode: difference;
+
+  border: none;
 }
 
 code {

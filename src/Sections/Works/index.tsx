@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect} from 'react';
 
 import Cube from 'Assets/3D-cube.png';
 import AutomatedBot from 'Assets/Automated-bot.png';
@@ -7,9 +7,21 @@ import Musician from 'Assets/Musician.png';
 import styled from 'styled-components';
 
 
-const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
+const WorkSection = () => {
+
+    useEffect(() => {
+        window.addEventListener('load', () => {
+            const cursor = document.querySelector('.mouse') as HTMLDivElement;
+            const Works = document.querySelectorAll('.Works');
+            Works.forEach((element) => {
+                element.addEventListener('mouseenter', () => cursor && cursor.classList.add('mouseOverProject'));
+                element.addEventListener('mouseleave', () => cursor && cursor.classList.remove('mouseOverProject'));
+            });
+        });
+    },[]);
+
     return(
-        <Container className="works_wrapper" ref={ref}>
+        <Container className="works_wrapper">
             <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh'}}>
                 <WrapperText>
                     <SectionTitle>
@@ -51,26 +63,26 @@ const WorkSection = React.forwardRef<HTMLDivElement>((props, ref) => {
             </TextContainer>
 
             <WrapperWorks className="Project_wrapper">
-                <ProjectItem className={'Works cinema'}  data-id={'cinema'}>
-                    <ProjectBg  src={CinemaPhoto} />
+                <ProjectItem className="cinema">
+                    <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto} />
                 </ProjectItem>
 
-                <ProjectItem className={'Works chatbot'}  data-id={'chatbot'}>
-                    <ProjectBg src={AutomatedBot} />
+                <ProjectItem className="chatbot">
+                    <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot} />
                 </ProjectItem>
 
-                <ProjectItem className={'Works masimba'} data-id={'masimba'}>
-                    <ProjectBg  src={Musician}/>
+                <ProjectItem className="masimba">
+                    <ProjectBg  className={'Works'} data-id={'masimba'} src={Musician}/>
                 </ProjectItem>
 
-                <ProjectItem className={'Works sdsn'} data-id={'sdsn'}>
-                    <ProjectBg src={Cube} />
+                <ProjectItem className="sdsn">
+                    <ProjectBg className={'Works'}  data-id={'sdsn'}src={Cube} />
                 </ProjectItem>
             </WrapperWorks>
 
         </Container>
     );
-});
+};
 
 export default WorkSection;
 
@@ -107,18 +119,18 @@ const SectionTitle = styled.div`
     font-weight: 700;
 `;
 
-const Title = styled.h2`
-    position: absolute;
-    color: rgb(58,58,58);
-    right: 2vw;
-    bottom: 5vw;
-    font-size: 10vw;
-    margin: 0;
+// const Title = styled.h2`
+//     position: absolute;
+//     color: rgb(58,58,58);
+//     right: 2vw;
+//     bottom: 5vw;
+//     font-size: 10vw;
+//     margin: 0;
 
-    &:hover{
-        transform: rotateZ(-10deg);
-    }
-`;
+//     &:hover{
+//         transform: rotateZ(-10deg);
+//     }
+// `;
 
 const ProjectItem = styled.div`
     position: absolute;
@@ -128,8 +140,6 @@ const ProjectItem = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    // mix-blend-mode: difference;
-    // color: white;
 `;
 
 const Container = styled.section`
@@ -159,7 +169,8 @@ const TitleContainer = styled.div`
     z-index: 1;
 `;
 
-const TitleText = styled.text`
+const TitleText = styled.p`
     white-space: nowrap;
     color: #fff;
+    margin: 0;
 `;

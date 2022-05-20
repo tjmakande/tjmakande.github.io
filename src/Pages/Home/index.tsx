@@ -78,12 +78,12 @@ const HomePage = () => {
 
             gsap.to(".LandingText", {
                 scrollTrigger: {
-                    trigger: '.TextContainer',
+                    trigger: '.LandingSection',
                     start: 'bottom bottom',
                     end: 'bottom center',
                     scrub: .2
                 },
-                yPercent: -40,
+                yPercent: -screenHeight / 3 ,
                 opacity: 0
             });
 
@@ -197,7 +197,7 @@ const HomePage = () => {
             <Background className="background" ref={Backgroundref}/>
             <LandingSection />
             <AboutMe ref={AboutMeContainerref} />
-            <Works ref={Worksref} />
+            <Works />
             <Footer ref={Footerref} />
         </div>
     );
