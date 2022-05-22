@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 
-import TJImage from 'Assets/TJ_image.jpg';
+import TJImage from 'Assets/AM_landing.JPG';
 
 import SectionWrapper from 'Components/Styled/SectionWrapper';
 
@@ -109,7 +109,7 @@ const AboutMePage = () => {
                     anticipatePin:1,
                     pin: true,
                     pinSpacing: false,
-                    start: 'top top',
+                    start: 'bottom bottom',
                     end: screenHeight,
                     scrub: 1
                 }
@@ -189,7 +189,8 @@ const AboutMePage = () => {
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: '100vh'}}>
             <HeaderWrapper>
                 <LandingImg className="Landing_image" src={TJImage} />
-                <div style={{color: 'rgb(229, 229, 229)', mixBlendMode: 'difference', position: 'absolute', right: '10vw', bottom: 0, isolation: 'isolate'}}>
+                {/* <div style={{backgroundColor: 'rgb(59, 59, 59, 0.3', height: '100%', width: '100%', zIndex: 2}}></div> */}
+                <div style={{color: 'rgb(229, 229, 229)',display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(2px)', mixBlendMode: 'difference', position: 'absolute', right: '5vw', bottom: '4rem', margin: 0, padding: 0, boxSizing: 'border-box', zIndex:3, isolation: 'isolate'}}>
                     <Header>
                         About Me
                     </Header>
@@ -312,8 +313,11 @@ const DescriptionFour = styled(Description)`
 
 const LandingImg = styled.img`
     position: absolute;
-    height: 100vh;
+    width: 100vw;
+    height: auto;
     left: 0;
+    bottom: 0;
+    z-index: 1;
 `;
 
 const HeaderWrapper = styled.div`
@@ -330,11 +334,12 @@ const HeaderWrapper = styled.div`
 `;
 
 const Header = styled.h1`
-    font-size: 12vw;
-    padding: 0;
+    font-size: 10vw;
     font-weight: 600;
     letter-spacing: -3px;
     line-height: 12vw;
+    margin: 0;
+    padding: 5px;
     z-index: 1;
 `;
 
