@@ -21,19 +21,19 @@ function App () {
       <Router>
         <Switch>
           <Route path='/Home' element={
-            <React.Suspense fallback={<>...Loading</>}>
+            <React.Suspense fallback={<></>}>
               <HomePage />
             </React.Suspense>
           }
           />
           <Route path='/About' element={
-            <React.Suspense fallback={<>...Loading</>}>
+            <React.Suspense fallback={<></>}>
               <AboutMePage />
             </React.Suspense>
           }
           />
           <Route path='/Works' element={
-            <React.Suspense fallback={<>...Loading</>} >
+            <React.Suspense fallback={<></>} >
               <WorksPage />
             </React.Suspense>
           }
