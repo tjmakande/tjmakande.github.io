@@ -1,9 +1,9 @@
 import {useEffect} from 'react';
 
-import Cube from 'Assets/3D-cube.png';
-import AutomatedBot from 'Assets/Automated-bot.png';
-import CinemaPhoto from 'Assets/Cinema-Photo.png';
-import Musician from 'Assets/Musician.png';
+import AutomatedBot from 'Assets/chatbot-demo.gif';
+import CinemaPhoto from 'Assets/cinema-demo.gif';
+import Cube from 'Assets/cube-demo.gif';
+import SDSN from 'Assets/SDSN-demo.gif';
 import styled from 'styled-components';
 
 
@@ -51,7 +51,7 @@ const WorkSection = () => {
 
                 <TitleContainer>
                     <div className={'text3'}>
-                        <TitleText> 03. Masimba</TitleText>
+                        <TitleText> 03. Cube</TitleText>
                     </div>
                 </TitleContainer>
 
@@ -71,12 +71,12 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot} />
                 </ProjectItem>
 
-                <ProjectItem className="masimba">
-                    <ProjectBg  className={'Works'} data-id={'masimba'} src={Musician}/>
+                <ProjectItem className="cube">
+                    <ProjectBg  className={'Works'} data-id={'cube'} src={Cube}/>
                 </ProjectItem>
 
                 <ProjectItem className="sdsn">
-                    <ProjectBg className={'Works'}  data-id={'sdsn'}src={Cube} />
+                    <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} />
                 </ProjectItem>
             </WrapperWorks>
 
@@ -87,8 +87,8 @@ const WorkSection = () => {
 export default WorkSection;
 
 const ProjectBg = styled.img`
-    width: 40vw;
-    height: 23vw;
+    width: 50vw;
+    height: 26.5vw;
 
     &:hover{
         & + h2 {
@@ -135,7 +135,7 @@ const SectionTitle = styled.div`
 const ProjectItem = styled.div`
     position: absolute;
     top: 0;
-    height: 100vh;
+    height: 70vh;
     width: 95vw;
     display: flex;
     align-items: center;
@@ -151,18 +151,18 @@ const Container = styled.section`
 `;
 
 const TextContainer = styled.div`
-    height: 250px;
+    height: 150px;
     width: 400px;
 
     position: absolute;
     right: clamp(2rem, 10vw, 10rem);
-    bottom: 10vh;
+    bottom: clamp(1.5rem, 5vh, 3rem);
     right: 8vw;
 `;
 
 const TitleContainer = styled.div`
     text-align: center;
-    font-size: 10rem;
+    font-size: clamp(8rem, 4vw, 10rem);
     position: absolute;
     right: 0;
     mix-blend-mode: difference;

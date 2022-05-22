@@ -179,15 +179,15 @@ const HomePage = () => {
             .fromTo('.chatbot', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'chatbot')
             .set('.text2', {transformOrigin: '50% 0%'})
             // Thirt Project animation
-            .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'masimba')
-            .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', duration: 0.5, opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'masimba')
-            .to('.chatbot', {y: -screenHeight, opacity: 0}, 'masimba')
-            .fromTo('.masimba', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'masimba')
+            .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'cube')
+            .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', duration: 0.5, opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'cube')
+            .to('.chatbot', {y: -screenHeight, opacity: 0}, 'cube')
+            .fromTo('.cube', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'cube')
             .set('.text3', {transformOrigin: '50% 0%'})
             // Fourth Project animation
             .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'sdsn')
             .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', duration: 0.5, opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'sdsn')
-            .to('.masimba', {y: -screenHeight, opacity: 0}, 'sdsn')
+            .to('.cube', {y: -screenHeight, opacity: 0}, 'sdsn')
             .fromTo('.sdsn', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'sdsn');
         }
     }, [Containerref, screenWidth, screenHeight, Backgroundref, Footerref]);
