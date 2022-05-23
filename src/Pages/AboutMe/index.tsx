@@ -23,7 +23,7 @@ const AboutMePage = () => {
 
     useEffect(() => {
         const vid = document.getElementById('Pseudocode') as HTMLVideoElement;
-        vid.playbackRate = isMobile() ? 2 : 4;
+        vid.playbackRate = isMobile() ? 2 : 3;
     }, []);
 
     useEffect(() => {
@@ -108,8 +108,7 @@ const AboutMePage = () => {
                     trigger: '.Landing_image',
                     anticipatePin:1,
                     pin: true,
-                    pinSpacing: false,
-                    start: 'bottom bottom',
+                    start: 'top top',
                     end: screenHeight,
                     scrub: 1
                 }
@@ -176,6 +175,7 @@ const AboutMePage = () => {
                     trigger: '.IntroTwoWrapper',
                     anticipatePin: 1,
                     pin: true,
+                    pinSpacing: false,
                     start: 'top top',
                     end: `+=${screenHeight / 2}`,
                     scrub: 1
@@ -186,11 +186,11 @@ const AboutMePage = () => {
     }, [screenHeight, screenWidth]);
 
     return(
-        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: '100vh'}}>
+        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `${window.innerHeight}px`}}>
             <HeaderWrapper>
                 <LandingImg className="Landing_image" src={TJImage} />
                 {/* <div style={{backgroundColor: 'rgb(59, 59, 59, 0.3', height: '100%', width: '100%', zIndex: 2}}></div> */}
-                <div style={{color: 'rgb(229, 229, 229)',display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(2px)', mixBlendMode: 'difference', position: 'absolute', right: '5vw', bottom: '4rem', margin: 0, padding: 0, boxSizing: 'border-box', zIndex:3, isolation: 'isolate'}}>
+                <div style={{color: 'rgb(229, 229, 229)',display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(2px)', mixBlendMode: 'difference', position: 'absolute', right: isMobile() ? 0 : '5vw', bottom: `${isMobile() ? '7rem' : '4rem'}`, margin: 0, padding: 0, boxSizing: 'border-box', zIndex:3, isolation: 'isolate'}}>
                     <Header>
                         About Me
                     </Header>
@@ -233,10 +233,9 @@ const AboutMePage = () => {
 export default AboutMePage;
 
 const Background = styled.div`
-  height: 100vh;
+  height: ${window.innerHeight}px;
   width:100vw;
   z-index: -1;
-  top: ${window.innerHeight};
   left: 0;
   position: absolute;
   background-color: #fff;
@@ -245,7 +244,7 @@ const Background = styled.div`
 const IntroContainer = styled.div`
     pointer-events: none;
     width: 100vw;
-    height: ${isMobile() ? '-webkit-fill-available' : '100vh'};
+    height: ${isMobile() ? `${window.innerHeight}px` : '100vh'};
     position: relative;
     overflow-x: hidden;
 `;
@@ -290,7 +289,7 @@ const IntroTwoTextContainer = styled.div`
 
 const Description = styled.p`
     font-size: clamp(2rem,2vw, 5rem);
-    width: 30vw;
+    width: ${isMobile() ? '100vw' : '30vw'};
     position: absolute;
 `;
 
@@ -313,17 +312,16 @@ const DescriptionFour = styled(Description)`
 
 const LandingImg = styled.img`
     position: absolute;
-    width: 100vw;
-    height: auto;
     left: 0;
-    bottom: 0;
+    min-width: 100vw;
     z-index: 1;
 
     ${
         isMobile() && `
             height: 100vh;
+            min-width: unset;
             width: auto;
-            left: -100%;
+            left: -75%;
             top: 0;
             bottom: unset;
         `
@@ -334,20 +332,19 @@ const HeaderWrapper = styled.div`
     background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
     mix-blend-mode: difference;
-    height: 100vh;
+    height: ${window.innerHeight}px;
     width: 100vw;
     overflow-x: hidden;
     position: relative;
 `;
 
 const Header = styled.h1`
-    font-size: 10vw;
+    font-size: ${isMobile() ? '5rem' : '10vw'};
     font-weight: 600;
-    letter-spacing: -3px;
-    line-height: 12vw;
     margin: 0;
-    padding: 5px;
+    padding: ${isMobile() ? '15px' : '5px'};
     z-index: 1;
+    white-space: nowrap;
 `;
 
 const MapWrapper = styled.div`

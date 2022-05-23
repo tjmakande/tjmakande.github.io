@@ -45,14 +45,14 @@ export default Footer;
 
 const Container = styled.section`
     top: 0;
-    height: 100vh;
+    height: ${window.innerHeight}px;
     width: 100vw;
     z-index: 5;
     overflow: hidden;
 `;
 
 const Wrapper = styled.div`
-    min-height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     color: black;
