@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  cursor: none;
+}
+
+.mouse {
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  z-index: 9;
+  border-radius: 50%;
+  position: fixed;
+  top: -10px;
+  left: -10px;
+  margin: 5px;
+  pointer-events: none;
+  will-change: transform;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+
+  background-color: #fff;
+  mix-blend-mode: difference;
+} 
+
+.mouse::after{
+  content:' ';
+  border: white solid 1px;
+  height:  50px;
+  width: 50px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.mouseOverLink{
+  width: 8vw;
+  height: 4.5vw;
+  border-radius: 50% 50%;
+  /* background-color: rgb(58, 58, 58); */
+  top: -2.25vw;
+  left: -4vw;
+  transition: .2s;
+  opacity: 1;
+}
+
+.mouseOverLink::after{
+  display: none;
+}
+
+.mouseOverSocial {
+  width: 4.5vw;
+  height: 4.5vw;
+  border: 50%;
+  transition: .2s;
+  opacity: 1;
+
+  top: -2.25vw;
+  left: -2.25vw;
+}
+
+.mouseOverEmail{
+  width: 15vw;
+  height: 4vw;
+  border: 50%;
+
+  transition: .2s;
+
+  top: -2vw;
+  left: -7.5vw;
+}
+
+.mouseOverProject{
+  width: 7vw;
+  height: 7vw;
+  border-radius:50%;
+  top: -3.5vw;
+  left: -3.5vw;
+  cursor: pointer;
+  mix-blend-mode: difference;
+  border: none;
+}
+
+.mouseOverProject::after{
+  content: 'View Project';
+  text-align: center;
+  font-size: 1rem;
+  white-space: nowrap;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+  mix-blend-mode: difference;
+
+  border: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1 {
+  font-family: 'Open Sans', sans-serif;
+}
