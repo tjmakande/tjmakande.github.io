@@ -12,7 +12,6 @@ import './App.css';
 
 const HomePage = React.lazy(() => import('Pages/Home'));
 const AboutMePage = React.lazy(() => import('Pages/AboutMe'));
-const WorksPage = React.lazy(() => import('Pages/Works'));
 
 function App () {
   return (
@@ -20,7 +19,7 @@ function App () {
       <Cursor />
       <Router>
         <Switch>
-          <Route path='/Home' element={
+          <Route path='/' element={
             <React.Suspense fallback={<></>}>
               <HomePage />
             </React.Suspense>
@@ -32,35 +31,15 @@ function App () {
             </React.Suspense>
           }
           />
-          <Route path='/Works' element={
-            <React.Suspense fallback={<></>} >
-              <WorksPage />
-            </React.Suspense>
-          }
-          />
-          <Route path={'/'} element={<Navigate to={'/Home'}/>}/>
-
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here!</p>
-              </main>
-            }
-          />
+          <Route path={'*'} element={<Navigate to={'/'}/>}/>
         </Switch>
         <div style={{color: '#fff', zIndex: 9, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(16px, 2.5vw, 20px'}}>
-          <AppLink url={'/Home'} redirectTo={'Home'}/>
-          <AppLink url={'/Works'} redirectTo={'Works'}/>
+          <AppLink url={'/'} redirectTo={'Home'}/>
           <AppLink url={'/About'} redirectTo={'About Me'}/>
           <AppLink url={"/Contact"} redirectTo={'Contact'} />
           <ScrolllDown />
         </div>
-
       </Router>
-
-
-
     </div>
   );
 }

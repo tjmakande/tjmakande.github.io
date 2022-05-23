@@ -12,8 +12,8 @@ const AppLink = ({url, redirectTo}: Props) => {
     return(
         <Wrapper
             className={redirectTo === 'Contact' ? 'Applink Contactbtn' : 'Applink'}
-            left={redirectTo === 'About Me' || redirectTo === 'Home'}
-            top={redirectTo === "Works" || redirectTo === "Home"}
+            left={redirectTo === 'Home'}
+            top={redirectTo === "About Me" || redirectTo === "Home"}
         >
             {
                 redirectTo === 'Contact' ? (
