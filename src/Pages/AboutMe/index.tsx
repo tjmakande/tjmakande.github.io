@@ -132,7 +132,7 @@ const AboutMePage = () => {
             gsap.set('.flightPath', {strokeDasharray: screenWidth * 0.326, strokeDashoffset:0});
 
             if (isMobile()) {
-                gsap.set('.MapWrapper', {scale: 2, autoAlpha: 0});
+                gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
 
                 t1
                 .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
@@ -318,6 +318,16 @@ const LandingImg = styled.img`
     left: 0;
     bottom: 0;
     z-index: 1;
+
+    ${
+        isMobile() && `
+            height: 100vh;
+            width: auto;
+            left: -100%;
+            top: 0;
+            bottom: unset;
+        `
+    }
 `;
 
 const HeaderWrapper = styled.div`
@@ -327,9 +337,6 @@ const HeaderWrapper = styled.div`
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
 `;
 
