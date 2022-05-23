@@ -6,6 +6,8 @@ import Cube from 'Assets/cube-demo.gif';
 import SDSN from 'Assets/SDSN-demo.gif';
 import styled from 'styled-components';
 
+import {isMobile} from 'utils/device';
+
 
 const WorkSection = () => {
 
@@ -36,7 +38,7 @@ const WorkSection = () => {
             </div>
 
 
-            <TextContainer>
+            <TextContainer className="worksTexts">
                 <TitleContainer>
                     <div className={'text1'}>
                         <TitleText> 01. Cinema</TitleText>
@@ -90,6 +92,10 @@ const ProjectBg = styled.img`
     width: 50vw;
     height: 26.5vw;
 
+    ${isMobile() && `
+        width: 90vw;
+        height: 47.7vw;
+    `}
     &:hover{
         & + h2 {
             transform: rotateZ(-10deg);
@@ -122,7 +128,7 @@ const ProjectItem = styled.div`
     position: absolute;
     top: 0;
     height: 70vh;
-    width: 95vw;
+    width: ${isMobile() ? '100vw' : '95vw'};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -141,14 +147,14 @@ const TextContainer = styled.div`
     width: 400px;
 
     position: absolute;
-    right: clamp(2rem, 10vw, 10rem);
-    bottom: clamp(1.5rem, 5vh, 3rem);
-    right: 8vw;
+    bottom: clamp(1.5rem, 12vh, 10rem);
+    right: ${isMobile() ? '1.5rem': '8vw'};
+    background-color: white;
 `;
 
 const TitleContainer = styled.div`
     text-align: center;
-    font-size: clamp(8rem, 4vw, 10rem);
+    font-size: clamp(3.5rem, 10vw, 10rem);
     position: absolute;
     right: 0;
     mix-blend-mode: difference;
