@@ -114,24 +114,10 @@ const SectionTitle = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 12vw;
+    font-size: clamp(6rem, 12vw, 16rem);
     margin: 0;
     font-weight: 700;
 `;
-
-// const Title = styled.h2`
-//     position: absolute;
-//     color: rgb(58,58,58);
-//     right: 2vw;
-//     bottom: 5vw;
-//     font-size: 10vw;
-//     margin: 0;
-
-//     &:hover{
-//         transform: rotateZ(-10deg);
-//     }
-// `;
-
 const ProjectItem = styled.div`
     position: absolute;
     top: 0;
