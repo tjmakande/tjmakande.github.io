@@ -6,12 +6,12 @@ import { isMobile } from 'utils/device';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
+const AboutMe = () => {
     return (
-            <Wrapper className='AM_wrapper' ref={ref}>
+            <Wrapper className='AM_wrapper'>
                 <Text>
                     <Lines className={'Othertext'}>A web developer who diligently works to move </Lines>
-                    <Lines className={'from'} style={{display: 'inline-block'}}>from</Lines>
+                    <Lines className={'from'} style={{display: 'inline-block'}}>from</Lines>&nbsp;
                     <Lines className={'challenge'} style={{display: 'inline-block'}}> challenges </Lines>&nbsp;
                     <Lines className={'to'} style={{display: 'inline-block'}}>to</Lines>&nbsp;
                     {/* <Lines className={'Othertext'}>any given</Lines>&nbsp; */}
@@ -20,7 +20,7 @@ const AboutMe = React.forwardRef<HTMLDivElement>((props, ref) => {
                 </Text>
             </Wrapper>
     );
-});
+};
 
 export default AboutMe;
 
