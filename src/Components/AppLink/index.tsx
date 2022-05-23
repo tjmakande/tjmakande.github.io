@@ -1,7 +1,5 @@
-import React from 'react';
 import {Link} from 'react-router-dom';
 import Wrapper from './styled/Wrapper';
-
 
 interface Props {
     url: string;
@@ -13,7 +11,7 @@ const AppLink = ({url, redirectTo}: Props) => {
         <Wrapper
             className={redirectTo === 'Contact' ? 'Applink Contactbtn' : 'Applink'}
             left={redirectTo === 'Home'}
-            top={redirectTo === "About Me" || redirectTo === "Home"}
+            top={redirectTo !== 'Contact'}
         >
             {
                 redirectTo === 'Contact' ? (
@@ -23,7 +21,6 @@ const AppLink = ({url, redirectTo}: Props) => {
                 {redirectTo}
             </Link>)
             }
-
         </Wrapper>
     );
 };
