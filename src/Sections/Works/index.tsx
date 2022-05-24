@@ -27,13 +27,13 @@ const WorkSection = () => {
             <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh'}}>
                 <WrapperText>
                     <SectionTitle>
-                    <span className="word_selected" style={{display: 'inline-block'}}>
-                        Selected
-                    </span>
-                    <span className="word_works" style={{display: 'inline-block'}}>
-                        Works
-                    </span>
-                </SectionTitle>
+                        <span className="word_selected" style={{display: 'inline-block'}}>
+                            Selected
+                        </span>
+                        <span className="word_works" style={{display: 'inline-block'}}>
+                            Works
+                        </span>
+                    </SectionTitle>
                 </WrapperText>
             </div>
 
@@ -100,7 +100,6 @@ const ProjectBg = styled.img`
         & + h2 {
             transform: rotateZ(-10deg);
             transition: .5s;
-
         }
     }
 `;
@@ -108,6 +107,7 @@ const ProjectBg = styled.img`
 const WrapperWorks = styled.div`
     height: 100vh;
     position: relative;
+    z-index: 2;
 `;
 const WrapperText = styled.div`
     position: relative;
@@ -123,6 +123,7 @@ const SectionTitle = styled.div`
     font-size: clamp(6rem, 12vw, 16rem);
     margin: 0;
     font-weight: 700;
+    z-index: 1;
 `;
 const ProjectItem = styled.div`
     position: absolute;
@@ -144,12 +145,13 @@ const Container = styled.section`
 
 const TextContainer = styled.div`
     height: 150px;
-    width: 400px;
+    width: 100%;
 
     position: absolute;
     bottom: clamp(1.5rem, 12vh, 10rem);
     right: ${isMobile() ? '1.5rem' : '8vw'};
     background-color: white;
+    z-index: 0;
 `;
 
 const TitleContainer = styled.div`
