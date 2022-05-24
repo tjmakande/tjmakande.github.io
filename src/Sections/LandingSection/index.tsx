@@ -80,7 +80,7 @@ const DescriptionTitle = styled.p`
 
     ${
         isMobile() && `
-            margin: 3rem auto 4rem;
+            margin: 2rem auto;
         `
     }
 `;
