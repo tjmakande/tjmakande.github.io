@@ -68,7 +68,7 @@ const WorkSection = () => {
                 <ProjectItem className="cinema">
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto} />
                     <DescriptionBox>
-                        A movie booking platform
+                        A movie booking platform where one can also checkout the latest movies.
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -110,15 +110,18 @@ const DescriptionBox = styled.div`
     box-sizing: border-box;
     padding: 0 2rem;
     font-size: 1.5rem;
-    backdrop-filter: blur(3px);
     ${isMobile() && `
         margin-top: 2rem;
+        backdrop-filter: blur(3px);
     `}
 `;
 
 const ProjectBg = styled.img`
     width: 50vw;
     height: 26.5vw;
+    -webkit-box-shadow: 10px 10px 30px -7px rgba(150,150,150,1);
+    -moz-box-shadow: 10px 10px 30px -7px rgba(150,150,150,1);
+    box-shadow: 10px 10px 30px -7px rgba(150,150,150,1);
 
     ${isMobile() && `
         width: 90vw;
