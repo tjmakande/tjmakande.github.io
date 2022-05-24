@@ -67,18 +67,30 @@ const WorkSection = () => {
             <WrapperWorks className="Project_wrapper">
                 <ProjectItem className="cinema">
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto} />
+                    <DescriptionBox>
+                        A movie booking platform
+                    </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="chatbot">
                     <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot} />
+                    <DescriptionBox>
+                        A customer service chatbot that is able to process relevant information to the user.
+                    </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="cube">
                     <ProjectBg  className={'Works'} data-id={'cube'} src={Cube}/>
+                    <DescriptionBox>
+                        A cube showcasing my experiences in China.
+                    </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="sdsn">
                     <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} />
+                    <DescriptionBox>
+                        The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.
+                    </DescriptionBox>
                 </ProjectItem>
             </WrapperWorks>
 
@@ -87,6 +99,22 @@ const WorkSection = () => {
 };
 
 export default WorkSection;
+
+const DescriptionBox = styled.div`
+    width: ${isMobile() ? '100%' : '35%'};
+    height: 150px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    font-family: nunito;
+    box-sizing: border-box;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+    backdrop-filter: blur(3px);
+    ${isMobile() && `
+        margin-top: 2rem;
+    `}
+`;
 
 const ProjectBg = styled.img`
     width: 50vw;
@@ -132,7 +160,10 @@ const ProjectItem = styled.div`
     width: ${isMobile() ? '100vw' : '95vw'};
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: ${isMobile() ? 'center' : 'end'};
+    ${
+        isMobile() && 'flex-direction: column;'
+    }
 `;
 
 const Container = styled.section`
