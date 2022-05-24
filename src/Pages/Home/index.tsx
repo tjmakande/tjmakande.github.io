@@ -158,7 +158,7 @@ const HomePage = () => {
                   duration: {min: 0.05, max:0.5},
                   delay: 0,
                 },
-                scrub: 1,
+                scrub: 0.3,
               }
             });
 
