@@ -53,11 +53,11 @@ const Wrapper = styled.div`
 `;
 
 const NameHeader = styled.h1`
-    font-family: nunito;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(4rem, 4.5vw, 7rem);
-    line-height: clamp(4rem, 4.5vw, 7rem);
+    font-size: clamp(4.5rem, 4.5vw, 8rem);
+    line-height: clamp(4.5rem, 4.5vw, 8rem);
     text-transform: uppercase;
     margin: 0;
     color: #fff;
@@ -72,8 +72,8 @@ const NameHeader = styled.h1`
     }
 `;
 const DescriptionTitle = styled.p`
-    font-family: 'nunito';
-    font-size: clamp(2rem, 3vw, 5.5rem);
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(2.5rem, 3vw, 5.5rem);
     text-transform: uppercase;
     margin: 4rem 0 0 0;
     color: #fff;
