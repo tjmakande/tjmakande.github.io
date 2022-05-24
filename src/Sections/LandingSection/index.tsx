@@ -53,35 +53,34 @@ const Wrapper = styled.div`
 `;
 
 const NameHeader = styled.h1`
-    font-family: nunito;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(4rem, 4.5vw, 7rem);
-    line-height: clamp(4rem, 4.5vw, 7rem);
+    font-size: clamp(3.1rem, 6vw, 8rem);
+    line-height: clamp(3.1rem, 6vw, 8rem);
     text-transform: uppercase;
     margin: 0;
-    color: #fff;
+    color: rgb(200,200,200);
     mix-blend-mode: difference;
     z-index: 5;
 
     ${
         isMobile() && `
-            font-size: 3rem;
             margin: 0 auto;
         `
     }
 `;
 const DescriptionTitle = styled.p`
-    font-family: 'nunito';
-    font-size: clamp(2rem, 3vw, 5.5rem);
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(2.5rem, 3vw, 5.5rem);
     text-transform: uppercase;
     margin: 4rem 0 0 0;
-    color: #fff;
+    color: rgb(200,200,200);
     mix-blend-mode: difference;
 
     ${
         isMobile() && `
-            margin: 3rem auto 4rem;
+            margin: 2rem auto;
         `
     }
 `;

@@ -33,7 +33,7 @@ function App () {
           />
           <Route path={'*'} element={<Navigate to={'/'}/>}/>
         </Switch>
-        <div style={{color: '#fff', zIndex: 9, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(16px, 2.5vw, 20px'}}>
+        <div style={{color: '#fff', zIndex: 9, position: 'absolute', mixBlendMode: 'difference', fontSize: 'clamp(19px, 2vw, 22px'}}>
           <AppLink url={'/'} redirectTo={'Home'}/>
           <AppLink url={'/About'} redirectTo={'About Me'}/>
           <AppLink url={"/Contact"} redirectTo={'Contact'} />

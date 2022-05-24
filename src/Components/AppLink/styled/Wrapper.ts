@@ -21,8 +21,4 @@ export default styled.div`
     &:hover{
         text-decoration: underline;
     }
-
-    @media (max-width: 850px){
-        font-size: 1.5rem;
-    }
 `;

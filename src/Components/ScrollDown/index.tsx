@@ -19,7 +19,7 @@ const ScrollDownIcon = () => {
         const resetTimer = () => {
             clearTimeout(time);
             setIsUserInactive(false);
-            time = setTimeout(ShowIcon, 5000);
+            time = setTimeout(ShowIcon, 10000);
         };
 
 

@@ -188,8 +188,9 @@ const AboutMePage = () => {
     return(
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `${window.innerHeight}px`}}>
             <HeaderWrapper>
-                <LandingImg className="Landing_image" src={TJImage} />
-                {/* <div style={{backgroundColor: 'rgb(59, 59, 59, 0.3', height: '100%', width: '100%', zIndex: 2}}></div> */}
+                <div className="Landing_image" style={{height: window.innerHeight, width: '100%', position: 'relative'}}>
+                    <LandingImg src={TJImage} />
+                </div>
                 <div style={{color: 'rgb(229, 229, 229)',display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(2px)', mixBlendMode: 'difference', position: 'absolute', right: isMobile() ? 0 : '5vw', bottom: `${isMobile() ? '7rem' : '4rem'}`, margin: 0, padding: 0, boxSizing: 'border-box', zIndex:3, isolation: 'isolate'}}>
                     <Header>
                         About Me
@@ -219,7 +220,7 @@ const AboutMePage = () => {
                         </DescriptionFour>
                     </IntroTwoTextContainer>
 
-                    <video id={'Pseudocode'} style={{width: isMobile() ? '94vw' : 'unset'}} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
+                    <video id={'Pseudocode'} style={{width: isMobile() ? '90vw' : '46vw', margin: isMobile() ? '0 auto' : '0'}} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
                         <source src={Video} type="video/mp4"/>
                     </video>
                 </IntroTwoWrapper>
@@ -264,7 +265,7 @@ const IntroTwoWrapper = styled(IntroWrapper)`
     padding: 0 5vw;
     box-sizing: border-box;
     flex-direction: row;
-    justify-content: center;
+    justify-content: ${isMobile() ? 'center' : 'space-between'};
     align-items: center;
     margin-bottom: 50vh;
 
@@ -276,11 +277,11 @@ const IntroTwoWrapper = styled(IntroWrapper)`
 `;
 
 const IntroTwoTextContainer = styled.div`
-    margin-right: 5rem;
-    height: 400px;
+    width: 40vw;
 
     ${
         isMobile() && `
+            width: 88vw;
             height: unset;
             margin: 0;
         `
@@ -312,20 +313,11 @@ const DescriptionFour = styled(Description)`
 
 const LandingImg = styled.img`
     position: absolute;
-    left: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
     min-width: 100vw;
     z-index: 1;
-
-    ${
-        isMobile() && `
-            height: 100vh;
-            min-width: unset;
-            width: auto;
-            left: -75%;
-            top: 0;
-            bottom: unset;
-        `
-    }
 `;
 
 const HeaderWrapper = styled.div`

@@ -27,13 +27,13 @@ const WorkSection = () => {
             <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh'}}>
                 <WrapperText>
                     <SectionTitle>
-                    <span className="word_selected" style={{display: 'inline-block'}}>
-                        Selected
-                    </span>
-                    <span className="word_works" style={{display: 'inline-block'}}>
-                        Works
-                    </span>
-                </SectionTitle>
+                        <span className="word_selected" style={{display: 'inline-block'}}>
+                            Selected
+                        </span>
+                        <span className="word_works" style={{display: 'inline-block'}}>
+                            Works
+                        </span>
+                    </SectionTitle>
                 </WrapperText>
             </div>
 
@@ -67,18 +67,30 @@ const WorkSection = () => {
             <WrapperWorks className="Project_wrapper">
                 <ProjectItem className="cinema">
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto} />
+                    <DescriptionBox>
+                        A movie booking platform where one can also checkout the latest movies.
+                    </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="chatbot">
                     <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot} />
+                    <DescriptionBox>
+                        A customer service chatbot that is able to process relevant information to the user.
+                    </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="cube">
                     <ProjectBg  className={'Works'} data-id={'cube'} src={Cube}/>
+                    <DescriptionBox>
+                        A cube showcasing my experiences in China.
+                    </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="sdsn">
                     <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} />
+                    <DescriptionBox>
+                        The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.
+                    </DescriptionBox>
                 </ProjectItem>
             </WrapperWorks>
 
@@ -88,9 +100,28 @@ const WorkSection = () => {
 
 export default WorkSection;
 
+const DescriptionBox = styled.div`
+    width: ${isMobile() ? '100%' : '35%'};
+    height: 150px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    font-family: nunito;
+    box-sizing: border-box;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+    ${isMobile() && `
+        margin-top: 2rem;
+        backdrop-filter: blur(3px);
+    `}
+`;
+
 const ProjectBg = styled.img`
     width: 50vw;
     height: 26.5vw;
+    -webkit-box-shadow: 10px 10px 30px -7px rgba(150,150,150,1);
+    -moz-box-shadow: 10px 10px 30px -7px rgba(150,150,150,1);
+    box-shadow: 10px 10px 30px -7px rgba(150,150,150,1);
 
     ${isMobile() && `
         width: 90vw;
@@ -100,7 +131,6 @@ const ProjectBg = styled.img`
         & + h2 {
             transform: rotateZ(-10deg);
             transition: .5s;
-
         }
     }
 `;
@@ -108,6 +138,7 @@ const ProjectBg = styled.img`
 const WrapperWorks = styled.div`
     height: 100vh;
     position: relative;
+    z-index: 2;
 `;
 const WrapperText = styled.div`
     position: relative;
@@ -123,6 +154,7 @@ const SectionTitle = styled.div`
     font-size: clamp(6rem, 12vw, 16rem);
     margin: 0;
     font-weight: 700;
+    z-index: 1;
 `;
 const ProjectItem = styled.div`
     position: absolute;
@@ -131,7 +163,10 @@ const ProjectItem = styled.div`
     width: ${isMobile() ? '100vw' : '95vw'};
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: ${isMobile() ? 'center' : 'end'};
+    ${
+        isMobile() && 'flex-direction: column;'
+    }
 `;
 
 const Container = styled.section`
@@ -144,12 +179,13 @@ const Container = styled.section`
 
 const TextContainer = styled.div`
     height: 150px;
-    width: 400px;
+    width: 100%;
 
     position: absolute;
     bottom: clamp(1.5rem, 12vh, 10rem);
-    right: ${isMobile() ? '1.5rem': '8vw'};
+    right: ${isMobile() ? '1.5rem' : '8vw'};
     background-color: white;
+    z-index: 0;
 `;
 
 const TitleContainer = styled.div`
