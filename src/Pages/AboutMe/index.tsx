@@ -219,7 +219,7 @@ const AboutMePage = () => {
                         </DescriptionFour>
                     </IntroTwoTextContainer>
 
-                    <video id={'Pseudocode'} style={{width: isMobile() ? '94vw' : 'unset'}} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
+                    <video id={'Pseudocode'} style={{width: isMobile() ? '90vw' : '46vw', margin: isMobile() ? '0 auto' : '0'}} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
                         <source src={Video} type="video/mp4"/>
                     </video>
                 </IntroTwoWrapper>
@@ -264,7 +264,7 @@ const IntroTwoWrapper = styled(IntroWrapper)`
     padding: 0 5vw;
     box-sizing: border-box;
     flex-direction: row;
-    justify-content: center;
+    justify-content: ${isMobile() ? 'center' : 'space-between'};
     align-items: center;
     margin-bottom: 50vh;
 
@@ -276,11 +276,11 @@ const IntroTwoWrapper = styled(IntroWrapper)`
 `;
 
 const IntroTwoTextContainer = styled.div`
-    margin-right: 5rem;
-    height: 400px;
+    width: 40vw;
 
     ${
         isMobile() && `
+            width: 88vw;
             height: unset;
             margin: 0;
         `
