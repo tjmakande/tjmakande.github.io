@@ -170,6 +170,7 @@ const HomePage = () => {
                 .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
                 // Move text to left
                 .fromTo(['.word_works', '.word_selected'], {opacity: 1}, {opacity: 0.05 })
+                .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
                 .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'cinema')
                 .fromTo('.cinema' , { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'cinema')
@@ -198,6 +199,7 @@ const HomePage = () => {
                 // Move text to left
                 .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -selectedRect.left * 0.8, duration: 0.05})
                 .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left',yPercent: 10, x: -worksRect.left * (isMobile() ? 0.8 : 0.55), duration: 0.05})
+                .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
                 .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'cinema')
                 .fromTo('.cinema' , { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'cinema')

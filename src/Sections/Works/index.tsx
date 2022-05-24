@@ -148,7 +148,7 @@ const TextContainer = styled.div`
 
     position: absolute;
     bottom: clamp(1.5rem, 12vh, 10rem);
-    right: ${isMobile() ? '1.5rem': '8vw'};
+    right: ${isMobile() ? '1.5rem' : '8vw'};
     background-color: white;
 `;
 
