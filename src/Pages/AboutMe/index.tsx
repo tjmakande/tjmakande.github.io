@@ -20,7 +20,6 @@ const AboutMePage = () => {
     // Starting HERE
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
-    const [appLoaded, setAppLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         const vid = document.getElementById('Pseudocode') as HTMLVideoElement;

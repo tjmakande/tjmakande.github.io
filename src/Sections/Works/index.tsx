@@ -7,20 +7,20 @@ import SDSN from 'Assets/SDSN-demo.gif';
 import styled from 'styled-components';
 
 import {isMobile} from 'utils/device';
-
+import { openInNewTab } from "utils/OpenNewTab";
 
 const WorkSection = () => {
 
-    useEffect(() => {
-        window.addEventListener('load', () => {
-            const cursor = document.querySelector('.mouse') as HTMLDivElement;
-            const Works = document.querySelectorAll('.Works');
-            Works.forEach((element) => {
-                element.addEventListener('mouseenter', () => cursor && cursor.classList.add('mouseOverProject'));
-                element.addEventListener('mouseleave', () => cursor && cursor.classList.remove('mouseOverProject'));
-            });
-        });
-    },[]);
+    // useEffect(() => {
+    //     window.addEventListener('load', () => {
+    //         const cursor = document.querySelector('.mouse') as HTMLDivElement;
+    //         const Works = document.querySelectorAll('.Works');
+    //         Works.forEach((element) => {
+    //             element.addEventListener('mouseenter', () => cursor && cursor.classList.add('mouseOverProject'));
+    //             element.addEventListener('mouseleave', () => cursor && cursor.classList.remove('mouseOverProject'));
+    //         });
+    //     });
+    // },[]);
 
     return(
         <Container className="works_wrapper">
@@ -68,28 +68,32 @@ const WorkSection = () => {
                 <ProjectItem className="cinema">
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto} />
                     <DescriptionBox>
-                        A movie booking platform where one can also checkout the latest movies.
+                        <p>A movie booking platform where one can also checkout the latest movies.</p>
+                        <Btn available={false}>Coming Soon!</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="chatbot">
                     <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot} />
                     <DescriptionBox>
-                        A customer service chatbot that is able to process relevant information to the user.
+                        <p>A customer service chatbot that is able to process relevant information to the user.</p>
+                        <Btn available={false}>Upon Request</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="cube">
                     <ProjectBg  className={'Works'} data-id={'cube'} src={Cube}/>
                     <DescriptionBox>
-                        A cube showcasing my experiences in China.
+                        <p>A responsive cube showcasing experiences during my 6 years living in China.</p>
+                        <Btn available={false}>Upon Request</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
                 <ProjectItem className="sdsn">
                     <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} />
                     <DescriptionBox>
-                        The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.
+                        <p>The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.</p>
+                        <Btn available={true} onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}>View Site</Btn>
                     </DescriptionBox>
                 </ProjectItem>
             </WrapperWorks>
@@ -100,10 +104,25 @@ const WorkSection = () => {
 
 export default WorkSection;
 
+const Btn = styled.div`
+    width: ${isMobile() ?  '80%' : '40%'};
+    height: 50px;
+    font-size: 1.3rem;
+    margin: 0 auto;
+    border-radius: 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ${
+        (props: {available: boolean}) => props.available ? 'background-color: #00b1eb;' : 'background-color: #d9d6d6;'
+    }
+`;
+
 const DescriptionBox = styled.div`
     width: ${isMobile() ? '100%' : '35%'};
-    height: 150px;
+    // height: 150px;
     display: flex;
+    flex-direction: column;
     align-items: start;
     justify-content: center;
     font-family: nunito;
@@ -178,7 +197,7 @@ const Container = styled.section`
 `;
 
 const TextContainer = styled.div`
-    height: 150px;
+    height: 180px;
     width: 100%;
 
     position: absolute;
