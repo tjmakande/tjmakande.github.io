@@ -20,6 +20,7 @@ const AboutMePage = () => {
     // Starting HERE
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
+    window.addEventListener('load', () => document.querySelector('.loader')?.remove());
 
     useEffect(() => {
         const vid = document.getElementById('Pseudocode') as HTMLVideoElement;
@@ -30,8 +31,6 @@ const AboutMePage = () => {
         gsap.registerPlugin(ScrollTrigger);
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
-
-        window.addEventListener('load', () => document.querySelector('.loader')?.remove());
 
         window.addEventListener('resize', () => {
             if (window.innerHeight !== screenHeight)
@@ -58,7 +57,7 @@ const AboutMePage = () => {
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Container});
 
-            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000); });
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 15, 1000); });
 
             // Background Item;
             gsap.to('.background', {
