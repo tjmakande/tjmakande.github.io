@@ -1,15 +1,36 @@
 import LandingImage from 'Assets/LandingImage2.jpg';
 import SectionWrapper from 'Components/Styled/SectionWrapper';
+import { useEffect } from 'react';
 import styled from 'styled-components';
+import Typed from 'typed.js';
 import { isMobile } from 'utils/device';
 
 const LandingSection = () => {
-    return (
+
+  useEffect(() => {
+        const options = {
+            strings: ['WEB DEVELOPER', 'LEARNER', 'PERSISTENT', 'AMBITIOUS'],
+            typeSpeed: 60,
+            backsSpeed: 100,
+            backDelay: 1500,
+            loop: true,
+            loopCount: Infinity,
+        };
+
+        const currTyped = new Typed('.DescriptionText', options);
+
+        return () => {
+        // Make sure to destroy Typed instance during cleanup
+        // to prevent memory leaks
+        currTyped.destroy();
+        };
+    }, []);
+
+  return (
         <SectionWrapper>
             <Wrapper className="LandingSection">
                 <NameHeader className="LandingText">Tapiwanashe</NameHeader>
                 <NameHeader style={{marginBottom: isMobile() ? '2rem' : '0'}}className="LandingText">J. Makande</NameHeader>
-
 
                 <ImageWrapper>
                     <svg style={{width: '100%'}} viewBox='0 0 420 280'>
@@ -28,7 +49,7 @@ const LandingSection = () => {
                     </svg>
                 </ImageWrapper>
 
-                <DescriptionTitle className="LandingText">Web developer</DescriptionTitle>
+                <DescriptionTitle className="LandingText"><span className="DescriptionText"> </span></DescriptionTitle>
             </Wrapper>
         </SectionWrapper>
     );
