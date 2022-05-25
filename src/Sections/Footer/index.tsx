@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { isMobile } from 'utils/device';
+import { openInNewTab } from 'utils/OpenNewTab';
 import GithubIcon from './GithubIcon';
 import InstagramIcon from './InstagramIcon';
 import LinkedInIcon from './LinkedInIcon';
@@ -23,12 +24,13 @@ const Footer = () => {
                 <SectionTitle>Let's Collaborate</SectionTitle>
                 <CTAtext>Don't be afraid to connect!</CTAtext>
 
-                <div style={{marginTop: '5rem'}}>
+                <div style={{marginTop: '5rem', width: '300px'}}>
                     <EmailLink
                         className="EmailLink"
+                        onClick={() => openInNewTab('mailto:tjmakande@gmail.com')}
                         onMouseEnter={(e) => {isHover(true); if (isMobile()) underlineOnHover((e.target as HTMLElement));}}
                         onMouseLeave={(e) => {isHover(false); rmunderlineOnHover((e.target as HTMLElement));}}
-                    >tj@example.com</EmailLink>
+                    >tjmakande@gmail.com</EmailLink>
                     <Line />
                     <SocialWrapper>
                         {/* <InstagramIcon /> */}
@@ -86,7 +88,7 @@ const SectionTitle = styled.h1`
 
 const EmailLink = styled.p`
     color: #fff;
-    font-size: 1.5vw;
+    font-size: 1.3vw;
     margin: 2rem 0 0 0;
 
     ${
@@ -115,7 +117,7 @@ const CTAtext = styled(EmailLink)`
 `;
 
 const SocialWrapper = styled.div`
-    width: 200px;
+    width: 100%;
     margin: 1rem 0;
 
     display: flex;

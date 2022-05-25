@@ -1,5 +1,3 @@
-import {useEffect} from 'react';
-
 import AutomatedBot from 'Assets/chatbot-demo.gif';
 import CinemaPhoto from 'Assets/cinema-demo.gif';
 import Cube from 'Assets/cube-demo.gif';
@@ -10,18 +8,6 @@ import {isMobile} from 'utils/device';
 import { openInNewTab } from "utils/OpenNewTab";
 
 const WorkSection = () => {
-
-    // useEffect(() => {
-    //     window.addEventListener('load', () => {
-    //         const cursor = document.querySelector('.mouse') as HTMLDivElement;
-    //         const Works = document.querySelectorAll('.Works');
-    //         Works.forEach((element) => {
-    //             element.addEventListener('mouseenter', () => cursor && cursor.classList.add('mouseOverProject'));
-    //             element.addEventListener('mouseleave', () => cursor && cursor.classList.remove('mouseOverProject'));
-    //         });
-    //     });
-    // },[]);
-
     return(
         <Container className="works_wrapper">
             <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh'}}>
