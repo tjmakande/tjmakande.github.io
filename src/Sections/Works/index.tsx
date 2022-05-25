@@ -178,7 +178,7 @@ const Container = styled.section`
     position: relative;
     height: 100vh;
     overflow-x: hidden;
-    margin-bottom: 350vh; //for animations sake
+    margin-bottom: 750vh; //for animations sake
     background-color: white;
 `;
 

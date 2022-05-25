@@ -32,7 +32,7 @@ const HomePage = () => {
         const Contactbtn = document.querySelector('.Contactbtn');
         if (Containerref.current){
           // initial setup
-            const bodyScrollBar = Scrollbar.init(Containerref.current, {damping: 0.05, renderByPixels: true, delegateTo: document});
+            const bodyScrollBar = Scrollbar.init(Containerref.current, {damping: 0.3, renderByPixels: true, delegateTo: document});
             ScrollTrigger.scrollerProxy(".scroller", {
               scrollTop (value: number = 0) {
                 if (arguments.length) {
@@ -146,7 +146,7 @@ const HomePage = () => {
                 scroller: '.scroller',
                 trigger: '.works_wrapper',
                 start: 'top top',
-                end: `+=${screenHeight * 3}`,
+                end: `+=${screenHeight * 7}`,
                 pin: true,
                 pinSpacing: false,
                 snap: {
@@ -155,7 +155,7 @@ const HomePage = () => {
                   duration: {min: 0.05, max:0.5},
                   delay: 0,
                 },
-                scrub: 0.3,
+                scrub: 1,
               }
             });
 
@@ -163,61 +163,61 @@ const HomePage = () => {
                 gsap.set(['.word_selected', '.word_works'], {transformOrigin: 'top left'});
 
                 t2
-                .fromTo('.word_selected', {yPercent: -150, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.05})
-                .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
+                .fromTo('.word_selected', {yPercent: -150, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 1})
+                .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1})
                 // Move text to left
-                .fromTo(['.word_works', '.word_selected'], {opacity: 1}, {opacity: 0.05 })
+                .fromTo(['.word_works', '.word_selected'], {opacity: 1}, {opacity: 0.05 , duration: 1})
                 .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
-                .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'cinema')
-                .fromTo('.cinema' , { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'cinema')
+                .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cinema')
+                .fromTo('.cinema' , { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
                 .set('.text1', {transformOrigin: '50% 0%'})
                 // Second Project animation
-                .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'chatbot')
-                .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'chatbot')
-                .to('.cinema', {y: -screenHeight, opacity: 0}, 'chatbot')
-                .fromTo('.chatbot', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'chatbot')
+                .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'chatbot')
+                .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'chatbot')
+                .to('.cinema', {y: -screenHeight, opacity: 0, duration: 1}, 'chatbot')
+                .fromTo('.chatbot', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
                 .set('.text2', {transformOrigin: '50% 0%'})
                 // Thirt Project animation
-                .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'cube')
-                .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'cube')
-                .to('.chatbot', {y: -screenHeight, opacity: 0}, 'cube')
-                .fromTo('.cube', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'cube')
+                .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'cube')
+                .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cube')
+                .to('.chatbot', {y: -screenHeight, opacity: 0, duration: 1}, 'cube')
+                .fromTo('.cube', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
                 .set('.text3', {transformOrigin: '50% 0%'})
                 // Fourth Project animation
-                .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'sdsn')
-                .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'sdsn')
-                .to('.cube', {y: -screenHeight, opacity: 0}, 'sdsn')
-                .fromTo('.sdsn', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'sdsn');
+                .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
+                .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
+                .to('.cube', {y: -screenHeight, opacity: 0, duration: 1}, 'sdsn')
+                .fromTo('.sdsn', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
             } else {
                 t2
-                .fromTo('.word_selected', {yPercent: -150, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.05})
-                .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.05})
+                .fromTo('.word_selected', {yPercent: -150, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 1})
+                .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 1})
                 // Move text to left
-                .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -selectedRect.left * 0.8, duration: 0.05})
-                .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left',yPercent: 10, x: -worksRect.left * (isMobile() ? 0.8 : 0.55), duration: 0.05})
+                .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -selectedRect.left * 0.8, duration: 1})
+                .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left',yPercent: 10, x: -worksRect.left * (isMobile() ? 0.8 : 0.55), duration: 1})
                 .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
-                .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'cinema')
-                .fromTo('.cinema' , { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'cinema')
+                .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cinema')
+                .fromTo('.cinema' , { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
                 .set('.text1', {transformOrigin: '50% 0%'})
                 // Second Project animation
-                .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'chatbot')
-                .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'chatbot')
-                .to('.cinema', {y: -screenHeight, opacity: 0}, 'chatbot')
-                .fromTo('.chatbot', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'chatbot')
+                .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'chatbot')
+                .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'chatbot')
+                .to('.cinema', {y: -screenHeight, opacity: 0, duration: 1}, 'chatbot')
+                .fromTo('.chatbot', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
                 .set('.text2', {transformOrigin: '50% 0%'})
                 // Thirt Project animation
-                .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'cube')
-                .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'cube')
-                .to('.chatbot', {y: -screenHeight, opacity: 0}, 'cube')
-                .fromTo('.cube', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'cube')
+                .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'cube')
+                .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cube')
+                .to('.chatbot', {y: -screenHeight, opacity: 0, duration: 1}, 'cube')
+                .fromTo('.cube', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
                 .set('.text3', {transformOrigin: '50% 0%'})
                 // Fourth Project animation
-                .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0}, 'sdsn')
-                .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1}, 'sdsn')
-                .to('.cube', {y: -screenHeight, opacity: 0}, 'sdsn')
-                .fromTo('.sdsn', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'sdsn');
+                .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
+                .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
+                .to('.cube', {y: -screenHeight, opacity: 0, duration: 1}, 'sdsn')
+                .fromTo('.sdsn', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
             }
         }
     }, [Containerref, screenWidth, screenHeight]);

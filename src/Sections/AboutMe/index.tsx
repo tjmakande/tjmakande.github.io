@@ -16,7 +16,7 @@ const AboutMe = () => {
                     <Lines className={'to'} style={{display: 'inline-block'}}>to</Lines>&nbsp;
                     {/* <Lines className={'Othertext'}>any given</Lines>&nbsp; */}
                     <Lines className={'solution'} style={{display: 'inline-block'}}>solutions</Lines>
-                    <Lines className={'Othertext'}>, drawing the ideas created in your head, on to the canvas of reality.</Lines>
+                    <Lines className={'Othertext'}>, drawing the ideas created in your head, on to the canvas of reality.🧀</Lines>
                 </Text>
             </Wrapper>
     );
