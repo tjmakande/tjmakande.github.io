@@ -3,7 +3,6 @@ import Cursor from 'Components/Cursor';
 import ScrolllDown from 'Components/ScrollDown';
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Navigate,
   Route,
   Routes as Switch
@@ -17,7 +16,6 @@ function App () {
   return (
     <div className="App">
       <Cursor />
-      <Router>
         <Switch>
           <Route path='/' element={
             <React.Suspense fallback={<></>}>
@@ -39,7 +37,6 @@ function App () {
           <AppLink url={"/Contact"} redirectTo={'Contact'} />
           <ScrolllDown />
         </div>
-      </Router>
     </div>
   );
 }

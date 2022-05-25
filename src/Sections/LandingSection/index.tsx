@@ -8,7 +8,7 @@ const LandingSection = () => {
         <SectionWrapper>
             <Wrapper className="LandingSection">
                 <NameHeader className="LandingText">Tapiwanashe</NameHeader>
-                <NameHeader className="LandingText">J. Makande</NameHeader>
+                <NameHeader style={{marginBottom: isMobile() ? '2rem' : '0'}}className="LandingText">J. Makande</NameHeader>
 
 
                 <ImageWrapper>
@@ -56,8 +56,8 @@ const NameHeader = styled.h1`
     font-family: 'Lato', sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: clamp(3.1rem, 6vw, 8rem);
-    line-height: clamp(3.1rem, 6vw, 8rem);
+    font-size: clamp(3.1rem, 8vw, 4.8rem);
+    line-height: clamp(3.1rem, 8vw, 4.8rem);
     text-transform: uppercase;
     margin: 0;
     color: rgb(200,200,200);

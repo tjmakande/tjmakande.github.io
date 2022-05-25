@@ -91,9 +91,9 @@ const WorkSection = () => {
 export default WorkSection;
 
 const Btn = styled.div`
-    width: ${isMobile() ?  '80%' : '40%'};
+    width: ${isMobile() ?  '70%' : '60%'};
     height: 50px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin: 0 auto;
     border-radius: 20px 20px;
     display: flex;
