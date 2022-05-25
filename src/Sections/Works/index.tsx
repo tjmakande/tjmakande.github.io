@@ -54,7 +54,7 @@ const WorkSection = () => {
                 <ProjectItem className="cinema">
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto}  alt="cinema platform demo"/>
                     <DescriptionBox>
-                        <p>A movie booking platform where one can also checkout the latest movies.</p>
+                        <p>A movie booking platform, where you can also check out the latest movies.</p>
                         <Btn available={false}>Coming Soon!</Btn>
                     </DescriptionBox>
                 </ProjectItem>
@@ -62,7 +62,7 @@ const WorkSection = () => {
                 <ProjectItem className="chatbot">
                     <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot}  alt="chatbot demo"/>
                     <DescriptionBox>
-                        <p>A customer service chatbot that is able to process relevant information to the user.</p>
+                        <p>A customer service realtime chatbot that is able to process relevant information to the user and perform CRUD operations.</p>
                         <Btn available={false}>Upon Request</Btn>
                     </DescriptionBox>
                 </ProjectItem>
@@ -70,7 +70,7 @@ const WorkSection = () => {
                 <ProjectItem className="cube">
                     <ProjectBg  className={'Works'} data-id={'cube'} src={Cube} alt="cube demo"/>
                     <DescriptionBox>
-                        <p>A responsive cube showcasing experiences during my 6 years living in China.</p>
+                        <p>A responsive cube showcasing my experience during the 6 years I lived in China.</p>
                         <Btn available={false}>Upon Request</Btn>
                     </DescriptionBox>
                 </ProjectItem>

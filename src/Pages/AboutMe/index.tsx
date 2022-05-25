@@ -213,10 +213,10 @@ const AboutMePage = () => {
                 <IntroTwoWrapper className='IntroTwoWrapper'>
                     <IntroTwoTextContainer>
                         <DescriptionFour >
-                            I'm naturally keen developer with an eye for clean code and designs. I have the MERN stack in my arsenal which enables me to work on all sides of the development cycle.
+                            I'm a naturally keen developer with an eye for clean code and designs. I have the MERN stack in my arsenal which enables me to work on all parts of the development cycle.
                         </DescriptionFour>
                         <DescriptionFour>
-                            I am very much attracted to challenges and I love to find solutions. I do believe that those two belong together.
+                            I am very much attracted to learning, challenges and finding solutions. I do believe that they all belong together.
                         </DescriptionFour>
                     </IntroTwoTextContainer>
 
