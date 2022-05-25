@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import { isMobile } from 'utils/device';
@@ -11,12 +11,16 @@ import LinkedInIcon from './LinkedInIcon';
 const Footer = () => {
     const underlineOnHover = (div: HTMLElement) => div.style.textDecoration = "underline";
     const rmunderlineOnHover = (div: HTMLElement) => div.style.textDecoration = "none";
-
+    const [currentYear, setCurrentYear] = useState<number>(2021);
     const isHover = (action: boolean) => action ? (
         document.querySelector('.mouse')?.classList.add('mouseOverEmail')
     ) : (
         document.querySelector('.mouse')?.classList.remove('mouseOverEmail')
     );
+    useEffect(() => {
+        const date = new Date();
+        setCurrentYear(date.getFullYear());
+    },[]);
 
     return(
         <Container className="footerwrapper">
@@ -33,11 +37,13 @@ const Footer = () => {
                     >tjmakande@gmail.com</EmailLink>
                     <Line />
                     <SocialWrapper>
-                        {/* <InstagramIcon /> */}
+                        <InstagramIcon />
                         <LinkedInIcon />
                         {/* <GithubIcon /> */}
                     </SocialWrapper>
                 </div>
+
+                <footer style={{position: 'absolute', textAlign: 'center', bottom: '3vh'}}> <small style={{color: 'white', fontSize: isMobile() ? '10px' : 'unset'}}>&copy; Copyright {currentYear}, Tapiwanashe J. Makande</small> </footer> 
             </Wrapper>
         </Container>
     );
@@ -90,7 +96,7 @@ const EmailLink = styled.p`
     color: #fff;
     font-size: 1.3vw;
     margin: 2rem 0 0 0;
-
+    text-decoration: underline;
     ${
         isMobile() && `
             font-size: 1rem;
@@ -108,6 +114,7 @@ const Line = styled.hr`
 
 const CTAtext = styled(EmailLink)`
     font-size: 1.2vw;
+    text-decoration: none;
 
     ${
         isMobile() && `
@@ -122,6 +129,6 @@ const SocialWrapper = styled.div`
 
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     justify-self: center;
 `;
