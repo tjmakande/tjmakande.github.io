@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e2084e47.css",
+    "main.js": "/static/js/main.bb361053.js",
+    "static/js/398.815de7e0.chunk.js": "/static/js/398.815de7e0.chunk.js",
+    "static/js/331.05395a69.chunk.js": "/static/js/331.05395a69.chunk.js",
+    "static/js/787.9d2b83d6.chunk.js": "/static/js/787.9d2b83d6.chunk.js",
+    "static/js/344.d9087185.chunk.js": "/static/js/344.d9087185.chunk.js",
+    "static/media/SDSN-demo.gif": "/static/media/SDSN-demo.33787549050f4e6f08ba.gif",
+    "static/media/cinema-demo.gif": "/static/media/cinema-demo.5d2dec08f6a8fa75283e.gif",
+    "static/media/cube-demo.gif": "/static/media/cube-demo.b14e932252b12478ee5a.gif",
+    "static/media/AM_landing.JPG": "/static/media/AM_landing.3773ac03149b93eb563e.JPG",
+    "static/media/Portfolio_Video.mp4": "/static/media/Portfolio_Video.756030545e38cdb7d1a9.mp4",
+    "static/media/chatbot-demo.gif": "/static/media/chatbot-demo.05588d7dc2828e4cd4a8.gif",
+    "static/media/LandingImage2.jpg": "/static/media/LandingImage2.c2a45fcd2c97c0facefa.jpg",
+    "index.html": "/index.html",
+    "main.e2084e47.css.map": "/static/css/main.e2084e47.css.map",
+    "main.bb361053.js.map": "/static/js/main.bb361053.js.map",
+    "398.815de7e0.chunk.js.map": "/static/js/398.815de7e0.chunk.js.map",
+    "331.05395a69.chunk.js.map": "/static/js/331.05395a69.chunk.js.map",
+    "787.9d2b83d6.chunk.js.map": "/static/js/787.9d2b83d6.chunk.js.map",
+    "344.d9087185.chunk.js.map": "/static/js/344.d9087185.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e2084e47.css",
+    "static/js/main.bb361053.js"
+  ]
+}
