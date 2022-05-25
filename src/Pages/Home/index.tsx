@@ -5,7 +5,6 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AboutMe from 'Sections/AboutMe';
 import Footer from 'Sections/Footer';
-// import LandingPage from 'Sections/LandingPage';
 import Works from 'Sections/Works';
 import Scrollbar from 'smooth-scrollbar';
 
@@ -15,10 +14,10 @@ import { isMobile } from 'utils/device';
 
 const HomePage = () => {
     const Containerref = React.createRef<HTMLDivElement>();
-    const Backgroundref = React.createRef<HTMLDivElement>();
-    const Footerref = React.createRef<HTMLDivElement>();
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
+
+    window.addEventListener('load', () => document.querySelector('.loader')?.remove());
 
     window.addEventListener('resize', (e) => {
       if (window.innerHeight !== screenHeight)
@@ -31,9 +30,7 @@ const HomePage = () => {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
         const Contactbtn = document.querySelector('.Contactbtn');
-
         if (Containerref.current){
-
           // initial setup
             const bodyScrollBar = Scrollbar.init(Containerref.current, {damping: 0.05, renderByPixels: true, delegateTo: document});
             ScrollTrigger.scrollerProxy(".scroller", {
@@ -223,16 +220,16 @@ const HomePage = () => {
                 .fromTo('.sdsn', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0}, 'sdsn');
             }
         }
-    }, [Containerref, screenWidth, screenHeight, Backgroundref, Footerref]);
+    }, [Containerref, screenWidth, screenHeight]);
 
     return(
-        <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden'}}>
-            <Background className="background" ref={Backgroundref}/>
-            <LandingSection />
-            <AboutMe />
-            <Works />
-            <Footer ref={Footerref} />
-        </div>
+      <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden'}}>
+        <Background className="background"/>
+        <LandingSection />
+        <AboutMe />
+        <Works />
+        <Footer />
+      </div>
     );
 };
 

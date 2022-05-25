@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { isMobile } from 'utils/device';
 import GithubIcon from './GithubIcon';
 import InstagramIcon from './InstagramIcon';
 import LinkedInIcon from './LinkedInIcon';
-import { isMobile } from 'utils/device';
 
 
-const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
+const Footer = () => {
     const underlineOnHover = (div: HTMLElement) => div.style.textDecoration = "underline";
     const rmunderlineOnHover = (div: HTMLElement) => div.style.textDecoration = "none";
 
@@ -31,15 +31,15 @@ const Footer = React.forwardRef<HTMLDivElement>((props, ref) => {
                     >tj@example.com</EmailLink>
                     <Line />
                     <SocialWrapper>
-                        <InstagramIcon />
+                        {/* <InstagramIcon /> */}
                         <LinkedInIcon />
-                        <GithubIcon />
+                        {/* <GithubIcon /> */}
                     </SocialWrapper>
                 </div>
             </Wrapper>
         </Container>
     );
-});
+};
 
 export default Footer;
 
@@ -120,6 +120,6 @@ const SocialWrapper = styled.div`
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     justify-self: center;
 `;

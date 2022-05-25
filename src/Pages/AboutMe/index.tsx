@@ -20,6 +20,7 @@ const AboutMePage = () => {
     // Starting HERE
     const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
     const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
+    const [appLoaded, setAppLoaded] = useState<boolean>(false);
 
     useEffect(() => {
         const vid = document.getElementById('Pseudocode') as HTMLVideoElement;
@@ -31,6 +32,8 @@ const AboutMePage = () => {
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
 
+        window.addEventListener('load', () => document.querySelector('.loader')?.remove());
+
         window.addEventListener('resize', () => {
             if (window.innerHeight !== screenHeight)
               setscreenHeight(window.innerHeight);
@@ -40,19 +43,18 @@ const AboutMePage = () => {
           });
 
         if (Container){
-
-          // initial setup
+        // initial setup
             const bodyScrollBar = Scrollbar.init(Container, {damping: 0.05, renderByPixels: true, delegateTo: document});
             ScrollTrigger.scrollerProxy(".scroller", {
-              scrollTop (value: number = 0) {
+            scrollTop (value: number = 0) {
                 if (arguments.length) {
-                  bodyScrollBar.scrollTop = value; // setter
+                bodyScrollBar.scrollTop = value; // setter
                 }
                 return bodyScrollBar.scrollTop;    // getter
-              },
-              getBoundingClientRect () {
+            },
+            getBoundingClientRect () {
                 return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
-              }
+            }
             });
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Container});
@@ -62,13 +64,13 @@ const AboutMePage = () => {
             // Background Item;
             gsap.to('.background', {
                 scrollTrigger: {
-                  trigger: '.background',
-                  anticipatePin: 1,
-                  pin: true,
-                  pinSpacing:false,
-                  start: 'top top',
-                  end: 'max',
-                  scrub: .1
+                trigger: '.background',
+                anticipatePin: 1,
+                pin: true,
+                pinSpacing:false,
+                start: 'top top',
+                end: 'max',
+                scrub: .1
                 }
             });
 
