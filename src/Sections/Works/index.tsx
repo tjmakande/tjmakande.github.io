@@ -52,7 +52,7 @@ const WorkSection = () => {
 
             <WrapperWorks className="Project_wrapper">
                 <ProjectItem className="cinema">
-                    <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto} />
+                    <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto}  alt="cinema platform demo"/>
                     <DescriptionBox>
                         <p>A movie booking platform where one can also checkout the latest movies.</p>
                         <Btn available={false}>Coming Soon!</Btn>
@@ -60,7 +60,7 @@ const WorkSection = () => {
                 </ProjectItem>
 
                 <ProjectItem className="chatbot">
-                    <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot} />
+                    <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot}  alt="chatbot demo"/>
                     <DescriptionBox>
                         <p>A customer service chatbot that is able to process relevant information to the user.</p>
                         <Btn available={false}>Upon Request</Btn>
@@ -68,7 +68,7 @@ const WorkSection = () => {
                 </ProjectItem>
 
                 <ProjectItem className="cube">
-                    <ProjectBg  className={'Works'} data-id={'cube'} src={Cube}/>
+                    <ProjectBg  className={'Works'} data-id={'cube'} src={Cube} alt="cube demo"/>
                     <DescriptionBox>
                         <p>A responsive cube showcasing experiences during my 6 years living in China.</p>
                         <Btn available={false}>Upon Request</Btn>
@@ -76,7 +76,7 @@ const WorkSection = () => {
                 </ProjectItem>
 
                 <ProjectItem className="sdsn">
-                    <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} />
+                    <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} alt="sdsn demo" />
                     <DescriptionBox>
                         <p>The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.</p>
                         <Btn available={true} onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}>View Site</Btn>

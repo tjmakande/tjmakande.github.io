@@ -189,7 +189,7 @@ const AboutMePage = () => {
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `${window.innerHeight}px`}}>
             <HeaderWrapper>
                 <div className="Landing_image" style={{height: window.innerHeight, width: '100%', position: 'relative'}}>
-                    <LandingImg src={TJImage} />
+                    <LandingImg src={TJImage} alt="Author"/>
                 </div>
                 <div style={{color: 'rgb(229, 229, 229)',display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(2px)', mixBlendMode: 'difference', position: 'absolute', right: isMobile() ? 0 : '5vw', bottom: `${isMobile() ? '7rem' : '4rem'}`, margin: 0, padding: 0, boxSizing: 'border-box', zIndex:3, isolation: 'isolate'}}>
                     <Header>
