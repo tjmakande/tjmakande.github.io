@@ -9,7 +9,7 @@ const LandingSection = () => {
 
   useEffect(() => {
         const options = {
-            strings: ['WEB DEVELOPER', 'LEARNER', 'PERSISTENT', 'AMBITIOUS'],
+            strings: [ '', 'WEB DEVELOPER', 'LEARNER', 'PERSISTENT', 'AMBITIOUS', 'Adept'],
             typeSpeed: 60,
             backsSpeed: 100,
             backDelay: 1500,
