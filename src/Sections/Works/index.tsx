@@ -4,7 +4,6 @@ import Cube from 'Assets/cube-demo.gif';
 import SDSN from 'Assets/SDSN-demo.gif';
 import styled from 'styled-components';
 
-import {isMobile} from 'utils/device';
 import { openInNewTab } from "utils/OpenNewTab";
 
 const WorkSection = () => {
@@ -91,7 +90,7 @@ const WorkSection = () => {
 export default WorkSection;
 
 const Btn = styled.div`
-    width: ${isMobile() ?  '70%' : '60%'};
+    width: 60%;
     height: 50px;
     font-size: 1.2rem;
     margin: 0 auto;
@@ -102,11 +101,14 @@ const Btn = styled.div`
     ${
         (props: {available: boolean}) => props.available ? 'background-color: #00b1eb;' : 'background-color: #d9d6d6;'
     }
+
+    @media ( max-width: 850px){
+        width: 70%;
+    }
 `;
 
 const DescriptionBox = styled.div`
-    width: ${isMobile() ? '100%' : '35%'};
-    // height: 150px;
+    width: 35%;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -115,10 +117,16 @@ const DescriptionBox = styled.div`
     box-sizing: border-box;
     padding: 0 2rem;
     font-size: 1.5rem;
-    ${isMobile() && `
+
+    & > p {
+        margin: 1em auto;
+    }
+
+    @media (max-width: 850px){
+        width: 100%;
         margin-top: 2rem;
         backdrop-filter: blur(3px);
-    `}
+    }
 `;
 
 const ProjectBg = styled.img`
@@ -128,15 +136,16 @@ const ProjectBg = styled.img`
     -moz-box-shadow: 10px 10px 30px -7px rgba(150,150,150,1);
     box-shadow: 10px 10px 30px -7px rgba(150,150,150,1);
 
-    ${isMobile() && `
-        width: 90vw;
-        height: 47.7vw;
-    `}
     &:hover{
         & + h2 {
             transform: rotateZ(-10deg);
             transition: .5s;
         }
+    }
+
+    @media (max-width: 850px){
+        width: 90vw;
+        height: 47.7vw;
     }
 `;
 
@@ -165,12 +174,15 @@ const ProjectItem = styled.div`
     position: absolute;
     top: 0;
     height: 70vh;
-    width: ${isMobile() ? '100vw' : '95vw'};
+    width: 95vw;
     display: flex;
     align-items: center;
-    justify-content: ${isMobile() ? 'center' : 'end'};
-    ${
-        isMobile() && 'flex-direction: column;'
+    justify-content: end;
+
+    @media (max-width: 850px){
+        width: 100vw;
+        justify-content: center;
+        flex-direction: column;
     }
 `;
 
@@ -178,7 +190,7 @@ const Container = styled.section`
     position: relative;
     height: 100vh;
     overflow-x: hidden;
-    margin-bottom: 750vh; //for animations sake
+    margin-bottom: 750vh;
     background-color: white;
 `;
 
@@ -187,10 +199,16 @@ const TextContainer = styled.div`
     width: 100%;
 
     position: absolute;
-    bottom: clamp(1.5rem, 6vh, 10rem);
-    right: ${isMobile() ? '1.5rem' : '8vw'};
+    bottom: clamp(5rem, 10vh, 10rem);
+    right: 8vw;
     background-color: white;
+    display: flex;
+    align-items: end;
     z-index: 0;
+
+    @media (max-width: 850px){
+        right: 1.5rem;
+    }
 `;
 
 const TitleContainer = styled.div`

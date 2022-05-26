@@ -124,6 +124,6 @@ const ImageWrapper = styled.div`
         position: relative;
         height: unset;
         align-self: center;
-        width: 90vw;
+        width: clamp(10rem, 90vw, 30rem);
     }
 `;
