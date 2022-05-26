@@ -28,7 +28,7 @@ const Footer = () => {
                 <SectionTitle>Let's Collaborate</SectionTitle>
                 <CTAtext>Don't be afraid to connect!</CTAtext>
 
-                <div style={{marginTop: '5rem', width: '300px'}}>
+                <div style={{marginTop: '5rem', width: '200px'}}>
                     <EmailLink
                         className="EmailLink"
                         onClick={() => openInNewTab('mailto:tjmakande@gmail.com')}
