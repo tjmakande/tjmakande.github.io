@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { isMobile } from 'utils/device';
 import { openInNewTab } from 'utils/OpenNewTab';
-import GithubIcon from './GithubIcon';
+// import GithubIcon from './GithubIcon';
 import InstagramIcon from './InstagramIcon';
 import LinkedInIcon from './LinkedInIcon';
 
@@ -83,12 +83,10 @@ const SectionTitle = styled.h1`
     line-height: 9vw;
     z-index: 1;
 
-    ${
-        isMobile() && `
-            font-size: 4rem;
-            line-height: 4rem;
-            width: unset;
-        `
+    @media ( max-width: 850px){
+        font-size: 4rem;
+        line-height: 4rem;
+        width: unset;
     }
 `;
 
@@ -97,10 +95,8 @@ const EmailLink = styled.p`
     font-size: 1.3vw;
     margin: 2rem 0 0 0;
     text-decoration: underline;
-    ${
-        isMobile() && `
-            font-size: 1rem;
-        `
+    @media ( max-width: 850px){
+        font-size: 1rem;
     }
 `;
 
@@ -116,10 +112,8 @@ const CTAtext = styled(EmailLink)`
     font-size: 1.2vw;
     text-decoration: none;
 
-    ${
-        isMobile() && `
-            font-size: 1.2rem;
-        `
+    @media ( max-width: 850px){
+        font-size: 1.2rem;
     }
 `;
 

@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 
 import TJImage from 'Assets/AM_landing.JPG';
 
@@ -18,8 +18,6 @@ import WorldMap from './WorldMap';
 const AboutMePage = () => {
 
     // Starting HERE
-    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
-    const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
     window.addEventListener('load', () => document.querySelector('.loader')?.remove());
 
     useEffect(() => {
@@ -29,16 +27,9 @@ const AboutMePage = () => {
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
+        const mobileWidth: boolean = window.innerWidth < 850;
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
-
-        window.addEventListener('resize', () => {
-            if (window.innerHeight !== screenHeight)
-              setscreenHeight(window.innerHeight);
-
-            if (window.innerWidth !== screenWidth)
-              setScreenWidth(window.innerWidth);
-          });
 
         if (Container){
         // initial setup
@@ -57,7 +48,7 @@ const AboutMePage = () => {
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Container});
 
-            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 15, 1000); });
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 15, 1000); });
 
             // Background Item;
             gsap.to('.background', {
@@ -66,6 +57,7 @@ const AboutMePage = () => {
                 anticipatePin: 1,
                 pin: true,
                 pinSpacing:false,
+                invalidateOnRefresh: true,
                 start: 'top top',
                 end: 'max',
                 scrub: .1
@@ -80,6 +72,7 @@ const AboutMePage = () => {
                     start: 'bottom top',
                     end: 'max',
                     scrub: 1,
+                    invalidateOnRefresh: true,
                     onEnter: () => {
                         const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
                         return Div.style.visibility = "hidden";
@@ -97,6 +90,7 @@ const AboutMePage = () => {
                     trigger: '.IntroTwoWrapper',
                     start: 'bottom center',
                     end: 'bottom 50px',
+                    invalidateOnRefresh: true,
                     scrub: 1
                 },
                 autoAlpha: 0
@@ -108,8 +102,9 @@ const AboutMePage = () => {
                     trigger: '.Landing_image',
                     anticipatePin:1,
                     pin: true,
+                    invalidateOnRefresh: true,
                     start: 'top top',
-                    end: screenHeight,
+                    end: window.innerHeight,
                     scrub: 1
                 }
             });
@@ -121,14 +116,15 @@ const AboutMePage = () => {
                     pin: true,
                     pinSpacing: false,
                     anticipatePin: 1,
+                    invalidateOnRefresh: true,
                     start: 'top top',
-                    end: `+=${screenHeight * 6}`,
+                    end: `+=${window.innerHeight * 6}`,
                     // immediateRender: false,
                     scrub: .1
                 }
             });
 
-            gsap.set('.flightPath', {strokeDasharray: screenWidth * 0.326, strokeDashoffset:0});
+            gsap.set('.flightPath', {strokeDasharray: window.innerWidth * 0.326, strokeDashoffset:0});
 
             if (isMobile()) {
                 gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
@@ -137,16 +133,16 @@ const AboutMePage = () => {
                 .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
                 .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
                 .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
-                .to('.DescriptionTwo',{y: screenHeight * 0.3 }, 'showMap')
+                .to('.DescriptionTwo',{y: window.innerHeight * 0.3 }, 'showMap')
                 .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
                 .to('.MapWrapper', {scale: 5, xPercent: -35, yPercent: -170, rotation: 0.05}, 'toZimbabwe')
                 .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
                 .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
-                .fromTo('.DescriptionThree', {y: screenHeight * 0.3, opacity: 0}, {opacity: 1})
+                .fromTo('.DescriptionThree', {y: window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
                 .to('.MapWrapper', {scale: 4, xPercent: -110, yPercent: 40, rotation: 0.01}, 'toChina-=2%')
-                .fromTo('.flightPath', {strokeDashoffset: screenWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                .fromTo('.flightPath', {strokeDashoffset: window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                 .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-                .fromTo('.DescriptionThree', {y: screenHeight * 0.3}, {y: -screenHeight * 0.3}, 'toChina')
+                .fromTo('.DescriptionThree', {y: window.innerHeight * 0.3}, {y: -window.innerHeight * 0.3}, 'toChina')
                 .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.5});
             } else {
                 gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
@@ -155,16 +151,16 @@ const AboutMePage = () => {
                 .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
                 .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
                 .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
-                .to('.DescriptionTwo',{x: -screenWidth / 3})
+                .to('.DescriptionTwo',{x: -window.innerWidth / 3})
                 .to('.MapWrapper', {autoAlpha: 1})
                 .to('.MapWrapper', {scale: 3.5, xPercent: -45, yPercent: -150, rotation: 0.05}, 'toZimbabwe')
                 .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
                 .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
-                .fromTo('.DescriptionThree', {x: -screenWidth / 3, opacity: 0}, {opacity: 1})
+                .fromTo('.DescriptionThree', {x: -window.innerWidth / 3, opacity: 0}, {opacity: 1})
                 .to('.MapWrapper', {xPercent: -140, yPercent: 10, rotation: 0.01}, 'toChina-=2%')
-                .fromTo('.flightPath', {strokeDashoffset: screenWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                .fromTo('.flightPath', {strokeDashoffset: window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                 .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-                .to('.DescriptionThree', {x: screenWidth / 3}, 'toChina')
+                .to('.DescriptionThree', {x: window.innerWidth / 3}, 'toChina')
                 .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.5});
             }
 
@@ -175,15 +171,34 @@ const AboutMePage = () => {
                     trigger: '.IntroTwoWrapper',
                     anticipatePin: 1,
                     pin: true,
+                    invalidateOnRefresh: true,
                     pinSpacing: false,
                     start: 'top top',
-                    end: `+=${screenHeight / 2}`,
+                    end: `+=${window.innerHeight / 2}`,
                     scrub: 1
                 }
             });
 
+            const handleResize = () => {
+                if (mobileWidth){
+                    if (window.innerWidth > 850) window.location.href = '/';
+                }
+
+                if (!mobileWidth) {
+                    if (window.innerWidth < 850) window.location.href = '/';
+                }
+            };
+            const delay = (cb: () => void, time: number) => {
+              let timer: NodeJS.Timeout | number = 0;
+              return () => {
+                clearTimeout(Number(timer));
+                timer = window.setTimeout(cb, time);
+              };
+            };
+
+            ScrollTrigger.addEventListener('refreshInit', delay(handleResize, 750));
         }
-    }, [screenHeight, screenWidth]);
+    }, []);
 
     return(
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `${window.innerHeight}px`}}>
@@ -191,11 +206,11 @@ const AboutMePage = () => {
                 <div className="Landing_image" style={{height: window.innerHeight, width: '100%', position: 'relative'}}>
                     <LandingImg src={TJImage} alt="Author"/>
                 </div>
-                <div style={{color: 'rgb(229, 229, 229)',display: 'flex', justifyContent: 'center', alignItems: 'center', backdropFilter: 'blur(2px)', mixBlendMode: 'difference', position: 'absolute', right: isMobile() ? 0 : '5vw', bottom: `${isMobile() ? '7rem' : '4rem'}`, margin: 0, padding: 0, boxSizing: 'border-box', zIndex:3, isolation: 'isolate'}}>
+                <TitleContainer>
                     <Header>
                         About Me
                     </Header>
-                </div>
+                </TitleContainer>
             </HeaderWrapper>
             <SectionWrapper >
                 <Background className="background"></Background>
@@ -220,9 +235,9 @@ const AboutMePage = () => {
                         </DescriptionFour>
                     </IntroTwoTextContainer>
 
-                    <video id={'Pseudocode'} style={{width: isMobile() ? '90vw' : '46vw', margin: isMobile() ? '0 auto' : '0'}} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
+                    <VideoWrap id={'Pseudocode'} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
                         <source src={Video} type="video/mp4"/>
-                    </video>
+                    </VideoWrap>
                 </IntroTwoWrapper>
                 <Footer />
             </SectionWrapper>
@@ -240,14 +255,44 @@ const Background = styled.div`
   left: 0;
   position: absolute;
   background-color: #fff;
+
+    @media (max-width: 850px){
+        height: ${window.innerHeight}px;
+    }
 `;
 
 const IntroContainer = styled.div`
     pointer-events: none;
     width: 100vw;
-    height: ${isMobile() ? `${window.innerHeight}px` : '100vh'};
+    height: 100vh;
     position: relative;
     overflow-x: hidden;
+
+    @media (max-width: 850px) {
+        height: ${window.innerHeight}px;
+    }
+`;
+
+const TitleContainer = styled.div`
+    color: rgb(229, 229, 229);
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    mix-blend-mode: difference;
+    position: absolute;
+    right: 5vw;
+    bottom: 4rem;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    z-index:3;
+    isolation: isolate;
+
+    @media (max-width: 850px){
+        bottom: 7rem;
+        right: 0;
+    }
 `;
 
 const IntroWrapper = styled.div`
@@ -265,33 +310,34 @@ const IntroTwoWrapper = styled(IntroWrapper)`
     padding: 0 5vw;
     box-sizing: border-box;
     flex-direction: row;
-    justify-content: ${isMobile() ? 'center' : 'space-between'};
+    justify-content:space-between;
     align-items: center;
     margin-bottom: 50vh;
 
-    ${
-        isMobile() && `
-            flex-direction: column;
-        `
+    @media (max-width: 850px) {
+        flex-direction: column;
+        justify-content: center;
     }
 `;
 
 const IntroTwoTextContainer = styled.div`
     width: 40vw;
 
-    ${
-        isMobile() && `
-            width: 88vw;
-            height: unset;
-            margin: 0;
-        `
+    @media (max-width: 850px) {
+        width: 88vw;
+        height: unset;
+        margin: 0;
     }
-`
+`;
 
 const Description = styled.p`
     font-size: clamp(2rem,2vw, 5rem);
-    width: ${isMobile() ? '100vw' : '30vw'};
+    width: 30vw;
     position: absolute;
+
+    @media (max-width: 850px) {
+        width: 100vw;
+    }
 `;
 
 const DescriptionFour = styled(Description)`
@@ -300,14 +346,11 @@ const DescriptionFour = styled(Description)`
     font-weight: 300;
     font-size: clamp(1.7rem, 1.5vw, 2.5rem);
     position: relative;
-    // margin-left: 5vw;
 
-    ${
-        isMobile() && `
-            width: unset;
-            font-size: 1.2rem;
-            margin: 2rem auto;
-        `
+    @media (max-width: 850px) {
+        width: unset;
+        font-size: 1.2rem;
+        margin: 2rem auto;
     }
 `;
 
@@ -331,19 +374,38 @@ const HeaderWrapper = styled.div`
 `;
 
 const Header = styled.h1`
-    font-size: ${isMobile() ? '5rem' : '10vw'};
+    font-size: 10vw;
     font-weight: 600;
     margin: 0;
-    padding: ${isMobile() ? '15px' : '5px'};
+    padding: 5px;
     z-index: 1;
     white-space: nowrap;
+
+    @media (max-width: 850px) {
+        font-size: 5rem;
+        padding: 15px;
+    }
 `;
 
 const MapWrapper = styled.div`
     position: absolute;
     right: 0;
-    width: ${isMobile() ? '100%' : '65vw'};
+    width: 65vw;
     top: 50%;
     transform: translate(0, -50%);
     will-change: transform;
+
+    @media (max-width: 850px) {
+        width: 100%;
+    }
+`;
+
+const VideoWrap = styled.video`
+    margin: 0;
+    width: 46vw;
+
+    @media (max-width: 850px){
+        width: 90vw;
+        margin: 0 auto;
+    }
 `;

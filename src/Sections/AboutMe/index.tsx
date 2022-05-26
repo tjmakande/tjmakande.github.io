@@ -1,8 +1,6 @@
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import React from 'react';
 import styled from 'styled-components';
-import { isMobile } from 'utils/device';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,17 +34,14 @@ const Text = styled.p`
     color: black;
     font-size:clamp(2rem, 2.5vw, 5rem);
 
-    ${
-        isMobile() && `
-            font-size: 1.5rem;
-            width: 90%;
-        `
+    @media (max-width: 850px){
+        font-size: 1.5rem;
+        width: 90%;
     }
 `;
 
 const Wrapper = styled.div`
     height: ${window.innerHeight}px;
-    width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;

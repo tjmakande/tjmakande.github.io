@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import gsap from 'gsap';
@@ -14,21 +14,12 @@ import { isMobile } from 'utils/device';
 
 const HomePage = () => {
     const Containerref = React.createRef<HTMLDivElement>();
-    const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
-    const [screenHeight, setscreenHeight] = useState<number>(window.innerHeight);
 
     window.addEventListener('load', () => document.querySelector('.loader')?.remove());
 
-    window.addEventListener('resize', (e) => {
-      if (window.innerHeight !== screenHeight)
-        setscreenHeight(window.innerHeight);
-
-      if (window.innerWidth !== screenWidth)
-        setScreenWidth(window.innerWidth);
-    });
-
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
+        const mobileWidth: boolean = window.innerWidth < 850;
         const Contactbtn = document.querySelector('.Contactbtn');
         if (Containerref.current){
           // initial setup
@@ -47,7 +38,11 @@ const HomePage = () => {
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Containerref.current});
 
-            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, screenHeight * 10, 1000); });
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 10, 1000); });
+
+            // window.addEventListener('resize', () => {
+
+            // })
 
             // Background Item;
             gsap.to('.background', {
@@ -57,6 +52,7 @@ const HomePage = () => {
                   pinSpacing:false,
                   start: 'top top',
                   end: 'max',
+                  invalidateOnRefresh: true,
                   scrub: .1
                 }
               });
@@ -65,7 +61,8 @@ const HomePage = () => {
                 scrollTrigger: {
                     trigger: '.LandingSection',
                     start: `top top`,
-                    end: `bottom center+=${screenHeight * 0.2}`,
+                    end: `bottom center+=${window.innerHeight * 0.2}`,
+                    invalidateOnRefresh: true,
                     pin: false,
                     scrub: 1,
                 }
@@ -76,9 +73,10 @@ const HomePage = () => {
                     trigger: '.LandingSection',
                     start: 'bottom bottom',
                     end: 'bottom center',
+                  invalidateOnRefresh: true,
                     scrub: .2
                 },
-                yPercent: -screenHeight / 3 ,
+                yPercent: -window.innerHeight / 3 ,
                 opacity: 0
             });
 
@@ -98,6 +96,7 @@ const HomePage = () => {
                   start: `top bottom`,
                   end: 'max',
                   scrub: .1,
+                  invalidateOnRefresh: true,
                   onEnter: () => {
                     const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
                     return Div.style.visibility = "hidden";
@@ -118,7 +117,8 @@ const HomePage = () => {
                   pin: true,
                   pinSpacing:false,
                   start: "top top",
-                  end: `+=${screenHeight * 2}`,
+                  end: `+=${window.innerHeight * 2}`,
+                  invalidateOnRefresh: true,
                   scrub: 1,
               }
             });
@@ -130,10 +130,10 @@ const HomePage = () => {
 
             t1.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-            .to(line1, {scale: isMobile() ? 3 : 5, duration: 0.5, y: screenHeight * (isMobile() ? 0.35 : 0.15) - line1.offsetTop, x: screenWidth / 2 - line1.offsetLeft - line1.clientWidth / 2}, 'start')
-            .to(line2, {scale: isMobile() ? 3 : 5, duration: 0.5, y: screenHeight * (isMobile() ? 0.45 : 0.35) - line2.offsetTop, x: screenWidth / 2 - line2.offsetLeft - line2.clientWidth / 2}, 'start')
-            .to(line3, {scale: isMobile() ? 3 : 5, duration: 0.5, y: screenHeight * (isMobile() ? 0.55 : 0.55) - line3.offsetTop, x: screenWidth / 2 - line3.offsetLeft - line3.clientWidth / 2}, 'start')
-            .to(line4, {scale: isMobile() ? 3 : 5, duration: 0.5, y: screenHeight * (isMobile() ? 0.65 : 0.75) - line4.offsetTop, x: screenWidth / 2 - line4.offsetLeft - line4.clientWidth / 2}, 'start');
+            .to(line1, {scale: isMobile() ? 3 : 5, duration: 0.5, y: window.innerHeight * (isMobile() ? 0.35 : 0.15) - line1.offsetTop, x: window.innerWidth / 2 - line1.offsetLeft - line1.clientWidth / 2}, 'start')
+            .to(line2, {scale: isMobile() ? 3 : 5, duration: 0.5, y: window.innerHeight * (isMobile() ? 0.45 : 0.35) - line2.offsetTop, x: window.innerWidth / 2 - line2.offsetLeft - line2.clientWidth / 2}, 'start')
+            .to(line3, {scale: isMobile() ? 3 : 5, duration: 0.5, y: window.innerHeight * (isMobile() ? 0.55 : 0.55) - line3.offsetTop, x: window.innerWidth / 2 - line3.offsetLeft - line3.clientWidth / 2}, 'start')
+            .to(line4, {scale: isMobile() ? 3 : 5, duration: 0.5, y: window.innerHeight * (isMobile() ? 0.65 : 0.75) - line4.offsetTop, x: window.innerWidth / 2 - line4.offsetLeft - line4.clientWidth / 2}, 'start');
 
             // works wrapper
             const wordSelected = document.querySelector('.word_selected') as HTMLSpanElement;
@@ -146,9 +146,10 @@ const HomePage = () => {
                 scroller: '.scroller',
                 trigger: '.works_wrapper',
                 start: 'top top',
-                end: `+=${screenHeight * 7}`,
+                end: `+=${window.innerHeight * 7}`,
                 pin: true,
                 pinSpacing: false,
+                invalidateOnRefresh: true,
                 snap: {
                   snapTo: isMobile() ? [0.42, 0.61, 0.8, 0.97 ] : [0.53, 0.68, 0.83, 0.98],
                   directional: false,
@@ -170,25 +171,25 @@ const HomePage = () => {
                 .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
                 .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cinema')
-                .fromTo('.cinema' , { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
+                .fromTo('.cinema' , { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
                 .set('.text1', {transformOrigin: '50% 0%'})
                 // Second Project animation
                 .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'chatbot')
                 .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'chatbot')
-                .to('.cinema', {y: -screenHeight, opacity: 0, duration: 1}, 'chatbot')
-                .fromTo('.chatbot', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
+                .to('.cinema', {y: -window.innerHeight, opacity: 0, duration: 1}, 'chatbot')
+                .fromTo('.chatbot', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
                 .set('.text2', {transformOrigin: '50% 0%'})
                 // Thirt Project animation
                 .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'cube')
                 .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cube')
-                .to('.chatbot', {y: -screenHeight, opacity: 0, duration: 1}, 'cube')
-                .fromTo('.cube', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
+                .to('.chatbot', {y: -window.innerHeight, opacity: 0, duration: 1}, 'cube')
+                .fromTo('.cube', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
                 .set('.text3', {transformOrigin: '50% 0%'})
                 // Fourth Project animation
                 .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
                 .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
-                .to('.cube', {y: -screenHeight, opacity: 0, duration: 1}, 'sdsn')
-                .fromTo('.sdsn', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
+                .to('.cube', {y: -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
+                .fromTo('.sdsn', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
             } else {
                 t2
                 .fromTo('.word_selected', {yPercent: -150, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.5})
@@ -199,28 +200,47 @@ const HomePage = () => {
                 .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
                 .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cinema')
-                .fromTo('.cinema' , { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
+                .fromTo('.cinema' , { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
                 .set('.text1', {transformOrigin: '50% 0%'})
                 // Second Project animation
                 .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'chatbot')
                 .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'chatbot')
-                .to('.cinema', {y: -screenHeight, opacity: 0, duration: 1}, 'chatbot')
-                .fromTo('.chatbot', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
+                .to('.cinema', {y: -window.innerHeight, opacity: 0, duration: 1}, 'chatbot')
+                .fromTo('.chatbot', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
                 .set('.text2', {transformOrigin: '50% 0%'})
                 // Thirt Project animation
                 .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'cube')
                 .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cube')
-                .to('.chatbot', {y: -screenHeight, opacity: 0, duration: 1}, 'cube')
-                .fromTo('.cube', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
+                .to('.chatbot', {y: -window.innerHeight, opacity: 0, duration: 1}, 'cube')
+                .fromTo('.cube', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
                 .set('.text3', {transformOrigin: '50% 0%'})
                 // Fourth Project animation
                 .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
                 .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
-                .to('.cube', {y: -screenHeight, opacity: 0, duration: 1}, 'sdsn')
-                .fromTo('.sdsn', { opacity: 0, y: screenHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
+                .to('.cube', {y: -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
+                .fromTo('.sdsn', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
             }
+
+            const handleResize = () => {
+              if (mobileWidth){
+                if (window.innerWidth > 850) window.location.href = '/';
+              }
+
+              if (!mobileWidth) {
+                if (window.innerWidth < 850) window.location.href = '/';
+              }
+            };
+            const delay = (cb: () => void, time: number) => {
+              let timer: NodeJS.Timeout | number = 0;
+              return () => {
+                clearTimeout(Number(timer));
+                timer = window.setTimeout(cb, time);
+              };
+            };
+
+            ScrollTrigger.addEventListener('refreshInit', delay(handleResize, 750));
         }
-    }, [Containerref, screenWidth, screenHeight]);
+    }, [Containerref]);
 
     return(
       <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden'}}>

@@ -85,10 +85,8 @@ const NameHeader = styled.h1`
     mix-blend-mode: difference;
     z-index: 5;
 
-    ${
-        isMobile() && `
-            margin: 0 auto;
-        `
+    @media (max-width: 850px){
+        margin: 0 auto;
     }
 `;
 const DescriptionTitle = styled.p`
@@ -99,10 +97,8 @@ const DescriptionTitle = styled.p`
     color: rgb(200,200,200);
     mix-blend-mode: difference;
 
-    ${
-        isMobile() && `
-            margin: 2rem auto;
-        `
+    @media (max-width: 850px){
+        margin: 2rem auto;
     }
 `;
 
@@ -124,12 +120,10 @@ const ImageWrapper = styled.div`
     display: flex;
     align-items: center;
 
-    ${
-        isMobile() && `
-            position: relative;
-            height: unset;
-            align-self: center;
-            width: 90vw;
-        `
+    @media (max-width: 850px){
+        position: relative;
+        height: unset;
+        align-self: center;
+        width: 90vw;
     }
 `;
