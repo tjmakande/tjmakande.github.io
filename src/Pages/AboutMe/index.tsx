@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 
 import TJImage from 'Assets/AM_landing.JPG';
 
@@ -16,6 +16,8 @@ import Video from './Portfolio_Video.mp4';
 import WorldMap from './WorldMap';
 
 const AboutMePage = () => {
+    const [currWidth, setCurrWidth] = useState<number>(window.innerWidth);
+    const [currHeight, setCurrHeight] = useState<number>(window.innerHeight);
 
     // Starting HERE
     window.addEventListener('load', () => document.querySelector('.loader')?.remove());
@@ -28,6 +30,7 @@ const AboutMePage = () => {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
         const mobileWidth: boolean = window.innerWidth < 850;
+        
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
 
@@ -135,7 +138,7 @@ const AboutMePage = () => {
                 .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
                 .to('.DescriptionTwo',{y: window.innerHeight * 0.3 }, 'showMap')
                 .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
-                .to('.MapWrapper', {scale: 5, xPercent: -35, yPercent: -170, rotation: 0.05}, 'toZimbabwe')
+                .to('.MapWrapper', {scale: 5, xPercent: -35, yPercent: -175, rotation: 0.05}, 'toZimbabwe')
                 .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
                 .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
                 .fromTo('.DescriptionThree', {y: window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
@@ -143,7 +146,7 @@ const AboutMePage = () => {
                 .fromTo('.flightPath', {strokeDashoffset: window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                 .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                 .fromTo('.DescriptionThree', {y: window.innerHeight * 0.3}, {y: -window.innerHeight * 0.3}, 'toChina')
-                .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.5});
+                .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
             } else {
                 gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
 
@@ -161,7 +164,7 @@ const AboutMePage = () => {
                 .fromTo('.flightPath', {strokeDashoffset: window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                 .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                 .to('.DescriptionThree', {x: window.innerWidth / 3}, 'toChina')
-                .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.5});
+                .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
             }
 
 
@@ -180,12 +183,15 @@ const AboutMePage = () => {
             });
 
             const handleResize = () => {
+                if(window.innerWidth - currWidth > 70) window.location.reload();
+                if(window.innerHeight - currHeight > 70) window.location.reload();
+
                 if (mobileWidth){
-                    if (window.innerWidth > 850) window.location.href = '/';
+                    if (window.innerWidth > 850) window.location.reload();
                 }
 
                 if (!mobileWidth) {
-                    if (window.innerWidth < 850) window.location.href = '/';
+                    if (window.innerWidth < 850) window.location.reload();
                 }
             };
             const delay = (cb: () => void, time: number) => {
@@ -203,9 +209,9 @@ const AboutMePage = () => {
     return(
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `${window.innerHeight}px`}}>
             <HeaderWrapper>
-                <div className="Landing_image" style={{height: window.innerHeight, width: '100%', position: 'relative'}}>
+                <LandingImage className="Landing_image">
                     <LandingImg src={TJImage} alt="Author"/>
-                </div>
+                </LandingImage>
                 <TitleContainer>
                     <Header>
                         About Me
@@ -261,6 +267,16 @@ const Background = styled.div`
     }
 `;
 
+const LandingImage = styled.div`
+    height: 66.5vw;
+    position: relative;
+
+    @media (min-height: 66.5vw){
+        height: 100%;
+        width: 150.4vh;
+    }
+`;
+
 const IntroContainer = styled.div`
     pointer-events: none;
     width: 100vw;
@@ -275,7 +291,7 @@ const IntroContainer = styled.div`
 
 const TitleContainer = styled.div`
     color: rgb(229, 229, 229);
-    display: flex; 
+    display: flex;
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(2px);
@@ -290,7 +306,7 @@ const TitleContainer = styled.div`
     isolation: isolate;
 
     @media (max-width: 850px){
-        bottom: 7rem;
+        bottom: clamp(3rem, 5vh, 7rem);
         right: 0;
     }
 `;
@@ -299,6 +315,7 @@ const IntroWrapper = styled.div`
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -331,7 +348,7 @@ const IntroTwoTextContainer = styled.div`
 `;
 
 const Description = styled.p`
-    font-size: clamp(2rem,2vw, 5rem);
+    font-size: clamp(1.5rem,2vw, 5rem);
     width: 30vw;
     position: absolute;
 
@@ -356,18 +373,26 @@ const DescriptionFour = styled(Description)`
 
 const LandingImg = styled.img`
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    min-width: 100vw;
+    // left: 50%;
+    // top: 50%;
+    // transform: translate(-50%,-50%);
+    // min-width: 100vw;
+    top: 0;
+    left: 0;
     z-index: 1;
+    width:100%;
+    height: 100%;
+
+    @media (min-height: 66.5vw) and (max-width: 720px){
+        left: -20%;
+    }
 `;
 
 const HeaderWrapper = styled.div`
     background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
     mix-blend-mode: difference;
-    height: ${window.innerHeight}px;
+    height: 100vh;
     width: 100vw;
     overflow-x: hidden;
     position: relative;
@@ -382,7 +407,7 @@ const Header = styled.h1`
     white-space: nowrap;
 
     @media (max-width: 850px) {
-        font-size: 5rem;
+        font-size: clamp(2rem, 12vw, 5rem);
         padding: 15px;
     }
 `;
