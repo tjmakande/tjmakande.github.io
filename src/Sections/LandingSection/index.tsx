@@ -88,6 +88,12 @@ const NameHeader = styled.h1`
     @media (max-width: 850px){
         margin: 0 auto;
     }
+
+    @media (max-width: 850px) and (max-height: 600px) and (orientation: landscape){
+        font-size: 2em;
+        line-height: 1em;
+        margin: 0;
+    }
 `;
 const DescriptionTitle = styled.p`
     font-family: 'Lato', sans-serif;
@@ -100,17 +106,12 @@ const DescriptionTitle = styled.p`
     @media (max-width: 850px){
         margin: 2rem auto;
     }
-`;
 
-// const TextContainer = styled.div`
-//     width: 40vw;
-//     height: 100%;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: start;
-//     box-sizing: border-bo;
-//     padding-top: 10rem;
-// `;
+    @media (max-width: 850px) and (max-height: 600px) and (orientation: landscape){
+        margin: 0;
+        font-size: 1.8rem;
+    }
+`;
 
 const ImageWrapper = styled.div`
     position: absolute;
@@ -125,5 +126,11 @@ const ImageWrapper = styled.div`
         height: unset;
         align-self: center;
         width: clamp(10rem, 90vw, 30rem);
+    }
+
+    @media ( max-height: 600px ) and (max-width: 850px) and (orientation: landscape) {
+        width: clamp(14rem, 100vh, 25rem);
+        right: 2%;
+        position: absolute;
     }
 `;
