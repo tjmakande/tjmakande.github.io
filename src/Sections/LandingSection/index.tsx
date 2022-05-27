@@ -129,7 +129,7 @@ const ImageWrapper = styled.div`
     }
 
     @media ( max-height: 600px ) and (max-width: 850px) and (orientation: landscape) {
-        width: clamp(14rem, 100vh, 25rem);
+        width: clamp(14rem, 48vw, 25rem);
         right: 2%;
         position: absolute;
     }

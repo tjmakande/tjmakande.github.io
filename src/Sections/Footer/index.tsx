@@ -97,10 +97,6 @@ const SectionTitle = styled.h1`
         width: unset;
     }
 
-    @media (max-width: 850px) and (orientation: landscape) {
-        font-size: clamp(2rem, 3vw, 4rem);
-        line-height: clamp(2rem, 3vw, 4rem);
-    }
 `;
 
 const EmailLink = styled.p`
