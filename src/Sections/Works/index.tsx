@@ -102,8 +102,18 @@ const Btn = styled.div`
         (props: {available: boolean}) => props.available ? 'background-color: #00b1eb;' : 'background-color: #d9d6d6;'
     }
 
+    @media (max-width: 460px){
+        width: 120px;
+        height: 40px;
+    }
     @media ( max-width: 850px){
+        font-size: clamp(13px, 3vh, 20px);
         width: 70%;
+    }
+
+    @media (max-width:850px) and (orientation: landscape){
+        width: 150px;
+        height: 35px;
     }
 `;
 
@@ -124,8 +134,13 @@ const DescriptionBox = styled.div`
 
     @media (max-width: 850px){
         width: 100%;
-        margin-top: 2rem;
         backdrop-filter: blur(3px);
+        font-size: clamp(1rem, 3.5vh, 2rem);
+    }
+
+    @media (max-width:850px) and (orientation: landscape){
+        width: 60%;
+        font-size: clamp(10px, 3.5vh, 20px);
     }
 `;
 
@@ -144,8 +159,14 @@ const ProjectBg = styled.img`
     }
 
     @media (max-width: 850px){
-        width: 90vw;
-        height: 47.7vw;
+        width: 85vw;
+        height: 45.05vw;
+    }
+
+    @media (max-width:850px) and (orientation: landscape){
+        width: clamp(12rem, 60vw, 20rem);
+        height:clamp(6.36rem, 31.5vw, 10.6rem);
+        margin-left:2vw;
     }
 `;
 
@@ -184,6 +205,9 @@ const ProjectItem = styled.div`
         justify-content: center;
         flex-direction: column;
     }
+    @media (max-width:850px) and (orientation: landscape){
+        flex-direction: row;
+    }
 `;
 
 const Container = styled.section`
@@ -199,7 +223,7 @@ const TextContainer = styled.div`
     width: 100%;
 
     position: absolute;
-    bottom: clamp(5rem, 10vh, 10rem);
+    bottom: clamp(3rem, 10vh, 10rem);
     right: 8vw;
     background-color: white;
     display: flex;
@@ -208,6 +232,10 @@ const TextContainer = styled.div`
 
     @media (max-width: 850px){
         right: 1.5rem;
+    }
+
+    @media (max-width:850px) and (orientation: landscape){
+        // bottom: clamp(2rem, 12vh, 10rem);
     }
 `;
 
@@ -218,6 +246,10 @@ const TitleContainer = styled.div`
     right: 0;
     mix-blend-mode: difference;
     z-index: 1;
+
+    @media (max-width:850px) and (orientation: landscape){
+        font-size: 2rem;
+    }
 `;
 
 const TitleText = styled.p`
