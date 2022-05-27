@@ -38,7 +38,7 @@ const HomePage = () => {
             bodyScrollBar.addListener(ScrollTrigger.update);
             ScrollTrigger.defaults({scroller: Containerref.current});
 
-            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 10, 1000); });
+            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 20, 1000); });
 
             // window.addEventListener('resize', () => {
 

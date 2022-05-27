@@ -28,7 +28,7 @@ const Footer = () => {
                 <SectionTitle>Let's Collaborate</SectionTitle>
                 <CTAtext>Don't be afraid to connect!</CTAtext>
 
-                <div style={{marginTop: '5rem', width: '200px'}}>
+                <ContactContainer>
                     <EmailLink
                         className="EmailLink"
                         onClick={() => openInNewTab('mailto:tjmakande@gmail.com')}
@@ -41,7 +41,7 @@ const Footer = () => {
                         <LinkedInIcon />
                         {/* <GithubIcon /> */}
                     </SocialWrapper>
-                </div>
+                </ContactContainer>
 
                 <footer style={{position: 'absolute', textAlign: 'center', bottom: '3vh'}}> <small style={{color: 'white', fontSize: isMobile() ? '10px' : 'unset'}}>&copy; Copyright {currentYear}, Tapiwanashe J. Makande</small> </footer> 
             </Wrapper>
@@ -50,6 +50,14 @@ const Footer = () => {
 };
 
 export default Footer;
+const ContactContainer = styled.div`
+    margin-top: 5rem;
+    width: clamp(150px, 5vw, 250px);
+
+    @media (max-width: 850px){
+        margin-top: 0;
+    }
+`;
 
 const Container = styled.section`
     top: 0;
@@ -88,6 +96,11 @@ const SectionTitle = styled.h1`
         line-height: 4rem;
         width: unset;
     }
+
+    @media (max-width: 850px) and (orientation: landscape) {
+        font-size: clamp(2rem, 3vw, 4rem);
+        line-height: clamp(2rem, 3vw, 4rem);
+    }
 `;
 
 const EmailLink = styled.p`
@@ -96,7 +109,8 @@ const EmailLink = styled.p`
     margin: 2rem 0 0 0;
     text-decoration: underline;
     @media ( max-width: 850px){
-        font-size: 1rem;
+        font-size: 0.8rem;
+        margin-top: 1.5rem;
     }
 `;
 
@@ -106,6 +120,10 @@ const Line = styled.hr`
     width: 100%;
     border: 0;
     margin: 1.5rem 0;
+
+    @media (max-width: 850px){
+        margin: 0.5rem 0;
+    }
 `;
 
 const CTAtext = styled(EmailLink)`
@@ -114,6 +132,11 @@ const CTAtext = styled(EmailLink)`
 
     @media ( max-width: 850px){
         font-size: 1.2rem;
+    }
+
+    @media (max-width: 850px) and (orientation: landscape) {
+        font-size: clamp(1rem, 2.1vw, 3rem);
+        line-height: clamp(1rem, 2.1vw, 3rem);
     }
 `;
 
