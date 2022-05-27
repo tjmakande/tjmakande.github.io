@@ -186,7 +186,7 @@ const SectionTitle = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: clamp(6rem, 12vw, 16rem);
+    font-size: clamp(6rem, 10.5vw, 16rem);
     margin: 0;
     font-weight: 700;
     z-index: 1;

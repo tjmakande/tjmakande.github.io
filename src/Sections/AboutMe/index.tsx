@@ -14,7 +14,8 @@ const AboutMe = () => {
                     <Lines className={'to'} style={{display: 'inline-block'}}>to</Lines>&nbsp;
                     {/* <Lines className={'Othertext'}>any given</Lines>&nbsp; */}
                     <Lines className={'solution'} style={{display: 'inline-block'}}>solutions</Lines>
-                    <Lines className={'Othertext'}>, drawing the ideas created in your head, on to the canvas of reality.🧀</Lines>
+                    <Lines className={'Othertext'}>, eliminating obstacles along the way and paving a way forward.</Lines>
+
                 </Text>
             </Wrapper>
     );
@@ -35,7 +36,7 @@ const Text = styled.p`
     font-size:clamp(2rem, 2.5vw, 5rem);
 
     @media (max-width: 850px){
-        font-size: 1.5rem;
+        font-size: clamp(1rem,3vw,3rem);
         width: 90%;
     }
 `;
