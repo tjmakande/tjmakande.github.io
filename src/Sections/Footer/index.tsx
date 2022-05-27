@@ -51,8 +51,8 @@ const Footer = () => {
 
 export default Footer;
 const ContactContainer = styled.div`
-    margin-top: 5rem;
-    width: clamp(150px, 5vw, 250px);
+    margin-top: 2rem;
+    width: clamp(150px, 20vw, 400px);
 
     @media (max-width: 850px){
         margin-top: 0;

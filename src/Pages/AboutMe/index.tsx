@@ -204,7 +204,7 @@ const AboutMePage = () => {
 
             ScrollTrigger.addEventListener('refreshInit', delay(handleResize, 750));
         }
-    }, []);
+    }, [currHeight, currWidth]);
 
     return(
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `${window.innerHeight}px`}}>
