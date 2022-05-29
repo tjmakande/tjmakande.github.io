@@ -214,7 +214,7 @@ const Container = styled.section`
     position: relative;
     height: 100vh;
     overflow-x: hidden;
-    margin-bottom: 750vh;
+    margin-bottom: 650vh;
     background-color: white;
 `;
 

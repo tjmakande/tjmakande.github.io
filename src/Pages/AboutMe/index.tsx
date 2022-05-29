@@ -294,7 +294,6 @@ const TitleContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(2px);
     mix-blend-mode: difference;
     position: absolute;
     right: 5vw;

@@ -146,7 +146,7 @@ const HomePage = () => {
                 scroller: '.scroller',
                 trigger: '.works_wrapper',
                 start: 'top top',
-                end: `+=${window.innerHeight * 7}`,
+                end: `+=${window.innerHeight * 6}`,
                 pin: true,
                 pinSpacing: false,
                 invalidateOnRefresh: true,
