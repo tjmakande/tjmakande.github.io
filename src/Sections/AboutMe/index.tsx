@@ -30,7 +30,7 @@ const Lines = styled.span`
 `;
 
 const Text = styled.p`
-    width: 60%;
+    width: 65%;
     margin: 0 auto;
     color: black;
     font-size:clamp(2rem, 2.5vw, 5rem);

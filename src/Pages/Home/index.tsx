@@ -130,10 +130,10 @@ const HomePage = () => {
 
             t1.add('start')
             .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-            .to(line1, {scale: isMobile() ? 3 : 5, duration: 0.5, y: window.innerHeight * (isMobile() ? 0.35 : 0.15) - line1.offsetTop, x: window.innerWidth / 2 - line1.offsetLeft - line1.clientWidth / 2}, 'start')
-            .to(line2, {scale: isMobile() ? 3 : 5, duration: 0.5, y: window.innerHeight * (isMobile() ? 0.45 : 0.35) - line2.offsetTop, x: window.innerWidth / 2 - line2.offsetLeft - line2.clientWidth / 2}, 'start')
-            .to(line3, {scale: isMobile() ? 3 : 5, duration: 0.5, y: window.innerHeight * (isMobile() ? 0.55 : 0.55) - line3.offsetTop, x: window.innerWidth / 2 - line3.offsetLeft - line3.clientWidth / 2}, 'start')
-            .to(line4, {scale: isMobile() ? 3 : 5, duration: 0.5, y: window.innerHeight * (isMobile() ? 0.65 : 0.75) - line4.offsetTop, x: window.innerWidth / 2 - line4.offsetLeft - line4.clientWidth / 2}, 'start');
+            .fromTo(line1,{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.35 : 0.15) - line1.offsetTop, x: () => window.innerWidth / 2 - line1.offsetLeft - line1.clientWidth / 2}, 'start')
+            .fromTo(line2,{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.45 : 0.35) - line2.offsetTop, x: () => window.innerWidth / 2 - line2.offsetLeft - line2.clientWidth / 2}, 'start')
+            .fromTo(line3,{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.55 : 0.55) - line3.offsetTop, x: () => window.innerWidth / 2 - line3.offsetLeft - line3.clientWidth / 2}, 'start')
+            .fromTo(line4,{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.65 : 0.75) - line4.offsetTop, x: () => window.innerWidth / 2 - line4.offsetLeft - line4.clientWidth / 2}, 'start');
 
             // works wrapper
             const wordSelected = document.querySelector('.word_selected') as HTMLSpanElement;
