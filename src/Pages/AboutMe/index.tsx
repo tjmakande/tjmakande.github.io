@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 
 import TJImage from 'Assets/AM_landing.JPG';
 
@@ -16,9 +16,6 @@ import Video from './Portfolio_Video.mp4';
 import WorldMap from './WorldMap';
 
 const AboutMePage = () => {
-    const [currWidth, setCurrWidth] = useState<number>(window.innerWidth);
-    const [currHeight, setCurrHeight] = useState<number>(window.innerHeight);
-
     // Starting HERE
     window.addEventListener('load', () => document.querySelector('.loader')?.remove());
 
@@ -201,7 +198,7 @@ const AboutMePage = () => {
 
             ScrollTrigger.addEventListener('refreshInit', delay(handleResize, 750));
         }
-    }, [currHeight, currWidth]);
+    }, []);
 
     return(
         <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `100vh`, overflow: 'hidden'}}>
@@ -303,7 +300,7 @@ const TitleContainer = styled.div`
     isolation: isolate;
 
     @media (max-width: 850px){
-        bottom: clamp(3rem, 5vh, 7rem);
+        bottom: clamp(10rem, 16vh, 15rem);
         right: 0;
     }
 `;
@@ -377,6 +374,10 @@ const LandingImg = styled.img`
     width:100%;
     height: 100%;
 
+    @media (max-width: 850px){
+        left: -25%;
+    }
+
     @media (min-height: 66.5vw) and (max-width: 720px){
         left: -20%;
     }
@@ -401,7 +402,7 @@ const Header = styled.h1`
     white-space: nowrap;
 
     @media (max-width: 850px) {
-        font-size: clamp(2rem, 12vw, 5rem);
+        font-size: clamp(3rem, 15vw, 7rem);
         padding: 15px;
     }
 `;
