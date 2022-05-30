@@ -183,16 +183,13 @@ const AboutMePage = () => {
             });
 
             const handleResize = () => {
-                // if(window.innerWidth - currWidth > 70) window.location.reload();
-                // if(window.innerHeight - currHeight > 70) window.location.reload();
+                if (mobileWidth){
+                    if (window.innerWidth > 850) window.location.reload();
+                }
 
-                // if (mobileWidth){
-                //     if (window.innerWidth > 850) window.location.reload();
-                // }
-
-                // if (!mobileWidth) {
-                //     if (window.innerWidth < 850) window.location.reload();
-                // }
+                if (!mobileWidth) {
+                    if (window.innerWidth < 850) window.location.reload();
+                }
             };
             const delay = (cb: () => void, time: number) => {
               let timer: NodeJS.Timeout | number = 0;

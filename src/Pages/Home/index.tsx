@@ -220,13 +220,13 @@ const HomePage = () => {
             }
 
             const handleResize = () => {
-              // if (mobileWidth){
-              //   if (window.innerWidth > 850) window.location.href = '/';
-              // }
+              if (mobileWidth){
+                if (window.innerWidth > 850) window.location.href = '/';
+              }
 
-              // if (!mobileWidth) {
-              //   if (window.innerWidth < 850) window.location.href = '/';
-              // }
+              if (!mobileWidth) {
+                if (window.innerWidth < 850) window.location.href = '/';
+              }
             };
             const delay = (cb: () => void, time: number) => {
               let timer: NodeJS.Timeout | number = 0;
