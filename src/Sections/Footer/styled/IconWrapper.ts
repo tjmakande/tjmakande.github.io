@@ -6,6 +6,6 @@ export default styled.div`
     margin: 0;
 
     @media (max-width: 850px){
-        width: clamp(12px, 4.5vw, 25px);
+        width: clamp(16px, 4.5vw, 25px);
     }
 `;

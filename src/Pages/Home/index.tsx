@@ -138,8 +138,6 @@ const HomePage = () => {
             // works wrapper
             const wordSelected = document.querySelector('.word_selected') as HTMLSpanElement;
             const wordWorks = document.querySelector('.word_works') as HTMLSpanElement;
-            const selectedRect = wordSelected.getBoundingClientRect();
-            const worksRect = wordWorks.getBoundingClientRect();
 
             const t2 = gsap.timeline({
               scrollTrigger: {
@@ -195,8 +193,8 @@ const HomePage = () => {
                 .fromTo('.word_selected', {yPercent: -150, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.5})
                 .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.5})
                 // Move text to left
-                .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: -selectedRect.left * 0.8, duration: 0.7})
-                .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left',yPercent: 10, x: -worksRect.left * (isMobile() ? 0.8 : 0.55), duration: 0.7})
+                .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: () =>  -wordSelected.getBoundingClientRect().left * 0.8, duration: 0.7})
+                .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left',yPercent: 10, x: () => -wordWorks.getBoundingClientRect().left * (isMobile() ? 0.8 : 0.55), duration: 0.7})
                 .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
                 .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cinema')
@@ -222,13 +220,13 @@ const HomePage = () => {
             }
 
             const handleResize = () => {
-              if (mobileWidth){
-                if (window.innerWidth > 850) window.location.href = '/';
-              }
+              // if (mobileWidth){
+              //   if (window.innerWidth > 850) window.location.href = '/';
+              // }
 
-              if (!mobileWidth) {
-                if (window.innerWidth < 850) window.location.href = '/';
-              }
+              // if (!mobileWidth) {
+              //   if (window.innerWidth < 850) window.location.href = '/';
+              // }
             };
             const delay = (cb: () => void, time: number) => {
               let timer: NodeJS.Timeout | number = 0;

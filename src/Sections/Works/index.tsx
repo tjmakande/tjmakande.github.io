@@ -126,7 +126,7 @@ const DescriptionBox = styled.div`
     font-family: nunito;
     box-sizing: border-box;
     padding: 0 2rem;
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3.3vw, 3rem);
 
     & > p {
         margin: 1em auto;
@@ -135,12 +135,12 @@ const DescriptionBox = styled.div`
     @media (max-width: 850px){
         width: 100%;
         backdrop-filter: blur(3px);
-        font-size: clamp(1rem, 3.5vh, 2rem);
+        // font-size: clamp(1rem, 3vh, 2rem);
     }
 
     @media (max-width:850px) and (orientation: landscape){
         width: 60%;
-        font-size: clamp(10px, 3.5vh, 20px);
+        // font-size: clamp(10px, 3vh, 20px);
     }
 `;
 
@@ -241,7 +241,7 @@ const TextContainer = styled.div`
 
 const TitleContainer = styled.div`
     text-align: center;
-    font-size: clamp(3.5rem, 10vw, 10rem);
+    font-size: clamp(3.1rem, 10vw, 10rem);
     position: absolute;
     right: 0;
     mix-blend-mode: difference;

@@ -25,7 +25,7 @@ const Footer = () => {
     return(
         <Container className="footerwrapper">
             <Wrapper>
-                <SectionTitle>Let's Collaborate</SectionTitle>
+                <SectionTitle>Let's <br/> Collaborate</SectionTitle>
                 <CTAtext>Don't be afraid to connect!</CTAtext>
 
                 <ContactContainer>
@@ -43,7 +43,7 @@ const Footer = () => {
                     </SocialWrapper>
                 </ContactContainer>
 
-                <footer style={{position: 'absolute', textAlign: 'center', bottom: '3vh'}}> <small style={{color: 'white', fontSize: isMobile() ? '10px' : 'unset'}}>&copy; Copyright {currentYear}, Tapiwanashe J. Makande</small> </footer> 
+                <footer style={{position: 'absolute',left: '2vw', bottom: '3vh'}}> <small style={{color: 'white', fontSize: isMobile() ? '10px' : 'unset'}}>&copy; Copyright {currentYear}, Tapiwanashe J. Makande</small> </footer> 
             </Wrapper>
         </Container>
     );
@@ -61,7 +61,8 @@ const ContactContainer = styled.div`
 
 const Container = styled.section`
     top: 0;
-    height: ${window.innerHeight}px;
+    min-height: 100vh;
+    height: 100vh;
     width: 100vw;
     z-index: 5;
     overflow: hidden;
@@ -81,19 +82,18 @@ const Wrapper = styled.div`
 
 const SectionTitle = styled.h1`
     margin: 0;
-    font-size: 9vw;
-    width: 50vw;
+    font-size: clamp(4rem, 13vw, 8rem);
     margin: 0;
     padding: 0;
     color: #fff;
     font-weight: 600;
     letter-spacing: -3px;
-    line-height: 9vw;
+    line-height: clamp(4rem, 13vw, 8rem);
     z-index: 1;
 
     @media ( max-width: 850px){
-        font-size: 4rem;
-        line-height: 4rem;
+        // font-size: 4rem;
+        // line-height: 4rem;
         width: unset;
     }
 
@@ -105,8 +105,8 @@ const EmailLink = styled.p`
     margin: 2rem 0 0 0;
     text-decoration: underline;
     @media ( max-width: 850px){
-        font-size: 0.8rem;
-        margin-top: 1.5rem;
+        font-size: 1rem;
+        margin: 1.5rem 0;
     }
 `;
 
@@ -123,12 +123,8 @@ const Line = styled.hr`
 `;
 
 const CTAtext = styled(EmailLink)`
-    font-size: 1.2vw;
+    font-size: clamp(1.2rem, 1.2vw, 3rem);
     text-decoration: none;
-
-    @media ( max-width: 850px){
-        font-size: 1.2rem;
-    }
 
     @media (max-width: 850px) and (orientation: landscape) {
         font-size: clamp(1rem, 2.1vw, 3rem);
@@ -138,7 +134,7 @@ const CTAtext = styled(EmailLink)`
 
 const SocialWrapper = styled.div`
     width: 100%;
-    margin: 1rem 0;
+    margin: 1rem 0 2.5rem 0;
 
     display: flex;
     flex-direction: row;
