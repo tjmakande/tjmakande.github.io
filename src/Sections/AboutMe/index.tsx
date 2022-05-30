@@ -15,7 +15,6 @@ const AboutMe = () => {
                     {/* <Lines className={'Othertext'}>any given</Lines>&nbsp; */}
                     <Lines className={'solution'} style={{display: 'inline-block'}}>solutions</Lines>
                     <Lines className={'Othertext'}>, eliminating obstacles along the way and paving a way forward.</Lines>
-
                 </Text>
             </Wrapper>
     );
@@ -42,7 +41,7 @@ const Text = styled.p`
 `;
 
 const Wrapper = styled.div`
-    height: ${window.innerHeight}px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;

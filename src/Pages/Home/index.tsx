@@ -73,7 +73,7 @@ const HomePage = () => {
                     trigger: '.LandingSection',
                     start: 'bottom bottom',
                     end: 'bottom center',
-                  invalidateOnRefresh: true,
+                    invalidateOnRefresh: true,
                     scrub: .2
                 },
                 yPercent: -window.innerHeight / 3 ,

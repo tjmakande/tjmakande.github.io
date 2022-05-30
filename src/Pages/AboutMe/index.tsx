@@ -136,16 +136,16 @@ const AboutMePage = () => {
                 .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
                 .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
                 .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
-                .to('.DescriptionTwo',{y: window.innerHeight * 0.3 }, 'showMap')
+                .to('.DescriptionTwo',{y: () => window.innerHeight * 0.3 }, 'showMap')
                 .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
-                .to('.MapWrapper', {scale: 5, xPercent: -35, yPercent: -175, rotation: 0.05}, 'toZimbabwe')
+                .to('.MapWrapper', {scale: 5, xPercent:() =>  -35, yPercent:() =>  -175, rotation: 0.05}, 'toZimbabwe')
                 .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
                 .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
-                .fromTo('.DescriptionThree', {y: window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
-                .to('.MapWrapper', {scale: 4, xPercent: -110, yPercent: 40, rotation: 0.01}, 'toChina-=2%')
-                .fromTo('.flightPath', {strokeDashoffset: window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                .fromTo('.DescriptionThree', {y:() =>  window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
+                .to('.MapWrapper', {scale: 4, xPercent:() =>  -110, yPercent:() =>  40, rotation: 0.01}, 'toChina-=2%')
+                .fromTo('.flightPath', {strokeDashoffset:() => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                 .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-                .fromTo('.DescriptionThree', {y: window.innerHeight * 0.3}, {y: -window.innerHeight * 0.3}, 'toChina')
+                .fromTo('.DescriptionThree', {y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina')
                 .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
             } else {
                 gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
@@ -154,16 +154,16 @@ const AboutMePage = () => {
                 .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
                 .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
                 .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
-                .to('.DescriptionTwo',{x: -window.innerWidth / 3})
+                .to('.DescriptionTwo',{x: () => -window.innerWidth / 3})
                 .to('.MapWrapper', {autoAlpha: 1})
-                .to('.MapWrapper', {scale: 3.5, xPercent: -45, yPercent: -150, rotation: 0.05}, 'toZimbabwe')
+                .to('.MapWrapper', {scale: 3.5, xPercent:() => -45, yPercent: () => -150, rotation: 0.05}, 'toZimbabwe')
                 .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
                 .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
-                .fromTo('.DescriptionThree', {x: -window.innerWidth / 3, opacity: 0}, {opacity: 1})
-                .to('.MapWrapper', {xPercent: -140, yPercent: 10, rotation: 0.01}, 'toChina-=2%')
-                .fromTo('.flightPath', {strokeDashoffset: window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                .fromTo('.DescriptionThree', {x: () => -window.innerWidth / 3, opacity: 0}, {opacity: 1})
+                .to('.MapWrapper', {xPercent: () => -140, yPercent: () => 10, rotation: 0.01}, 'toChina-=2%')
+                .fromTo('.flightPath', {strokeDashoffset: () => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                 .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-                .to('.DescriptionThree', {x: window.innerWidth / 3}, 'toChina')
+                .to('.DescriptionThree', {x: () => window.innerWidth / 3}, 'toChina')
                 .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
             }
 
@@ -183,16 +183,16 @@ const AboutMePage = () => {
             });
 
             const handleResize = () => {
-                if(window.innerWidth - currWidth > 70) window.location.reload();
-                if(window.innerHeight - currHeight > 70) window.location.reload();
+                // if(window.innerWidth - currWidth > 70) window.location.reload();
+                // if(window.innerHeight - currHeight > 70) window.location.reload();
 
-                if (mobileWidth){
-                    if (window.innerWidth > 850) window.location.reload();
-                }
+                // if (mobileWidth){
+                //     if (window.innerWidth > 850) window.location.reload();
+                // }
 
-                if (!mobileWidth) {
-                    if (window.innerWidth < 850) window.location.reload();
-                }
+                // if (!mobileWidth) {
+                //     if (window.innerWidth < 850) window.location.reload();
+                // }
             };
             const delay = (cb: () => void, time: number) => {
               let timer: NodeJS.Timeout | number = 0;
@@ -207,7 +207,7 @@ const AboutMePage = () => {
     }, [currHeight, currWidth]);
 
     return(
-        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `${window.innerHeight}px`}}>
+        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `100vh`, overflow: 'hidden'}}>
             <HeaderWrapper>
                 <LandingImage className="Landing_image">
                     <LandingImg src={TJImage} alt="Author"/>
@@ -255,7 +255,7 @@ const AboutMePage = () => {
 export default AboutMePage;
 
 const Background = styled.div`
-  height: ${window.innerHeight}px;
+  height: 100vh;
   width:100vw;
   z-index: -1;
   left: 0;
@@ -263,7 +263,7 @@ const Background = styled.div`
   background-color: #fff;
 
     @media (max-width: 850px){
-        height: ${window.innerHeight}px;
+        // height: ${window.innerHeight}px;
     }
 `;
 
@@ -285,16 +285,17 @@ const IntroContainer = styled.div`
     overflow-x: hidden;
 
     @media (max-width: 850px) {
-        height: ${window.innerHeight}px;
+        // height: ${window.innerHeight}px;
     }
 `;
 
 const TitleContainer = styled.div`
-    color: rgb(229, 229, 229);
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
-    mix-blend-mode: difference;
+    mix-blend-mode: normal;
+    backdrop-filter: blur(3px);
     position: absolute;
     right: 5vw;
     bottom: 4rem;
@@ -323,6 +324,7 @@ const IntroWrapper = styled.div`
 `;
 
 const IntroTwoWrapper = styled(IntroWrapper)`
+    height: 100vh;
     padding: 0 5vw;
     box-sizing: border-box;
     flex-direction: row;
@@ -372,10 +374,6 @@ const DescriptionFour = styled(Description)`
 
 const LandingImg = styled.img`
     position: absolute;
-    // left: 50%;
-    // top: 50%;
-    // transform: translate(-50%,-50%);
-    // min-width: 100vw;
     top: 0;
     left: 0;
     z-index: 1;
@@ -413,6 +411,7 @@ const Header = styled.h1`
 
 const MapWrapper = styled.div`
     position: absolute;
+    height: auto;
     right: 0;
     width: 65vw;
     top: 50%;

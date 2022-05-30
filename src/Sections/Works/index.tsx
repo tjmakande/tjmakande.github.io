@@ -118,7 +118,7 @@ const Btn = styled.div`
 `;
 
 const DescriptionBox = styled.div`
-    width: 35%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -126,7 +126,7 @@ const DescriptionBox = styled.div`
     font-family: nunito;
     box-sizing: border-box;
     padding: 0 2rem;
-    font-size: clamp(1rem, 3.3vw, 3rem);
+    font-size: clamp(1rem, 3.3vw, 2rem);
 
     & > p {
         margin: 1em auto;
