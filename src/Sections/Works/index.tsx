@@ -126,7 +126,7 @@ const DescriptionBox = styled.div`
     font-family: nunito;
     box-sizing: border-box;
     padding: 0 2rem;
-    font-size: clamp(1rem, 3.3vw, 2rem);
+    font-size: clamp(1rem, 3.3vw, 1.8rem);
 
     & > p {
         margin: 1em auto;
