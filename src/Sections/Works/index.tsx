@@ -126,7 +126,7 @@ const DescriptionBox = styled.div`
     font-family: nunito;
     box-sizing: border-box;
     padding: 0 2rem;
-    font-size: clamp(1rem, 3.3vw, 1.8rem);
+    font-size: clamp(1.2rem, 3.3vw, 1.8rem);
 
     & > p {
         margin: 1em auto;
@@ -243,7 +243,6 @@ const TitleContainer = styled.div`
     font-size: clamp(3.1rem, 10vw, 10rem);
     position: absolute;
     right: 0;
-    mix-blend-mode: difference;
     z-index: 1;
 
     @media (max-width:850px) and (orientation: landscape){
