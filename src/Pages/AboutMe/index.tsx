@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 
 import TJImage from 'Assets/AM_landing.JPG';
 
-import SectionWrapper from 'Components/Styled/SectionWrapper';
+// import SectionWrapper from 'Components/Styled/SectionWrapper';
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -27,7 +27,7 @@ const AboutMePage = () => {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
         const mobileWidth: boolean = window.innerWidth < 850;
-        
+
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
 
@@ -102,6 +102,7 @@ const AboutMePage = () => {
                     trigger: '.Landing_image',
                     anticipatePin:1,
                     pin: true,
+                    pinSpacing: false,
                     invalidateOnRefresh: true,
                     start: 'top top',
                     end: window.innerHeight,
@@ -201,7 +202,7 @@ const AboutMePage = () => {
     }, []);
 
     return(
-        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `100vh`, overflow: 'hidden'}}>
+        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `100%`, overflow: 'hidden'}}>
             <HeaderWrapper>
                 <LandingImage className="Landing_image">
                     <LandingImg src={TJImage} alt="Author"/>
@@ -212,35 +213,33 @@ const AboutMePage = () => {
                     </Header>
                 </TitleContainer>
             </HeaderWrapper>
-            <SectionWrapper >
-                <Background className="background"></Background>
-                <IntroContainer style={{marginBottom: '600vh'}} className="SectionWrapper">
-                    <IntroWrapper>
-                        <Description className="DescriptionOne"><span>Hi there! <br/>I'm TJ Makande.</span></Description>
-                        <Description className="DescriptionTwo"><span>A web developer from Zimbabwe</span></Description>
-                        <Description className="DescriptionThree"><span>Currently based in Beijing</span></Description>
-                        <MapWrapper className="MapWrapper">
-                            <WorldMap />
-                        </MapWrapper>
-                    </IntroWrapper>
-                </IntroContainer>
+            <Background className="background"></Background>
+            <IntroContainer style={{marginBottom: '600vh'}} className="SectionWrapper">
+                <IntroWrapper>
+                    <Description className="DescriptionOne"><span>Hi there! <br/>I'm TJ Makande.</span></Description>
+                    <Description className="DescriptionTwo"><span>A web developer from Zimbabwe</span></Description>
+                    <Description className="DescriptionThree"><span>Currently based in Beijing</span></Description>
+                    <MapWrapper className="MapWrapper">
+                        <WorldMap />
+                    </MapWrapper>
+                </IntroWrapper>
+            </IntroContainer>
 
-                <IntroTwoWrapper className='IntroTwoWrapper'>
-                    <IntroTwoTextContainer>
-                        <DescriptionFour >
-                            I'm a naturally keen developer with an eye for clean code and designs. I have the MERN stack in my arsenal which enables me to work on all parts of the development cycle.
-                        </DescriptionFour>
-                        <DescriptionFour>
-                            I am very much attracted to learning, challenges and finding solutions. I do believe that they all belong together.
-                        </DescriptionFour>
-                    </IntroTwoTextContainer>
+            <IntroTwoWrapper className='IntroTwoWrapper'>
+                <IntroTwoTextContainer>
+                    <DescriptionFour >
+                        I'm a naturally keen developer with an eye for clean code and designs. I have the MERN stack in my arsenal which enables me to work on all parts of the development cycle.
+                    </DescriptionFour>
+                    <DescriptionFour>
+                        I am very much attracted to learning, challenges and finding solutions. I do believe that they all belong together.
+                    </DescriptionFour>
+                </IntroTwoTextContainer>
 
-                    <VideoWrap id={'Pseudocode'} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
-                        <source src={Video} type="video/mp4"/>
-                    </VideoWrap>
-                </IntroTwoWrapper>
-                <Footer />
-            </SectionWrapper>
+                <VideoWrap id={'Pseudocode'} width={isMobile() ? '100%' : '682'} height={isMobile() ? 'auto' : '440'} autoPlay muted preload='auto' playsInline>
+                    <source src={Video} type="video/mp4"/>
+                </VideoWrap>
+            </IntroTwoWrapper>
+            <Footer />
         </div>
     );
 };
@@ -249,7 +248,7 @@ const AboutMePage = () => {
 export default AboutMePage;
 
 const Background = styled.div`
-  height: 100vh;
+  height: 100%;
   width:100vw;
   z-index: -1;
   left: 0;
@@ -273,8 +272,8 @@ const LandingImage = styled.div`
 
 const IntroContainer = styled.div`
     pointer-events: none;
+    height: 100%;
     width: 100vw;
-    height: 100vh;
     position: relative;
     overflow-x: hidden;
 
@@ -300,7 +299,7 @@ const TitleContainer = styled.div`
     isolation: isolate;
 
     @media (max-width: 850px){
-        bottom: clamp(10rem, 16vh, 15rem);
+        bottom: clamp(5rem, 7vh, 9rem);
         right: 0;
     }
 `;
@@ -318,7 +317,7 @@ const IntroWrapper = styled.div`
 `;
 
 const IntroTwoWrapper = styled(IntroWrapper)`
-    height: 100vh;
+    height: 100%;
     padding: 0 5vw;
     box-sizing: border-box;
     flex-direction: row;
@@ -387,7 +386,7 @@ const HeaderWrapper = styled.div`
     background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
     mix-blend-mode: difference;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     overflow-x: hidden;
     position: relative;
