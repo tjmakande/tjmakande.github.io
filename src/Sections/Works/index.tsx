@@ -9,7 +9,7 @@ import { openInNewTab } from "utils/OpenNewTab";
 const WorkSection = () => {
     return(
         <Container className="works_wrapper">
-            <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100vh'}}>
+            <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100%'}}>
                 <WrapperText>
                     <SectionTitle>
                         <span className="word_selected" style={{display: 'inline-block'}}>
@@ -171,7 +171,7 @@ const ProjectBg = styled.img`
 `;
 
 const WrapperWorks = styled.div`
-    height: 100vh;
+    height: 100%;
     position: relative;
     z-index: 2;
 `;
@@ -194,7 +194,7 @@ const SectionTitle = styled.div`
 const ProjectItem = styled.div`
     position: absolute;
     top: 0;
-    height: 70vh;
+    height: 70%;
     width: 95vw;
     display: flex;
     align-items: center;
@@ -212,9 +212,9 @@ const ProjectItem = styled.div`
 
 const Container = styled.section`
     position: relative;
-    height: 100vh;
+    height: 100%;
     overflow-x: hidden;
-    margin-bottom: 650vh;
+    margin-bottom: 625vh;
     background-color: white;
 `;
 
@@ -223,12 +223,11 @@ const TextContainer = styled.div`
     width: 100%;
 
     position: absolute;
-    bottom: clamp(3rem, 10vh, 10rem);
+    bottom: clamp(4rem, 13vh, 12rem);
     right: 8vw;
     background-color: white;
     display: flex;
     align-items: end;
-    z-index: 0;
 
     @media (max-width: 850px){
         right: 1.5rem;
@@ -254,6 +253,6 @@ const TitleContainer = styled.div`
 
 const TitleText = styled.p`
     white-space: nowrap;
-    color: #fff;
+    color: #000;
     margin: 0;
 `;

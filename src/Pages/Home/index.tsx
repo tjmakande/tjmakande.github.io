@@ -241,7 +241,7 @@ const HomePage = () => {
     }, [Containerref]);
 
     return(
-      <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden'}}>
+      <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100%', width: '100vw', overflow: 'hidden'}}>
         <Background className="background"/>
         <LandingSection />
         <AboutMe />
@@ -254,7 +254,7 @@ const HomePage = () => {
 export default HomePage;
 
 const Background = styled.div`
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   z-index: -1;
   top: 0;

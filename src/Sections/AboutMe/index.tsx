@@ -41,7 +41,7 @@ const Text = styled.p`
 `;
 
 const Wrapper = styled.div`
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
