@@ -1,5 +1,5 @@
 import LandingImage from 'Assets/LandingImage2.jpg';
-import SectionWrapper from 'Components/Styled/SectionWrapper';
+// import SectionWrapper from 'Components/Styled/SectionWrapper';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 import Typed from 'typed.js';

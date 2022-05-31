@@ -40,10 +40,6 @@ const HomePage = () => {
 
             if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 20, 1000); });
 
-            // window.addEventListener('resize', () => {
-
-            // })
-
             // Background Item;
             gsap.to('.background', {
                 scrollTrigger: {

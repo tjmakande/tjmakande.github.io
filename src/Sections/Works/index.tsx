@@ -2,11 +2,26 @@ import AutomatedBot from 'Assets/chatbot-demo.gif';
 import CinemaPhoto from 'Assets/cinema-demo.gif';
 import Cube from 'Assets/cube-demo.gif';
 import SDSN from 'Assets/SDSN-demo.gif';
+import {useEffect, useState} from 'react';
+import Scrollbar from 'smooth-scrollbar';
+import { Scrollbar as ScrollType } from 'smooth-scrollbar/scrollbar';
 import styled from 'styled-components';
 
 import { openInNewTab } from "utils/OpenNewTab";
 
 const WorkSection = () => {
+    const [scrollbar, setScrollbar] = useState<ScrollType>();
+
+    useEffect(() => {
+        if (!scrollbar){
+            window.addEventListener('load', () => {
+                const container = Scrollbar.get(document.querySelector('.scroller') as HTMLDivElement);
+                setScrollbar(container);
+            });
+        }
+    }, [scrollbar]);
+
+
     return(
         <Container className="works_wrapper">
             <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100%'}}>
@@ -54,7 +69,7 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto}  alt="cinema platform demo"/>
                     <DescriptionBox>
                         <p>A movie booking platform, where you can also check out the latest movies.</p>
-                        <Btn available={false}>Coming Soon!</Btn>
+                        <Btn available={'soon'}>Coming Soon!</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -62,7 +77,7 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot}  alt="chatbot demo"/>
                     <DescriptionBox>
                         <p>A customer service realtime chatbot that is able to process relevant information to the user and perform CRUD operations.</p>
-                        <Btn available={false}>Upon Request</Btn>
+                        <Btn available={'request'} onClick={() => scrollbar?.scrollTo(0, window.innerHeight * 20, 1000)}>Upon Request</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -70,7 +85,7 @@ const WorkSection = () => {
                     <ProjectBg  className={'Works'} data-id={'cube'} src={Cube} alt="cube demo"/>
                     <DescriptionBox>
                         <p>A responsive cube showcasing my experience during the 6 years I lived in China.</p>
-                        <Btn available={false}>Upon Request</Btn>
+                        <Btn available={'request'} onClick={() => scrollbar?.scrollTo(0, window.innerHeight * 20, 1000)}>Upon Request</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -78,7 +93,7 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} alt="sdsn demo" />
                     <DescriptionBox>
                         <p>The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.</p>
-                        <Btn available={true} onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}>View Site</Btn>
+                        <Btn available={'available'} onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}>View Site</Btn>
                     </DescriptionBox>
                 </ProjectItem>
             </WrapperWorks>
@@ -99,7 +114,11 @@ const Btn = styled.div`
     align-items: center;
     justify-content: center;
     ${
-        (props: {available: boolean}) => props.available ? 'background-color: #00b1eb;' : 'background-color: #d9d6d6;'
+        (props: {available: string}) => {
+            if (props.available === 'available') return 'background-color: #00b1eb; &::hover{background-color: #0e94c0; transition: .5s;';
+            if (props.available === 'request') return 'background-color: #ffa41b; &::hover{background-color: #f99e14; transition: .5s;';
+            if (props.available === 'soon') return 'background-color: #d9d6d6;';
+        }
     }
 
     @media (max-width: 460px){
