@@ -60,7 +60,7 @@ const Wrapper = styled.div`
 
     box-sizing: border-box;
     padding: 5rem 6vw;
-    height: 100%;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;

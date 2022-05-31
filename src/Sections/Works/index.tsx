@@ -69,7 +69,7 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto}  alt="cinema platform demo"/>
                     <DescriptionBox>
                         <p>A movie booking platform, where you can also check out the latest movies.</p>
-                        <Btn available={'soon'}>Coming Soon!</Btn>
+                        <Btn available={false}>Coming Soon!</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -77,7 +77,7 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot}  alt="chatbot demo"/>
                     <DescriptionBox>
                         <p>A customer service realtime chatbot that is able to process relevant information to the user and perform CRUD operations.</p>
-                        <Btn available={'request'} onClick={() => scrollbar?.scrollTo(0, window.innerHeight * 20, 1000)}>Upon Request</Btn>
+                        <Btn available={false}>Upon Request</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -85,7 +85,7 @@ const WorkSection = () => {
                     <ProjectBg  className={'Works'} data-id={'cube'} src={Cube} alt="cube demo"/>
                     <DescriptionBox>
                         <p>A responsive cube showcasing my experience during the 6 years I lived in China.</p>
-                        <Btn available={'request'} onClick={() => scrollbar?.scrollTo(0, window.innerHeight * 20, 1000)}>Upon Request</Btn>
+                        <Btn available={false}>Upon Request</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -93,7 +93,7 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} alt="sdsn demo" />
                     <DescriptionBox>
                         <p>The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.</p>
-                        <Btn available={'available'} onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}>View Site</Btn>
+                        <Btn available={true} onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}>View Site</Btn>
                     </DescriptionBox>
                 </ProjectItem>
             </WrapperWorks>
@@ -114,11 +114,8 @@ const Btn = styled.div`
     align-items: center;
     justify-content: center;
     ${
-        (props: {available: string}) => {
-            if (props.available === 'available') return 'background-color: #00b1eb; &::hover{background-color: #0e94c0; transition: .5s;';
-            if (props.available === 'request') return 'background-color: #ffa41b; &::hover{background-color: #f99e14; transition: .5s;';
-            if (props.available === 'soon') return 'background-color: #d9d6d6;';
-        }
+        (props: {available: boolean}) => props.available ? 'background-color: #00b1eb;' : 'background-color: #d9d6d6;'
+
     }
 
     @media (max-width: 460px){
@@ -231,9 +228,9 @@ const ProjectItem = styled.div`
 
 const Container = styled.section`
     position: relative;
-    height: 100%;
+    height: 100vh;
     overflow-x: hidden;
-    margin-bottom: 625vh;
+    margin-bottom: 600vh;
     background-color: white;
 `;
 
@@ -250,6 +247,8 @@ const TextContainer = styled.div`
 
     @media (max-width: 850px){
         right: 1.5rem;
+        bottom: clamp(9rem, 19vh, 15rem);
+
     }
 
     @media (max-width:850px) and (orientation: landscape){

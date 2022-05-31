@@ -102,7 +102,6 @@ const AboutMePage = () => {
                     trigger: '.Landing_image',
                     anticipatePin:1,
                     pin: true,
-                    pinSpacing: false,
                     invalidateOnRefresh: true,
                     start: 'top top',
                     end: window.innerHeight,
@@ -202,7 +201,7 @@ const AboutMePage = () => {
     }, []);
 
     return(
-        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `100%`, overflow: 'hidden'}}>
+        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `100vh`, overflow: 'hidden'}}>
             <HeaderWrapper>
                 <LandingImage className="Landing_image">
                     <LandingImg src={TJImage} alt="Author"/>
@@ -248,7 +247,7 @@ const AboutMePage = () => {
 export default AboutMePage;
 
 const Background = styled.div`
-  height: 100%;
+  height: 100vh;
   width:100vw;
   z-index: -1;
   left: 0;
@@ -265,14 +264,14 @@ const LandingImage = styled.div`
     position: relative;
 
     @media (min-height: 66.5vw){
-        height: 100%;
+        height: 100vh;
         width: 150.4vh;
     }
 `;
 
 const IntroContainer = styled.div`
     pointer-events: none;
-    height: 100%;
+    height: 100vh;
     width: 100vw;
     position: relative;
     overflow-x: hidden;
@@ -308,7 +307,6 @@ const IntroWrapper = styled.div`
     position: relative;
     width: 100vw;
     height: 100vh;
-    height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -317,7 +315,7 @@ const IntroWrapper = styled.div`
 `;
 
 const IntroTwoWrapper = styled(IntroWrapper)`
-    height: 100%;
+    height: 100vh;
     padding: 0 5vw;
     box-sizing: border-box;
     flex-direction: row;
@@ -386,7 +384,7 @@ const HeaderWrapper = styled.div`
     background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
     mix-blend-mode: difference;
-    height: 100%;
+    height: 100vh;
     width: 100vw;
     overflow-x: hidden;
     position: relative;

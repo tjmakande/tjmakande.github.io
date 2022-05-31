@@ -61,7 +61,7 @@ const ContactContainer = styled.div`
 
 const Container = styled.section`
     top: 0;
-    height: 100%;
+    height: 100vh;
     width: 100vw;
     z-index: 5;
     overflow: hidden;

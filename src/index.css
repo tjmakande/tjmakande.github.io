@@ -1,7 +1,3 @@
-html, body{
-  height: 100%;
-}
-
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,14 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   cursor: none;
-}
-
-#root{
-  height:100%;
-}
-
-.scroll-content{
-  height: 100%;
 }
 
 .mouse {
