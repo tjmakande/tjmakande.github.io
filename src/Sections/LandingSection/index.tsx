@@ -85,6 +85,8 @@ const NameHeader = styled.h1`
 
     @media (max-width: 850px){
         margin: 0 auto;
+        font-size: clamp(3.1rem, 10vw, 6rem);
+        line-height: clamp(3.1rem, 10vw, 6rem);
     }
 
     @media (max-width: 850px) and (max-height: 600px) and (orientation: landscape){
