@@ -25,7 +25,7 @@ const Footer = () => {
     return(
         <Container className="footerwrapper">
             <Wrapper>
-                <SectionTitle>Let's <br/> Collaborate</SectionTitle>
+                <SectionTitle>Let's<br/>Collaborate</SectionTitle>
                 <CTAtext>Don't be afraid to connect!</CTAtext>
 
                 <ContactContainer>
@@ -61,8 +61,7 @@ const ContactContainer = styled.div`
 
 const Container = styled.section`
     top: 0;
-    min-height: 100vh;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     z-index: 5;
     overflow: hidden;
@@ -90,6 +89,7 @@ const SectionTitle = styled.h1`
     letter-spacing: -3px;
     line-height: clamp(4rem, 13vw, 8rem);
     z-index: 1;
+    text-align: center;
 
     @media ( max-width: 850px){
         // font-size: 4rem;
