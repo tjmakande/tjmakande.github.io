@@ -229,11 +229,11 @@ const ProjectItem = styled.div`
 
 const Container = styled.section`
     position: relative;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     overflow-x: hidden;
-    margin-bottom: 600vh;
-    margin-bottom: calc(var(--vh, 1vh) * 600);
     background-color: white;
 `;
 

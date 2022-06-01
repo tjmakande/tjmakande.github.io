@@ -39,11 +39,20 @@
         document.documentElement.style.setProperty('--vh', `${vh}px`);
       });
 
-      window.addEventListener('resize', () => {
+      const resetVH = () => {
         const vh = window.innerHeight * 0.01;
         // Then we set the value in the --vh custom property to the root of the document
         document.documentElement.style.setProperty('--vh', `${vh}px`);
-      });
+      }
+
+      const delay = (cb, time) => {
+        let timer = 0;
+        return () => {
+          clearTimeout(timer);
+          timer = window.setTimeout(cb, time);
+        };
+      };
+      window.addEventListener('resize', delay(resetVH, 750));
     </script>
   </body>
 </html>

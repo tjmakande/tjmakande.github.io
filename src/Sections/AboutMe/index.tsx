@@ -41,11 +41,12 @@ const Text = styled.p`
 `;
 
 const Wrapper = styled.div`
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 200vh;
-    margin-bottom: calc(var(--vh, 1vh) * 200);
+    background-color: pink;
 `;

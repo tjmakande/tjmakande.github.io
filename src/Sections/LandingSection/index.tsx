@@ -60,8 +60,7 @@ const Wrapper = styled.div`
 
     box-sizing: border-box;
     padding: 5rem 6vw;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
 
     display: flex;
     flex-direction: column;
@@ -119,6 +118,9 @@ const ImageWrapper = styled.div`
     right: 0;
     width: 50vw;
     height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     display: flex;
     align-items: center;
 
