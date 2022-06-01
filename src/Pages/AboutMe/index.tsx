@@ -55,145 +55,22 @@ const AboutMePage = () => {
 
             if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 15, 1000); });
 
-            // Background Item;
-            gsap.to('.background', {
-                scrollTrigger: {
-                trigger: '.background',
-                anticipatePin: 1,
-                pin: true,
-                pinSpacing:false,
-                invalidateOnRefresh: true,
-                start: 'top top',
-                end: 'max',
-                scrub: .1
-                }
-            });
-
-            // disable nudge at this point
-            gsap.to('.background', {
-                scrollTrigger:{
-                    trigger: '.IntroTwoWrapper',
-                    start: 'bottom top',
-                    end: 'max',
-                    scrub: 1,
-                    invalidateOnRefresh: true,
-                    onEnter: () => {
-                        const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-                        return Div.style.visibility = "hidden";
-                    },
-                    onLeaveBack: () => {
-                        const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-                        return Div.style.visibility = "visible";
-                    }
-                },
-                backgroundColor: 'rgb(58, 58, 58)'
-            });
-
-            gsap.to('#Pseudocode', {
-                scrollTrigger: {
-                    trigger: '.IntroTwoWrapper',
-                    start: 'bottom center',
-                    end: 'bottom 50px',
-                    invalidateOnRefresh: true,
-                    scrub: 1
-                },
-                autoAlpha: 0
-            });
-
-            // Landing image effect
-            gsap.to('.Landing_image', {
-                scrollTrigger: {
-                    trigger: '.Landing_image',
-                    anticipatePin:1,
-                    pin: true,
-                    invalidateOnRefresh: true,
-                    start: 'top top',
-                    end: window.innerHeight,
-                    scrub: 1
-                }
-            });
-
-            // section wrapper
-            const t1 = gsap.timeline({
-                scrollTrigger:{
-                    trigger: '.SectionWrapper',
-                    pin: true,
-                    pinSpacing: false,
-                    anticipatePin: 1,
-                    invalidateOnRefresh: true,
-                    start: 'top top',
-                    end: `+=${window.innerHeight * 6}`,
-                    // immediateRender: false,
-                    scrub: .1
-                }
-            });
-
-            gsap.set('.flightPath', {strokeDasharray: window.innerWidth * 0.326, strokeDashoffset:0});
-
-            if (isMobile()) {
-                gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
-
-                t1
-                .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
-                .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
-                .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
-                .to('.DescriptionTwo',{y: () => window.innerHeight * 0.3 }, 'showMap')
-                .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
-                .to('.MapWrapper', {scale: 5, xPercent:() =>  -35, yPercent:() =>  -175, rotation: 0.05}, 'toZimbabwe')
-                .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
-                .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
-                .fromTo('.DescriptionThree', {y:() =>  window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
-                .to('.MapWrapper', {scale: 4, xPercent:() =>  -110, yPercent:() =>  40, rotation: 0.01}, 'toChina-=2%')
-                .fromTo('.flightPath', {strokeDashoffset:() => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
-                .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-                .fromTo('.DescriptionThree', {y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina')
-                .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
-            } else {
-                gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
-
-                t1
-                .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
-                .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
-                .fromTo('.DescriptionTwo', {opacity: 0}, {opacity: 1, duration: 0.05})
-                .to('.DescriptionTwo',{x: () => -window.innerWidth / 3})
-                .to('.MapWrapper', {autoAlpha: 1})
-                .to('.MapWrapper', {scale: 3.5, xPercent:() => -45, yPercent: () => -150, rotation: 0.05}, 'toZimbabwe')
-                .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
-                .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
-                .fromTo('.DescriptionThree', {x: () => -window.innerWidth / 3, opacity: 0}, {opacity: 1})
-                .to('.MapWrapper', {xPercent: () => -140, yPercent: () => 10, rotation: 0.01}, 'toChina-=2%')
-                .fromTo('.flightPath', {strokeDashoffset: () => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
-                .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-                .to('.DescriptionThree', {x: () => window.innerWidth / 3}, 'toChina')
-                .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
-            }
-
-
-            // Appear Text
-            gsap.to('.IntroTwoWrapper', {
-                scrollTrigger:{
-                    trigger: '.IntroTwoWrapper',
-                    anticipatePin: 1,
-                    pin: true,
-                    invalidateOnRefresh: true,
-                    pinSpacing: false,
-                    start: 'top top',
-                    end: `+=${window.innerHeight / 2}`,
-                    scrub: 1
-                }
-            });
-
             const handleResize = () => {
-                const vh = window.innerHeight * 0.01;
-                // Then we set the value in the --vh custom property to the root of the document
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
-                if (mobileWidth){
-                    if (window.innerWidth > 850) window.location.reload();
-                }
+                gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
+                // const vh = window.innerHeight * 0.01;
+                // // Then we set the value in the --vh custom property to the root of the document
+                // document.documentElement.style.setProperty('--vh', `${vh}px`);
+                // if (mobileWidth){
+                //     gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
+                //     gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
+                //     // if (window.innerWidth > 850) window.location.reload(true);
+                // }
 
-                if (!mobileWidth) {
-                    if (window.innerWidth < 850) window.location.reload();
-                }
+                // if (!mobileWidth) {
+                //     gsap.set('.flightPath', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
+                //     gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
+                //     // if (window.innerWidth < 850) window.location.reload(true);
+                // }
             };
             const delay = (cb: () => void, time: number) => {
               let timer: NodeJS.Timeout | number = 0;
@@ -204,6 +81,151 @@ const AboutMePage = () => {
             };
 
             ScrollTrigger.addEventListener('refreshInit', delay(handleResize, 750));
+
+            ScrollTrigger.matchMedia({
+                "(max-width: 850px)": () => {
+                    // section wrapper
+                    const t1 = gsap.timeline({
+                        scrollTrigger:{
+                            trigger: '.SectionWrapper',
+                            pin: true,
+                            pinSpacing: false,
+                            anticipatePin: 1,
+                            invalidateOnRefresh: true,
+                            start: () => 'top top',
+                            end: () => `+=${window.innerHeight * 6}`,
+                            // immediateRender: false,
+                            scrub: .1
+                        }
+                    });
+                    gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
+                    gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
+
+                    t1
+                    .fromTo('.DescriptionOne', {x: 0, y:() => 200,opacity: 0}, {y: 0,opacity: 1,})
+                    .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
+                    .fromTo('.DescriptionTwo', {x: 0,opacity: 0}, {opacity: 1, duration: 0.05})
+                    .to('.DescriptionTwo',{y: () => window.innerHeight * 0.3 }, 'showMap')
+                    .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
+                    .to('.MapWrapper', {scale: 5, xPercent:() =>  -35, yPercent:() =>  -175, rotation: 0.05}, 'toZimbabwe')
+                    .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
+                    .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
+                    .fromTo('.DescriptionThree', {x: 0, y:() =>  window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
+                    .to('.MapWrapper', {scale: 4, xPercent:() =>  -110, yPercent:() =>  40, rotation: 0.01}, 'toChina-=2%')
+                    .fromTo('.flightPath', {strokeDashoffset:() => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                    .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
+                    .fromTo('.DescriptionThree', {x: 0,y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina')
+                    .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
+                },
+                "(min-width: 851px)": () => {
+                    // section wrapper
+                    const t1 = gsap.timeline({
+                        scrollTrigger:{
+                            trigger: '.SectionWrapper',
+                            pin: true,
+                            pinSpacing: false,
+                            anticipatePin: 1,
+                            invalidateOnRefresh: true,
+                            start: () => 'top top',
+                            end: () => `+=${window.innerHeight * 6}`,
+                            // immediateRender: false,
+                            scrub: .1
+                        }
+                    });
+
+                    gsap.set('.flightPath', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
+                    gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
+
+                    t1
+                    .fromTo('.DescriptionOne', {y: 200,opacity: 0}, {y: 0,opacity: 1,})
+                    .fromTo('.DescriptionOne',{opacity: 1}, {opacity: 0})
+                    .fromTo('.DescriptionTwo', {y:0, opacity: 0}, {opacity: 1, duration: 0.05})
+                    .to('.DescriptionTwo',{x: () => -window.innerWidth / 3})
+                    .to('.MapWrapper', {autoAlpha: 1})
+                    .to('.MapWrapper', {scale: 3.5, xPercent:() => -45, yPercent: () => -150, rotation: 0.05}, 'toZimbabwe')
+                    .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
+                    .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
+                    .fromTo('.DescriptionThree', {y:0, x: () => -window.innerWidth / 3, opacity: 0}, {opacity: 1})
+                    .to('.MapWrapper', {xPercent: () => -140, yPercent: () => 10, rotation: 0.01}, 'toChina-=2%')
+                    .fromTo('.flightPath', {strokeDashoffset: () => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                    .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
+                    .to('.DescriptionThree', {y:0, x: () => window.innerWidth / 3}, 'toChina')
+                    .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
+                },
+                "all": () => {
+                     // Background Item;
+                    gsap.to('.background', {
+                        scrollTrigger: {
+                        trigger: '.background',
+                        anticipatePin: 1,
+                        pin: true,
+                        pinSpacing:false,
+                        invalidateOnRefresh: true,
+                        start: () => 'top top',
+                        end: () => 'max',
+                        scrub: .1
+                        }
+                    });
+
+                    // disable nudge at this point
+                    gsap.to('.background', {
+                        scrollTrigger:{
+                            trigger: '.IntroTwoWrapper',
+                            start: () => 'bottom top',
+                            end: () => 'max',
+                            scrub: 1,
+                            invalidateOnRefresh: true,
+                            onEnter: () => {
+                                const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                                return Div.style.visibility = "hidden";
+                            },
+                            onLeaveBack: () => {
+                                const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                                return Div.style.visibility = "visible";
+                            }
+                        },
+                        backgroundColor: 'rgb(58, 58, 58)'
+                    });
+
+                    // Landing image effect
+                    gsap.to('.Landing_image', {
+                        scrollTrigger: {
+                            trigger: '.Landing_image',
+                            anticipatePin:1,
+                            pin: true,
+                            invalidateOnRefresh: true,
+                            start: () => 'top top',
+                            end: () => window.innerHeight,
+                            scrub: 1
+                        }
+                    });
+
+                    gsap.to('#Pseudocode', {
+                        scrollTrigger: {
+                            trigger: '.IntroTwoWrapper',
+                            start: () => 'bottom center',
+                            end: () => 'bottom 50px',
+                            invalidateOnRefresh: true,
+                            scrub: 1
+                        },
+                        autoAlpha: 0
+                    });
+
+                    // Appear Text
+                    gsap.to('.IntroTwoWrapper', {
+                        scrollTrigger:{
+                            trigger: '.IntroTwoWrapper',
+                            anticipatePin: 1,
+                            pin: true,
+                            invalidateOnRefresh: true,
+                            pinSpacing: false,
+                            start: () => 'top top',
+                            end: () => `+=${window.innerHeight / 2}`,
+                            scrub: 1
+                        }
+                    });
+                }
+            });
         }
     }, []);
 
@@ -220,7 +242,7 @@ const AboutMePage = () => {
                 </TitleContainer>
             </HeaderWrapper>
             <Background className="background"></Background>
-            <IntroContainer style={{marginBottom: '600vh'}} className="SectionWrapper">
+            <IntroContainer className="SectionWrapper">
                 <IntroWrapper>
                     <Description className="DescriptionOne"><span>Hi there! <br/>I'm TJ Makande.</span></Description>
                     <Description className="DescriptionTwo"><span>A web developer from Zimbabwe</span></Description>
@@ -255,9 +277,9 @@ export default AboutMePage;
 
 const Scroller = styled.div`
     position: relative;
-    width: 100vw;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
+    width: 100vw;
     overflow: hidden;
 `;
 
@@ -266,9 +288,10 @@ const Background = styled.div`
   height: calc(var(--vh, 1vh) * 100);
   width:100vw;
   z-index: -1;
+  top: 0;
   left: 0;
   position: absolute;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
 
     @media (max-width: 850px){
         // height: ${window.innerHeight}px;
@@ -294,6 +317,8 @@ const IntroContainer = styled.div`
     width: 100vw;
     position: relative;
     overflow-x: hidden;
+    margin-bottom: 600vh;
+    margin-bottom: calc(var(--vh, 1vh) * 600);
 
     @media (max-width: 850px) {
         // height: ${window.innerHeight}px;
@@ -342,7 +367,7 @@ const IntroTwoWrapper = styled(IntroWrapper)`
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
-    margin-bottom: 50vh;
+    margin-bottom: 50;
     margin-bottom: calc(var(--vh, 1vh) * 50);
 
     @media (max-width: 850px) {
@@ -405,7 +430,7 @@ const LandingImg = styled.img`
 const HeaderWrapper = styled.div`
     background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
-    mix-blend-mode: difference;
+    // mix-blend-mode: difference;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
