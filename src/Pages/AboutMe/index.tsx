@@ -17,7 +17,12 @@ import WorldMap from './WorldMap';
 
 const AboutMePage = () => {
     // Starting HERE
-    window.addEventListener('load', () => document.querySelector('.loader')?.remove());
+    window.addEventListener('load', () => {
+        const vh = window.innerHeight * 0.01;
+        // Then we set the value in the --vh custom property to the root of the document
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+        document.querySelector('.loader')?.remove();
+    });
 
     useEffect(() => {
         const vid = document.getElementById('Pseudocode') as HTMLVideoElement;
@@ -63,7 +68,6 @@ const AboutMePage = () => {
                 scrub: .1
                 }
             });
-
 
             // disable nudge at this point
             gsap.to('.background', {
@@ -180,6 +184,9 @@ const AboutMePage = () => {
             });
 
             const handleResize = () => {
+                const vh = window.innerHeight * 0.01;
+                // Then we set the value in the --vh custom property to the root of the document
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
                 if (mobileWidth){
                     if (window.innerWidth > 850) window.location.reload();
                 }
@@ -201,7 +208,7 @@ const AboutMePage = () => {
     }, []);
 
     return(
-        <div className='Container scroller' style={{position: 'relative', width: '100vw', height: `100vh`, overflow: 'hidden'}}>
+        <Scroller className='Container scroller'>
             <HeaderWrapper>
                 <LandingImage className="Landing_image">
                     <LandingImg src={TJImage} alt="Author"/>
@@ -239,15 +246,24 @@ const AboutMePage = () => {
                 </VideoWrap>
             </IntroTwoWrapper>
             <Footer />
-        </div>
+        </Scroller>
     );
 };
 
 
 export default AboutMePage;
 
+const Scroller = styled.div`
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
+    overflow: hidden;
+`;
+
 const Background = styled.div`
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width:100vw;
   z-index: -1;
   left: 0;
@@ -265,13 +281,16 @@ const LandingImage = styled.div`
 
     @media (min-height: 66.5vw){
         height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
         width: 150.4vh;
+        width: calc(var(--vh, 1vh) * 150.4);
     }
 `;
 
 const IntroContainer = styled.div`
     pointer-events: none;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
     position: relative;
     overflow-x: hidden;
@@ -307,6 +326,7 @@ const IntroWrapper = styled.div`
     position: relative;
     width: 100vw;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -316,12 +336,14 @@ const IntroWrapper = styled.div`
 
 const IntroTwoWrapper = styled(IntroWrapper)`
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     padding: 0 5vw;
     box-sizing: border-box;
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
     margin-bottom: 50vh;
+    margin-bottom: calc(var(--vh, 1vh) * 50);
 
     @media (max-width: 850px) {
         flex-direction: column;
@@ -385,6 +407,7 @@ const HeaderWrapper = styled.div`
     color: rgb(229, 229, 229);
     mix-blend-mode: difference;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
     overflow-x: hidden;
     position: relative;

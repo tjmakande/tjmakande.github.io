@@ -11,11 +11,15 @@ import Scrollbar from 'smooth-scrollbar';
 import LandingSection from 'Sections/LandingSection';
 import { isMobile } from 'utils/device';
 
-
 const HomePage = () => {
     const Containerref = React.createRef<HTMLDivElement>();
 
-    window.addEventListener('load', () => document.querySelector('.loader')?.remove());
+    window.addEventListener('load', () => {
+      const vh = window.innerHeight * 0.01;
+      // Then we set the value in the --vh custom property to the root of the document
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      document.querySelector('.loader')?.remove();
+    });
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -46,18 +50,18 @@ const HomePage = () => {
                   trigger: '.background',
                   pin: true,
                   pinSpacing:false,
-                  start: 'top top',
-                  end: 'max',
+                  start: () => 'top top',
+                  end: () => 'max',
                   invalidateOnRefresh: true,
-                  scrub: .1
+                  scrub: false
                 }
               });
 
             const LandingTimeline = gsap.timeline({
                 scrollTrigger: {
                     trigger: '.LandingSection',
-                    start: `top top`,
-                    end: `bottom center+=${window.innerHeight * 0.2}`,
+                    start: () => `top top`,
+                    end: () => `bottom center+=${window.innerHeight * 0.2}`,
                     invalidateOnRefresh: true,
                     pin: false,
                     scrub: 1,
@@ -67,8 +71,8 @@ const HomePage = () => {
             gsap.to(".LandingText", {
                 scrollTrigger: {
                     trigger: '.LandingSection',
-                    start: 'bottom bottom',
-                    end: 'bottom center',
+                    start: () => 'bottom bottom',
+                    end: () => 'bottom center',
                     invalidateOnRefresh: true,
                     scrub: .2
                 },
@@ -77,20 +81,20 @@ const HomePage = () => {
             });
 
             LandingTimeline
-            .to(".ImageBlock1", {yPercent: -150, duration: 1})
-            .to(".ImageBlock2", {yPercent: -150, duration: 1})
-            .to(".ImageBlock3", {yPercent: -150, duration: 1})
-            .to(".ImageBlock4", {yPercent: -150, duration: 1})
-            .to(".ImageBlock5", {yPercent: -150, duration: 1})
-            .to(".ImageBlock6", {yPercent: -150, duration: 1})
-            .to(".ImageBlock7", {yPercent: -150, duration: 1});
+            .to(".ImageBlock1", {yPercent:() => -150, duration: 1})
+            .to(".ImageBlock2", {yPercent:() => -150, duration: 1})
+            .to(".ImageBlock3", {yPercent:() => -150, duration: 1})
+            .to(".ImageBlock4", {yPercent:() => -150, duration: 1})
+            .to(".ImageBlock5", {yPercent:() => -150, duration: 1})
+            .to(".ImageBlock6", {yPercent:() => -150, duration: 1})
+            .to(".ImageBlock7", {yPercent:() => -150, duration: 1});
 
               // change background color approaching bottom
             gsap.to(['.background', '.works_wrapper', '.worksTexts'], {
                 scrollTrigger: {
                   trigger: ".footerwrapper",
-                  start: `top bottom`,
-                  end: 'max',
+                  start: () => `top bottom`,
+                  end: () => 'max',
                   scrub: .1,
                   invalidateOnRefresh: true,
                   onEnter: () => {
@@ -112,8 +116,8 @@ const HomePage = () => {
                   trigger: '.AM_wrapper',
                   pin: true,
                   pinSpacing:false,
-                  start: "top top",
-                  end: `+=${window.innerHeight * 2}`,
+                  start: () => "top top",
+                  end: () => `+=${window.innerHeight * 2}`,
                   invalidateOnRefresh: true,
                   scrub: 1,
               }
@@ -139,8 +143,8 @@ const HomePage = () => {
               scrollTrigger: {
                 scroller: '.scroller',
                 trigger: '.works_wrapper',
-                start: 'top top',
-                end: `+=${window.innerHeight * 6}`,
+                start: () => 'top top',
+                end: () => `+=${window.innerHeight * 6}`,
                 pin: true,
                 pinSpacing: false,
                 invalidateOnRefresh: true,
@@ -165,57 +169,61 @@ const HomePage = () => {
                 .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
                 .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cinema')
-                .fromTo('.cinema' , { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
+                .fromTo('.cinema' , { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
                 .set('.text1', {transformOrigin: '50% 0%'})
                 // Second Project animation
                 .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'chatbot')
                 .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'chatbot')
-                .to('.cinema', {y: -window.innerHeight, opacity: 0, duration: 1}, 'chatbot')
-                .fromTo('.chatbot', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
+                .to('.cinema', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'chatbot')
+                .fromTo('.chatbot', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
                 .set('.text2', {transformOrigin: '50% 0%'})
                 // Thirt Project animation
                 .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'cube')
                 .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cube')
-                .to('.chatbot', {y: -window.innerHeight, opacity: 0, duration: 1}, 'cube')
-                .fromTo('.cube', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
+                .to('.chatbot', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'cube')
+                .fromTo('.cube', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
                 .set('.text3', {transformOrigin: '50% 0%'})
                 // Fourth Project animation
                 .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
                 .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
-                .to('.cube', {y: -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
-                .fromTo('.sdsn', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
+                .to('.cube', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
+                .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
             } else {
                 t2
-                .fromTo('.word_selected', {yPercent: -150, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.5})
-                .fromTo('.word_works', {yPercent: 100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.5})
+                .fromTo('.word_selected', {yPercent:() =>  -150, opacity: 0}, {yPercent: 0, opacity: 1, x: 0, duration: 0.5})
+                .fromTo('.word_works', {yPercent:() =>  100, opacity: 0}, {yPercent: 0, opacity: 1, duration: 0.5})
                 // Move text to left
-                .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent: 220, x: () =>  -wordSelected.getBoundingClientRect().left * 0.8, duration: 0.7})
-                .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left',yPercent: 10, x: () => -wordWorks.getBoundingClientRect().left * (isMobile() ? 0.8 : 0.55), duration: 0.7})
+                .fromTo('.word_selected', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left', yPercent:() =>  220, x: () =>  -wordSelected.getBoundingClientRect().left * 0.8, duration: 0.7})
+                .fromTo('.word_works', {opacity: 1}, {opacity: 0.1, rotationZ: -90, transformOrigin:'left',yPercent:() =>  10, x: () => -wordWorks.getBoundingClientRect().left * (isMobile() ? 0.8 : 0.55), duration: 0.7})
                 .fromTo('.worksTexts', {opacity: 0}, {opacity: 1, duration: 0.1})
                 // First Project animation
                 .fromTo('.text1', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cinema')
-                .fromTo('.cinema' , { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
+                .fromTo('.cinema' , { opacity: 0, y: () => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cinema')
                 .set('.text1', {transformOrigin: '50% 0%'})
                 // Second Project animation
                 .to('.text1', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'chatbot')
                 .fromTo('.text2', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'chatbot')
-                .to('.cinema', {y: -window.innerHeight, opacity: 0, duration: 1}, 'chatbot')
-                .fromTo('.chatbot', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
+                .to('.cinema', {y:() =>  -window.innerHeight, opacity: 0, duration: 1}, 'chatbot')
+                .fromTo('.chatbot', { opacity: 0, y:() =>  window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
                 .set('.text2', {transformOrigin: '50% 0%'})
                 // Thirt Project animation
                 .to('.text2', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'cube')
                 .fromTo('.text3', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cube')
-                .to('.chatbot', {y: -window.innerHeight, opacity: 0, duration: 1}, 'cube')
-                .fromTo('.cube', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
+                .to('.chatbot', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'cube')
+                .fromTo('.cube', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
                 .set('.text3', {transformOrigin: '50% 0%'})
                 // Fourth Project animation
                 .to('.text3', {yPercent: -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
                 .fromTo('.text4', {yPercent: 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
-                .to('.cube', {y: -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
-                .fromTo('.sdsn', { opacity: 0, y: window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
+                .to('.cube', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
+                .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
             }
 
             const handleResize = () => {
+              console.log(window.innerHeight);
+              const vh = window.innerHeight * 0.01;
+              // Then we set the value in the --vh custom property to the root of the document
+              document.documentElement.style.setProperty('--vh', `${vh}px`);
               if (mobileWidth){
                 if (window.innerWidth > 850) window.location.href = '/';
               }
@@ -232,25 +240,34 @@ const HomePage = () => {
               };
             };
 
-            ScrollTrigger.addEventListener('refreshInit', delay(handleResize, 750));
+            ScrollTrigger.addEventListener('refresh', delay(handleResize, 750));
         }
     }, [Containerref]);
 
     return(
-      <div className='scroller' ref={Containerref} style={{position: 'relative', height: '100vh', width: '100vw', overflow: 'hidden'}}>
+      <Scroller className='scroller' ref={Containerref}>
         <Background className="background"/>
         <LandingSection />
         <AboutMe />
         <Works />
         <Footer />
-      </div>
+      </Scroller>
     );
 };
 
 export default HomePage;
 
+const Scroller = styled.div`
+  position: relative;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  overflow:hidden;
+`;
+
 const Background = styled.div`
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   z-index: -1;
   top: 0;

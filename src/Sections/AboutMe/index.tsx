@@ -42,8 +42,10 @@ const Text = styled.p`
 
 const Wrapper = styled.div`
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-bottom: 200vh;
+    margin-bottom: calc(var(--vh, 1vh) * 200);
 `;

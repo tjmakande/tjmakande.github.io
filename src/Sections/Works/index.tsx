@@ -194,6 +194,7 @@ const WrapperWorks = styled.div`
 const WrapperText = styled.div`
     position: relative;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
     overflow: hidden;
 `;
@@ -229,8 +230,10 @@ const ProjectItem = styled.div`
 const Container = styled.section`
     position: relative;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     overflow-x: hidden;
     margin-bottom: 600vh;
+    margin-bottom: calc(var(--vh, 1vh) * 600);
     background-color: white;
 `;
 
