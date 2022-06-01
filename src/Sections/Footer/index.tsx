@@ -61,8 +61,10 @@ const ContactContainer = styled.div`
 
 const Container = styled.section`
     top: 0;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     width: 100vw;
     z-index: 5;
     overflow: hidden;
@@ -70,6 +72,9 @@ const Container = styled.section`
 
 const Wrapper = styled.div`
     height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     display: flex;
     flex-direction: column;
     color: black;
