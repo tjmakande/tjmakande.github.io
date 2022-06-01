@@ -242,7 +242,7 @@ const TextContainer = styled.div`
     width: 100%;
 
     position: absolute;
-    bottom: clamp(4rem, 13vh, 12rem);
+    bottom: clamp(4rem, 11vh, 12rem);
     right: 8vw;
     background-color: white;
     display: flex;
@@ -250,7 +250,6 @@ const TextContainer = styled.div`
 
     @media (max-width: 850px){
         right: 1.5rem;
-        bottom: clamp(9rem, 19vh, 15rem);
 
     }
 
