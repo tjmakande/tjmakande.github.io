@@ -31,13 +31,10 @@ const AboutMePage = () => {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
-
-        if (Container){
         // initial setup
-            const bodyScrollBar = Scrollbar.init(document.querySelector('.scroller')!, {damping: 0.05, renderByPixels: true, delegateTo: document});
-            ScrollTrigger.scrollerProxy(".scroller", {
+        const bodyScrollBar = Scrollbar.init(document.querySelector('.scroller')!, {damping: 0.05, renderByPixels: true, delegateTo: document});
+        ScrollTrigger.scrollerProxy(".scroller", {
             scrollTop (value: number = 0) {
                 if (arguments.length) {
                 bodyScrollBar.scrollTop = value; // setter
@@ -48,15 +45,14 @@ const AboutMePage = () => {
                 return {top: 0, left: 0, width: window.innerWidth, height: window.innerHeight};
             }
             });
-            bodyScrollBar.addListener(ScrollTrigger.update);
-            ScrollTrigger.defaults({scroller: '.scroller'});
+        bodyScrollBar.addListener(ScrollTrigger.update);
+        ScrollTrigger.defaults({scroller: '.scroller'});
 
-            if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 15, 1000); });
+        if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 15, 1000); });
 
             // Landing image effect
-            gsap.to('.Landing_image', {
+        gsap.to('.Landing_image', {
                 scrollTrigger: {
-                    scroller: '.scroller',
                     trigger: '.Landing_image',
                     pin: true,
                     invalidateOnRefresh: true,
@@ -66,12 +62,11 @@ const AboutMePage = () => {
                 }
             });
 
-            ScrollTrigger.matchMedia({
+        ScrollTrigger.matchMedia({
                 "(max-width: 850px)": () => {
                     // section wrapper
                     const t1 = gsap.timeline({
                         scrollTrigger:{
-                            scroller: '.scroller',
                             trigger: '.IntroOneWrapper',
                             pin: true,
                             pinSpacing: true,
@@ -105,7 +100,6 @@ const AboutMePage = () => {
                     // section wrapper
                     const t1 = gsap.timeline({
                         scrollTrigger:{
-                            scroller: '.scroller',
                             trigger: '.IntroOneWrapper',
                             pin: true,
                             pinSpacing: true,
@@ -138,42 +132,81 @@ const AboutMePage = () => {
             });
 
             // Appear Text
-            gsap.to('.IntroTwoWrapper', {
-                scrollTrigger:{
-                    scroller: '.scroller',
-                    trigger: '.IntroTwoWrapper',
-                    pin: true,
-                    invalidateOnRefresh: true,
-                    pinSpacing: true,
-                    start: () => 'top top',
-                    end: () => `+=${window.innerHeight / 2}`,
-                    scrub: 1,
+        ScrollTrigger.matchMedia({
+                "(max-width: 850px)": () => {
+                    gsap.to('.IntroTwoWrapper', {
+                        scrollTrigger:{
+                            trigger: '.IntroTwoWrapper',
+                            pin: true,
+                            invalidateOnRefresh: true,
+                            pinSpacing: true,
+                            start: () => 'top top',
+                            end: () => `+=${window.innerHeight / 2}`,
+                            scrub: 1,
+                        }
+                    });
+                },
+                "(min-width: 851px)": () => {
+                    gsap.to('.IntroTwoWrapper', {
+                        scrollTrigger:{
+                            trigger: '.IntroTwoWrapper',
+                            pin: true,
+                            invalidateOnRefresh: true,
+                            pinSpacing: true,
+                            start: () => 'top top',
+                            end: () => `+=${window.innerHeight / 2}`,
+                            scrub: 1,
+                        }
+                    });
                 }
             });
 
-            gsap.fromTo(['.footerwrapper', '.IntroTwoWrapper', 'body'],{backgroundColor: 'white'}, {
-                scrollTrigger: {
-                    scroller: '.scroller',
-                  trigger: ".footerwrapper",
-                  start: () => `top bottom`,
-                  end: () => `+=${window.innerHeight}`,
-                  scrub: .1,
-                  invalidateOnRefresh: true,
-                  onEnter: () => {
-                      const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-                      return Div.style.visibility = "hidden";
-                  },
-                  onLeaveBack: () => {
-                    const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-                    return Div.style.visibility = "visible";
-                  }
-                },
-                backgroundColor: 'rgb(58, 58, 59)'
-              });
 
-            gsap.to('#Pseudocode', {
+        ScrollTrigger.matchMedia({
+                "(max-width: 850px)": () => {
+                    gsap.fromTo(['.footerwrapper', '.IntroTwoWrapper', 'body'],{backgroundColor: 'white'}, {
+                        scrollTrigger: {
+                            trigger: ".footerwrapper",
+                            start: () => `top bottom`,
+                            end: () => `+=${window.innerHeight}`,
+                            scrub: .1,
+                            invalidateOnRefresh: true,
+                            onEnter: () => {
+                                const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                                return Div.style.visibility = "hidden";
+                            },
+                            onLeaveBack: () => {
+                            const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                            return Div.style.visibility = "visible";
+                            }
+                        },
+                        backgroundColor: 'rgb(58, 58, 59)'
+                    });
+                },
+                "(min-width: 851px)": () => {
+                    gsap.fromTo(['.footerwrapper', '.IntroTwoWrapper', 'body'],{backgroundColor: 'white'}, {
+                        scrollTrigger: {
+                            trigger: ".footerwrapper",
+                            start: () => `top bottom`,
+                            end: () => `+=${window.innerHeight}`,
+                            scrub: .1,
+                            invalidateOnRefresh: true,
+                            onEnter: () => {
+                                const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                                return Div.style.visibility = "hidden";
+                            },
+                            onLeaveBack: () => {
+                            const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                            return Div.style.visibility = "visible";
+                            }
+                        },
+                        backgroundColor: 'rgb(58, 58, 59)'
+                    });
+                }
+            });
+
+        gsap.to('#Pseudocode', {
                 scrollTrigger: {
-                    scroller: '.scroller',
                     trigger: '.footerwrapper',
                     start: () => 'top bottom',
                     end: () => '+=50px',
@@ -182,7 +215,7 @@ const AboutMePage = () => {
                 },
                 opacity: 0
             });
-        }
+
     }, []);
 
     return(
@@ -256,7 +289,7 @@ const ImageContainer = styled.div`
         height: fill-available;
         position: absolute;
         top: 0;
-        left: -60%;
+        left: 0;
     }
 
     @media (min-height: 66.5vw) and (max-width: 500px) {
