@@ -249,9 +249,18 @@ const ImageContainer = styled.div`
     position: relative;
 
     @media (min-height: 66.5vw){
-        height: 100%;
         width: 150.4vh;
-        // width: calc(var(--vh, 1vh) * 150.4);
+        height: 100%;
+        height: -moz-available;          /* WebKit-based browsers will ignore this. */
+        height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+        height: fill-available;
+        position: absolute;
+        top: 0;
+        left: -60%;
+    }
+
+    @media (min-height: 66.5vw) and (max-width: 500px) {
+        left: -80%;
     }
 `;
 
@@ -353,7 +362,6 @@ const DescriptionFour = styled(Description)`
 `;
 
 const HeaderWrapper = styled.div`
-    background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
     height: 100%;
     height: -moz-available;          /* WebKit-based browsers will ignore this. */
