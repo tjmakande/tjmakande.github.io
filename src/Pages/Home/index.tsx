@@ -62,7 +62,7 @@ const HomePage = () => {
         .to(".ImageBlock6", {yPercent:() => -150, duration: 1})
         .to(".ImageBlock7", {yPercent:() => -150, duration: 1});
 
-        gsap.fromTo(['.footerwrapper', '.works_wrapper', '.worksTexts'],{backgroundColor: 'white'}, {
+        gsap.fromTo(['.footerwrapper', '.works_wrapper', '.worksTexts', 'body'],{backgroundColor: 'white'}, {
           scrollTrigger: {
             trigger: ".footerwrapper",
             start: () => `+=${window.innerHeight * 7}px`,
@@ -157,7 +157,10 @@ const HomePage = () => {
             .to('.text3', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
             .fromTo('.text4', {yPercent:() => 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
             .to('.cube', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
-            .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
+            .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn')
+            .set('.text4', {transformOrigin: '50% 0%'})
+            .to('.text4', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 0.2});
+
           },
 
           "(min-width: 851px)": () => {
@@ -235,7 +238,9 @@ const HomePage = () => {
                   .to('.text3', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
                   .fromTo('.text4', {yPercent:() => 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
                   .to('.cube', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
-                  .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn');
+                  .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn')
+                  .set('.text4', {transformOrigin: '50% 0%'})
+                  .to('.text4', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 0.2});
             }
         });
     }, [Containerref]);
