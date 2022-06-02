@@ -2,8 +2,6 @@ import {useEffect} from 'react';
 
 import TJImage from 'Assets/AM_landing.JPG';
 
-// import SectionWrapper from 'Components/Styled/SectionWrapper';
-
 import { gsap } from "gsap";
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { isMobile } from 'utils/device';
@@ -21,6 +19,7 @@ const AboutMePage = () => {
         const vh = window.innerHeight * 0.01;
         // Then we set the value in the --vh custom property to the root of the document
         document.documentElement.style.setProperty('--vh', `${vh}px`);
+        ScrollTrigger.refresh();
         document.querySelector('.loader')?.remove();
     });
 
@@ -31,14 +30,13 @@ const AboutMePage = () => {
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
-        const mobileWidth: boolean = window.innerWidth < 850;
 
         const Container = document.querySelector('.Container') as HTMLDivElement;
         const Contactbtn = document.querySelector('.Contactbtn');
 
         if (Container){
         // initial setup
-            const bodyScrollBar = Scrollbar.init(Container, {damping: 0.05, renderByPixels: true, delegateTo: document});
+            const bodyScrollBar = Scrollbar.init(document.querySelector('.scroller')!, {damping: 0.05, renderByPixels: true, delegateTo: document});
             ScrollTrigger.scrollerProxy(".scroller", {
             scrollTop (value: number = 0) {
                 if (arguments.length) {
@@ -51,50 +49,36 @@ const AboutMePage = () => {
             }
             });
             bodyScrollBar.addListener(ScrollTrigger.update);
-            ScrollTrigger.defaults({scroller: Container});
+            ScrollTrigger.defaults({scroller: '.scroller'});
 
             if (Contactbtn) Contactbtn.addEventListener('click', () => {bodyScrollBar.scrollTo(0, window.innerHeight * 15, 1000); });
 
-            const handleResize = () => {
-                gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
-                // const vh = window.innerHeight * 0.01;
-                // // Then we set the value in the --vh custom property to the root of the document
-                // document.documentElement.style.setProperty('--vh', `${vh}px`);
-                // if (mobileWidth){
-                //     gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
-                //     gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
-                //     // if (window.innerWidth > 850) window.location.reload(true);
-                // }
-
-                // if (!mobileWidth) {
-                //     gsap.set('.flightPath', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
-                //     gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
-                //     // if (window.innerWidth < 850) window.location.reload(true);
-                // }
-            };
-            const delay = (cb: () => void, time: number) => {
-              let timer: NodeJS.Timeout | number = 0;
-              return () => {
-                clearTimeout(Number(timer));
-                timer = window.setTimeout(cb, time);
-              };
-            };
-
-            ScrollTrigger.addEventListener('refreshInit', delay(handleResize, 750));
+            // Landing image effect
+            gsap.to('.Landing_image', {
+                scrollTrigger: {
+                    scroller: '.scroller',
+                    trigger: '.Landing_image',
+                    pin: true,
+                    invalidateOnRefresh: true,
+                    start: () => 'top top',
+                    end: () => `+=${window.innerHeight}`,
+                    scrub: 1
+                }
+            });
 
             ScrollTrigger.matchMedia({
                 "(max-width: 850px)": () => {
                     // section wrapper
                     const t1 = gsap.timeline({
                         scrollTrigger:{
-                            trigger: '.SectionWrapper',
+                            scroller: '.scroller',
+                            trigger: '.IntroOneWrapper',
                             pin: true,
-                            pinSpacing: false,
+                            pinSpacing: true,
                             anticipatePin: 1,
                             invalidateOnRefresh: true,
                             start: () => 'top top',
-                            end: () => `+=${window.innerHeight * 6}`,
-                            // immediateRender: false,
+                            end: () => `+=600%`,
                             scrub: .1
                         }
                     });
@@ -116,20 +100,24 @@ const AboutMePage = () => {
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .fromTo('.DescriptionThree', {x: 0,y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina')
                     .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
+
+                    ScrollTrigger.addEventListener('refresh', () => {
+                        gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
+                        gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
+                    });
                 },
                 "(min-width: 851px)": () => {
                     // section wrapper
                     const t1 = gsap.timeline({
                         scrollTrigger:{
-                            trigger: '.SectionWrapper',
+                            scroller: '.scroller',
+                            trigger: '.IntroOneWrapper',
                             pin: true,
-                            pinSpacing: false,
-                            anticipatePin: 1,
-                            invalidateOnRefresh: true,
+                            pinSpacing: true,
                             start: () => 'top top',
-                            end: () => `+=${window.innerHeight * 6}`,
-                            // immediateRender: false,
-                            scrub: .1
+                            end: () => `+=600%`,
+                            invalidateOnRefresh: true,
+                            scrub: 1,
                         }
                     });
 
@@ -151,80 +139,58 @@ const AboutMePage = () => {
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .to('.DescriptionThree', {y:0, x: () => window.innerWidth / 3}, 'toChina')
                     .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
+
+                    ScrollTrigger.addEventListener('refresh', () => {
+                        gsap.set('.flightPath', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
+                        gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
+                    });
                 },
-                "all": () => {
-                     // Background Item;
-                    gsap.to('.background', {
-                        scrollTrigger: {
-                        trigger: '.background',
-                        anticipatePin: 1,
-                        pin: true,
-                        pinSpacing:false,
-                        invalidateOnRefresh: true,
-                        start: () => 'top top',
-                        end: () => 'max',
-                        scrub: .1
-                        }
-                    });
+            });
 
-                    // disable nudge at this point
-                    gsap.to('.background', {
-                        scrollTrigger:{
-                            trigger: '.IntroTwoWrapper',
-                            start: () => 'bottom top',
-                            end: () => 'max',
-                            scrub: 1,
-                            invalidateOnRefresh: true,
-                            onEnter: () => {
-                                const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-                                return Div.style.visibility = "hidden";
-                            },
-                            onLeaveBack: () => {
-                                const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-                                return Div.style.visibility = "visible";
-                            }
-                        },
-                        backgroundColor: 'rgb(58, 58, 58)'
-                    });
-
-                    // Landing image effect
-                    gsap.to('.Landing_image', {
-                        scrollTrigger: {
-                            trigger: '.Landing_image',
-                            anticipatePin:1,
-                            pin: true,
-                            invalidateOnRefresh: true,
-                            start: () => 'top top',
-                            end: () => window.innerHeight,
-                            scrub: 1
-                        }
-                    });
-
-                    gsap.to('#Pseudocode', {
-                        scrollTrigger: {
-                            trigger: '.IntroTwoWrapper',
-                            start: () => 'bottom center',
-                            end: () => 'bottom 50px',
-                            invalidateOnRefresh: true,
-                            scrub: 1
-                        },
-                        autoAlpha: 0
-                    });
-
-                    // Appear Text
-                    gsap.to('.IntroTwoWrapper', {
-                        scrollTrigger:{
-                            trigger: '.IntroTwoWrapper',
-                            anticipatePin: 1,
-                            pin: true,
-                            invalidateOnRefresh: true,
-                            pinSpacing: false,
-                            start: () => 'top top',
-                            end: () => `+=${window.innerHeight / 2}`,
-                            scrub: 1
-                        }
-                    });
+            // Appear Text
+            gsap.to('.IntroTwoWrapper', {
+                scrollTrigger:{
+                    scroller: '.scroller',
+                    trigger: '.IntroTwoWrapper',
+                    pin: true,
+                    invalidateOnRefresh: true,
+                    pinSpacing: true,
+                    start: () => 'top top',
+                    end: () => `+=${window.innerHeight / 2}`,
+                    scrub: 1,
                 }
+            });
+
+            gsap.fromTo(['.footerwrapper', '.IntroTwoWrapper', 'body'],{backgroundColor: 'white'}, {
+                scrollTrigger: {
+                    scroller: '.scroller',
+                  trigger: ".footerwrapper",
+                  start: () => `top bottom`,
+                  end: () => `+=${window.innerHeight}`,
+                  scrub: .1,
+                  invalidateOnRefresh: true,
+                  onEnter: () => {
+                      const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                      return Div.style.visibility = "hidden";
+                  },
+                  onLeaveBack: () => {
+                    const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                    return Div.style.visibility = "visible";
+                  }
+                },
+                backgroundColor: 'rgb(58, 58, 59)'
+              });
+
+            gsap.to('#Pseudocode', {
+                scrollTrigger: {
+                    scroller: '.scroller',
+                    trigger: '.footerwrapper',
+                    start: () => 'top bottom',
+                    end: () => '+=50px',
+                    invalidateOnRefresh: true,
+                    scrub: 1
+                },
+                opacity: 0
             });
         }
     }, []);
@@ -236,13 +202,10 @@ const AboutMePage = () => {
                     <LandingImg src={TJImage} alt="Author"/>
                 </LandingImage>
                 <TitleContainer>
-                    <Header>
-                        About Me
-                    </Header>
+                    <Header>About Me</Header>
                 </TitleContainer>
             </HeaderWrapper>
-            <Background className="background"></Background>
-            <IntroContainer className="SectionWrapper">
+            <IntroContainer className="IntroOneWrapper">
                 <IntroWrapper>
                     <Description className="DescriptionOne"><span>Hi there! <br/>I'm TJ Makande.</span></Description>
                     <Description className="DescriptionTwo"><span>A web developer from Zimbabwe</span></Description>
@@ -277,25 +240,9 @@ export default AboutMePage;
 
 const Scroller = styled.div`
     position: relative;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
     width: 100vw;
     overflow: hidden;
-`;
-
-const Background = styled.div`
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  width:100vw;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-
-    @media (max-width: 850px){
-        // height: ${window.innerHeight}px;
-    }
 `;
 
 const LandingImage = styled.div`
@@ -312,17 +259,11 @@ const LandingImage = styled.div`
 
 const IntroContainer = styled.div`
     pointer-events: none;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
     width: 100vw;
+    height: 100%;
     position: relative;
     overflow-x: hidden;
-    margin-bottom: 600vh;
-    margin-bottom: calc(var(--vh, 1vh) * 600);
-
-    @media (max-width: 850px) {
-        // height: ${window.innerHeight}px;
-    }
+    background-color: white;
 `;
 
 const TitleContainer = styled.div`
@@ -350,8 +291,10 @@ const TitleContainer = styled.div`
 const IntroWrapper = styled.div`
     position: relative;
     width: 100vw;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -360,15 +303,16 @@ const IntroWrapper = styled.div`
 `;
 
 const IntroTwoWrapper = styled(IntroWrapper)`
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     padding: 0 5vw;
     box-sizing: border-box;
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
-    margin-bottom: 50;
-    margin-bottom: calc(var(--vh, 1vh) * 50);
+    overflow: hidden;
 
     @media (max-width: 850px) {
         flex-direction: column;
@@ -430,9 +374,10 @@ const LandingImg = styled.img`
 const HeaderWrapper = styled.div`
     background-color: rgb(229, 229, 229);
     color: rgb(229, 229, 229);
-    // mix-blend-mode: difference;
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
+    height: -moz-available;          /* WebKit-based browsers will ignore this. */
+    height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+    height: fill-available;
     width: 100vw;
     overflow-x: hidden;
     position: relative;
