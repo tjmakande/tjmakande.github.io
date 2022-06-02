@@ -120,9 +120,9 @@ const HomePage = () => {
                 pinSpacing: true,
                 invalidateOnRefresh: true,
                 snap: {
-                  snapTo: isMobile() ? [0.42, 0.61, 0.8, 0.97 ] : [0.53, 0.68, 0.83, 0.98],
+                  snapTo: isMobile() ? [0.39, 0.58, 0.77, 0.94 ] : [0.50, 0.65, 0.80, 0.95],
                   directional: false,
-                  duration: {min: 0.02, max:0.5},
+                  duration: {min: 0.01, max:0.1},
                   delay: 0,
                 },
                 scrub: 1,
@@ -202,9 +202,9 @@ const HomePage = () => {
                       pinSpacing: true,
                       invalidateOnRefresh: true,
                       snap: {
-                        snapTo: isMobile() ? [0.42, 0.61, 0.8, 0.97 ] : [0.53, 0.68, 0.83, 0.98],
+                        snapTo: isMobile() ? [0.39, 0.58, 0.77, 0.94 ] : [0.50, 0.65, 0.80, 0.95],
                         directional: false,
-                        duration: {min: 0.02, max:0.5},
+                        duration: {min: 0.01, max:0.1},
                         delay: 0,
                       },
                       scrub: 1,
