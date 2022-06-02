@@ -130,7 +130,13 @@ const AboutMePage = () => {
                     .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
                 },
             });
-
+        ScrollTrigger.addEventListener('refresh', () => {
+                if (window.innerWidth > 850){
+                    gsap.set('.flightPath', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
+                } else {
+                    gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
+                }
+            });
             // Appear Text
         ScrollTrigger.matchMedia({
                 "(max-width: 850px)": () => {
