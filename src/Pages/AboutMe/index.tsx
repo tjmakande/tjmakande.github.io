@@ -100,11 +100,6 @@ const AboutMePage = () => {
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .fromTo('.DescriptionThree', {x: 0,y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina')
                     .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
-
-                    ScrollTrigger.addEventListener('refresh', () => {
-                        gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
-                        gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
-                    });
                 },
                 "(min-width: 851px)": () => {
                     // section wrapper
@@ -139,11 +134,6 @@ const AboutMePage = () => {
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .to('.DescriptionThree', {y:0, x: () => window.innerWidth / 3}, 'toChina')
                     .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
-
-                    ScrollTrigger.addEventListener('refresh', () => {
-                        gsap.set('.flightPath', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
-                        gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
-                    });
                 },
             });
 
@@ -198,9 +188,9 @@ const AboutMePage = () => {
     return(
         <Scroller className='Container scroller'>
             <HeaderWrapper>
-                <LandingImage className="Landing_image">
+                <ImageContainer className="Landing_image">
                     <LandingImg src={TJImage} alt="Author"/>
-                </LandingImage>
+                </ImageContainer>
                 <TitleContainer>
                     <Header>About Me</Header>
                 </TitleContainer>
@@ -245,15 +235,23 @@ const Scroller = styled.div`
     overflow: hidden;
 `;
 
-const LandingImage = styled.div`
+const LandingImg = styled.img`
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width:100%;
+    height: 100%;
+`;
+
+const ImageContainer = styled.div`
     height: 66.5vw;
     position: relative;
 
     @media (min-height: 66.5vw){
-        height: 100vh;
-        height: calc(var(--vh, 1vh) * 100);
+        height: 100%;
         width: 150.4vh;
-        width: calc(var(--vh, 1vh) * 150.4);
+        // width: calc(var(--vh, 1vh) * 150.4);
     }
 `;
 
@@ -351,23 +349,6 @@ const DescriptionFour = styled(Description)`
         width: unset;
         font-size: 1.2rem;
         margin: 2rem auto;
-    }
-`;
-
-const LandingImg = styled.img`
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width:100%;
-    height: 100%;
-
-    @media (max-width: 850px){
-        left: -25%;
-    }
-
-    @media (min-height: 66.5vw) and (max-width: 720px){
-        left: -20%;
     }
 `;
 
