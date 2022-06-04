@@ -12,8 +12,6 @@ import LandingSection from 'Sections/LandingSection';
 import { isMobile } from 'utils/device';
 
 const HomePage = () => {
-    const Containerref = React.createRef<HTMLDivElement>();
-
     window.addEventListener('load', () => {
       const vh = window.innerHeight * 0.01;
       // Then we set the value in the --vh custom property to the root of the document
@@ -62,25 +60,6 @@ const HomePage = () => {
         .to(".ImageBlock6", {yPercent:() => -150, duration: 1})
         .to(".ImageBlock7", {yPercent:() => -150, duration: 1});
 
-        gsap.fromTo(['.footerwrapper', '.works_wrapper', '.worksTexts', 'body'],{backgroundColor: 'white'}, {
-          scrollTrigger: {
-            trigger: ".footerwrapper",
-            start: () => `+=${window.innerHeight * 7}px`,
-            end: () => `+=${window.innerHeight}px`,
-            scrub: .1,
-            invalidateOnRefresh: true,
-            onEnter: () => {
-              const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-              return Div.style.visibility = "hidden";
-            },
-            onLeaveBack: () => {
-              const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
-              return Div.style.visibility = "visible";
-            }
-          },
-          backgroundColor: 'rgb(58, 58, 59)'
-        });
-
         ScrollTrigger.matchMedia({
           "(max-width: 850px)": () => {
             /*  THIS IS FOR MOBILE VIEW */
@@ -102,12 +81,12 @@ const HomePage = () => {
             const line3 = () => document.querySelector('.to') as HTMLSpanElement;
             const line4 = () => document.querySelector('.solution') as HTMLSpanElement;
 
-            t1.add('start')
-                  .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-                  .fromTo('.from',{x:() => 0, y:() => 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.35 : 0.15) - line1().offsetTop, x: () => window.innerWidth / 2 - line1().offsetLeft - line1().clientWidth / 2}, 'start')
-                  .fromTo('.challenge',{x:() => 0, y:() => 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.45 : 0.35) - line2().offsetTop, x: () => window.innerWidth / 2 - line2().offsetLeft - line2().clientWidth / 2}, 'start')
-                  .fromTo('.to',{x:() => 0, y:() => 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.55 : 0.55) - line3().offsetTop, x: () => window.innerWidth / 2 - line3().offsetLeft - line3().clientWidth / 2}, 'start')
-                  .fromTo('.solution',{x:() => 0, y:() => 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.65 : 0.75) - line4().offsetTop, x: () => window.innerWidth / 2 - line4().offsetLeft - line4().clientWidth / 2}, 'start');
+            t1
+              .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
+              .fromTo('.from',{x:() => 0, y:() => 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.35 : 0.15) - line1().offsetTop, x: () => window.innerWidth / 2 - line1().offsetLeft - line1().clientWidth / 2}, 'start')
+              .fromTo('.challenge',{x:() => 0, y:() => 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.45 : 0.35) - line2().offsetTop, x: () => window.innerWidth / 2 - line2().offsetLeft - line2().clientWidth / 2}, 'start')
+              .fromTo('.to',{x:() => 0, y:() => 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.55 : 0.55) - line3().offsetTop, x: () => window.innerWidth / 2 - line3().offsetLeft - line3().clientWidth / 2}, 'start')
+              .fromTo('.solution',{x:() => 0, y:() => 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.65 : 0.75) - line4().offsetTop, x: () => window.innerWidth / 2 - line4().offsetLeft - line4().clientWidth / 2}, 'start');
 
             // works wrapper
             const t2 = gsap.timeline({
@@ -161,6 +140,25 @@ const HomePage = () => {
             .set('.text4', {transformOrigin: '50% 0%'})
             .to('.text4', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 0.2});
 
+            gsap.fromTo(['.footerwrapper', '.works_wrapper', '.worksTexts', 'body'],{backgroundColor: 'white'}, {
+              scrollTrigger: {
+                trigger: ".footerwrapper",
+                start: () => `top bottom`,
+                end: () => `max`,
+                scrub: .1,
+                invalidateOnRefresh: true,
+                onEnter: () => {
+                  const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                  return Div.style.visibility = "hidden";
+                },
+                onLeaveBack: () => {
+                  const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                  return Div.style.visibility = "visible";
+                }
+              },
+              backgroundColor: 'rgb(58, 58, 59)'
+            });
+
           },
 
           "(min-width: 851px)": () => {
@@ -182,12 +180,12 @@ const HomePage = () => {
             const line3 = () => document.querySelector('.to') as HTMLSpanElement;
             const line4 = () => document.querySelector('.solution') as HTMLSpanElement;
 
-            t1.add('start')
-                  .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
-                  .fromTo('.from',{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.35 : 0.15) - line1().offsetTop, x: () => window.innerWidth / 2 - line1().offsetLeft - line1().clientWidth / 2}, 'start')
-                  .fromTo('.challenge',{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.45 : 0.35) - line2().offsetTop, x: () => window.innerWidth / 2 - line2().offsetLeft - line2().clientWidth / 2}, 'start')
-                  .fromTo('.to',{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.55 : 0.55) - line3().offsetTop, x: () => window.innerWidth / 2 - line3().offsetLeft - line3().clientWidth / 2}, 'start')
-                  .fromTo('.solution',{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.65 : 0.75) - line4().offsetTop, x: () => window.innerWidth / 2 - line4().offsetLeft - line4().clientWidth / 2}, 'start');
+            t1
+              .to('.Othertext', {opacity: 0, duration: 0.2}, 'start')
+              .fromTo('.from',{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.35 : 0.15) - line1().offsetTop, x: () => window.innerWidth / 2 - line1().offsetLeft - line1().clientWidth / 2}, 'start')
+              .fromTo('.challenge',{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.45 : 0.35) - line2().offsetTop, x: () => window.innerWidth / 2 - line2().offsetLeft - line2().clientWidth / 2}, 'start')
+              .fromTo('.to',{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.55 : 0.55) - line3().offsetTop, x: () => window.innerWidth / 2 - line3().offsetLeft - line3().clientWidth / 2}, 'start')
+              .fromTo('.solution',{x: 0, y: 0}, {scale: isMobile() ? 3 : 5, duration: 0.5, y: () => window.innerHeight * (isMobile() ? 0.65 : 0.75) - line4().offsetTop, x: () => window.innerWidth / 2 - line4().offsetLeft - line4().clientWidth / 2}, 'start');
               // works wrapper
             const wordSelected = () => document.querySelector('.word_selected') as HTMLSpanElement;
             const wordWorks = () => document.querySelector('.word_works') as HTMLSpanElement;
@@ -241,12 +239,31 @@ const HomePage = () => {
                   .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn')
                   .set('.text4', {transformOrigin: '50% 0%'})
                   .to('.text4', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 0.2});
+
+            gsap.fromTo(['.footerwrapper', '.works_wrapper', '.worksTexts', 'body'],{backgroundColor: 'white'}, {
+                    scrollTrigger: {
+                      trigger: ".footerwrapper",
+                      start: () => `top bottom`,
+                      end: () => `max`,
+                      scrub: .1,
+                      invalidateOnRefresh: true,
+                      onEnter: () => {
+                        const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                        return Div.style.visibility = "hidden";
+                      },
+                      onLeaveBack: () => {
+                        const Div = document.querySelector('.ScrollNudge') as HTMLDivElement;
+                        return Div.style.visibility = "visible";
+                      }
+                    },
+                    backgroundColor: 'rgb(58, 58, 59)'
+                  });
             }
         });
-    }, [Containerref]);
+    }, []);
 
     return(
-      <Scroller className='scroller' ref={Containerref}>
+      <Scroller className='scroller'>
         <LandingSection />
         <AboutMe />
         <Works />
