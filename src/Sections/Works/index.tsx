@@ -55,7 +55,7 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto}  alt="cinema platform demo"/>
                     <DescriptionBox>
                         <p>A movie booking platform, where you can also check out the latest movies.</p>
-                        <Btn available={'soon'}>Coming Soon!</Btn>
+                        <Btn available={'soon'} onClick={() => {}}>Coming Soon!</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -105,18 +105,9 @@ const Btn = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    ${
-        (props: {available: string}) => {
-            if (props.available === 'available') return 'background-color: #00b1eb; &::hover{background-color: #0e94c0; transition: .5s;';
-            if (props.available === 'request') return 'background-color: #ffa41b; &::hover{background-color: #f99e14; transition: .5s;';
-            if (props.available === 'soon') return 'background-color: #d9d6d6;';
-        }
-    }
-
 
     @media (max-width: 460px){
         width: 120px;
-        height: 40px;
     }
     @media ( max-width: 850px){
         font-size: clamp(13px, 3vh, 20px);
@@ -126,6 +117,14 @@ const Btn = styled.div`
     @media (max-width:850px) and (orientation: landscape){
         width: 150px;
         height: 35px;
+    }
+
+    ${
+        (props: {available: string}) => {
+            if (props.available === 'available') return 'background-color: #00b1eb; &::hover{background-color: #0e94c0; transition: .5s;';
+            if (props.available === 'request') return 'background-color: #ffa41b; &::hover{background-color: #f99e14; transition: .5s;';
+            if (props.available === 'soon') return 'background-color: #d9d6d6;';
+        }
     }
 `;
 
