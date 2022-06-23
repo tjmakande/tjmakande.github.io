@@ -297,8 +297,12 @@ const ImageContainer = styled.div`
         left: 0;
     }
 
-    @media (min-height: 66.5vw) and (max-width: 500px) {
-        left: -80%;
+    @media (min-height: 66.5vw) and (max-width: 630px) {
+        left: -65%;
+    }
+
+    @media (max-height: 550px){
+        left: 0;
     }
 `;
 
