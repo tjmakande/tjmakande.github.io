@@ -43,7 +43,7 @@ const Footer = () => {
                     </SocialWrapper>
                 </ContactContainer>
 
-                <footer style={{position: 'absolute',left: '2vw', bottom: '3vh'}}> <small style={{color: 'white', fontSize: isMobile() ? '10px' : 'unset'}}>&copy; Copyright {currentYear}, Tapiwanashe J. Makande</small> </footer> 
+                <footer style={{position: 'absolute',left: '2vw', bottom: '3vh'}}> <small style={{color: 'white', fontSize: '10px'}}>&copy; Copyright {currentYear}, Tapiwanashe J. Makande</small> </footer>
             </Wrapper>
         </Container>
     );
@@ -52,7 +52,6 @@ const Footer = () => {
 export default Footer;
 const ContactContainer = styled.div`
     margin-top: 2rem;
-    // width: clamp(150px, 20vw, 400px);
 
     @media (max-width: 850px){
         margin-top: 0;
