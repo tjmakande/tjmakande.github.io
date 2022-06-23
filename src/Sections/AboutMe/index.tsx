@@ -12,7 +12,6 @@ const AboutMe = () => {
                     <Lines className={'from'} style={{display: 'inline-block'}}>from</Lines>&nbsp;
                     <Lines className={'challenge'} style={{display: 'inline-block'}}> challenges </Lines>&nbsp;
                     <Lines className={'to'} style={{display: 'inline-block'}}>to</Lines>&nbsp;
-                    {/* <Lines className={'Othertext'}>any given</Lines>&nbsp; */}
                     <Lines className={'solution'} style={{display: 'inline-block'}}>solutions</Lines>
                     <Lines className={'Othertext'}>, eliminating obstacles along the way and paving a way forward.</Lines>
                 </Text>

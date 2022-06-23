@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { isMobile } from 'utils/device';
 import { openInNewTab } from 'utils/OpenNewTab';
-// import GithubIcon from './GithubIcon';
 import InstagramIcon from './InstagramIcon';
 import LinkedInIcon from './LinkedInIcon';
 
@@ -39,7 +38,6 @@ const Footer = () => {
                     <SocialWrapper>
                         <InstagramIcon />
                         <LinkedInIcon />
-                        {/* <GithubIcon /> */}
                     </SocialWrapper>
                 </ContactContainer>
 
