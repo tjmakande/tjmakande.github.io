@@ -78,7 +78,7 @@ const AboutMePage = () => {
                         }
                     });
                     gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
-                    gsap.set('.MapWrapper', {scale: 3, autoAlpha: 0});
+                    gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
 
                     t1
                     .fromTo('.DescriptionOne', {x: 0, y:() => 200,opacity: 0}, {y: 0,opacity: 1,})
@@ -86,11 +86,11 @@ const AboutMePage = () => {
                     .fromTo('.DescriptionTwo', {x: 0,opacity: 0}, {opacity: 1, duration: 0.05})
                     .to('.DescriptionTwo',{y: () => window.innerHeight * 0.3 }, 'showMap')
                     .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
-                    .to('.MapWrapper', {scale: 5, xPercent:() =>  -35, yPercent:() =>  -175, rotation: 0.05}, 'toZimbabwe')
+                    .to('.MapWrapper', {scale: 3, xPercent:() =>  -15, yPercent:() =>  -80, rotation: 0.05}, 'toZimbabwe')
                     .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
                     .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
                     .fromTo('.DescriptionThree', {x: 0, y:() =>  window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
-                    .to('.MapWrapper', {scale: 4, xPercent:() =>  -110, yPercent:() =>  40, rotation: 0.01}, 'toChina-=2%')
+                    .to('.MapWrapper', {scale: 2.5, xPercent:() =>  -70, yPercent:() =>  10, rotation: 0.01}, 'toChina-=2%')
                     .fromTo('.flightPath', {strokeDashoffset:() => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .fromTo('.DescriptionThree', {x: 0,y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina')
@@ -280,7 +280,6 @@ const LandingImg = styled.img`
     left: 0;
     z-index: 1;
     width:100%;
-    height: 100%;
 `;
 
 const ImageContainer = styled.div`
