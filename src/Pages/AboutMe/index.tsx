@@ -77,7 +77,11 @@ const AboutMePage = () => {
                             scrub: .1
                         }
                     });
-                    gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
+
+                    const path = document.querySelector('.flightToGermany') as SVGGeometryElement;
+
+                    gsap.set('.flightToGermany', {strokeDasharray: () => path.getTotalLength(), strokeDashoffset: 0});
+                    gsap.set('.flightToChina', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
                     gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
 
                     t1
@@ -87,14 +91,19 @@ const AboutMePage = () => {
                     .to('.DescriptionTwo',{y: () => window.innerHeight * 0.3 }, 'showMap')
                     .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
                     .to('.MapWrapper', {scale: 3, xPercent:() =>  -15, yPercent:() =>  -80, rotation: 0.05}, 'toZimbabwe')
-                    .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
+                    .fromTo('.Zimbabwe', {fillOpacity: 0}, {fillOpacity: 1}, 'toZimbabwe')
                     .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
                     .fromTo('.DescriptionThree', {x: 0, y:() =>  window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
                     .to('.MapWrapper', {scale: 2.5, xPercent:() =>  -70, yPercent:() =>  10, rotation: 0.01}, 'toChina-=2%')
-                    .fromTo('.flightPath', {strokeDashoffset:() => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                    .fromTo('.flightToChina', {strokeDashoffset:() => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .fromTo('.DescriptionThree', {x: 0,y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina')
-                    .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
+                    .to(['.flightToChina', '.DescriptionThree'], {opacity: 0})
+                    .to('.MapWrapper',{xPercent: () => -10, yPercent: () => 0, rotation: 0.01}, 'toGermany-=2%')
+                    .fromTo('.flightToGermany', {strokeDashoffset: () => path.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
+                    .fromTo('.DescriptionFour', {x: 0, y: () => -window.innerHeight *  0.3, opacity:0}, {opacity: 1}, 'toGermany')
+                    .fromTo('.Germany', {fillOpacity: 0}, {fillOpacity: 1}, 'toGermany')
+                    .to(['.MapWrapper', '.DescriptionFour'], {opacity: 0.1});
                 },
                 "(min-width: 851px)": () => {
                     // section wrapper
@@ -110,7 +119,10 @@ const AboutMePage = () => {
                         }
                     });
 
-                    gsap.set('.flightPath', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
+                    const path = document.querySelector('.flightToGermany') as SVGGeometryElement;
+
+                    gsap.set('.flightToChina', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
+                    gsap.set('.flightToGermany', {strokeDasharray: () => path.getTotalLength(), strokeDashoffset: 0});
                     gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
 
                     t1
@@ -120,21 +132,26 @@ const AboutMePage = () => {
                     .to('.DescriptionTwo',{x: () => -window.innerWidth / 3})
                     .to('.MapWrapper', {autoAlpha: 1})
                     .to('.MapWrapper', {scale: 3.5, xPercent:() => -45, yPercent: () => -150, rotation: 0.05}, 'toZimbabwe')
-                    .fromTo('.Zimbabwe', {fill: '#00800000'}, {fill: '#00800078'}, 'toZimbabwe')
+                    .fromTo('.Zimbabwe', {fillOpacity: 0}, {fillOpacity: 1}, 'toZimbabwe')
                     .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
                     .fromTo('.DescriptionThree', {y:0, x: () => -window.innerWidth / 3, opacity: 0}, {opacity: 1})
                     .to('.MapWrapper', {xPercent: () => -140, yPercent: () => 10, rotation: 0.01}, 'toChina-=2%')
-                    .fromTo('.flightPath', {strokeDashoffset: () => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                    .fromTo('.flightToChina', {strokeDashoffset: () => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .to('.DescriptionThree', {y:0, x: () => window.innerWidth / 3}, 'toChina')
-                    .to(['.DescriptionThree', '.MapWrapper'], {opacity: 0.1});
+                    .to(['.flightToChina', '.DescriptionThree'], {opacity: 0})
+                    .to('.MapWrapper',{ scale: 2.5, xPercent: () => -55, yPercent: () => 0, rotation: 0.01}, 'toGermany-=2%')
+                    .fromTo('.flightToGermany', {strokeDashoffset: () => path.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
+                    .fromTo('.Germany', {fillOpacity: 0}, {fillOpacity: 1}, 'toGermany')
+                    .fromTo('.DescriptionFour', {y:0, x: () => window.innerWidth / 3, opacity:0}, {x: () => -window.innerWidth / 3, opacity: 1}, 'toGermany')
+                    .to(['.MapWrapper', '.DescriptionFour'], {opacity: 0.1});
                 },
             });
         // ScrollTrigger.addEventListener('refresh', () => {
         //         if (window.innerWidth > 850){
-        //             gsap.set('.flightPath', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
+        //             gsap.set('.flightToChina', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
         //         } else {
-        //             gsap.set('.flightPath', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
+        //             gsap.set('.flightToChina', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
         //         }
         //     });
             // Appear Text
@@ -238,7 +255,8 @@ const AboutMePage = () => {
                 <IntroWrapper>
                     <Description className="DescriptionOne"><span>Hi there! <br/>I'm TJ Makande.</span></Description>
                     <Description className="DescriptionTwo"><span>A web developer from Zimbabwe</span></Description>
-                    <Description className="DescriptionThree"><span>Currently based in Beijing</span></Description>
+                    <Description className="DescriptionThree"><span>Studied in China for 5 years</span></Description>
+                    <Description className="DescriptionFour"><span>Currently based in Germany</span><br /><small style={{whiteSpace: 'pre-line', fontSize: '8px', display: 'inline-block'}}>from July</small></Description>
                     <MapWrapper className="MapWrapper">
                         <WorldMap />
                     </MapWrapper>
@@ -383,7 +401,8 @@ const Description = styled.p`
     font-size: clamp(1.5rem,2vw, 5rem);
     width: 30vw;
     position: absolute;
-
+    z-index: 3;
+    backdrop-filter: blur(2px);
     @media (max-width: 850px) {
         width: 100vw;
     }
