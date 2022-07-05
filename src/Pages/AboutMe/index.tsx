@@ -78,11 +78,12 @@ const AboutMePage = () => {
                         }
                     });
 
-                    const path = document.querySelector('.flightToGermany') as SVGGeometryElement;
+                    const pathToGermany = document.querySelector('.flightToGermany') as SVGGeometryElement;
+                    const pathToChina = document.querySelector('.flightToChina') as SVGGeometryElement;
 
-                    gsap.set('.flightToGermany', {strokeDasharray: () => path.getTotalLength(), strokeDashoffset: 0});
-                    gsap.set('.flightToChina', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
-                    gsap.set('.MapWrapper', {scale: 2, autoAlpha: 0});
+                    gsap.set('.flightToGermany', {strokeDasharray: () => pathToGermany.getTotalLength(), strokeDashoffset: 0});
+                    gsap.set('.flightToChina', {strokeDasharray: () => pathToChina.getTotalLength(), strokeDashoffset:0});
+                    gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
 
                     t1
                     .fromTo('.DescriptionOne', {x: 0, y:() => 200,opacity: 0}, {y: 0,opacity: 1,})
@@ -95,7 +96,7 @@ const AboutMePage = () => {
                     .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
                     .fromTo('.DescriptionThree', {x: 0, y:() =>  window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
                     .to('.MapWrapper', {scale: 3, xPercent:() =>  -70, yPercent:() =>  10, rotation: 0.01}, 'toChina-=2%')
-                    .fromTo('.flightToChina', {strokeDashoffset:() => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                    .fromTo('.flightToChina', {strokeDashoffset:() => pathToChina.getTotalLength()}, {strokeDashoffset: 0}, 'toChina')
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .fromTo('.DescriptionThree', {x: 0,y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina') // input next descriptions after this.
                     .to('.DescriptionThree', {opacity: 0})
@@ -104,7 +105,7 @@ const AboutMePage = () => {
                     .fromTo('.DescriptionFive',{opacity: 0,y:() => -window.innerHeight * 0.3, x:0}, {opacity: 1})
                     .to(['.flightToChina', '.DescriptionFive'], {opacity: 0})
                     .to('.MapWrapper',{xPercent: () => -10, yPercent: () => 0, rotation: 0.01}, 'toGermany-=2%')
-                    .fromTo('.flightToGermany', {strokeDashoffset: () => path.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
+                    .fromTo('.flightToGermany', {strokeDashoffset: () => pathToGermany.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
                     .fromTo('.Germany', {fillOpacity: 0}, {fillOpacity: 1}, 'toGermany')
                     .fromTo('.DescriptionSix', {x: 0, y: () => -window.innerHeight *  0.3, opacity:0}, {opacity: 1}, 'toGermany')
                     .to('.DescriptionSix', {opacity: 0})
@@ -125,10 +126,12 @@ const AboutMePage = () => {
                         }
                     });
 
-                    const path = document.querySelector('.flightToGermany') as SVGGeometryElement;
+                    const pathToGermany = document.querySelector('.flightToGermany') as SVGGeometryElement;
+                    const pathToChina = document.querySelector('.flightToChina') as SVGGeometryElement;
 
-                    gsap.set('.flightToChina', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
-                    gsap.set('.flightToGermany', {strokeDasharray: () => path.getTotalLength(), strokeDashoffset: 0});
+
+                    gsap.set('.flightToChina', {strokeDasharray: () => pathToChina.getTotalLength(), strokeDashoffset:0});
+                    gsap.set('.flightToGermany', {strokeDasharray: () => pathToGermany.getTotalLength(), strokeDashoffset: 0});
                     gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
 
                     t1
@@ -142,7 +145,7 @@ const AboutMePage = () => {
                     .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
                     .fromTo('.DescriptionThree', {y:0, x: () => -window.innerWidth / 3, opacity: 0}, {opacity: 1})
                     .to('.MapWrapper', {xPercent: () => -140, yPercent: () => 10, rotation: 0.01}, 'toChina-=2%')
-                    .fromTo('.flightToChina', {strokeDashoffset: () => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
+                    .fromTo('.flightToChina', {strokeDashoffset: () => pathToChina.getTotalLength()}, {strokeDashoffset: 0}, 'toChina')
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
                     .to('.DescriptionThree', {y:0, x: () => window.innerWidth / 3}, 'toChina') // Input next desscriptions after this
                     .to('.DescriptionThree', {opacity: 0})
@@ -151,7 +154,7 @@ const AboutMePage = () => {
                     .fromTo('.DescriptionFive',{opacity: 0,y:0, x: () => window.innerWidth / 3}, {opacity: 1})
                     .to(['.flightToChina', '.DescriptionFive'], {opacity: 0})
                     .to('.MapWrapper',{ scale: 2.5, xPercent: () => -55, yPercent: () => 0, rotation: 0.01}, 'toGermany-=2%')
-                    .fromTo('.flightToGermany', {strokeDashoffset: () => path.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
+                    .fromTo('.flightToGermany', {strokeDashoffset: () => pathToGermany.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
                     .fromTo('.Germany', {fillOpacity: 0}, {fillOpacity: 1}, 'toGermany')
                     .fromTo('.DescriptionSix', {y:0, x: () => window.innerWidth / 3, opacity:0}, {x: () => -window.innerWidth / 3, opacity: 1}, 'toGermany') //Last part
                     .to('.DescriptionSix', {opacity: 0})
