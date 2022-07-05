@@ -82,7 +82,7 @@ const AboutMePage = () => {
 
                     gsap.set('.flightToGermany', {strokeDasharray: () => path.getTotalLength(), strokeDashoffset: 0});
                     gsap.set('.flightToChina', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
-                    gsap.set('.MapWrapper', {scale: 1.5, autoAlpha: 0});
+                    gsap.set('.MapWrapper', {scale: 2, autoAlpha: 0});
 
                     t1
                     .fromTo('.DescriptionOne', {x: 0, y:() => 200,opacity: 0}, {y: 0,opacity: 1,})
@@ -90,20 +90,26 @@ const AboutMePage = () => {
                     .fromTo('.DescriptionTwo', {x: 0,opacity: 0}, {opacity: 1, duration: 0.05})
                     .to('.DescriptionTwo',{y: () => window.innerHeight * 0.3 }, 'showMap')
                     .to('.MapWrapper', {autoAlpha: 1}, 'showMap')
-                    .to('.MapWrapper', {scale: 3, xPercent:() =>  -15, yPercent:() =>  -80, rotation: 0.05}, 'toZimbabwe')
+                    .to('.MapWrapper', {scale: 3.5, xPercent:() =>  -15, yPercent:() =>  -80, rotation: 0.05}, 'toZimbabwe')
                     .fromTo('.Zimbabwe', {fillOpacity: 0}, {fillOpacity: 1}, 'toZimbabwe')
                     .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
                     .fromTo('.DescriptionThree', {x: 0, y:() =>  window.innerHeight * 0.3, opacity: 0}, {opacity: 1})
-                    .to('.MapWrapper', {scale: 2.5, xPercent:() =>  -70, yPercent:() =>  10, rotation: 0.01}, 'toChina-=2%')
+                    .to('.MapWrapper', {scale: 3, xPercent:() =>  -70, yPercent:() =>  10, rotation: 0.01}, 'toChina-=2%')
                     .fromTo('.flightToChina', {strokeDashoffset:() => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-                    .fromTo('.DescriptionThree', {x: 0,y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina')
-                    .to(['.flightToChina', '.DescriptionThree'], {opacity: 0})
+                    .fromTo('.DescriptionThree', {x: 0,y:() =>  window.innerHeight * 0.3}, {y: () => -window.innerHeight * 0.3}, 'toChina') // input next descriptions after this.
+                    .to('.DescriptionThree', {opacity: 0})
+                    .fromTo('.DescriptionFour',{opacity: 0, y:() => -window.innerHeight * 0.3, x:0}, {opacity: 1})
+                    .to('.DescriptionFour', {opacity: 0})
+                    .fromTo('.DescriptionFive',{opacity: 0,y:() => -window.innerHeight * 0.3, x:0}, {opacity: 1})
+                    .to(['.flightToChina', '.DescriptionFive'], {opacity: 0})
                     .to('.MapWrapper',{xPercent: () => -10, yPercent: () => 0, rotation: 0.01}, 'toGermany-=2%')
                     .fromTo('.flightToGermany', {strokeDashoffset: () => path.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
-                    .fromTo('.DescriptionFour', {x: 0, y: () => -window.innerHeight *  0.3, opacity:0}, {opacity: 1}, 'toGermany')
                     .fromTo('.Germany', {fillOpacity: 0}, {fillOpacity: 1}, 'toGermany')
-                    .to(['.MapWrapper', '.DescriptionFour'], {opacity: 0.1});
+                    .fromTo('.DescriptionSix', {x: 0, y: () => -window.innerHeight *  0.3, opacity:0}, {opacity: 1}, 'toGermany')
+                    .to('.DescriptionSix', {opacity: 0})
+                    .fromTo('.DescriptionSeven',{y:() => -window.innerHeight *  0.3, x: 0, opacity:0}, {opacity: 1})
+                    .to(['.MapWrapper', '.DescriptionSeven'], {opacity: 0.1});
                 },
                 "(min-width: 851px)": () => {
                     // section wrapper
@@ -131,20 +137,26 @@ const AboutMePage = () => {
                     .fromTo('.DescriptionTwo', {y:0, opacity: 0}, {opacity: 1, duration: 0.05})
                     .to('.DescriptionTwo',{x: () => -window.innerWidth / 3})
                     .to('.MapWrapper', {autoAlpha: 1})
-                    .to('.MapWrapper', {scale: 3.5, xPercent:() => -45, yPercent: () => -150, rotation: 0.05}, 'toZimbabwe')
+                    .to('.MapWrapper', {scale: 3.5, xPercent:() => -45, yPercent: () => -130, rotation: 0.05}, 'toZimbabwe')
                     .fromTo('.Zimbabwe', {fillOpacity: 0}, {fillOpacity: 1}, 'toZimbabwe')
                     .fromTo('.DescriptionTwo', {opacity: 1}, {opacity: 0})
                     .fromTo('.DescriptionThree', {y:0, x: () => -window.innerWidth / 3, opacity: 0}, {opacity: 1})
                     .to('.MapWrapper', {xPercent: () => -140, yPercent: () => 10, rotation: 0.01}, 'toChina-=2%')
                     .fromTo('.flightToChina', {strokeDashoffset: () => window.innerWidth * 0.327}, {strokeDashoffset: 0}, 'toChina')
                     .fromTo('.China', {fill: '#ff000000'}, {fill: '#ff00009e'}, 'toChina')
-                    .to('.DescriptionThree', {y:0, x: () => window.innerWidth / 3}, 'toChina')
-                    .to(['.flightToChina', '.DescriptionThree'], {opacity: 0})
+                    .to('.DescriptionThree', {y:0, x: () => window.innerWidth / 3}, 'toChina') // Input next desscriptions after this
+                    .to('.DescriptionThree', {opacity: 0})
+                    .fromTo('.DescriptionFour',{opacity: 0, y:0, x: () => window.innerWidth / 3}, {opacity: 1})
+                    .to('.DescriptionFour', {opacity: 0})
+                    .fromTo('.DescriptionFive',{opacity: 0,y:0, x: () => window.innerWidth / 3}, {opacity: 1})
+                    .to(['.flightToChina', '.DescriptionFive'], {opacity: 0})
                     .to('.MapWrapper',{ scale: 2.5, xPercent: () => -55, yPercent: () => 0, rotation: 0.01}, 'toGermany-=2%')
                     .fromTo('.flightToGermany', {strokeDashoffset: () => path.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
                     .fromTo('.Germany', {fillOpacity: 0}, {fillOpacity: 1}, 'toGermany')
-                    .fromTo('.DescriptionFour', {y:0, x: () => window.innerWidth / 3, opacity:0}, {x: () => -window.innerWidth / 3, opacity: 1}, 'toGermany')
-                    .to(['.MapWrapper', '.DescriptionFour'], {opacity: 0.1});
+                    .fromTo('.DescriptionSix', {y:0, x: () => window.innerWidth / 3, opacity:0}, {x: () => -window.innerWidth / 3, opacity: 1}, 'toGermany') //Last part
+                    .to('.DescriptionSix', {opacity: 0})
+                    .fromTo('.DescriptionSeven',{y:0, x: () => -window.innerWidth / 3, opacity:0}, {opacity: 1})
+                    .to(['.MapWrapper', '.DescriptionSeven'], {opacity: 0.1});
                 },
             });
         // ScrollTrigger.addEventListener('refresh', () => {
@@ -254,9 +266,12 @@ const AboutMePage = () => {
             <IntroContainer className="IntroOneWrapper">
                 <IntroWrapper>
                     <Description className="DescriptionOne"><span>Hi there! <br/>I'm TJ Makande.</span></Description>
-                    <Description className="DescriptionTwo"><span>A web developer from Zimbabwe</span></Description>
-                    <Description className="DescriptionThree"><span>Studied in China for 5 years</span></Description>
-                    <Description className="DescriptionFour"><span>Currently based in Germany</span><br /><small style={{whiteSpace: 'pre-line', fontSize: '8px', display: 'inline-block'}}>from July</small></Description>
+                    <Description className="DescriptionTwo"><span> I'm a web developer from Zimbabwe</span></Description>
+                    <Description className="DescriptionThree"><span>Spent 6 years in China</span></Description>
+                    <Description className="DescriptionFour"><span>Obtained a degree in Computer Science and Technology</span></Description>
+                    <Description className="DescriptionFive"><span>learning and coding since 2017</span></Description>
+                    <Description className="DescriptionSix"><span>Currently based in Germany</span><br /><small style={{whiteSpace: 'pre-line', fontSize: '8px', display: 'inline-block'}}>from July</small></Description>
+                    <Description className="DescriptionSeven"><span>The future awaits!</span></Description>
                     <MapWrapper className="MapWrapper">
                         <WorldMap />
                     </MapWrapper>
@@ -404,7 +419,7 @@ const Description = styled.p`
     z-index: 3;
     backdrop-filter: blur(2px);
     @media (max-width: 850px) {
-        width: 100vw;
+        width: 97vw;
     }
 `;
 
