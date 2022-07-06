@@ -156,7 +156,7 @@ const AboutMePage = () => {
                     .to('.MapWrapper',{ scale: 2.5, xPercent: () => -55, yPercent: () => 0, rotation: 0.01}, 'toGermany-=2%')
                     .fromTo('.flightToGermany', {strokeDashoffset: () => pathToGermany.getTotalLength()}, {strokeDashoffset: 0}, 'toGermany')
                     .fromTo('.Germany', {fillOpacity: 0}, {fillOpacity: 1}, 'toGermany')
-                    .fromTo('.DescriptionSix', {y:0, x: () => window.innerWidth / 3, opacity:0}, {x: () => -window.innerWidth / 3, opacity: 1}, 'toGermany') //Last part
+                    .fromTo('.DescriptionSix', {y:0, x: () => window.innerWidth / 3, opacity:0}, {x: () => -window.innerWidth / 3, opacity: 1}, 'toGermany') // Last part
                     .to('.DescriptionSix', {opacity: 0})
                     .fromTo('.DescriptionSeven',{y:0, x: () => -window.innerWidth / 3, opacity:0}, {opacity: 1})
                     .to(['.MapWrapper', '.DescriptionSeven'], {opacity: 0.1});

@@ -142,9 +142,10 @@ const HomePage = () => {
 
             gsap.fromTo(['.footerwrapper', '.works_wrapper', '.worksTexts', 'body'],{backgroundColor: 'white'}, {
               scrollTrigger: {
+                scroller: '.scroller',
                 trigger: ".footerwrapper",
                 start: () => `top bottom`,
-                end: () => `max`,
+                end: () => `+=${window.innerHeight}`,
                 scrub: .1,
                 invalidateOnRefresh: true,
                 onEnter: () => {
@@ -242,9 +243,10 @@ const HomePage = () => {
 
             gsap.fromTo(['.footerwrapper', '.works_wrapper', '.worksTexts', 'body'],{backgroundColor: 'white'}, {
                     scrollTrigger: {
+                      scroller: '.scroller',
                       trigger: ".footerwrapper",
                       start: () => `top bottom`,
-                      end: () => `max`,
+                      end: () => `+=${window.innerHeight}`,
                       scrub: .1,
                       invalidateOnRefresh: true,
                       onEnter: () => {
