@@ -162,13 +162,7 @@ const AboutMePage = () => {
                     .to(['.MapWrapper', '.DescriptionSeven'], {opacity: 0.1});
                 },
             });
-        // ScrollTrigger.addEventListener('refresh', () => {
-        //         if (window.innerWidth > 850){
-        //             gsap.set('.flightToChina', {strokeDasharray: () => window.innerWidth * 0.326, strokeDashoffset:0});
-        //         } else {
-        //             gsap.set('.flightToChina', {strokeDasharray:() =>  window.innerWidth * 0.326, strokeDashoffset:0});
-        //         }
-        //     });
+
             // Appear Text
         ScrollTrigger.matchMedia({
                 "(max-width: 850px)": () => {

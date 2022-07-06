@@ -33,19 +33,19 @@ const WorkSection = () => {
 
                 <TitleContainer>
                     <div className={'text2'}>
-                        <TitleText> 02. Chatbot</TitleText>
+                        <TitleText> 02. SDSN Youth</TitleText>
                     </div>
                 </TitleContainer>
 
                 <TitleContainer>
                     <div className={'text3'}>
-                        <TitleText> 03. Cube</TitleText>
+                        <TitleText> 03. Chatbot</TitleText>
                     </div>
                 </TitleContainer>
 
                 <TitleContainer>
                     <div className={'text4'}>
-                        <TitleText> 04. SDSN Youth</TitleText>
+                        <TitleText> 04. Cube</TitleText>
                     </div>
                 </TitleContainer>
             </TextContainer>
@@ -55,29 +55,7 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto}  alt="cinema platform demo"/>
                     <DescriptionBox>
                         <p>A movie booking platform, where you can also check out the latest movies.</p>
-                        <Btn available={'soon'} onClick={() => {}}>Coming Soon!</Btn>
-                    </DescriptionBox>
-                </ProjectItem>
-
-                <ProjectItem className="chatbot">
-                    <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot}  alt="chatbot demo"/>
-                    <DescriptionBox>
-                        <p>A customer service realtime chatbot that is able to process relevant information to the user and perform CRUD operations.</p>
-                        <Btn available={'request'} onClick={() => {
-                            const container = Scrollbar.get(document.querySelector('.scroller') as HTMLDivElement);
-                            return container?.scrollTo(0, window.innerHeight * 20, 1000);
-                        }}>Upon Request</Btn>
-                    </DescriptionBox>
-                </ProjectItem>
-
-                <ProjectItem className="cube">
-                    <ProjectBg  className={'Works'} data-id={'cube'} src={Cube} alt="cube demo"/>
-                    <DescriptionBox>
-                        <p>A responsive cube showcasing my experience during the 6 years I lived in China.</p>
-                        <Btn available={'request'} onClick={() => {
-                            const container = Scrollbar.get(document.querySelector('.scroller') as HTMLDivElement);
-                            return container?.scrollTo(0, window.innerHeight * 20, 1000);
-                        }}>Upon Request</Btn>
+                        <Btn available={'available'} onClick={() => openInNewTab('https://themovie-cinema.herokuapp.com/')}>View Site</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -86,6 +64,25 @@ const WorkSection = () => {
                     <DescriptionBox>
                         <p>The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.</p>
                         <Btn available={'available'} onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}>View Site</Btn>
+                    </DescriptionBox>
+                </ProjectItem>
+
+                <ProjectItem className="chatbot">
+                    <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot}  alt="chatbot demo"/>
+                    <DescriptionBox>
+                        <p>A customer service realtime chatbot that is able to process relevant information to the user and perform CRUD operations.</p>
+                        <Btn available={'available'} onClick={() => openInNewTab('https://thechatbot-app.herokuapp.com/login')}>View Site</Btn>
+                    </DescriptionBox>
+                </ProjectItem>
+
+                <ProjectItem className="cube">
+                    <ProjectBg  className={'Works'} data-id={'cube'} src={Cube} alt="cube demo"/>
+                    <DescriptionBox>
+                        <p>A responsive cube showcasing my experience during the 6 years I lived in China.</p>
+                        <Btn available={'soon'} onClick={() => {
+                            const container = Scrollbar.get(document.querySelector('.scroller') as HTMLDivElement);
+                            return container?.scrollTo(0, window.innerHeight * 20, 1000);
+                        }}>Coming Soon</Btn>
                     </DescriptionBox>
                 </ProjectItem>
             </WrapperWorks>

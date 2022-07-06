@@ -124,19 +124,19 @@ const HomePage = () => {
             .to('.text1', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 1}, 'chatbot')
             .fromTo('.text2', {yPercent:() => 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'chatbot')
             .to('.cinema', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'chatbot')
-            .fromTo('.chatbot', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
+            .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
             .set('.text2', {transformOrigin: '50% 0%'})
             // Thirt Project animation
             .to('.text2', {yPercent: () => -12.5, scaleY: 0, opacity: 0, duration: 1}, 'cube')
             .fromTo('.text3', {yPercent:() => 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cube')
-            .to('.chatbot', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'cube')
-            .fromTo('.cube', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
+            .to('.sdsn', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'cube')
+            .fromTo('.chatbot', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
             .set('.text3', {transformOrigin: '50% 0%'})
             // Fourth Project animation
             .to('.text3', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
             .fromTo('.text4', {yPercent:() => 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
-            .to('.cube', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
-            .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn')
+            .to('.chatbot', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
+            .fromTo('.cube', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn')
             .set('.text4', {transformOrigin: '50% 0%'})
             .to('.text4', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 0.2});
 
@@ -224,19 +224,19 @@ const HomePage = () => {
                   .to('.text1', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 1}, 'chatbot')
                   .fromTo('.text2', {yPercent:() => 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'chatbot')
                   .to('.cinema', {y:() =>  -window.innerHeight, opacity: 0, duration: 1}, 'chatbot')
-                  .fromTo('.chatbot', { opacity: 0, y:() =>  window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
+                  .fromTo('.sdsn', { opacity: 0, y:() =>  window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'chatbot')
                   .set('.text2', {transformOrigin: '50% 0%'})
                   // Thirt Project animation
                   .to('.text2', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 1}, 'cube')
                   .fromTo('.text3', {yPercent:() => 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'cube')
-                  .to('.chatbot', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'cube')
-                  .fromTo('.cube', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
+                  .to('.sdsn', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'cube')
+                  .fromTo('.chatbot', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'cube')
                   .set('.text3', {transformOrigin: '50% 0%'})
                   // Fourth Project animation
                   .to('.text3', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 1}, 'sdsn')
                   .fromTo('.text4', {yPercent:() => 12.5, scaleY: 0, transformOrigin: '50% 100%', opacity: 0}, {yPercent: 0, scaleY: 1, opacity: 1, duration: 1}, 'sdsn')
-                  .to('.cube', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
-                  .fromTo('.sdsn', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn')
+                  .to('.chatbot', {y:() => -window.innerHeight, opacity: 0, duration: 1}, 'sdsn')
+                  .fromTo('.cube', { opacity: 0, y:() => window.innerHeight}, {opacity: 1, y: 0, duration: 1}, 'sdsn')
                   .set('.text4', {transformOrigin: '50% 0%'})
                   .to('.text4', {yPercent:() => -12.5, scaleY: 0, opacity: 0, duration: 0.2});
 
