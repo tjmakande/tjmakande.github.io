@@ -57,6 +57,33 @@ body {
   display: none;
 }
 
+.mouseOverBtn{
+  width: 80px;
+  height: 80px;
+  border-radius: 50% 50%;
+  /* background-color: rgb(58, 58, 58); */
+  top: -40px;
+  left: -40px;
+  transition: .2s;
+  opacity: 1;
+  mix-blend-mode: normal;
+  background-color:rgba(0, 0, 0, 0.7);
+}
+
+.mouseOverBtn::after{
+  content:'Click me!';
+  border: black solid 1px;
+  height:  100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-size: 16px;
+  color: white;
+  border-radius: 50%;
+}
+
 .mouseOverSocial {
   width: 4.5vw;
   height: 4.5vw;

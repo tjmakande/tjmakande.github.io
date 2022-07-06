@@ -8,6 +8,15 @@ import styled from 'styled-components';
 import { openInNewTab } from "utils/OpenNewTab";
 
 const WorkSection = () => {
+    const DarkenButtonShade = (div: HTMLElement) => div.style.background = "#0e94c0";
+    const ReturnButtonShade = (div: HTMLElement) => div.style.background = '#00b1eb';
+
+    const isHover = (action: boolean) => action ? (
+        document.querySelector('.mouse')?.classList.add('mouseOverBtn')
+    ) : (
+        document.querySelector('.mouse')?.classList.remove('mouseOverBtn')
+    );
+
     return(
         <Container className="works_wrapper">
             <div style={{position: 'absolute', top: 0, left: 0, width: '100vw', height: '100%'}}>
@@ -55,7 +64,12 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'} data-id={'cinema'} src={CinemaPhoto}  alt="cinema platform demo"/>
                     <DescriptionBox>
                         <p>A movie booking platform, where you can also check out the latest movies.</p>
-                        <Btn available={'available'} onClick={() => openInNewTab('https://themovie-cinema.herokuapp.com/')}>View Site</Btn>
+                        <Btn
+                            available={'available'}
+                            onMouseEnter={e => { isHover(true); DarkenButtonShade(e.target as HTMLElement)}}
+                            onMouseLeave={e => { isHover(false); ReturnButtonShade(e.target as HTMLElement)}}
+                        onClick={() => openInNewTab('https://themovie-cinema.herokuapp.com/')}
+                        >View Site</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -63,7 +77,12 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'}  data-id={'sdsn'}src={SDSN} alt="sdsn demo" />
                     <DescriptionBox>
                         <p>The global innovation and impact awards, recognizing and mobilizing leading solutions for the sustainable development goals.</p>
-                        <Btn available={'available'} onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}>View Site</Btn>
+                        <Btn
+                            available={'available'}
+                            onMouseEnter={e => { isHover(true); DarkenButtonShade(e.target as HTMLElement)}}
+                            onMouseLeave={e => { isHover(false); ReturnButtonShade(e.target as HTMLElement)}}
+                        onClick={() => openInNewTab('https://www.sdsnyouth.org/awards')}
+                        >View Site</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -71,7 +90,12 @@ const WorkSection = () => {
                     <ProjectBg className={'Works'}  data-id={'chatbot'} src={AutomatedBot}  alt="chatbot demo"/>
                     <DescriptionBox>
                         <p>A customer service realtime chatbot that is able to process relevant information to the user and perform CRUD operations.</p>
-                        <Btn available={'available'} onClick={() => openInNewTab('https://thechatbot-app.herokuapp.com/login')}>View Site</Btn>
+                        <Btn
+                            available={'available'}
+                            onMouseEnter={e =>{ isHover(true);  DarkenButtonShade(e.target as HTMLElement)}}
+                            onMouseLeave={e =>{ isHover(false);  ReturnButtonShade(e.target as HTMLElement)}}
+                        onClick={() => openInNewTab('https://thechatbot-app.herokuapp.com/login')}
+                        >View Site</Btn>
                     </DescriptionBox>
                 </ProjectItem>
 
@@ -102,6 +126,7 @@ const Btn = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: .5s;
 
     @media (max-width: 460px){
         width: 120px;
