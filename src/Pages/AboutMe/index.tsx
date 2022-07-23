@@ -267,7 +267,7 @@ const AboutMePage = () => {
                     <Description className="DescriptionThree"><span>Spent 6 years in China</span></Description>
                     <Description className="DescriptionFour"><span>Obtained a degree in Computer Science and Technology</span></Description>
                     <Description className="DescriptionFive"><span>Learning and coding since 2017</span></Description>
-                    <Description className="DescriptionSix"><span>Currently based in Germany</span><br /><small style={{whiteSpace: 'pre-line', fontSize: '8px', display: 'inline-block'}}>from July</small></Description>
+                    <Description className="DescriptionSix"><span>Currently based in Germany</span></Description>
                     <Description className="DescriptionSeven"><span>The future awaits!</span></Description>
                     <MapWrapper className="MapWrapper">
                         <WorldMap />

@@ -1,6 +1,6 @@
 import AppLink from 'Components/AppLink';
 import Cursor from 'Components/Cursor';
-import ScrolllDown from 'Components/ScrollDown';
+import ScrollDown from 'Components/ScrollDown';
 import React from 'react';
 import {
   Navigate,
@@ -35,7 +35,7 @@ function App () {
           <AppLink url={'/'} redirectTo={'Home'}/>
           <AppLink url={'/About'} redirectTo={'About Me'}/>
           <AppLink url={"/Contact"} redirectTo={'Contact'} />
-          <ScrolllDown />
+          <ScrollDown />
         </div>
     </div>
   );
